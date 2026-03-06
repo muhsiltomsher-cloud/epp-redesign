@@ -57,7 +57,7 @@ export default function Product() {
         <div className="flex flex-col md:flex-row w-full max-w-[1800px] mx-auto min-h-[calc(100vh-70px)]">
           
           <div ref={imageColRef} className="w-full md:w-1/2 md:h-[calc(100vh-70px)] bg-[#f5f5f5] flex flex-col overflow-hidden relative">
-            <div className="w-full h-full relative flex items-center justify-center p-8 md:p-16">
+            <div className="w-full h-full relative flex items-center justify-center p-6 md:p-12 lg:p-16 xl:p-20">
               <img 
                 src={mainImage || product.image} 
                 alt={product.name} 
@@ -90,7 +90,7 @@ export default function Product() {
           </div>
 
           <div className="w-full md:w-1/2 flex flex-col bg-white">
-            <div ref={detailsColRef} className="p-6 md:p-12 lg:p-20 max-w-[650px] mx-auto w-full">
+            <div ref={detailsColRef} className="p-5 md:p-10 lg:p-16 xl:p-20 max-w-[650px] mx-auto w-full">
               
               <div className="mb-10">
                 <span className="text-[9px] md:text-[10px] tracking-[0.3em] uppercase text-[#c9a96e] mb-4 block" data-testid="text-product-collection">

@@ -19,15 +19,15 @@ export default function Collection() {
       <Navbar />
 
       <main className="flex-1 pt-24">
-        <header className="bg-white py-16 md:py-24 px-4 text-center border-b border-black/5">
-          <h1 className="text-4xl md:text-6xl font-serif mb-6 uppercase tracking-wider text-black animate-in fade-in slide-in-from-bottom-4" data-testid="text-collection-title">Our Collections</h1>
-          <p className="text-black/60 max-w-2xl mx-auto text-sm md:text-base font-light animate-in fade-in slide-in-from-bottom-6 delay-150">
+        <header className="bg-white py-12 md:py-20 lg:py-28 px-5 md:px-10 lg:px-20 xl:px-28 text-center border-b border-black/5">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif mb-4 md:mb-6 uppercase tracking-wider text-black animate-in fade-in slide-in-from-bottom-4" data-testid="text-collection-title">Our Collections</h1>
+          <p className="text-black/60 max-w-2xl mx-auto text-xs md:text-sm lg:text-base font-light animate-in fade-in slide-in-from-bottom-6 delay-150">
             Explore our curated selection of masterful fragrances, crafted with the world's most precious ingredients.
           </p>
         </header>
 
-        <section className="container mx-auto px-4 md:px-8 py-12 md:py-16">
-          <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-6 pb-6 border-b border-black/5">
+        <section className="px-5 md:px-10 lg:px-20 xl:px-28 py-10 md:py-14 lg:py-20">
+          <div className="flex flex-col md:flex-row justify-between items-center mb-8 md:mb-12 gap-6 pb-6 border-b border-black/5">
             <div className="hidden md:flex items-center gap-10 overflow-x-auto w-full md:w-auto pb-4 md:pb-0">
               {CATEGORIES.map(category => (
                 <button
@@ -56,7 +56,7 @@ export default function Collection() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 md:gap-x-6 gap-y-12 md:gap-y-20">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-3 md:gap-x-4 lg:gap-x-6 gap-y-8 md:gap-y-12 lg:gap-y-16">
             {filteredProducts.map((product, index) => (
               <div 
                 key={product.id} 
@@ -65,7 +65,7 @@ export default function Collection() {
                 data-testid={`card-product-${product.id}`}
               >
                 <Link href={`/product/${product.id}`}>
-                  <div className="block relative aspect-[3/5] mb-4 overflow-hidden bg-[#f8f8f8]">
+                  <div className="block relative aspect-[3/5] mb-2 md:mb-3 lg:mb-4 overflow-hidden bg-[#f8f8f8]">
                     <img 
                       src={product.image} 
                       alt={product.name} 
@@ -92,14 +92,14 @@ export default function Collection() {
                 
                 <div className="flex flex-col items-center px-1 text-center">
                   <Link href={`/product/${product.id}`}>
-                    <span className="text-base md:text-xl font-serif mb-1 text-black hover:text-black/60 transition-colors cursor-pointer" data-testid={`text-product-name-${product.id}`}>
+                    <span className="text-xs md:text-base lg:text-lg font-serif mb-1 text-black hover:text-black/60 transition-colors cursor-pointer" data-testid={`text-product-name-${product.id}`}>
                       {product.name}
                     </span>
                   </Link>
-                  <span className="text-[8px] md:text-[9px] tracking-[0.2em] uppercase text-black/40 mb-2">
+                  <span className="text-[6px] md:text-[7px] lg:text-[8px] tracking-[0.2em] uppercase text-black/40 mb-1 lg:mb-2">
                     {product.collection}
                   </span>
-                  <p className="text-xs font-medium text-black" data-testid={`text-price-${product.id}`}>
+                  <p className="text-[9px] md:text-[10px] lg:text-xs font-medium text-black" data-testid={`text-price-${product.id}`}>
                     {product.currency} {product.price}
                   </p>
                 </div>

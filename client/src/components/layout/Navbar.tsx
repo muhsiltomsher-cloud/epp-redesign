@@ -47,12 +47,12 @@ export default function Navbar() {
         <div className={`transition-all duration-500 overflow-hidden hidden md:block ${
           isScrolled ? "h-0 opacity-0" : "h-[32px] opacity-100 bg-[#1a1308] text-[#c9a96e]"
         }`}>
-          <div className="container mx-auto px-4 h-full flex items-center justify-center text-[12px] tracking-[0.2em] uppercase font-light">
+          <div className="px-5 md:px-10 lg:px-20 xl:px-28 h-full flex items-center justify-center text-[12px] tracking-[0.2em] uppercase font-light">
             Free Shipping Worldwide on all orders above AED 1500
           </div>
         </div>
         
-        <div className="container mx-auto px-4 md:px-8 relative text-[18px] font-medium pl-[0px] pr-[0px]">
+        <div className="px-5 md:px-10 lg:px-20 xl:px-28 relative text-[18px] font-medium">
           <div className={`flex items-center justify-between transition-all duration-500 ${isScrolled ? "h-[60px] md:h-[70px]" : "h-[60px] md:h-[90px]"}`}>
             
             {/* Mobile Menu Button */}

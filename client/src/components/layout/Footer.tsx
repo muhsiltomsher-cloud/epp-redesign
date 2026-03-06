@@ -2,12 +2,12 @@ import { Facebook, Instagram, Twitter, Youtube, ArrowRight } from "lucide-react"
 
 export default function Footer() {
   return (
-    <footer className="bg-[#1a1308] text-white pt-16 md:pt-24 pb-6 overflow-hidden relative border-t border-[#c9a96e]/20 flex flex-col">
-      <div className="container mx-auto px-4 md:px-8 z-10 flex-1 flex flex-col">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-10 md:gap-8 mb-16 md:mb-24">
+    <footer className="bg-[#1a1308] text-white pt-12 md:pt-20 lg:pt-28 pb-6 md:pb-8 overflow-hidden relative border-t border-[#c9a96e]/20 flex flex-col">
+      <div className="px-5 md:px-10 lg:px-20 xl:px-28 z-10 flex-1 flex flex-col">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-8 md:gap-6 lg:gap-10 mb-12 md:mb-20 lg:mb-28">
           
           {/* Brand Col */}
-          <div className="sm:col-span-2 md:col-span-4 lg:col-span-5 flex flex-col gap-6 md:pr-12">
+          <div className="sm:col-span-2 md:col-span-4 lg:col-span-5 flex flex-col gap-5 md:gap-6 md:pr-8 lg:pr-12">
             <img 
               src="https://emiratespride.com/wp-content/uploads/2026/01/logo-epp.png" 
               alt="Emirates Pride" 
