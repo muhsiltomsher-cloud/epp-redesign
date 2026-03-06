@@ -3,25 +3,16 @@ import { Link } from "wouter";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useQuery } from "@tanstack/react-query";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { products, categories } from "@/lib/data";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
-  const { data: products = [] } = useQuery({
-    queryKey: ["/api/products"],
-    queryFn: () => fetch("/api/products").then(r => r.json()),
-  });
-  const { data: categories = [] } = useQuery({
-    queryKey: ["/api/categories"],
-    queryFn: () => fetch("/api/categories").then(r => r.json()),
-  });
-
   const newArrivals = products.slice(0, 4);
-  const featureProduct = products.find((p: any) => p.name.includes("Future Bakhoor")) || products[0];
-  const featureProduct2 = products.find((p: any) => p.name.includes("Hidden Leather")) || products[1];
+  const featureProduct = products.find(p => p.name.includes("Future Bakhoor")) || products[0];
+  const featureProduct2 = products.find(p => p.name.includes("Hidden Leather")) || products[1];
 
   const heroRef = useRef<HTMLDivElement>(null);
   const brandRef = useRef<HTMLDivElement>(null);
@@ -29,8 +20,6 @@ export default function Home() {
   const galleryRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!products.length || !categories.length) return;
-    
     let ctx = gsap.context(() => {
       if (heroRef.current) {
         const heroImage = heroRef.current.querySelector('.hero-image');
@@ -106,15 +95,7 @@ export default function Home() {
     });
 
     return () => ctx.revert();
-  }, [products, categories]);
-
-  if (!products.length || !categories.length) {
-    return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <div className="text-[10px] tracking-[0.3em] uppercase text-black/40 animate-pulse">Loading</div>
-      </div>
-    );
-  }
+  }, []);
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -154,31 +135,29 @@ export default function Home() {
           </p>
         </section>
 
-        {featureProduct2 && (
-          <section ref={pinnedSectionRef} className="relative w-full bg-[#fcfcfc] flex flex-col md:flex-row">
-            <div className="w-full md:w-1/2 md:h-screen md:sticky top-0 pinned-content flex flex-col justify-center items-center md:items-start text-center md:text-left p-8 md:p-16 lg:p-24 z-10 bg-[#fcfcfc]">
-              <span className="text-[9px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-black/50 mb-4 md:mb-6 md:border-l md:border-black/30 md:pl-4">Signature Blend</span>
-              <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif mb-4 md:mb-6 leading-tight text-black">{featureProduct2.name}</h2>
-              <p className="text-black/70 text-sm leading-relaxed mb-8 md:mb-10 max-w-md font-light">
-                A captivating journey into darkness. Discover a scent tailored to your most elegant moments, blending the finest leather accords with mysterious depths.
-              </p>
-              <Link href={`/product/${featureProduct2.externalId}`}>
-                <span className="creed-button cursor-pointer inline-block">
-                  Discover The Scent
-                </span>
-              </Link>
+        <section ref={pinnedSectionRef} className="relative w-full bg-[#fcfcfc] flex flex-col md:flex-row">
+          <div className="w-full md:w-1/2 md:h-screen md:sticky top-0 pinned-content flex flex-col justify-center items-center md:items-start text-center md:text-left p-8 md:p-16 lg:p-24 z-10 bg-[#fcfcfc]">
+            <span className="text-[9px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-black/50 mb-4 md:mb-6 md:border-l md:border-black/30 md:pl-4">Signature Blend</span>
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif mb-4 md:mb-6 leading-tight text-black">{featureProduct2.name}</h2>
+            <p className="text-black/70 text-sm leading-relaxed mb-8 md:mb-10 max-w-md font-light">
+              A captivating journey into darkness. Discover a scent tailored to your most elegant moments, blending the finest leather accords with mysterious depths.
+            </p>
+            <Link href={`/product/${featureProduct2.id}`}>
+              <span className="creed-button cursor-pointer inline-block">
+                Discover The Scent
+              </span>
+            </Link>
+          </div>
+          
+          <div className="w-full md:w-1/2 flex flex-col scrolling-images relative bg-white">
+            <div className="h-[50vh] md:h-screen w-full relative">
+              <img src={featureProduct2.image} alt="Scent 1" className="w-full h-full object-contain md:object-cover p-8 md:p-24 bg-[#f8f8f8] mix-blend-multiply" />
             </div>
-            
-            <div className="w-full md:w-1/2 flex flex-col scrolling-images relative bg-white">
-              <div className="h-[50vh] md:h-screen w-full relative">
-                <img src={featureProduct2.image} alt="Scent 1" className="w-full h-full object-contain md:object-cover p-8 md:p-24 bg-[#f8f8f8] mix-blend-multiply" />
-              </div>
-              <div className="h-[50vh] md:h-screen w-full relative">
-                <img src={featureProduct2.hoverImage || categories[0]?.image} alt="Scent Lifestyle" className="w-full h-full object-cover" />
-              </div>
+            <div className="h-[50vh] md:h-screen w-full relative">
+              <img src={featureProduct2.hoverImage || categories[0].image} alt="Scent Lifestyle" className="w-full h-full object-cover" />
             </div>
-          </section>
-        )}
+          </div>
+        </section>
 
         <section className="py-16 md:py-32 px-4 md:px-8 container mx-auto bg-white overflow-hidden">
           <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-10 md:mb-16 border-b border-black/10 pb-4 md:pb-6 text-center md:text-left">
@@ -194,7 +173,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-x-3 md:gap-x-6 gap-y-10 md:gap-y-16">
-            {newArrivals.map((product: any) => (
+            {newArrivals.map((product) => (
               <CreativeProductCard key={product.id} product={product} />
             ))}
           </div>
@@ -208,49 +187,47 @@ export default function Home() {
           </div>
         </section>
 
-        {categories.length >= 5 && (
-          <section ref={galleryRef} className="py-16 md:py-32 bg-[#fafafa] px-4 md:px-8">
-            <div className="text-center mb-10 md:mb-20">
-              <h2 className="text-[9px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-black/50 mb-2">Explore</h2>
-              <h3 className="text-2xl md:text-4xl font-serif">A World of Fragrance</h3>
-            </div>
+        <section ref={galleryRef} className="py-16 md:py-32 bg-[#fafafa] px-4 md:px-8">
+          <div className="text-center mb-10 md:mb-20">
+            <h2 className="text-[9px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-black/50 mb-2">Explore</h2>
+            <h3 className="text-2xl md:text-4xl font-serif">A World of Fragrance</h3>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-7xl mx-auto">
+            <Link href="/collection">
+              <div className="gallery-item group relative aspect-[4/5] md:aspect-[3/4] overflow-hidden bg-muted cursor-pointer mb-4 md:mb-0">
+                <img src={categories[0].image} className="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110" alt="Oud" />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-700"></div>
+                <div className="absolute bottom-6 md:bottom-8 left-6 md:left-8">
+                  <h3 className="text-white font-serif text-2xl md:text-3xl lg:text-4xl mb-2">{categories[0].name}</h3>
+                  <div className="w-0 h-[1px] bg-white group-hover:w-full transition-all duration-700 ease-out"></div>
+                </div>
+              </div>
+            </Link>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-7xl mx-auto">
-              <Link href="/collection">
-                <div className="gallery-item group relative aspect-[4/5] md:aspect-[3/4] overflow-hidden bg-muted cursor-pointer mb-4 md:mb-0">
-                  <img src={categories[0].image} className="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110" alt="Oud" />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-700"></div>
-                  <div className="absolute bottom-6 md:bottom-8 left-6 md:left-8">
-                    <h3 className="text-white font-serif text-2xl md:text-3xl lg:text-4xl mb-2">{categories[0].name}</h3>
-                    <div className="w-0 h-[1px] bg-white group-hover:w-full transition-all duration-700 ease-out"></div>
-                  </div>
+            <Link href="/collection">
+              <div className="gallery-item group relative aspect-[4/5] md:aspect-[3/4] overflow-hidden bg-muted cursor-pointer md:translate-y-12 mb-4 md:mb-0">
+                <img src={categories[4].image} className="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110" alt="Gifts" />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-700"></div>
+                <div className="absolute bottom-6 md:bottom-8 left-6 md:left-8">
+                  <h3 className="text-white font-serif text-2xl md:text-3xl lg:text-4xl mb-2">{categories[4].name}</h3>
+                  <div className="w-0 h-[1px] bg-white group-hover:w-full transition-all duration-700 ease-out"></div>
                 </div>
-              </Link>
-              
-              <Link href="/collection">
-                <div className="gallery-item group relative aspect-[4/5] md:aspect-[3/4] overflow-hidden bg-muted cursor-pointer md:translate-y-12 mb-4 md:mb-0">
-                  <img src={categories[4].image} className="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110" alt="Gifts" />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-700"></div>
-                  <div className="absolute bottom-6 md:bottom-8 left-6 md:left-8">
-                    <h3 className="text-white font-serif text-2xl md:text-3xl lg:text-4xl mb-2">{categories[4].name}</h3>
-                    <div className="w-0 h-[1px] bg-white group-hover:w-full transition-all duration-700 ease-out"></div>
-                  </div>
+              </div>
+            </Link>
+            
+            <Link href="/collection">
+              <div className="gallery-item group relative aspect-[4/5] md:aspect-[3/4] overflow-hidden bg-muted cursor-pointer md:translate-y-24">
+                <img src={categories[1].image} className="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110" alt="Oils" />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-700"></div>
+                <div className="absolute bottom-6 md:bottom-8 left-6 md:left-8">
+                  <h3 className="text-white font-serif text-2xl md:text-3xl lg:text-4xl mb-2">{categories[1].name}</h3>
+                  <div className="w-0 h-[1px] bg-white group-hover:w-full transition-all duration-700 ease-out"></div>
                 </div>
-              </Link>
-              
-              <Link href="/collection">
-                <div className="gallery-item group relative aspect-[4/5] md:aspect-[3/4] overflow-hidden bg-muted cursor-pointer md:translate-y-24">
-                  <img src={categories[1].image} className="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110" alt="Oils" />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-700"></div>
-                  <div className="absolute bottom-6 md:bottom-8 left-6 md:left-8">
-                    <h3 className="text-white font-serif text-2xl md:text-3xl lg:text-4xl mb-2">{categories[1].name}</h3>
-                    <div className="w-0 h-[1px] bg-white group-hover:w-full transition-all duration-700 ease-out"></div>
-                  </div>
-                </div>
-              </Link>
-            </div>
-          </section>
-        )}
+              </div>
+            </Link>
+          </div>
+        </section>
         
         <div className="hidden md:block h-32 bg-[#fafafa]"></div>
 
@@ -296,8 +273,8 @@ export default function Home() {
 
 function CreativeProductCard({ product }: { product: any }) {
   return (
-    <div className="group flex flex-col w-full cursor-pointer" data-testid={`card-product-${product.externalId}`}>
-      <Link href={`/product/${product.externalId}`}>
+    <div className="group flex flex-col w-full cursor-pointer" data-testid={`card-product-${product.id}`}>
+      <Link href={`/product/${product.id}`}>
         <div className="block relative aspect-[3/4] mb-3 md:mb-4 overflow-hidden bg-[#f5f5f5]">
           <img 
             src={product.image} 
@@ -316,7 +293,7 @@ function CreativeProductCard({ product }: { product: any }) {
           )}
           
           <div className="absolute bottom-0 left-0 w-full z-30 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out bg-white hidden md:block">
-            <button className="w-full py-3 text-[9px] font-medium tracking-[0.2em] uppercase hover:bg-black hover:text-white transition-colors" data-testid={`button-quickview-${product.externalId}`}>
+            <button className="w-full py-3 text-[9px] font-medium tracking-[0.2em] uppercase hover:bg-black hover:text-white transition-colors" data-testid={`button-quickview-${product.id}`}>
               Quick View
             </button>
           </div>
@@ -324,15 +301,15 @@ function CreativeProductCard({ product }: { product: any }) {
       </Link>
       
       <div className="flex flex-col items-center px-1 text-center">
-        <Link href={`/product/${product.externalId}`}>
-          <span className="text-sm md:text-lg font-serif mb-1 text-black hover:text-black/60 transition-colors cursor-pointer" data-testid={`text-product-name-${product.externalId}`}>
+        <Link href={`/product/${product.id}`}>
+          <span className="text-sm md:text-lg font-serif mb-1 text-black hover:text-black/60 transition-colors cursor-pointer" data-testid={`text-product-name-${product.id}`}>
             {product.name}
           </span>
         </Link>
         <span className="text-[7px] md:text-[8px] tracking-[0.2em] uppercase text-black/40 mb-1.5 line-clamp-1">
           {product.collection}
         </span>
-        <p className="text-[10px] md:text-xs font-medium text-black" data-testid={`text-price-${product.externalId}`}>
+        <p className="text-[10px] md:text-xs font-medium text-black" data-testid={`text-price-${product.id}`}>
           {product.currency} {product.price}
         </p>
       </div>

@@ -1,23 +1,18 @@
 import { useState } from "react";
 import { Link } from "wouter";
 import { ChevronDown, Filter } from "lucide-react";
-import { useQuery } from "@tanstack/react-query";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { products } from "@/lib/data";
 
 const CATEGORIES = ["All", "Oud & Dakhoon", "Gift Sets", "Perfume Collection"];
 
 export default function Collection() {
   const [activeCategory, setActiveCategory] = useState("All");
 
-  const { data: products = [], isLoading } = useQuery({
-    queryKey: ["/api/products"],
-    queryFn: () => fetch("/api/products").then(r => r.json()),
-  });
-
   const filteredProducts = activeCategory === "All" 
     ? products 
-    : products.filter((p: any) => p.collection === activeCategory);
+    : products.filter(p => p.collection === activeCategory);
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
@@ -61,64 +56,58 @@ export default function Collection() {
             </div>
           </div>
 
-          {isLoading ? (
-            <div className="py-24 text-center text-black/40 text-[10px] tracking-[0.3em] uppercase animate-pulse">
-              Loading products...
-            </div>
-          ) : (
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 md:gap-x-6 gap-y-12 md:gap-y-20">
-              {filteredProducts.map((product: any, index: number) => (
-                <div 
-                  key={product.id} 
-                  className="group flex flex-col w-full cursor-pointer animate-in fade-in slide-in-from-bottom-8"
-                  style={{ animationDelay: `${index * 100}ms`, animationFillMode: 'both' }}
-                  data-testid={`card-product-${product.externalId}`}
-                >
-                  <Link href={`/product/${product.externalId}`}>
-                    <div className="block relative aspect-[3/4] mb-4 overflow-hidden bg-[#f8f8f8]">
-                      <img 
-                        src={product.image} 
-                        alt={product.name} 
-                        className="absolute inset-0 w-full h-full object-contain p-4 md:p-8 mix-blend-multiply z-10 transition-transform duration-1000 group-hover:scale-105"
-                      />
-                      {product.hoverImage && (
-                        <div className="absolute inset-0 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 overflow-hidden">
-                          <img 
-                            src={product.hoverImage} 
-                            alt={`${product.name} lifestyle`} 
-                            className="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-transform duration-1000 ease-out"
-                          />
-                          <div className="absolute inset-0 bg-black/5"></div>
-                        </div>
-                      )}
-                      
-                      <div className="absolute bottom-0 left-0 w-full z-30 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out bg-white hidden md:block">
-                        <button className="w-full py-4 text-[10px] font-medium tracking-[0.2em] uppercase hover:bg-black hover:text-white transition-colors" data-testid={`button-discover-${product.externalId}`}>
-                          Discover
-                        </button>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 md:gap-x-6 gap-y-12 md:gap-y-20">
+            {filteredProducts.map((product, index) => (
+              <div 
+                key={product.id} 
+                className="group flex flex-col w-full cursor-pointer animate-in fade-in slide-in-from-bottom-8"
+                style={{ animationDelay: `${index * 100}ms`, animationFillMode: 'both' }}
+                data-testid={`card-product-${product.id}`}
+              >
+                <Link href={`/product/${product.id}`}>
+                  <div className="block relative aspect-[3/4] mb-4 overflow-hidden bg-[#f8f8f8]">
+                    <img 
+                      src={product.image} 
+                      alt={product.name} 
+                      className="absolute inset-0 w-full h-full object-contain p-4 md:p-8 mix-blend-multiply z-10 transition-transform duration-1000 group-hover:scale-105"
+                    />
+                    {product.hoverImage && (
+                      <div className="absolute inset-0 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 overflow-hidden">
+                        <img 
+                          src={product.hoverImage} 
+                          alt={`${product.name} lifestyle`} 
+                          className="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-transform duration-1000 ease-out"
+                        />
+                        <div className="absolute inset-0 bg-black/5"></div>
                       </div>
+                    )}
+                    
+                    <div className="absolute bottom-0 left-0 w-full z-30 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out bg-white hidden md:block">
+                      <button className="w-full py-4 text-[10px] font-medium tracking-[0.2em] uppercase hover:bg-black hover:text-white transition-colors" data-testid={`button-discover-${product.id}`}>
+                        Discover
+                      </button>
                     </div>
-                  </Link>
-                  
-                  <div className="flex flex-col items-center px-1 text-center">
-                    <Link href={`/product/${product.externalId}`}>
-                      <span className="text-base md:text-xl font-serif mb-1 text-black hover:text-black/60 transition-colors cursor-pointer" data-testid={`text-product-name-${product.externalId}`}>
-                        {product.name}
-                      </span>
-                    </Link>
-                    <span className="text-[8px] md:text-[9px] tracking-[0.2em] uppercase text-black/40 mb-2">
-                      {product.collection}
-                    </span>
-                    <p className="text-xs font-medium text-black" data-testid={`text-price-${product.externalId}`}>
-                      {product.currency} {product.price}
-                    </p>
                   </div>
+                </Link>
+                
+                <div className="flex flex-col items-center px-1 text-center">
+                  <Link href={`/product/${product.id}`}>
+                    <span className="text-base md:text-xl font-serif mb-1 text-black hover:text-black/60 transition-colors cursor-pointer" data-testid={`text-product-name-${product.id}`}>
+                      {product.name}
+                    </span>
+                  </Link>
+                  <span className="text-[8px] md:text-[9px] tracking-[0.2em] uppercase text-black/40 mb-2">
+                    {product.collection}
+                  </span>
+                  <p className="text-xs font-medium text-black" data-testid={`text-price-${product.id}`}>
+                    {product.currency} {product.price}
+                  </p>
                 </div>
-              ))}
-            </div>
-          )}
+              </div>
+            ))}
+          </div>
 
-          {!isLoading && filteredProducts.length === 0 && (
+          {filteredProducts.length === 0 && (
             <div className="py-24 text-center text-black/40 font-serif text-xl">
               No products found in this collection.
             </div>

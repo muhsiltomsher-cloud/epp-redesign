@@ -3,38 +3,24 @@ import { useParams, Link } from "wouter";
 import { Minus, Plus, ChevronDown, ChevronUp, Star, Truck, ShieldCheck, Box } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useQuery } from "@tanstack/react-query";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { products } from "@/lib/data";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Product() {
   const { id } = useParams();
-  
-  const { data: product, isLoading } = useQuery({
-    queryKey: ["/api/products", id],
-    queryFn: () => fetch(`/api/products/${id}`).then(r => r.json()),
-    enabled: !!id,
-  });
-
+  const product = products.find(p => p.id === id);
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState("description");
-  const [mainImage, setMainImage] = useState<string | undefined>();
+  const [mainImage, setMainImage] = useState(product?.image);
   
   const mainRef = useRef<HTMLDivElement>(null);
   const imageColRef = useRef<HTMLDivElement>(null);
   const detailsColRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (product) {
-      setMainImage(product.image);
-    }
-  }, [product]);
-
-  useEffect(() => {
-    if (!product) return;
-    
     let ctx = gsap.context(() => {
       if (imageColRef.current && window.innerWidth >= 768) {
         ScrollTrigger.create({
@@ -57,15 +43,7 @@ export default function Product() {
     window.scrollTo(0, 0);
 
     return () => ctx.revert();
-  }, [product]);
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <div className="text-[10px] tracking-[0.3em] uppercase text-black/40 animate-pulse">Loading</div>
-      </div>
-    );
-  }
+  }, [id]);
 
   if (!product) return null;
 
