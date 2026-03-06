@@ -40,7 +40,6 @@ export default function Product() {
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <Navbar />
-
       <main className="flex-1 pt-[52px] md:pt-[70px]">
         <div className="flex flex-col md:flex-row w-full max-w-[1800px] mx-auto relative">
           
@@ -55,7 +54,7 @@ export default function Product() {
               {gallery.map((img, i) => (
                 <div 
                   key={i} 
-                  className="bg-[#f5f5f5] flex items-center justify-center p-6 md:p-12 lg:p-16 aspect-[3/4]"
+                  className="bg-[#f5f5f5] flex items-center justify-center p-6 md:p-12 lg:p-16 aspect-[3/4] pl-[0px] pr-[0px] pt-[0px] pb-[0px]"
                 >
                   <img 
                     src={img} 
@@ -246,7 +245,6 @@ export default function Product() {
           </section>
         )}
       </main>
-
       <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white border-t border-black/10 px-4 py-3 flex items-center gap-3 safe-area-bottom">
         <div className="flex items-center border border-[#c9a96e]/30 h-10 bg-white">
           <button 
@@ -267,7 +265,6 @@ export default function Product() {
           Add to Cart — {product.currency} {product.price}
         </button>
       </div>
-
       <Footer />
     </div>
   );
