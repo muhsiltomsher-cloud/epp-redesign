@@ -1,4 +1,4 @@
-import { Search, ShoppingBag, Menu, User, X, ChevronDown, Globe, Instagram, Facebook, Twitter } from "lucide-react";
+import { Search, ShoppingBag, Menu, User, X, ChevronDown, Globe, Instagram, Facebook, Twitter, Home, Grid3X3, Heart } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { products } from "@/lib/data";
@@ -321,6 +321,40 @@ export default function Navbar() {
         </div>
       </header>
 
+      {!location.startsWith("/product/") && (
+        <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-white border-t border-black/10 safe-area-bottom">
+          <div className="flex items-center justify-around h-14">
+            <Link href="/">
+              <span className={`flex flex-col items-center gap-1 cursor-pointer ${location === "/" ? "text-[#c9a96e]" : "text-black/40"}`} data-testid="nav-home">
+                <Home size={18} strokeWidth={1.2} />
+                <span className="text-[8px] tracking-wider uppercase font-medium">Home</span>
+              </span>
+            </Link>
+            <Link href="/collection">
+              <span className={`flex flex-col items-center gap-1 cursor-pointer ${location === "/collection" ? "text-[#c9a96e]" : "text-black/40"}`} data-testid="nav-shop">
+                <Grid3X3 size={18} strokeWidth={1.2} />
+                <span className="text-[8px] tracking-wider uppercase font-medium">Shop</span>
+              </span>
+            </Link>
+            <Link href="/collection">
+              <span className="flex flex-col items-center gap-1 cursor-pointer text-black/40" data-testid="nav-search">
+                <Search size={18} strokeWidth={1.2} />
+                <span className="text-[8px] tracking-wider uppercase font-medium">Search</span>
+              </span>
+            </Link>
+            <Link href="/collection">
+              <span className="flex flex-col items-center gap-1 cursor-pointer text-black/40" data-testid="nav-wishlist">
+                <Heart size={18} strokeWidth={1.2} />
+                <span className="text-[8px] tracking-wider uppercase font-medium">Wishlist</span>
+              </span>
+            </Link>
+            <button onClick={() => setIsCartOpen(true)} className="flex flex-col items-center gap-1 cursor-pointer text-black/40" data-testid="nav-cart">
+              <ShoppingBag size={18} strokeWidth={1.2} />
+              <span className="text-[8px] tracking-wider uppercase font-medium">Cart</span>
+            </button>
+          </div>
+        </div>
+      )}
 
       {isCartOpen && (
         <div className="fixed inset-0 z-[100] overflow-hidden">
