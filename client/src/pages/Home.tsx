@@ -139,17 +139,6 @@ export default function Home() {
               alt="Emirates Pride Perfumes" 
               className="hero-image w-full h-[130%] object-cover object-center absolute -top-[15%]"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-black/20 md:from-black/80 md:via-black/10 md:to-transparent"></div>
-          </div>
-          
-          <div className="relative z-10 md:hidden flex flex-col items-center text-center gap-3 mb-4">
-            <span className="text-[8px] tracking-[0.4em] uppercase text-[#c9a96e] font-medium">Emirates Pride Perfumes</span>
-            <h2 className="text-xl font-serif text-white leading-snug">Discover Your<br/>Signature Scent</h2>
-            <Link href="/collection">
-              <span className="inline-block bg-[#c9a96e] text-white px-6 py-2.5 text-[8px] font-medium tracking-[0.2em] uppercase mt-1">
-                Shop Now
-              </span>
-            </Link>
           </div>
         </section>
 
