@@ -78,10 +78,10 @@ export const products = [
     price: 465,
     currency: 'AED',
     image: 'https://emiratespride.com/wp-content/uploads/2021/03/HIDDEN-LEATHER-01-300x376.webp',
-    hoverImage: 'https://emiratespride.com/wp-content/uploads/2021/03/Hidden-leather-with-box-300x375.webp',
+    hoverImage: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/03/Hidden-leather-with-box-300x375.webp',
     gallery: [
       'https://emiratespride.com/wp-content/uploads/2021/03/HIDDEN-LEATHER-01-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2021/03/Hidden-leather-with-box-300x375.webp'
+      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/03/Hidden-leather-with-box-300x375.webp'
     ],
     description: 'A mysterious and elegant leather fragrance.'
   },
@@ -101,101 +101,101 @@ export const products = [
   },
   {
     id: '50535',
-    name: 'Midnight Bloom (Silver)',
+    name: 'Navy',
     collection: 'Perfume Collection',
     price: 585,
     currency: 'AED',
-    image: 'https://emiratespride.com/wp-content/uploads/2025/09/Silver-300x376.webp',
-    hoverImage: 'https://emiratespride.com/wp-content/uploads/2025/09/MIDNIGHT-BLOOM-300x376.webp',
+    image: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/03/NAVY-01-1-300x376.webp',
+    hoverImage: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/03/NAVY-02-1-300x376.webp',
     gallery: [
-      'https://emiratespride.com/wp-content/uploads/2025/09/Silver-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2025/09/MIDNIGHT-BLOOM-300x376.webp'
+      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/03/NAVY-01-1-300x376.webp',
+      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/03/NAVY-02-1-300x376.webp'
     ],
-    description: 'A luminous silver edition of our beloved Midnight Bloom.'
+    description: 'A bold, deep fragrance inspired by the midnight sea.'
   },
   {
     id: '16479',
-    name: 'Oud Al Emarat',
+    name: 'Al Emarat',
     collection: 'Oud & Dakhoon',
     price: 895,
     currency: 'AED',
-    image: 'https://emiratespride.com/wp-content/uploads/2021/03/OUD-AL-EMARAT-01-300x376.webp',
-    hoverImage: 'https://emiratespride.com/wp-content/uploads/2021/03/Oud-al-emarat-02-300x376.webp',
+    image: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Al-Emarat1-300x376.webp',
+    hoverImage: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Al-Emarat2-300x376.webp',
     gallery: [
-      'https://emiratespride.com/wp-content/uploads/2021/03/OUD-AL-EMARAT-01-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2021/03/Oud-al-emarat-02-300x376.webp'
+      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Al-Emarat1-300x376.webp',
+      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Al-Emarat2-300x376.webp'
     ],
     description: 'A luxurious oud capturing the spirit of the Emirates.'
   },
   {
     id: '16481',
-    name: 'Velvet Rose',
+    name: 'Arabica',
     collection: 'Perfume Collection',
     price: 520,
     currency: 'AED',
-    image: 'https://emiratespride.com/wp-content/uploads/2021/03/VELVET-ROSE-01-300x376.webp',
-    hoverImage: 'https://emiratespride.com/wp-content/uploads/2021/03/Velvet-rose-02-300x376.webp',
+    image: 'https://emiratespride.com/wp-content/uploads/2021/03/Arabica-01-1-300x376.webp',
+    hoverImage: 'https://emiratespride.com/wp-content/uploads/2021/03/Arabica-02-1-300x376.webp',
     gallery: [
-      'https://emiratespride.com/wp-content/uploads/2021/03/VELVET-ROSE-01-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2021/03/Velvet-rose-02-300x376.webp'
+      'https://emiratespride.com/wp-content/uploads/2021/03/Arabica-01-1-300x376.webp',
+      'https://emiratespride.com/wp-content/uploads/2021/03/Arabica-02-1-300x376.webp'
     ],
-    description: 'An opulent rose fragrance with velvety depth.'
+    description: 'A warm, aromatic fragrance inspired by Arabian coffee traditions.'
   },
   {
     id: '16483',
-    name: 'Oud Cambodi',
+    name: 'Barjeel',
     collection: 'Oud & Dakhoon',
     price: 1250,
     currency: 'AED',
-    image: 'https://emiratespride.com/wp-content/uploads/2021/03/OUD-CAMBODI-01-300x376.webp',
-    hoverImage: 'https://emiratespride.com/wp-content/uploads/2021/03/Oud-cambodi-02-300x376.webp',
+    image: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Barjeel1-300x376.webp',
+    hoverImage: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Barjeel2-300x376.webp',
     gallery: [
-      'https://emiratespride.com/wp-content/uploads/2021/03/OUD-CAMBODI-01-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2021/03/Oud-cambodi-02-300x376.webp'
+      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Barjeel1-300x376.webp',
+      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Barjeel2-300x376.webp'
     ],
-    description: 'Rare Cambodian oud distilled to perfection.'
+    description: 'Named after the traditional wind tower, a cooling yet intense oud.'
   },
   {
     id: '50530',
-    name: 'Golden Musk',
+    name: 'Firewood',
     collection: 'Perfume Collection',
     price: 395,
     currency: 'AED',
-    image: 'https://emiratespride.com/wp-content/uploads/2025/05/Golden-musk-300x376.webp',
-    hoverImage: 'https://emiratespride.com/wp-content/uploads/2025/05/Untitled-6-02-300x376.webp',
+    image: 'https://emiratespride.com/wp-content/uploads/2021/03/FIREWOOD-01-1-300x376.webp',
+    hoverImage: 'https://emiratespride.com/wp-content/uploads/2021/03/FIREWOOD-02-1-300x376.webp',
     gallery: [
-      'https://emiratespride.com/wp-content/uploads/2025/05/Golden-musk-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2025/05/Untitled-6-02-300x376.webp'
+      'https://emiratespride.com/wp-content/uploads/2021/03/FIREWOOD-01-1-300x376.webp',
+      'https://emiratespride.com/wp-content/uploads/2021/03/FIREWOOD-02-1-300x376.webp'
     ],
-    description: 'A warm golden musk with subtle amber undertones.'
+    description: 'A smoky, woody fragrance evoking desert campfire nights.'
   },
   {
     id: '16485',
-    name: 'Amber Wood',
-    collection: 'Perfume Collection',
-    price: 480,
+    name: 'Oud Hindi Khas',
+    collection: 'Oud & Dakhoon',
+    price: 1480,
     currency: 'AED',
-    image: 'https://emiratespride.com/wp-content/uploads/2021/03/AMBER-WOOD-01-300x376.webp',
-    hoverImage: 'https://emiratespride.com/wp-content/uploads/2021/03/Amber-wood-02-300x376.webp',
+    image: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2024/04/OUD-HINDI-KHAS-01-300x376.webp',
+    hoverImage: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2024/04/OUD-HINDI-KHAS-02-300x376.webp',
     gallery: [
-      'https://emiratespride.com/wp-content/uploads/2021/03/AMBER-WOOD-01-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2021/03/Amber-wood-02-300x376.webp'
+      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2024/04/OUD-HINDI-KHAS-01-300x376.webp',
+      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2024/04/OUD-HINDI-KHAS-02-300x376.webp'
     ],
-    description: 'A rich amber-wood composition of depth and warmth.'
+    description: 'Premium Indian oud of exceptional purity and depth.'
   },
   {
     id: '50532',
-    name: 'Midnight Glow',
+    name: 'Midnight',
     collection: 'Perfume Collection',
     price: 545,
     currency: 'AED',
-    image: 'https://emiratespride.com/wp-content/uploads/2025/05/Midnight-glow-300x376.webp',
-    hoverImage: 'https://emiratespride.com/wp-content/uploads/2025/05/Untitled-6-01-300x376.webp',
+    image: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/06/midnight-300x375.webp',
+    hoverImage: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/06/PEACEFUL-LIFE-02-1-300x376.webp',
     gallery: [
-      'https://emiratespride.com/wp-content/uploads/2025/05/Midnight-glow-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2025/05/Untitled-6-01-300x376.webp'
+      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/06/midnight-300x375.webp',
+      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/06/PEACEFUL-LIFE-02-1-300x376.webp'
     ],
-    description: 'A mesmerizing glow for unforgettable evenings.'
+    description: 'A mesmerizing fragrance for unforgettable evenings.'
   },
   {
     id: '53691',
@@ -213,17 +213,17 @@ export const products = [
   },
   {
     id: '16487',
-    name: 'Royal Saffron',
-    collection: 'Perfume Collection',
+    name: 'Dakhoon Al Emarat',
+    collection: 'Oud & Dakhoon',
     price: 620,
     currency: 'AED',
-    image: 'https://emiratespride.com/wp-content/uploads/2021/03/VELVET-ROSE-01-300x376.webp',
-    hoverImage: 'https://emiratespride.com/wp-content/uploads/2021/03/Velvet-rose-02-300x376.webp',
+    image: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Dakhoon-Al-Emarat-300x376.webp',
+    hoverImage: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Dakhoon-Al-Emarat-2-300x376.webp',
     gallery: [
-      'https://emiratespride.com/wp-content/uploads/2021/03/VELVET-ROSE-01-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2021/03/Velvet-rose-02-300x376.webp'
+      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Dakhoon-Al-Emarat-300x376.webp',
+      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Dakhoon-Al-Emarat-2-300x376.webp'
     ],
-    description: 'A majestic saffron-infused perfume of regal character.'
+    description: 'A majestic dakhoon capturing the essence of Emirati heritage.'
   }
 ];
 
