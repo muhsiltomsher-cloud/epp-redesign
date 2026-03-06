@@ -137,9 +137,9 @@ export default function Home() {
             <img 
               src="https://emiratespride.com/wp-content/uploads/2026/02/Desktop-Banner-ENG-scaled.jpg" 
               alt="Emirates Pride Perfumes" 
-              className="hero-image w-full h-[120%] object-cover object-center md:object-top absolute -top-[10%] opacity-90"
+              className="hero-image w-full h-[130%] object-cover object-center absolute -top-[15%]"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-black/30 md:from-black/90 md:via-black/20 md:to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-black/20 md:from-black/80 md:via-black/10 md:to-transparent"></div>
           </div>
           
           <div className="relative z-10 md:hidden flex flex-col items-center text-center gap-3 mb-4">
@@ -212,7 +212,7 @@ export default function Home() {
         </section>
 
         <section ref={pinnedSectionRef} className="relative w-full bg-[#fcfcfc] flex flex-col md:flex-row">
-          <div className="w-full md:w-1/2 md:h-screen md:sticky top-0 pinned-content flex flex-col justify-center items-center md:items-start text-center md:text-left px-6 py-14 md:p-14 lg:p-20 xl:p-28 z-10 relative bg-cover bg-center min-h-[60svh] md:min-h-0" style={{ backgroundImage: "url('https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1-1200x1490.webp')" }}>
+          <div className="w-full md:w-1/2 md:h-screen md:sticky top-0 pinned-content flex flex-col justify-center items-center md:items-start text-center md:text-left px-6 py-14 md:p-14 lg:p-20 xl:p-28 z-10 relative bg-cover bg-center min-h-[70svh] md:min-h-0" style={{ backgroundImage: "url('https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1-1200x1490.webp')" }}>
             <div className="absolute inset-0 bg-black/55 md:bg-black/50"></div>
             <span className="relative z-10 text-[8px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-2 md:mb-5 lg:mb-7 md:border-l md:border-[#c9a96e]/50 md:pl-4">Signature Blend</span>
             <h2 className="relative z-10 text-2xl md:text-5xl lg:text-6xl xl:text-7xl font-serif mb-2.5 md:mb-5 lg:mb-7 leading-tight text-white">{featureProduct2.name}</h2>
@@ -335,13 +335,13 @@ export default function Home() {
           </section>
         )}
 
-        <section ref={bloomBannerRef} className="relative w-full h-[35svh] md:h-[60vh] lg:h-[75vh] overflow-hidden">
+        <section ref={bloomBannerRef} className="relative w-full h-[50svh] md:h-[70vh] lg:h-[85vh] overflow-hidden">
           <img 
             src="https://emiratespride.com/ae/wp-content/uploads/sites/10/2025/10/BLOOM-AR-scaled.webp" 
             alt="Bloom Collection" 
-            className="bloom-banner-img absolute inset-0 w-full h-[130%] object-cover object-center"
+            className="bloom-banner-img absolute inset-0 w-full h-[140%] object-cover object-center"
           />
-          <div className="absolute inset-0 bg-black/20"></div>
+          <div className="absolute inset-0 bg-black/15"></div>
         </section>
 
         <section ref={brandRef} className="relative py-10 md:py-24 lg:py-32 px-4 md:px-10 lg:px-20 xl:px-28 bg-[#1a1308] overflow-hidden">

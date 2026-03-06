@@ -2,7 +2,6 @@ import { Facebook, Instagram, Twitter, Youtube, ArrowRight } from "lucide-react"
 
 export default function Footer() {
   return (
-    <>
     <footer className="bg-[#1a1308] text-white pt-10 md:pt-20 lg:pt-28 pb-6 md:pb-8 overflow-hidden relative border-t border-[#c9a96e]/20 flex flex-col">
       <div className="px-4 md:px-10 lg:px-20 xl:px-28 z-10 flex-1 flex flex-col">
         <div className="grid grid-cols-2 md:grid-cols-12 gap-6 md:gap-6 lg:gap-10 mb-8 md:mb-20 lg:mb-28">
@@ -78,7 +77,5 @@ export default function Footer() {
         <span className="text-[12vw] font-serif leading-none whitespace-nowrap tracking-tighter text-[#c9a96e]">EMIRATES PRIDE</span>
       </div>
     </footer>
-    <div className="h-14 md:hidden bg-[#1a1308]"></div>
-    </>
   );
 }
