@@ -136,7 +136,7 @@ export default function Home() {
 
         <section ref={galleryRef} className="py-6 md:py-12 bg-[#fafafa] px-4 md:px-8 lg:px-16">
           <div className="text-center mb-6 md:mb-10">
-            <h2 className="text-[9px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-black/50 mb-2">Explore</h2>
+            <h2 className="text-[9px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-2">Explore</h2>
             <h3 className="text-2xl md:text-4xl font-serif">A World of Fragrance</h3>
           </div>
           
@@ -147,7 +147,7 @@ export default function Home() {
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-700"></div>
                 <div className="absolute bottom-6 md:bottom-8 left-6 md:left-8">
                   <h3 className="text-white font-serif text-2xl md:text-3xl lg:text-4xl mb-2">{categories[0].name}</h3>
-                  <div className="w-0 h-[1px] bg-white group-hover:w-full transition-all duration-700 ease-out"></div>
+                  <div className="w-0 h-[1px] bg-[#c9a96e] group-hover:w-full transition-all duration-700 ease-out"></div>
                 </div>
               </div>
             </Link>
@@ -158,7 +158,7 @@ export default function Home() {
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-700"></div>
                 <div className="absolute bottom-6 md:bottom-8 left-6 md:left-8">
                   <h3 className="text-white font-serif text-2xl md:text-3xl lg:text-4xl mb-2">{categories[4].name}</h3>
-                  <div className="w-0 h-[1px] bg-white group-hover:w-full transition-all duration-700 ease-out"></div>
+                  <div className="w-0 h-[1px] bg-[#c9a96e] group-hover:w-full transition-all duration-700 ease-out"></div>
                 </div>
               </div>
             </Link>
@@ -169,7 +169,7 @@ export default function Home() {
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-700"></div>
                 <div className="absolute bottom-6 md:bottom-8 left-6 md:left-8">
                   <h3 className="text-white font-serif text-2xl md:text-3xl lg:text-4xl mb-2">{categories[1].name}</h3>
-                  <div className="w-0 h-[1px] bg-white group-hover:w-full transition-all duration-700 ease-out"></div>
+                  <div className="w-0 h-[1px] bg-[#c9a96e] group-hover:w-full transition-all duration-700 ease-out"></div>
                 </div>
               </div>
             </Link>
@@ -179,13 +179,13 @@ export default function Home() {
         <section ref={pinnedSectionRef} className="relative w-full bg-[#fcfcfc] flex flex-col md:flex-row">
           <div className="w-full md:w-1/2 md:h-screen md:sticky top-0 pinned-content flex flex-col justify-center items-center md:items-start text-center md:text-left p-8 md:p-16 lg:p-24 z-10 relative bg-cover bg-center" style={{ backgroundImage: "url('https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1-1200x1490.webp')" }}>
             <div className="absolute inset-0 bg-black/50"></div>
-            <span className="relative z-10 text-[9px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-white/70 mb-4 md:mb-6 md:border-l md:border-white/30 md:pl-4">Signature Blend</span>
+            <span className="relative z-10 text-[9px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-4 md:mb-6 md:border-l md:border-[#c9a96e]/50 md:pl-4">Signature Blend</span>
             <h2 className="relative z-10 text-3xl md:text-5xl lg:text-6xl font-serif mb-4 md:mb-6 leading-tight text-white">{featureProduct2.name}</h2>
             <p className="relative z-10 text-white/70 text-sm leading-relaxed mb-8 md:mb-10 max-w-md font-light">
               A captivating journey into darkness. Discover a scent tailored to your most elegant moments, blending the finest leather accords with mysterious depths.
             </p>
             <Link href={`/product/${featureProduct2.id}`}>
-              <span className="relative z-10 inline-block bg-white text-black px-8 py-3.5 md:py-4 text-[9px] md:text-[10px] font-medium tracking-[0.2em] uppercase hover:bg-white/90 transition-colors cursor-pointer">
+              <span className="relative z-10 inline-block bg-[#c9a96e] text-white px-8 py-3.5 md:py-4 text-[9px] md:text-[10px] font-medium tracking-[0.2em] uppercase hover:bg-[#b8954f] transition-colors cursor-pointer">
                 Discover The Scent
               </span>
             </Link>
@@ -254,7 +254,7 @@ export default function Home() {
         <section className="py-6 md:py-10 px-4 md:px-8 lg:px-16 bg-white overflow-hidden">
           <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-4 md:mb-8 border-b border-black/10 pb-3 md:pb-5 text-center md:text-left">
             <div>
-              <h2 className="text-[9px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-black/50 mb-2 md:mb-3">Masterpieces</h2>
+              <h2 className="text-[9px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-2 md:mb-3">Masterpieces</h2>
               <h3 className="text-2xl md:text-4xl font-serif text-black">New & Trending</h3>
             </div>
             <Link href="/collection">
@@ -272,7 +272,7 @@ export default function Home() {
           
           <div className="mt-8 text-center md:hidden">
             <Link href="/collection">
-              <span className="inline-block text-[9px] font-medium tracking-[0.2em] uppercase hover:text-black/60 transition-colors cursor-pointer border-b border-black pb-1">
+              <span className="inline-block text-[9px] font-medium tracking-[0.2em] uppercase hover:text-[#c9a96e] transition-colors cursor-pointer border-b border-[#c9a96e] text-[#c9a96e] pb-1">
                 View All Collections
               </span>
             </Link>
@@ -294,9 +294,9 @@ export default function Home() {
           </p>
         </section>
 
-        <section className="py-6 md:py-12 px-4 md:px-8 lg:px-16 bg-black text-white">
+        <section className="py-6 md:py-12 px-4 md:px-8 lg:px-16 bg-[#1a1308] text-white">
           <div>
-            <h2 className="text-[9px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-center text-white/50 mb-2 md:mb-3">The Experience</h2>
+            <h2 className="text-[9px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-center text-[#c9a96e] mb-2 md:mb-3">The Experience</h2>
             <h3 className="text-2xl md:text-4xl font-serif text-center mb-6 md:mb-10">Exclusively For You</h3>
             
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 md:gap-x-8 gap-y-8 md:gap-y-12">
@@ -356,7 +356,7 @@ function CreativeProductCard({ product }: { product: any }) {
           )}
           
           <div className="absolute bottom-0 left-0 w-full z-30 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out bg-white hidden md:block">
-            <button className="w-full py-3 text-[9px] font-medium tracking-[0.2em] uppercase hover:bg-black hover:text-white transition-colors" data-testid={`button-quickview-${product.id}`}>
+            <button className="w-full py-3 text-[9px] font-medium tracking-[0.2em] uppercase hover:bg-[#1a1308] hover:text-white transition-colors" data-testid={`button-quickview-${product.id}`}>
               Quick View
             </button>
           </div>
@@ -383,12 +383,12 @@ function CreativeProductCard({ product }: { product: any }) {
 function ServiceCard({ icon, title, description, linkText }: any) {
   return (
     <div className="flex flex-col group cursor-pointer text-center items-center">
-      <div className="w-10 h-10 md:w-16 md:h-16 rounded-full border border-white/20 flex items-center justify-center text-white/80 mb-4 md:mb-6 group-hover:bg-white group-hover:text-black transition-colors duration-500">
+      <div className="w-10 h-10 md:w-16 md:h-16 rounded-full border border-[#c9a96e]/30 flex items-center justify-center text-[#c9a96e]/80 mb-4 md:mb-6 group-hover:bg-[#c9a96e] group-hover:text-white transition-colors duration-500">
         {icon}
       </div>
       <h3 className="text-sm md:text-lg font-serif mb-2 text-white">{title}</h3>
-      <p className="text-[10px] md:text-xs text-white/60 leading-relaxed mb-4 flex-1 max-w-[180px] font-light hidden sm:block">{description}</p>
-      <span className="text-[8px] md:text-[9px] font-medium tracking-[0.2em] uppercase border-b border-white pb-0.5 hover:text-white/60 hover:border-white/60 transition-colors text-white mt-auto">
+      <p className="text-[10px] md:text-xs text-white/50 leading-relaxed mb-4 flex-1 max-w-[180px] font-light hidden sm:block">{description}</p>
+      <span className="text-[8px] md:text-[9px] font-medium tracking-[0.2em] uppercase border-b border-[#c9a96e] pb-0.5 hover:text-[#c9a96e]/60 hover:border-[#c9a96e]/60 transition-colors text-[#c9a96e] mt-auto">
         {linkText}
       </span>
     </div>

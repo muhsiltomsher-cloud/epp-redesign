@@ -79,7 +79,7 @@ export default function Product() {
                     key={i} 
                     onClick={() => setMainImage(img)}
                     className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                      (mainImage || product.image) === img ? 'bg-black scale-125' : 'bg-black/20 hover:bg-black/40'
+                      (mainImage || product.image) === img ? 'bg-[#c9a96e] scale-125' : 'bg-black/20 hover:bg-[#c9a96e]/50'
                     }`}
                     aria-label={`View image ${i+1}`}
                     data-testid={`button-thumbnail-${i}`}
@@ -93,7 +93,7 @@ export default function Product() {
             <div ref={detailsColRef} className="p-6 md:p-12 lg:p-20 max-w-[650px] mx-auto w-full">
               
               <div className="mb-10">
-                <span className="text-[9px] md:text-[10px] tracking-[0.3em] uppercase text-black/50 mb-4 block" data-testid="text-product-collection">
+                <span className="text-[9px] md:text-[10px] tracking-[0.3em] uppercase text-[#c9a96e] mb-4 block" data-testid="text-product-collection">
                   {product.collection}
                 </span>
                 <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif mb-4 text-black tracking-wide leading-tight" data-testid="text-product-name">
@@ -104,7 +104,7 @@ export default function Product() {
                   <p className="text-lg md:text-xl text-black font-medium" data-testid="text-product-price">
                     {product.currency} {product.price}
                   </p>
-                  <div className="flex items-center gap-1 text-black">
+                  <div className="flex items-center gap-1 text-[#c9a96e]">
                     <Star size={12} fill="currentColor" />
                     <Star size={12} fill="currentColor" />
                     <Star size={12} fill="currentColor" />
@@ -121,7 +121,7 @@ export default function Product() {
 
               <div className="flex flex-col gap-4 mb-12">
                 <div className="flex items-stretch gap-4 h-12 md:h-14">
-                  <div className="flex items-center border border-black/20 bg-white w-28 md:w-32">
+                  <div className="flex items-center border border-[#c9a96e]/30 bg-white w-28 md:w-32">
                     <button 
                       className="px-3 py-2 md:px-4 text-black/50 hover:text-black transition-colors"
                       onClick={() => setQuantity(Math.max(1, quantity - 1))}
@@ -139,22 +139,22 @@ export default function Product() {
                     </button>
                   </div>
                   
-                  <button className="flex-1 bg-black text-white px-4 text-[9px] md:text-[10px] font-medium tracking-[0.2em] uppercase hover:bg-black/80 transition-colors text-center" data-testid="button-add-to-cart">
+                  <button className="flex-1 bg-[#1a1308] text-white px-4 text-[9px] md:text-[10px] font-medium tracking-[0.2em] uppercase hover:bg-[#c9a96e] transition-colors text-center" data-testid="button-add-to-cart">
                     Add to Cart
                   </button>
                 </div>
                 
                 <div className="grid grid-cols-3 gap-2 mt-6 py-6 border-y border-black/5">
                   <div className="flex flex-col items-center text-center gap-2">
-                    <Truck size={16} strokeWidth={1} className="text-black/60" />
+                    <Truck size={16} strokeWidth={1} className="text-[#c9a96e]" />
                     <span className="text-[8px] uppercase tracking-widest text-black/60 font-medium">Free<br/>Shipping</span>
                   </div>
                   <div className="flex flex-col items-center text-center gap-2 border-x border-black/5">
-                    <Box size={16} strokeWidth={1} className="text-black/60" />
+                    <Box size={16} strokeWidth={1} className="text-[#c9a96e]" />
                     <span className="text-[8px] uppercase tracking-widest text-black/60 font-medium">Luxury<br/>Packaging</span>
                   </div>
                   <div className="flex flex-col items-center text-center gap-2">
-                    <ShieldCheck size={16} strokeWidth={1} className="text-black/60" />
+                    <ShieldCheck size={16} strokeWidth={1} className="text-[#c9a96e]" />
                     <span className="text-[8px] uppercase tracking-widest text-black/60 font-medium">100%<br/>Authentic</span>
                   </div>
                 </div>

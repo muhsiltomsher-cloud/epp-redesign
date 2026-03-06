@@ -27,6 +27,8 @@
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
+  --color-brand-gold: #c9a96e;
+  --color-brand-dark: #1a1308;
 
   /* Added Arabic font support */
   --font-sans: 'Montserrat', sans-serif;
@@ -35,34 +37,33 @@
 }
 
 :root {
-  /* Ultra stark, high-end minimalist palette */
-  --background: 0 0% 100%; /* Pure white */
-  --foreground: 0 0% 8%; /* Almost black */
+  --background: 0 0% 100%;
+  --foreground: 30 30% 8%;
   
   --card: 0 0% 100%;
-  --card-foreground: 0 0% 8%;
+  --card-foreground: 30 30% 8%;
   
   --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 8%;
+  --popover-foreground: 30 30% 8%;
   
-  --primary: 0 0% 0%; /* Black */
-  --primary-foreground: 0 0% 100%; /* White */
+  --primary: 37 40% 40%;
+  --primary-foreground: 0 0% 100%;
   
-  --secondary: 0 0% 98%; 
-  --secondary-foreground: 0 0% 0%;
+  --secondary: 35 15% 97%; 
+  --secondary-foreground: 30 30% 8%;
   
-  --muted: 0 0% 96%;
-  --muted-foreground: 0 0% 40%;
+  --muted: 35 10% 96%;
+  --muted-foreground: 30 10% 40%;
   
-  --accent: 0 0% 0%;
+  --accent: 37 40% 40%;
   --accent-foreground: 0 0% 100%;
   
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 0 0% 98%;
   
-  --border: 0 0% 90%;
-  --input: 0 0% 90%;
-  --ring: 0 0% 0%;
+  --border: 35 10% 90%;
+  --input: 35 10% 90%;
+  --ring: 37 40% 40%;
   
   --radius: 0rem; 
 }
@@ -96,11 +97,11 @@
 }
 
 .creed-button {
-  @apply bg-primary text-primary-foreground px-10 py-4 text-[11px] font-medium tracking-[0.2em] uppercase hover:bg-black/80 transition-colors border border-primary text-center;
+  @apply bg-brand-dark text-white px-10 py-4 text-[11px] font-medium tracking-[0.2em] uppercase hover:bg-brand-gold transition-colors border border-brand-dark hover:border-brand-gold text-center;
 }
 
 .creed-button-outline {
-  @apply bg-transparent text-primary px-10 py-4 text-[11px] font-medium tracking-[0.2em] uppercase hover:bg-primary hover:text-primary-foreground transition-all duration-300 border border-primary text-center;
+  @apply bg-transparent text-brand-dark px-10 py-4 text-[11px] font-medium tracking-[0.2em] uppercase hover:bg-brand-dark hover:text-white transition-all duration-300 border border-brand-dark text-center;
 }
 
 /* Hide scrollbar for horizontal scrolling containers */

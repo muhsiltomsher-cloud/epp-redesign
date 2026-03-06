@@ -36,8 +36,8 @@ export default function Collection() {
                   data-testid={`button-category-${category.toLowerCase().replace(/\s+/g, '-')}`}
                   className={`text-[10px] tracking-[0.2em] uppercase transition-colors whitespace-nowrap ${
                     activeCategory === category 
-                      ? 'text-black font-medium border-b border-black pb-1' 
-                      : 'text-black/50 hover:text-black pb-1'
+                      ? 'text-[#c9a96e] font-medium border-b border-[#c9a96e] pb-1' 
+                      : 'text-black/50 hover:text-[#c9a96e] pb-1'
                   }`}
                 >
                   {category}
@@ -83,7 +83,7 @@ export default function Collection() {
                     )}
                     
                     <div className="absolute bottom-0 left-0 w-full z-30 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out bg-white hidden md:block">
-                      <button className="w-full py-4 text-[10px] font-medium tracking-[0.2em] uppercase hover:bg-black hover:text-white transition-colors" data-testid={`button-discover-${product.id}`}>
+                      <button className="w-full py-4 text-[10px] font-medium tracking-[0.2em] uppercase hover:bg-[#1a1308] hover:text-white transition-colors" data-testid={`button-discover-${product.id}`}>
                         Discover
                       </button>
                     </div>

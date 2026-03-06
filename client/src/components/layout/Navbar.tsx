@@ -45,7 +45,7 @@ export default function Navbar() {
       >
         {/* Top Announcement Bar - hidden on mobile for cleaner look */}
         <div className={`transition-all duration-500 overflow-hidden hidden md:block ${
-          isScrolled ? "h-0 opacity-0" : "h-[32px] opacity-100 bg-black text-white"
+          isScrolled ? "h-0 opacity-0" : "h-[32px] opacity-100 bg-[#1a1308] text-[#c9a96e]"
         }`}>
           <div className="container mx-auto px-4 h-full flex items-center justify-center text-[12px] tracking-[0.2em] uppercase font-light">
             Free Shipping Worldwide on all orders above AED 1500
@@ -122,7 +122,7 @@ export default function Navbar() {
                     <div className="px-4 py-3 border-b border-black/5">
                       <span className="text-[9px] uppercase tracking-widest text-black/40">Language</span>
                       <div className="flex gap-4 mt-2">
-                        <button className="text-[11px] font-medium text-black border-b border-black pb-0.5">EN</button>
+                        <button className="text-[11px] font-medium text-black border-b border-[#c9a96e] pb-0.5">EN</button>
                         <button className="text-[11px] font-arabic text-black/50 hover:text-black transition-colors">العربية</button>
                       </div>
                     </div>
@@ -136,7 +136,7 @@ export default function Navbar() {
                             setIsCurrencyMenuOpen(false);
                           }}
                           className={`w-full text-left px-2 py-2 text-[11px] uppercase tracking-wider transition-colors ${
-                            activeCurrency === currency ? "bg-black/5 font-medium text-black" : "text-black/60 hover:text-black hover:bg-black/5"
+                            activeCurrency === currency ? "bg-[#c9a96e]/10 font-medium text-[#c9a96e]" : "text-black/60 hover:text-[#c9a96e] hover:bg-[#c9a96e]/5"
                           }`}
                         >
                           {currency}
@@ -168,7 +168,7 @@ export default function Navbar() {
                 <ShoppingBag size={18} strokeWidth={1} />
                 <span className="hidden md:inline text-[13px] font-medium tracking-[0.2em] uppercase">Cart</span>
                 <span className={`absolute -top-1 -right-2 text-[8px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-medium ${
-                  !isDarkText ? "bg-white text-black" : "bg-black text-white"
+                  !isDarkText ? "bg-[#c9a96e] text-white" : "bg-[#c9a96e] text-white"
                 }`}>0</span>
               </button>
             </div>
