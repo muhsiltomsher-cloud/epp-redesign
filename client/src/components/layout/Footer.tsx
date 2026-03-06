@@ -58,7 +58,7 @@ export default function Footer() {
               <button type="submit" className="absolute right-0 top-1/2 -translate-y-1/2 text-white/40 group-hover:text-white transition-colors">
                 <ArrowRight size={14} strokeWidth={1} />
               </button>
-            form>
+            </form>
           </div>
         </div>
 
