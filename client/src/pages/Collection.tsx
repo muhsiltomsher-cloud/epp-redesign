@@ -67,7 +67,7 @@ export default function Collection() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-2.5 md:gap-x-4 lg:gap-x-6 gap-y-5 md:gap-y-12 lg:gap-y-16">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-2.5 md:gap-x-4 lg:gap-x-6 gap-y-6 md:gap-y-12 lg:gap-y-16">
             {filteredProducts.map((product, index) => (
               <div 
                 key={product.id} 
@@ -76,7 +76,7 @@ export default function Collection() {
                 data-testid={`card-product-${product.id}`}
               >
                 <Link href={`/product/${product.id}`}>
-                  <div className="block relative aspect-[3/5] mb-2 md:mb-3 lg:mb-4 overflow-hidden bg-[#f8f8f8]">
+                  <div className="block relative aspect-[3/5] mb-2.5 md:mb-3 lg:mb-4 overflow-hidden bg-[#f8f8f8]">
                     <img 
                       src={product.image} 
                       alt={product.name} 
@@ -103,14 +103,14 @@ export default function Collection() {
                 
                 <div className="flex flex-col items-center px-1 text-center">
                   <Link href={`/product/${product.id}`}>
-                    <span className="text-xs md:text-base lg:text-lg font-serif mb-1 text-black hover:text-black/60 transition-colors cursor-pointer" data-testid={`text-product-name-${product.id}`}>
+                    <span className="text-sm md:text-lg lg:text-xl font-serif mb-1 text-black hover:text-black/60 transition-colors cursor-pointer" data-testid={`text-product-name-${product.id}`}>
                       {product.name}
                     </span>
                   </Link>
-                  <span className="text-[6px] md:text-[7px] lg:text-[8px] tracking-[0.2em] uppercase text-black/40 mb-1 lg:mb-2">
+                  <span className="text-[7px] md:text-[8px] lg:text-[9px] tracking-[0.2em] uppercase text-black/40 mb-1 lg:mb-2">
                     {product.collection}
                   </span>
-                  <p className="text-[9px] md:text-[10px] lg:text-xs font-medium text-black" data-testid={`text-price-${product.id}`}>
+                  <p className="text-[10px] md:text-xs lg:text-sm font-medium text-black" data-testid={`text-price-${product.id}`}>
                     {product.currency} {product.price}
                   </p>
                 </div>

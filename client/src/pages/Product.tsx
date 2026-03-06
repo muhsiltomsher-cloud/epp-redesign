@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "wouter";
-import { Minus, Plus, ChevronDown, ChevronUp, Star, Truck, ShieldCheck, Box } from "lucide-react";
+import { Minus, Plus, ChevronDown, Star, Truck, ShieldCheck, Box } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "@/components/layout/Navbar";
@@ -21,22 +21,29 @@ export default function Product() {
   const detailsColRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    setMainImage(product?.image);
+  }, [product?.image]);
+
+  useEffect(() => {
     let ctx = gsap.context(() => {
-      if (imageColRef.current && window.innerWidth >= 768) {
+      if (detailsColRef.current && window.innerWidth >= 768) {
         ScrollTrigger.create({
           trigger: mainRef.current,
-          start: "top top+=70", 
+          start: "top top+=70",
           end: "bottom bottom",
-          pin: imageColRef.current,
+          pin: detailsColRef.current,
           pinSpacing: false,
         });
       }
       
       if (detailsColRef.current) {
-        gsap.fromTo(detailsColRef.current.children, 
-          { y: 30, opacity: 0 }, 
-          { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power2.out", delay: 0.2 }
-        );
+        const children = detailsColRef.current.querySelector('.details-inner');
+        if (children) {
+          gsap.fromTo(children.children, 
+            { y: 30, opacity: 0 }, 
+            { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power2.out", delay: 0.2 }
+          );
+        }
       }
     });
 
@@ -48,16 +55,17 @@ export default function Product() {
   if (!product) return null;
 
   const images = [product.image, product.hoverImage].filter(Boolean) as string[];
+  const relatedProducts = products.filter(p => p.id !== product.id && p.collection === product.collection).slice(0, 4);
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <Navbar />
 
       <main ref={mainRef} className="flex-1 pt-[52px] md:pt-[70px] relative">
-        <div className="flex flex-col md:flex-row w-full max-w-[1800px] mx-auto min-h-[calc(100vh-70px)]">
+        <div className="flex flex-col md:flex-row w-full max-w-[1800px] mx-auto">
           
-          <div ref={imageColRef} className="w-full md:w-1/2 md:h-[calc(100vh-70px)] bg-[#f5f5f5] flex flex-col overflow-hidden relative">
-            <div className="w-full h-[55svh] md:h-full relative flex items-center justify-center p-4 md:p-12 lg:p-16 xl:p-20">
+          <div ref={imageColRef} className="w-full md:w-1/2 bg-[#f5f5f5] flex flex-col overflow-hidden relative">
+            <div className="w-full h-[55svh] md:h-[calc(100vh-70px)] relative flex items-center justify-center p-4 md:p-12 lg:p-16 xl:p-20">
               <img 
                 src={mainImage || product.image} 
                 alt={product.name} 
@@ -89,8 +97,8 @@ export default function Product() {
             )}
           </div>
 
-          <div className="w-full md:w-1/2 flex flex-col bg-white pb-20 md:pb-0">
-            <div ref={detailsColRef} className="px-4 py-5 md:p-10 lg:p-16 xl:p-20 max-w-[650px] mx-auto w-full">
+          <div ref={detailsColRef} className="w-full md:w-1/2 md:h-[calc(100vh-70px)] flex flex-col bg-white pb-20 md:pb-0 md:overflow-y-auto">
+            <div className="details-inner px-4 py-5 md:p-10 lg:p-16 xl:p-20 max-w-[650px] mx-auto w-full">
               
               <div className="mb-6 md:mb-10">
                 <span className="text-[8px] md:text-[10px] tracking-[0.3em] uppercase text-[#c9a96e] mb-2 md:mb-4 block" data-testid="text-product-collection">
@@ -239,15 +247,31 @@ export default function Product() {
               </div>
 
             </div>
-            
-            {product.hoverImage && (
-              <div className="w-full h-[30svh] md:h-[60vh] mt-auto relative">
-                <img src={product.hoverImage} className="w-full h-full object-cover" alt="Lifestyle context" />
-              </div>
-            )}
           </div>
 
         </div>
+
+        {relatedProducts.length > 0 && (
+          <section className="px-4 md:px-10 lg:px-20 xl:px-28 py-10 md:py-20 bg-white border-t border-black/5">
+            <h2 className="text-[8px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-2 md:mb-3 text-center">You May Also Like</h2>
+            <h3 className="text-xl md:text-3xl lg:text-4xl font-serif text-center mb-6 md:mb-12">From {product.collection}</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-x-2.5 md:gap-x-4 lg:gap-x-6 gap-y-6 md:gap-y-10">
+              {relatedProducts.map((p) => (
+                <Link key={p.id} href={`/product/${p.id}`}>
+                  <div className="group flex flex-col cursor-pointer" data-testid={`card-related-${p.id}`}>
+                    <div className="relative aspect-[3/5] mb-2.5 md:mb-3 overflow-hidden bg-[#f8f8f8]">
+                      <img src={p.image} alt={p.name} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+                    </div>
+                    <div className="flex flex-col items-center text-center">
+                      <span className="text-sm md:text-base font-serif mb-0.5 text-black group-hover:text-black/60 transition-colors">{p.name}</span>
+                      <p className="text-[10px] md:text-xs font-medium text-black">{p.currency} {p.price}</p>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
       </main>
 
       <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white border-t border-black/10 px-4 py-3 flex items-center gap-3 safe-area-bottom">

@@ -1,6 +1,41 @@
-import { Search, ShoppingBag, Menu, User, X, ChevronDown, Globe, Instagram, Facebook, Twitter } from "lucide-react";
+import { Search, ShoppingBag, Menu, User, X, ChevronDown, Globe, Instagram, Facebook, Twitter, Home, Grid3X3, Heart } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
+import { products } from "@/lib/data";
+
+const megaMenuData: Record<string, { subcategories: { name: string; link: string }[]; featured: { name: string; image: string; price: number; id: string }[] }> = {
+  "Oud & Dakhoon": {
+    subcategories: [
+      { name: "All Oud & Dakhoon", link: "/collection" },
+      { name: "Premium Oud", link: "/collection" },
+      { name: "Bakhoor", link: "/collection" },
+      { name: "Dakhoon", link: "/collection" },
+      { name: "Oud Oil", link: "/collection" },
+    ],
+    featured: products.filter(p => p.collection === "Oud & Dakhoon").slice(0, 3).map(p => ({ name: p.name, image: p.image, price: p.price, id: p.id })),
+  },
+  "Perfume": {
+    subcategories: [
+      { name: "All Perfumes", link: "/collection" },
+      { name: "For Him", link: "/collection" },
+      { name: "For Her", link: "/collection" },
+      { name: "Unisex", link: "/collection" },
+      { name: "Oil Perfumes", link: "/collection" },
+      { name: "New Arrivals", link: "/collection" },
+    ],
+    featured: products.filter(p => p.collection === "Perfume Collection").slice(0, 3).map(p => ({ name: p.name, image: p.image, price: p.price, id: p.id })),
+  },
+  "Gifts": {
+    subcategories: [
+      { name: "All Gift Sets", link: "/collection" },
+      { name: "For Him", link: "/collection" },
+      { name: "For Her", link: "/collection" },
+      { name: "Wedding Gifts", link: "/collection" },
+      { name: "Corporate Gifts", link: "/collection" },
+    ],
+    featured: products.filter(p => p.collection === "Gift Sets").slice(0, 3).map(p => ({ name: p.name, image: p.image, price: p.price, id: p.id })),
+  },
+};
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -9,13 +44,12 @@ export default function Navbar() {
   const [isHoveringNav, setIsHoveringNav] = useState(false);
   const [isCurrencyMenuOpen, setIsCurrencyMenuOpen] = useState(false);
   const [activeCurrency, setActiveCurrency] = useState("AED");
+  const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
   const [location] = useLocation();
 
   const currencies = ["AED", "USD", "EUR", "GBP", "SAR", "KWD", "QAR"];
-  // Use the official logo that has dark text, and we invert it when needed.
   const logoUrl = "https://emiratespride.com/wp-content/uploads/2026/01/logo-epp.png";
   
-  // Update header on scroll
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -24,13 +58,12 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   
-  // Close mobile menu on route change
   useEffect(() => {
     setIsMenuOpen(false);
+    setActiveMegaMenu(null);
   }, [location]);
 
-  // Determine if header should be dark text or light text
-  const isDarkText = isScrolled || isHoveringNav || isMenuOpen || location !== "/";
+  const isDarkText = isScrolled || isHoveringNav || isMenuOpen || activeMegaMenu !== null || location !== "/";
 
   return (
     <>
@@ -41,9 +74,8 @@ export default function Navbar() {
             : "bg-transparent"
         }`}
         onMouseEnter={() => setIsHoveringNav(true)}
-        onMouseLeave={() => setIsHoveringNav(false)}
+        onMouseLeave={() => { setIsHoveringNav(false); setActiveMegaMenu(null); }}
       >
-        {/* Top Announcement Bar - hidden on mobile for cleaner look */}
         <div className={`transition-all duration-500 overflow-hidden hidden md:block ${
           isScrolled ? "h-0 opacity-0" : "h-[32px] opacity-100 bg-[#1a1308] text-[#c9a96e]"
         }`}>
@@ -55,7 +87,6 @@ export default function Navbar() {
         <div className="px-4 md:px-10 lg:px-20 xl:px-28 relative text-[18px] font-medium">
           <div className={`flex items-center justify-between transition-all duration-500 ${isScrolled ? "h-[52px] md:h-[70px]" : "h-[56px] md:h-[90px]"}`}>
             
-            {/* Mobile Menu Button */}
             <button 
               className={`md:hidden p-2 -ml-2 transition-colors duration-300 ${
                 isDarkText ? "text-black" : "text-white"
@@ -65,32 +96,33 @@ export default function Navbar() {
               {isMenuOpen ? <X size={20} strokeWidth={1} /> : <Menu size={20} strokeWidth={1} />}
             </button>
 
-            {/* Desktop Navigation - Left */}
             <nav className="hidden md:flex items-center gap-8 flex-1">
+              {Object.keys(megaMenuData).map((menuKey) => (
+                <div
+                  key={menuKey}
+                  className="relative"
+                  onMouseEnter={() => setActiveMegaMenu(menuKey)}
+                >
+                  <Link href="/collection">
+                    <span className={`text-[13px] font-medium tracking-[0.2em] uppercase transition-colors luxury-underline cursor-pointer flex items-center gap-1 ${
+                      !isDarkText ? "text-white/90 hover:text-white" : "text-black/80 hover:text-black"
+                    } ${activeMegaMenu === menuKey ? "!text-[#c9a96e]" : ""}`}>
+                      {menuKey}
+                    </span>
+                  </Link>
+                </div>
+              ))}
               <Link href="/collection">
                 <span className={`text-[13px] font-medium tracking-[0.2em] uppercase transition-colors luxury-underline cursor-pointer ${
                   !isDarkText ? "text-white/90 hover:text-white" : "text-black/80 hover:text-black"
-                }`}>
-                  Oud & Dakhoon
-                </span>
-              </Link>
-              <Link href="/collection">
-                <span className={`text-[13px] font-medium tracking-[0.2em] uppercase transition-colors luxury-underline cursor-pointer ${
-                  !isDarkText ? "text-white/90 hover:text-white" : "text-black/80 hover:text-black"
-                }`}>
-                  Perfume
-                </span>
-              </Link>
-              <Link href="/collection">
-                <span className={`text-[13px] font-medium tracking-[0.2em] uppercase transition-colors luxury-underline cursor-pointer ${
-                  !isDarkText ? "text-white/90 hover:text-white" : "text-black/80 hover:text-black"
-                }`}>
-                  Gifts
+                }`}
+                onMouseEnter={() => setActiveMegaMenu(null)}
+                >
+                  New Arrivals
                 </span>
               </Link>
             </nav>
 
-            {/* Logo - Centered */}
             <Link href="/" className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center h-full max-w-[100px] md:max-w-[180px]">
               <img 
                 src={logoUrl} 
@@ -101,12 +133,10 @@ export default function Navbar() {
               />
             </Link>
 
-            {/* Actions - Right */}
             <div className="flex items-center gap-4 md:gap-6 flex-1 justify-end">
-              {/* Region/Currency Selector */}
               <div 
                 className="hidden md:block relative"
-                onMouseEnter={() => setIsCurrencyMenuOpen(true)}
+                onMouseEnter={() => { setIsCurrencyMenuOpen(true); setActiveMegaMenu(null); }}
                 onMouseLeave={() => setIsCurrencyMenuOpen(false)}
               >
                 <button className={`flex items-center gap-1.5 text-[13px] font-medium tracking-[0.1em] uppercase transition-colors ${
@@ -149,13 +179,17 @@ export default function Navbar() {
 
               <button className={`hidden md:block transition-colors ${
                 !isDarkText ? "text-white/90 hover:text-white" : "text-black/80 hover:text-black"
-              }`}>
+              }`}
+              onMouseEnter={() => setActiveMegaMenu(null)}
+              >
                 <Search size={16} strokeWidth={1} />
               </button>
               
               <button className={`hidden md:block transition-colors ${
                 !isDarkText ? "text-white/90 hover:text-white" : "text-black/80 hover:text-black"
-              }`}>
+              }`}
+              onMouseEnter={() => setActiveMegaMenu(null)}
+              >
                 <User size={16} strokeWidth={1} />
               </button>
               
@@ -164,6 +198,7 @@ export default function Navbar() {
                   !isDarkText ? "text-white/90 hover:text-white" : "text-black/80 hover:text-black"
                 }`}
                 onClick={() => setIsCartOpen(true)}
+                onMouseEnter={() => setActiveMegaMenu(null)}
               >
                 <ShoppingBag size={18} strokeWidth={1} />
                 <span className="hidden md:inline text-[13px] font-medium tracking-[0.2em] uppercase">Cart</span>
@@ -175,7 +210,58 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Menu Overlay */}
+        {activeMegaMenu && megaMenuData[activeMegaMenu] && (
+          <div 
+            className="hidden md:block absolute top-full left-0 w-full bg-white shadow-xl border-t border-black/5 animate-in fade-in slide-in-from-top-1 duration-300 z-40"
+            onMouseEnter={() => setActiveMegaMenu(activeMegaMenu)}
+            onMouseLeave={() => setActiveMegaMenu(null)}
+          >
+            <div className="px-10 lg:px-20 xl:px-28 py-10 flex gap-16">
+              <div className="flex-shrink-0 w-48">
+                <h3 className="text-[9px] font-medium tracking-[0.25em] uppercase text-[#c9a96e] mb-5">{activeMegaMenu}</h3>
+                <ul className="flex flex-col gap-3">
+                  {megaMenuData[activeMegaMenu].subcategories.map((sub) => (
+                    <li key={sub.name}>
+                      <Link href={sub.link}>
+                        <span className="text-[12px] text-black/60 hover:text-[#c9a96e] transition-colors cursor-pointer tracking-wide">
+                          {sub.name}
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="flex-1">
+                <h4 className="text-[9px] font-medium tracking-[0.25em] uppercase text-black/30 mb-5">Featured</h4>
+                <div className="grid grid-cols-3 gap-5">
+                  {megaMenuData[activeMegaMenu].featured.map((item) => (
+                    <Link key={item.id} href={`/product/${item.id}`}>
+                      <div className="group cursor-pointer">
+                        <div className="aspect-[3/4] overflow-hidden bg-[#f8f8f8] mb-3">
+                          <img src={item.image} alt={item.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                        </div>
+                        <p className="text-[12px] font-serif text-black group-hover:text-[#c9a96e] transition-colors">{item.name}</p>
+                        <p className="text-[10px] text-black/50 mt-0.5">AED {item.price}</p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex-shrink-0 w-52 flex flex-col justify-between">
+                <div>
+                  <h4 className="text-[9px] font-medium tracking-[0.25em] uppercase text-black/30 mb-4">Discover</h4>
+                  <p className="text-[11px] text-black/50 leading-relaxed font-light mb-5">Explore our complete {activeMegaMenu.toLowerCase()} collection, crafted with the finest ingredients.</p>
+                </div>
+                <Link href="/collection">
+                  <span className="creed-button text-center block">View All</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
+
         <div className={`absolute top-full left-0 w-full bg-white transition-all duration-500 ease-in-out origin-top border-t border-black/5 overflow-hidden md:hidden shadow-2xl ${
           isMenuOpen ? "max-h-[calc(100svh-52px)] opacity-100" : "max-h-0 opacity-0"
         }`}>
@@ -222,11 +308,9 @@ export default function Navbar() {
             </div>
             
             <div className="mt-auto flex flex-col gap-4 pt-5 pb-6">
-              <Link href="/account">
-                <span className="flex items-center justify-center gap-2.5 bg-[#1a1308] text-white py-3.5 text-[9px] tracking-[0.2em] uppercase font-medium cursor-pointer active:bg-[#c9a96e] transition-colors">
-                  <User size={14} strokeWidth={1} /> Sign In / Register
-                </span>
-              </Link>
+              <button className="flex items-center justify-center gap-2.5 bg-[#1a1308] text-white py-3.5 text-[9px] tracking-[0.2em] uppercase font-medium cursor-pointer active:bg-[#c9a96e] transition-colors w-full">
+                <User size={14} strokeWidth={1} /> Sign In / Register
+              </button>
               <div className="flex justify-center gap-6 pt-2">
                 <a href="#" className="text-black/30"><Instagram size={18} strokeWidth={1}/></a>
                 <a href="#" className="text-black/30"><Facebook size={18} strokeWidth={1}/></a>
@@ -236,7 +320,42 @@ export default function Navbar() {
           </div>
         </div>
       </header>
-      {/* Slide-out Cart Drawer */}
+
+      {!location.startsWith("/product/") && (
+        <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-white border-t border-black/10 safe-area-bottom">
+          <div className="flex items-center justify-around h-14">
+            <Link href="/">
+              <span className={`flex flex-col items-center gap-1 cursor-pointer ${location === "/" ? "text-[#c9a96e]" : "text-black/40"}`} data-testid="nav-home">
+                <Home size={18} strokeWidth={1.2} />
+                <span className="text-[8px] tracking-wider uppercase font-medium">Home</span>
+              </span>
+            </Link>
+            <Link href="/collection">
+              <span className={`flex flex-col items-center gap-1 cursor-pointer ${location === "/collection" ? "text-[#c9a96e]" : "text-black/40"}`} data-testid="nav-shop">
+                <Grid3X3 size={18} strokeWidth={1.2} />
+                <span className="text-[8px] tracking-wider uppercase font-medium">Shop</span>
+              </span>
+            </Link>
+            <Link href="/collection">
+              <span className="flex flex-col items-center gap-1 cursor-pointer text-black/40" data-testid="nav-search">
+                <Search size={18} strokeWidth={1.2} />
+                <span className="text-[8px] tracking-wider uppercase font-medium">Search</span>
+              </span>
+            </Link>
+            <Link href="/collection">
+              <span className="flex flex-col items-center gap-1 cursor-pointer text-black/40" data-testid="nav-wishlist">
+                <Heart size={18} strokeWidth={1.2} />
+                <span className="text-[8px] tracking-wider uppercase font-medium">Wishlist</span>
+              </span>
+            </Link>
+            <button onClick={() => setIsCartOpen(true)} className="flex flex-col items-center gap-1 cursor-pointer text-black/40" data-testid="nav-cart">
+              <ShoppingBag size={18} strokeWidth={1.2} />
+              <span className="text-[8px] tracking-wider uppercase font-medium">Cart</span>
+            </button>
+          </div>
+        </div>
+      )}
+
       {isCartOpen && (
         <div className="fixed inset-0 z-[100] overflow-hidden">
           <div 

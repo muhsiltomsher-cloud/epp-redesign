@@ -385,14 +385,14 @@ function CreativeProductCard({ product }: { product: any }) {
       
       <div className="flex flex-col items-center px-1 text-center">
         <Link href={`/product/${product.id}`}>
-          <span className="text-xs md:text-base lg:text-lg font-serif mb-1 text-black hover:text-black/60 transition-colors cursor-pointer" data-testid={`text-product-name-${product.id}`}>
+          <span className="text-sm md:text-lg lg:text-xl font-serif mb-1 text-black hover:text-black/60 transition-colors cursor-pointer" data-testid={`text-product-name-${product.id}`}>
             {product.name}
           </span>
         </Link>
-        <span className="text-[6px] md:text-[7px] lg:text-[8px] tracking-[0.2em] uppercase text-black/40 mb-1 lg:mb-1.5 line-clamp-1">
+        <span className="text-[7px] md:text-[8px] lg:text-[9px] tracking-[0.2em] uppercase text-black/40 mb-1 lg:mb-1.5 line-clamp-1">
           {product.collection}
         </span>
-        <p className="text-[9px] md:text-[10px] lg:text-xs font-medium text-black" data-testid={`text-price-${product.id}`}>
+        <p className="text-[10px] md:text-xs lg:text-sm font-medium text-black" data-testid={`text-price-${product.id}`}>
           {product.currency} {product.price}
         </p>
       </div>
