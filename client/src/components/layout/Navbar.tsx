@@ -193,6 +193,18 @@ export default function Navbar() {
                 <User size={16} strokeWidth={1} />
               </button>
               
+              <Link href="/wishlist">
+                <button 
+                  className={`transition-colors ${
+                    !isDarkText ? "text-white/90 hover:text-white" : "text-black/80 hover:text-black"
+                  }`}
+                  onMouseEnter={() => setActiveMegaMenu(null)}
+                  data-testid="button-wishlist-header"
+                >
+                  <Heart size={18} strokeWidth={1} />
+                </button>
+              </Link>
+
               <button 
                 className={`flex items-center gap-2 transition-colors relative ${
                   !isDarkText ? "text-white/90 hover:text-white" : "text-black/80 hover:text-black"
