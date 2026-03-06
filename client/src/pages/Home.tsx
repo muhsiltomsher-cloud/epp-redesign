@@ -196,7 +196,7 @@ export default function Home() {
               {products.slice(0, 4).map((product) => (
                 <div key={product.id} className="group flex flex-col cursor-pointer" data-testid={`card-scroll-product-${product.id}`}>
                   <Link href={`/product/${product.id}`}>
-                    <div className="relative aspect-[3/4] mb-3 overflow-hidden bg-[#f5f5f5]">
+                    <div className="relative aspect-[3/5] mb-3 overflow-hidden bg-[#f5f5f5]">
                       <img 
                         src={product.image} 
                         alt={product.name} 
@@ -224,7 +224,7 @@ export default function Home() {
               {products.slice(3, 7).map((product) => (
                 <div key={product.id} className="group flex flex-col cursor-pointer" data-testid={`card-scroll-product-${product.id}`}>
                   <Link href={`/product/${product.id}`}>
-                    <div className="relative aspect-[3/4] mb-3 overflow-hidden bg-[#f5f5f5]">
+                    <div className="relative aspect-[3/5] mb-3 overflow-hidden bg-[#f5f5f5]">
                       <img 
                         src={product.image} 
                         alt={product.name} 

@@ -65,7 +65,7 @@ export default function Collection() {
                 data-testid={`card-product-${product.id}`}
               >
                 <Link href={`/product/${product.id}`}>
-                  <div className="block relative aspect-[3/4] mb-4 overflow-hidden bg-[#f8f8f8]">
+                  <div className="block relative aspect-[3/5] mb-4 overflow-hidden bg-[#f8f8f8]">
                     <img 
                       src={product.image} 
                       alt={product.name} 
