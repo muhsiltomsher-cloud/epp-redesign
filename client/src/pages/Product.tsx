@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { products } from "@/lib/data";
+import { addRecentlyViewed } from "@/lib/recentlyViewed";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,6 +24,10 @@ export default function Product() {
   useEffect(() => {
     setMainImage(product?.image);
   }, [product?.image]);
+
+  useEffect(() => {
+    if (id) addRecentlyViewed(id);
+  }, [id]);
 
   useEffect(() => {
     let ctx = gsap.context(() => {

@@ -1,11 +1,12 @@
 import { Gift, Pencil, Truck, MailOpen } from "lucide-react";
 import { Link } from "wouter";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { products, categories } from "@/lib/data";
+import { getRecentlyViewedIds } from "@/lib/recentlyViewed";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,6 +14,8 @@ export default function Home() {
   const newArrivals = products.slice(0, 4);
   const featureProduct = products.find(p => p.name.includes("Future Bakhoor")) || products[0];
   const featureProduct2 = products.find(p => p.name.includes("Hidden Leather")) || products[1];
+
+  const [recentlyViewed, setRecentlyViewed] = useState<typeof products>([]);
 
   const heroRef = useRef<HTMLDivElement>(null);
   const brandRef = useRef<HTMLDivElement>(null);
@@ -114,6 +117,14 @@ export default function Home() {
     });
 
     return () => ctx.revert();
+  }, []);
+
+  useEffect(() => {
+    const ids = getRecentlyViewedIds();
+    const viewed = ids
+      .map(id => products.find(p => p.id === id))
+      .filter(Boolean) as typeof products;
+    setRecentlyViewed(viewed);
   }, []);
 
   return (
@@ -292,6 +303,37 @@ export default function Home() {
             ))}
           </div>
         </section>
+
+        {recentlyViewed.length > 0 && (
+          <section className="py-8 md:py-16 lg:py-24 px-4 md:px-10 lg:px-20 xl:px-28 bg-[#fafafa] overflow-hidden">
+            <div className="flex justify-between items-end mb-5 md:mb-10 lg:mb-14 border-b border-black/10 pb-3 md:pb-6">
+              <div>
+                <h2 className="text-[8px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-1.5 md:mb-3">Your Journey</h2>
+                <h3 className="text-lg md:text-4xl lg:text-5xl font-serif text-black">Recently Viewed</h3>
+              </div>
+            </div>
+            <div className="flex md:hidden gap-3 overflow-x-auto snap-x snap-mandatory pb-2 -mx-4 px-4 hide-scrollbar">
+              {recentlyViewed.slice(0, 6).map((product) => (
+                <Link key={product.id} href={`/product/${product.id}`}>
+                  <div className="group flex flex-col w-[40vw] flex-shrink-0 snap-start cursor-pointer" data-testid={`card-recent-${product.id}`}>
+                    <div className="relative aspect-[3/5] mb-2 overflow-hidden bg-[#f5f5f5]">
+                      <img src={product.image} alt={product.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                    </div>
+                    <div className="flex flex-col items-center text-center">
+                      <span className="text-xs font-serif mb-0.5 text-black line-clamp-1">{product.name}</span>
+                      <p className="text-[9px] font-medium text-black/70">{product.currency} {product.price}</p>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            <div className="hidden md:grid md:grid-cols-4 gap-x-4 lg:gap-x-6 gap-y-8">
+              {recentlyViewed.slice(0, 4).map((product) => (
+                <CreativeProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          </section>
+        )}
 
         <section ref={bloomBannerRef} className="relative w-full h-[35svh] md:h-[60vh] lg:h-[75vh] overflow-hidden">
           <img 
