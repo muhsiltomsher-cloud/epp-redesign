@@ -51,15 +51,11 @@ export default function Product() {
               </Link>
             </div>
 
-            <div className="grid grid-cols-2 gap-1 md:gap-2">
+            <div className="flex flex-col">
               {gallery.map((img, i) => (
                 <div 
                   key={i} 
-                  className={`bg-[#f5f5f5] flex items-center justify-center p-4 md:p-8 ${
-                    gallery.length === 1 ? 'col-span-2 aspect-[3/4]' :
-                    gallery.length === 3 && i === 2 ? 'col-span-2 aspect-[3/2]' :
-                    'aspect-[3/4]'
-                  }`}
+                  className="bg-[#f5f5f5] flex items-center justify-center p-6 md:p-12 lg:p-16 aspect-[3/4]"
                 >
                   <img 
                     src={img} 

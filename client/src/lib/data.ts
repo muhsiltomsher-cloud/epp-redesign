@@ -11,8 +11,7 @@ export const products = [
     hoverImage: 'https://emiratespride.com/wp-content/uploads/2026/01/Future-Bakhoor-Lifestyle-scaled-1-300x372.webp',
     gallery: [
       'https://emiratespride.com/wp-content/uploads/2026/01/Future-Bakhoor-scaled-1-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2026/01/Future-Bakhoor-Lifestyle-scaled-1-300x372.webp',
-      'https://emiratespride.com/wp-content/uploads/2026/01/Future-Bakhoor-scaled-1-1200x1490.webp'
+      'https://emiratespride.com/wp-content/uploads/2026/01/Future-Bakhoor-Lifestyle-scaled-1-300x372.webp'
     ],
     description: 'Experience the future of bakhoor with this exquisite creation.'
   },
@@ -26,8 +25,7 @@ export const products = [
     hoverImage: 'https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1-300x372.webp',
     gallery: [
       'https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-scaled-1-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1-300x372.webp',
-      'https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1-1200x1490.webp'
+      'https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1-300x372.webp'
     ],
     description: 'A traditional set reimagined for the modern connoisseur.'
   },
@@ -41,8 +39,7 @@ export const products = [
     hoverImage: 'https://emiratespride.com/wp-content/uploads/2025/09/MIDNIGHT-BLOOM-300x376.webp',
     gallery: [
       'https://emiratespride.com/wp-content/uploads/2025/09/Burgundy-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2025/09/MIDNIGHT-BLOOM-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2025/09/Burgundy-1200x1504.webp'
+      'https://emiratespride.com/wp-content/uploads/2025/09/MIDNIGHT-BLOOM-300x376.webp'
     ],
     description: 'A captivating nocturnal floral fragrance.'
   },
@@ -56,8 +53,7 @@ export const products = [
     hoverImage: 'https://emiratespride.com/wp-content/uploads/2025/05/Untitled-6-03-300x376.webp',
     gallery: [
       'https://emiratespride.com/wp-content/uploads/2025/05/Midnight-glow-set-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2025/05/Untitled-6-03-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2025/05/Midnight-glow-set-1200x1504.webp'
+      'https://emiratespride.com/wp-content/uploads/2025/05/Untitled-6-03-300x376.webp'
     ],
     description: 'The perfect glowing set for special moments.'
   },
@@ -71,8 +67,7 @@ export const products = [
     hoverImage: 'https://emiratespride.com/wp-content/uploads/2026/01/Future-Oud-Lifestyle-scaled-1-300x349.webp',
     gallery: [
       'https://emiratespride.com/wp-content/uploads/2026/01/Future-Oud-scaled-1-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2026/01/Future-Oud-Lifestyle-scaled-1-300x349.webp',
-      'https://emiratespride.com/wp-content/uploads/2026/01/Future-Oud-scaled-1-1200x1490.webp'
+      'https://emiratespride.com/wp-content/uploads/2026/01/Future-Oud-Lifestyle-scaled-1-300x349.webp'
     ],
     description: 'A revolutionary interpretation of classic oud.'
   },
@@ -86,8 +81,7 @@ export const products = [
     hoverImage: 'https://emiratespride.com/wp-content/uploads/2021/03/Hidden-leather-with-box-300x375.webp',
     gallery: [
       'https://emiratespride.com/wp-content/uploads/2021/03/HIDDEN-LEATHER-01-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2021/03/Hidden-leather-with-box-300x375.webp',
-      'https://emiratespride.com/wp-content/uploads/2021/03/HIDDEN-LEATHER-01-1200x1504.webp'
+      'https://emiratespride.com/wp-content/uploads/2021/03/Hidden-leather-with-box-300x375.webp'
     ],
     description: 'A mysterious and elegant leather fragrance.'
   },
@@ -101,8 +95,7 @@ export const products = [
     hoverImage: 'https://emiratespride.com/wp-content/uploads/2024/02/Masters-02-300x376.webp',
     gallery: [
       'https://emiratespride.com/wp-content/uploads/2024/02/Masters-01-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2024/02/Masters-02-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2024/02/Masters-01-1200x1504.webp'
+      'https://emiratespride.com/wp-content/uploads/2024/02/Masters-02-300x376.webp'
     ],
     description: 'Masterfully crafted signature blend.'
   },
@@ -116,8 +109,7 @@ export const products = [
     hoverImage: 'https://emiratespride.com/wp-content/uploads/2025/09/MIDNIGHT-BLOOM-300x376.webp',
     gallery: [
       'https://emiratespride.com/wp-content/uploads/2025/09/Silver-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2025/09/MIDNIGHT-BLOOM-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2025/09/Silver-1200x1504.webp'
+      'https://emiratespride.com/wp-content/uploads/2025/09/MIDNIGHT-BLOOM-300x376.webp'
     ],
     description: 'A luminous silver edition of our beloved Midnight Bloom.'
   },
@@ -131,8 +123,7 @@ export const products = [
     hoverImage: 'https://emiratespride.com/wp-content/uploads/2021/03/Oud-al-emarat-02-300x376.webp',
     gallery: [
       'https://emiratespride.com/wp-content/uploads/2021/03/OUD-AL-EMARAT-01-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2021/03/Oud-al-emarat-02-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2021/03/OUD-AL-EMARAT-01-1200x1504.webp'
+      'https://emiratespride.com/wp-content/uploads/2021/03/Oud-al-emarat-02-300x376.webp'
     ],
     description: 'A luxurious oud capturing the spirit of the Emirates.'
   },
@@ -146,8 +137,7 @@ export const products = [
     hoverImage: 'https://emiratespride.com/wp-content/uploads/2021/03/Velvet-rose-02-300x376.webp',
     gallery: [
       'https://emiratespride.com/wp-content/uploads/2021/03/VELVET-ROSE-01-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2021/03/Velvet-rose-02-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2021/03/VELVET-ROSE-01-1200x1504.webp'
+      'https://emiratespride.com/wp-content/uploads/2021/03/Velvet-rose-02-300x376.webp'
     ],
     description: 'An opulent rose fragrance with velvety depth.'
   },
@@ -161,8 +151,7 @@ export const products = [
     hoverImage: 'https://emiratespride.com/wp-content/uploads/2021/03/Oud-cambodi-02-300x376.webp',
     gallery: [
       'https://emiratespride.com/wp-content/uploads/2021/03/OUD-CAMBODI-01-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2021/03/Oud-cambodi-02-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2021/03/OUD-CAMBODI-01-1200x1504.webp'
+      'https://emiratespride.com/wp-content/uploads/2021/03/Oud-cambodi-02-300x376.webp'
     ],
     description: 'Rare Cambodian oud distilled to perfection.'
   },
@@ -176,8 +165,7 @@ export const products = [
     hoverImage: 'https://emiratespride.com/wp-content/uploads/2025/05/Untitled-6-02-300x376.webp',
     gallery: [
       'https://emiratespride.com/wp-content/uploads/2025/05/Golden-musk-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2025/05/Untitled-6-02-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2025/05/Golden-musk-1200x1504.webp'
+      'https://emiratespride.com/wp-content/uploads/2025/05/Untitled-6-02-300x376.webp'
     ],
     description: 'A warm golden musk with subtle amber undertones.'
   },
@@ -191,8 +179,7 @@ export const products = [
     hoverImage: 'https://emiratespride.com/wp-content/uploads/2021/03/Amber-wood-02-300x376.webp',
     gallery: [
       'https://emiratespride.com/wp-content/uploads/2021/03/AMBER-WOOD-01-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2021/03/Amber-wood-02-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2021/03/AMBER-WOOD-01-1200x1504.webp'
+      'https://emiratespride.com/wp-content/uploads/2021/03/Amber-wood-02-300x376.webp'
     ],
     description: 'A rich amber-wood composition of depth and warmth.'
   },
@@ -206,8 +193,7 @@ export const products = [
     hoverImage: 'https://emiratespride.com/wp-content/uploads/2025/05/Untitled-6-01-300x376.webp',
     gallery: [
       'https://emiratespride.com/wp-content/uploads/2025/05/Midnight-glow-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2025/05/Untitled-6-01-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2025/05/Midnight-glow-1200x1504.webp'
+      'https://emiratespride.com/wp-content/uploads/2025/05/Untitled-6-01-300x376.webp'
     ],
     description: 'A mesmerizing glow for unforgettable evenings.'
   },
@@ -221,8 +207,7 @@ export const products = [
     hoverImage: 'https://emiratespride.com/wp-content/uploads/2026/01/Future-Bakhoor-Lifestyle-scaled-1-300x372.webp',
     gallery: [
       'https://emiratespride.com/wp-content/uploads/2026/01/Future-Dakhoon-scaled-1-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2026/01/Future-Bakhoor-Lifestyle-scaled-1-300x372.webp',
-      'https://emiratespride.com/wp-content/uploads/2026/01/Future-Dakhoon-scaled-1-1200x1490.webp'
+      'https://emiratespride.com/wp-content/uploads/2026/01/Future-Bakhoor-Lifestyle-scaled-1-300x372.webp'
     ],
     description: 'A modern take on traditional dakhoon incense.'
   },
@@ -236,8 +221,7 @@ export const products = [
     hoverImage: 'https://emiratespride.com/wp-content/uploads/2021/03/Velvet-rose-02-300x376.webp',
     gallery: [
       'https://emiratespride.com/wp-content/uploads/2021/03/VELVET-ROSE-01-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2021/03/Velvet-rose-02-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2021/03/VELVET-ROSE-01-1200x1504.webp'
+      'https://emiratespride.com/wp-content/uploads/2021/03/Velvet-rose-02-300x376.webp'
     ],
     description: 'A majestic saffron-infused perfume of regal character.'
   }
