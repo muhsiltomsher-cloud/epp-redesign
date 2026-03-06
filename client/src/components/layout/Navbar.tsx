@@ -1,4 +1,4 @@
-import { Search, ShoppingBag, Menu, User, X, ChevronDown, Globe } from "lucide-react";
+import { Search, ShoppingBag, Menu, User, X, ChevronDown, Globe, Instagram, Facebook, Twitter } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 
@@ -52,8 +52,8 @@ export default function Navbar() {
           </div>
         </div>
         
-        <div className="px-5 md:px-10 lg:px-20 xl:px-28 relative text-[18px] font-medium">
-          <div className={`flex items-center justify-between transition-all duration-500 ${isScrolled ? "h-[60px] md:h-[70px]" : "h-[60px] md:h-[90px]"}`}>
+        <div className="px-4 md:px-10 lg:px-20 xl:px-28 relative text-[18px] font-medium">
+          <div className={`flex items-center justify-between transition-all duration-500 ${isScrolled ? "h-[52px] md:h-[70px]" : "h-[56px] md:h-[90px]"}`}>
             
             {/* Mobile Menu Button */}
             <button 
@@ -91,11 +91,11 @@ export default function Navbar() {
             </nav>
 
             {/* Logo - Centered */}
-            <Link href="/" className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center h-full max-w-[120px] md:max-w-[180px]">
+            <Link href="/" className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center h-full max-w-[100px] md:max-w-[180px]">
               <img 
                 src={logoUrl} 
                 alt="Emirates Pride" 
-                className={`transition-all duration-500 w-full object-contain ${isScrolled ? "max-h-[24px] md:max-h-[30px]" : "max-h-[28px] md:max-h-[40px]"} ${
+                className={`transition-all duration-500 w-full object-contain ${isScrolled ? "max-h-[20px] md:max-h-[30px]" : "max-h-[24px] md:max-h-[40px]"} ${
                   !isDarkText ? "filter brightness-0 invert" : "filter-none"
                 }`}
               />
@@ -177,49 +177,61 @@ export default function Navbar() {
 
         {/* Mobile Menu Overlay */}
         <div className={`absolute top-full left-0 w-full bg-white transition-all duration-500 ease-in-out origin-top border-t border-black/5 overflow-hidden md:hidden shadow-2xl ${
-          isMenuOpen ? "max-h-[calc(100vh-60px)] opacity-100" : "max-h-0 opacity-0"
+          isMenuOpen ? "max-h-[calc(100svh-52px)] opacity-100" : "max-h-0 opacity-0"
         }`}>
-          <div className="p-6 flex flex-col gap-6 h-[calc(100vh-60px)] overflow-y-auto pb-24">
+          <div className="px-5 py-6 flex flex-col gap-0 h-[calc(100svh-52px)] overflow-y-auto">
             <Link href="/collection">
-              <span className="text-lg font-serif tracking-wide uppercase border-b border-black/10 pb-4 flex justify-between items-center block cursor-pointer">
-                Oud & Dakhoon <ChevronDown size={14} className="-rotate-90 text-black/30" />
+              <span className="text-[15px] font-serif tracking-wide uppercase border-b border-black/8 py-4 flex justify-between items-center block cursor-pointer active:bg-black/3 -mx-5 px-5">
+                Oud & Dakhoon <ChevronDown size={12} className="-rotate-90 text-black/25" />
               </span>
             </Link>
             <Link href="/collection">
-              <span className="text-lg font-serif tracking-wide uppercase border-b border-black/10 pb-4 flex justify-between items-center block cursor-pointer">
-                Perfume Collection <ChevronDown size={14} className="-rotate-90 text-black/30" />
+              <span className="text-[15px] font-serif tracking-wide uppercase border-b border-black/8 py-4 flex justify-between items-center block cursor-pointer active:bg-black/3 -mx-5 px-5">
+                Perfume Collection <ChevronDown size={12} className="-rotate-90 text-black/25" />
               </span>
             </Link>
             <Link href="/collection">
-              <span className="text-lg font-serif tracking-wide uppercase border-b border-black/10 pb-4 flex justify-between items-center block cursor-pointer">
-                Gift Sets <ChevronDown size={14} className="-rotate-90 text-black/30" />
+              <span className="text-[15px] font-serif tracking-wide uppercase border-b border-black/8 py-4 flex justify-between items-center block cursor-pointer active:bg-black/3 -mx-5 px-5">
+                Gift Sets <ChevronDown size={12} className="-rotate-90 text-black/25" />
+              </span>
+            </Link>
+            <Link href="/collection">
+              <span className="text-[15px] font-serif tracking-wide uppercase border-b border-black/8 py-4 flex justify-between items-center block cursor-pointer active:bg-black/3 -mx-5 px-5">
+                New Arrivals <ChevronDown size={12} className="-rotate-90 text-black/25" />
               </span>
             </Link>
             
-            <div className="grid grid-cols-2 gap-4 mt-2 bg-black/5 p-4 rounded-sm">
-              <div className="flex flex-col gap-4 border-r border-black/10">
-                <span className="text-[9px] uppercase tracking-widest text-black/40">Language</span>
-                <button className="text-left text-xs font-medium uppercase tracking-wider">English</button>
-                <button className="text-left text-sm font-arabic">العربية</button>
+            <div className="flex items-center justify-between mt-6 py-4 border-b border-black/8">
+              <div className="flex items-center gap-3">
+                <Globe size={14} strokeWidth={1} className="text-black/40" />
+                <span className="text-[10px] uppercase tracking-[0.15em] text-black/60">Region</span>
               </div>
-              <div className="flex flex-col gap-4 pl-4">
-                <span className="text-[9px] uppercase tracking-widest text-black/40">Currency</span>
+              <div className="flex items-center gap-3">
+                <button className="text-[10px] font-medium uppercase tracking-wider border-b border-[#c9a96e] text-black pb-0.5">EN</button>
+                <span className="text-black/15">|</span>
+                <button className="text-[11px] font-arabic text-black/40">العربية</button>
+                <span className="text-black/15">|</span>
                 <select 
                   value={activeCurrency}
                   onChange={(e) => setActiveCurrency(e.target.value)}
-                  className="bg-transparent text-xs uppercase tracking-wider border-none outline-none cursor-pointer"
+                  className="bg-transparent text-[10px] uppercase tracking-wider border-none outline-none cursor-pointer text-black/60 font-medium"
                 >
                   {currencies.map(c => <option key={c} value={c}>{c}</option>)}
                 </select>
               </div>
             </div>
             
-            <div className="mt-auto flex flex-col gap-6 pt-6 border-t border-black/10">
+            <div className="mt-auto flex flex-col gap-4 pt-5 pb-6">
               <Link href="/account">
-                <span className="text-[10px] tracking-[0.2em] uppercase flex items-center gap-3 cursor-pointer">
-                  <User size={16} strokeWidth={1} /> Sign In / Register
+                <span className="flex items-center justify-center gap-2.5 bg-[#1a1308] text-white py-3.5 text-[9px] tracking-[0.2em] uppercase font-medium cursor-pointer active:bg-[#c9a96e] transition-colors">
+                  <User size={14} strokeWidth={1} /> Sign In / Register
                 </span>
               </Link>
+              <div className="flex justify-center gap-6 pt-2">
+                <a href="#" className="text-black/30"><Instagram size={18} strokeWidth={1}/></a>
+                <a href="#" className="text-black/30"><Facebook size={18} strokeWidth={1}/></a>
+                <a href="#" className="text-black/30"><Twitter size={18} strokeWidth={1}/></a>
+              </div>
             </div>
           </div>
         </div>
@@ -232,23 +244,23 @@ export default function Navbar() {
             onClick={() => setIsCartOpen(false)}
           />
           
-          <div className="absolute inset-y-0 right-0 w-[85vw] max-w-[400px] bg-white shadow-2xl flex flex-col animate-in slide-in-from-right duration-500 ease-out">
-            <div className="flex items-center justify-between p-6 border-b border-black/10">
-              <h2 className="text-[10px] font-medium uppercase tracking-[0.2em]">Your Cart (0)</h2>
+          <div className="absolute inset-y-0 right-0 w-[88vw] max-w-[400px] bg-white shadow-2xl flex flex-col animate-in slide-in-from-right duration-500 ease-out">
+            <div className="flex items-center justify-between px-5 py-4 md:p-6 border-b border-black/10">
+              <h2 className="text-[9px] md:text-[10px] font-medium uppercase tracking-[0.2em]">Your Cart (0)</h2>
               <button 
                 onClick={() => setIsCartOpen(false)}
-                className="text-black/40 hover:text-black transition-transform hover:rotate-90 duration-300"
+                className="text-black/40 hover:text-black transition-transform hover:rotate-90 duration-300 p-1"
               >
-                <X size={20} strokeWidth={1} />
+                <X size={18} strokeWidth={1} />
               </button>
             </div>
 
-            <div className="flex-1 flex flex-col items-center justify-center p-8 text-center bg-[#fafafa]">
-              <div className="w-16 h-16 mb-6 border border-black/10 rounded-full flex items-center justify-center bg-white">
-                <ShoppingBag size={20} strokeWidth={1} className="text-black/30" />
+            <div className="flex-1 flex flex-col items-center justify-center p-6 md:p-8 text-center bg-[#fafafa]">
+              <div className="w-14 h-14 md:w-16 md:h-16 mb-5 md:mb-6 border border-black/10 rounded-full flex items-center justify-center bg-white">
+                <ShoppingBag size={18} strokeWidth={1} className="text-black/30" />
               </div>
-              <p className="font-serif text-2xl mb-3">Your cart is empty.</p>
-              <p className="text-xs text-black/50 mb-8 font-light max-w-[200px]">Explore our collections and discover your new signature scent.</p>
+              <p className="font-serif text-xl md:text-2xl mb-2 md:mb-3">Your cart is empty.</p>
+              <p className="text-[11px] md:text-xs text-black/50 mb-6 md:mb-8 font-light max-w-[200px]">Explore our collections and discover your new signature scent.</p>
               <button 
                 onClick={() => setIsCartOpen(false)}
                 className="creed-button w-full"

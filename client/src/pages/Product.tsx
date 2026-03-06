@@ -53,11 +53,11 @@ export default function Product() {
     <div className="min-h-screen bg-white flex flex-col">
       <Navbar />
 
-      <main ref={mainRef} className="flex-1 pt-[60px] md:pt-[70px] relative">
+      <main ref={mainRef} className="flex-1 pt-[52px] md:pt-[70px] relative">
         <div className="flex flex-col md:flex-row w-full max-w-[1800px] mx-auto min-h-[calc(100vh-70px)]">
           
           <div ref={imageColRef} className="w-full md:w-1/2 md:h-[calc(100vh-70px)] bg-[#f5f5f5] flex flex-col overflow-hidden relative">
-            <div className="w-full h-full relative flex items-center justify-center p-6 md:p-12 lg:p-16 xl:p-20">
+            <div className="w-full h-[55svh] md:h-full relative flex items-center justify-center p-4 md:p-12 lg:p-16 xl:p-20">
               <img 
                 src={mainImage || product.image} 
                 alt={product.name} 
@@ -66,19 +66,19 @@ export default function Product() {
               />
             </div>
             
-            <div className="absolute top-6 left-6 z-10">
-              <Link href="/collection" className="text-[9px] uppercase tracking-[0.2em] text-black/50 hover:text-black transition-colors flex items-center gap-2" data-testid="link-back-collection">
-                <span className="w-4 h-[1px] bg-current"></span> Back to Collection
+            <div className="absolute top-3 left-4 md:top-6 md:left-6 z-10">
+              <Link href="/collection" className="text-[8px] md:text-[9px] uppercase tracking-[0.2em] text-black/50 hover:text-black transition-colors flex items-center gap-2" data-testid="link-back-collection">
+                <span className="w-3 md:w-4 h-[1px] bg-current"></span> Back
               </Link>
             </div>
             
             {images.length > 1 && (
-              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-4 z-10">
+              <div className="absolute bottom-3 md:bottom-6 left-1/2 -translate-x-1/2 flex gap-3 md:gap-4 z-10">
                 {images.map((img, i) => (
                   <button 
                     key={i} 
                     onClick={() => setMainImage(img)}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    className={`w-1.5 h-1.5 md:w-2 md:h-2 rounded-full transition-all duration-300 ${
                       (mainImage || product.image) === img ? 'bg-[#c9a96e] scale-125' : 'bg-black/20 hover:bg-[#c9a96e]/50'
                     }`}
                     aria-label={`View image ${i+1}`}
@@ -89,49 +89,49 @@ export default function Product() {
             )}
           </div>
 
-          <div className="w-full md:w-1/2 flex flex-col bg-white">
-            <div ref={detailsColRef} className="p-5 md:p-10 lg:p-16 xl:p-20 max-w-[650px] mx-auto w-full">
+          <div className="w-full md:w-1/2 flex flex-col bg-white pb-20 md:pb-0">
+            <div ref={detailsColRef} className="px-4 py-5 md:p-10 lg:p-16 xl:p-20 max-w-[650px] mx-auto w-full">
               
-              <div className="mb-10">
-                <span className="text-[9px] md:text-[10px] tracking-[0.3em] uppercase text-[#c9a96e] mb-4 block" data-testid="text-product-collection">
+              <div className="mb-6 md:mb-10">
+                <span className="text-[8px] md:text-[10px] tracking-[0.3em] uppercase text-[#c9a96e] mb-2 md:mb-4 block" data-testid="text-product-collection">
                   {product.collection}
                 </span>
-                <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif mb-4 text-black tracking-wide leading-tight" data-testid="text-product-name">
+                <h1 className="text-2xl md:text-5xl lg:text-6xl font-serif mb-2 md:mb-4 text-black tracking-wide leading-tight" data-testid="text-product-name">
                   {product.name}
                 </h1>
                 
-                <div className="flex items-center gap-4 mb-6">
-                  <p className="text-lg md:text-xl text-black font-medium" data-testid="text-product-price">
+                <div className="flex items-center gap-3 md:gap-4 mb-3 md:mb-6">
+                  <p className="text-base md:text-xl text-black font-medium" data-testid="text-product-price">
                     {product.currency} {product.price}
                   </p>
-                  <div className="flex items-center gap-1 text-[#c9a96e]">
-                    <Star size={12} fill="currentColor" />
-                    <Star size={12} fill="currentColor" />
-                    <Star size={12} fill="currentColor" />
-                    <Star size={12} fill="currentColor" />
-                    <Star size={12} fill="currentColor" />
-                    <span className="text-[10px] text-black/50 ml-2 tracking-wider uppercase">(12 Reviews)</span>
+                  <div className="flex items-center gap-0.5 text-[#c9a96e]">
+                    <Star size={10} fill="currentColor" />
+                    <Star size={10} fill="currentColor" />
+                    <Star size={10} fill="currentColor" />
+                    <Star size={10} fill="currentColor" />
+                    <Star size={10} fill="currentColor" />
+                    <span className="text-[8px] md:text-[10px] text-black/50 ml-1.5 tracking-wider uppercase">(12)</span>
                   </div>
                 </div>
                 
-                <p className="text-xs md:text-sm text-black/70 leading-relaxed font-light mt-6 border-t border-black/5 pt-6" data-testid="text-product-description">
+                <p className="text-[11px] md:text-sm text-black/70 leading-relaxed font-light mt-4 md:mt-6 border-t border-black/5 pt-4 md:pt-6" data-testid="text-product-description">
                   {product.description}
                 </p>
               </div>
 
-              <div className="flex flex-col gap-4 mb-12">
-                <div className="flex items-stretch gap-4 h-12 md:h-14">
-                  <div className="flex items-center border border-[#c9a96e]/30 bg-white w-28 md:w-32">
+              <div className="hidden md:flex flex-col gap-4 mb-12">
+                <div className="flex items-stretch gap-4 h-14">
+                  <div className="flex items-center border border-[#c9a96e]/30 bg-white w-32">
                     <button 
-                      className="px-3 py-2 md:px-4 text-black/50 hover:text-black transition-colors"
+                      className="px-4 text-black/50 hover:text-black transition-colors"
                       onClick={() => setQuantity(Math.max(1, quantity - 1))}
                       data-testid="button-quantity-minus"
                     >
                       <Minus size={14} strokeWidth={1} />
                     </button>
-                    <span className="flex-1 text-center text-[11px] md:text-xs font-medium" data-testid="text-quantity">{quantity}</span>
+                    <span className="flex-1 text-center text-xs font-medium" data-testid="text-quantity">{quantity}</span>
                     <button 
-                      className="px-3 py-2 md:px-4 text-black/50 hover:text-black transition-colors"
+                      className="px-4 text-black/50 hover:text-black transition-colors"
                       onClick={() => setQuantity(quantity + 1)}
                       data-testid="button-quantity-plus"
                     >
@@ -139,7 +139,7 @@ export default function Product() {
                     </button>
                   </div>
                   
-                  <button className="flex-1 bg-[#1a1308] text-white px-4 text-[9px] md:text-[10px] font-medium tracking-[0.2em] uppercase hover:bg-[#c9a96e] transition-colors text-center" data-testid="button-add-to-cart">
+                  <button className="flex-1 bg-[#1a1308] text-white px-4 text-[10px] font-medium tracking-[0.2em] uppercase hover:bg-[#c9a96e] transition-colors text-center" data-testid="button-add-to-cart">
                     Add to Cart
                   </button>
                 </div>
@@ -157,6 +157,21 @@ export default function Product() {
                     <ShieldCheck size={16} strokeWidth={1} className="text-[#c9a96e]" />
                     <span className="text-[8px] uppercase tracking-widest text-black/60 font-medium">100%<br/>Authentic</span>
                   </div>
+                </div>
+              </div>
+
+              <div className="flex md:hidden items-center justify-between py-4 mb-4 border-y border-black/5">
+                <div className="flex items-center gap-3 text-[8px] uppercase tracking-widest text-black/50">
+                  <Truck size={13} strokeWidth={1} className="text-[#c9a96e]" />
+                  <span>Free Shipping</span>
+                </div>
+                <div className="flex items-center gap-3 text-[8px] uppercase tracking-widest text-black/50">
+                  <Box size={13} strokeWidth={1} className="text-[#c9a96e]" />
+                  <span>Gift Box</span>
+                </div>
+                <div className="flex items-center gap-3 text-[8px] uppercase tracking-widest text-black/50">
+                  <ShieldCheck size={13} strokeWidth={1} className="text-[#c9a96e]" />
+                  <span>Authentic</span>
                 </div>
               </div>
 
@@ -226,7 +241,7 @@ export default function Product() {
             </div>
             
             {product.hoverImage && (
-              <div className="w-full h-[40vh] md:h-[60vh] mt-auto relative">
+              <div className="w-full h-[30svh] md:h-[60vh] mt-auto relative">
                 <img src={product.hoverImage} className="w-full h-full object-cover" alt="Lifestyle context" />
               </div>
             )}
@@ -234,6 +249,27 @@ export default function Product() {
 
         </div>
       </main>
+
+      <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white border-t border-black/10 px-4 py-3 flex items-center gap-3 safe-area-bottom">
+        <div className="flex items-center border border-[#c9a96e]/30 h-10 bg-white">
+          <button 
+            className="px-3 text-black/50 active:text-black"
+            onClick={() => setQuantity(Math.max(1, quantity - 1))}
+          >
+            <Minus size={12} strokeWidth={1.5} />
+          </button>
+          <span className="w-6 text-center text-[10px] font-medium">{quantity}</span>
+          <button 
+            className="px-3 text-black/50 active:text-black"
+            onClick={() => setQuantity(quantity + 1)}
+          >
+            <Plus size={12} strokeWidth={1.5} />
+          </button>
+        </div>
+        <button className="flex-1 bg-[#1a1308] text-white h-10 text-[9px] font-medium tracking-[0.2em] uppercase active:bg-[#c9a96e] transition-colors" data-testid="button-add-to-cart-mobile">
+          Add to Cart — {product.currency} {product.price}
+        </button>
+      </div>
 
       <Footer />
     </div>

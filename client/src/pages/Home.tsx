@@ -121,54 +121,77 @@ export default function Home() {
       <Navbar />
 
       <main className="flex-1">
-        <section ref={heroRef} className="relative h-[85vh] md:h-screen w-full flex flex-col justify-end pb-12 md:pb-24 lg:pb-32 px-5 md:px-10 lg:px-20 xl:px-28 overflow-hidden bg-black">
+        <section ref={heroRef} className="relative h-[100svh] md:h-screen w-full flex flex-col justify-end pb-8 md:pb-24 lg:pb-32 px-4 md:px-10 lg:px-20 xl:px-28 overflow-hidden bg-black">
           <div className="absolute inset-0 w-full h-full">
             <img 
               src="https://emiratespride.com/wp-content/uploads/2026/02/Desktop-Banner-ENG-scaled.jpg" 
               alt="Emirates Pride Perfumes" 
               className="hero-image w-full h-[120%] object-cover object-center md:object-top absolute -top-[10%] opacity-90"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-black/30 md:from-black/90 md:via-black/20 md:to-transparent"></div>
           </div>
           
-          
+          <div className="relative z-10 md:hidden flex flex-col items-center text-center gap-3 mb-4">
+            <span className="text-[8px] tracking-[0.4em] uppercase text-[#c9a96e] font-medium">Emirates Pride Perfumes</span>
+            <h2 className="text-xl font-serif text-white leading-snug">Discover Your<br/>Signature Scent</h2>
+            <Link href="/collection">
+              <span className="inline-block bg-[#c9a96e] text-white px-6 py-2.5 text-[8px] font-medium tracking-[0.2em] uppercase mt-1">
+                Shop Now
+              </span>
+            </Link>
+          </div>
         </section>
 
-        <section ref={galleryRef} className="py-10 md:py-16 lg:py-24 bg-[#fafafa] px-5 md:px-10 lg:px-20 xl:px-28">
-          <div className="text-center mb-8 md:mb-14">
-            <h2 className="text-[9px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-3">Explore</h2>
-            <h3 className="text-2xl md:text-4xl lg:text-5xl font-serif">A World of Fragrance</h3>
+        <section ref={galleryRef} className="py-8 md:py-16 lg:py-24 bg-[#fafafa] px-4 md:px-10 lg:px-20 xl:px-28">
+          <div className="text-center mb-6 md:mb-14">
+            <h2 className="text-[8px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-2 md:mb-3">Explore</h2>
+            <h3 className="text-xl md:text-4xl lg:text-5xl font-serif">A World of Fragrance</h3>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 lg:gap-6">
+          <div className="flex md:hidden gap-3 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4 hide-scrollbar">
+            {[categories[0], categories[4], categories[1]].map((cat) => (
+              <Link key={cat.name} href="/collection">
+                <div className="gallery-item group relative aspect-[3/4] w-[70vw] flex-shrink-0 snap-start overflow-hidden bg-muted cursor-pointer">
+                  <img src={cat.image} className="w-full h-full object-cover" alt={cat.name} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                  <div className="absolute bottom-4 left-4">
+                    <h3 className="text-white font-serif text-lg mb-1">{cat.name}</h3>
+                    <span className="text-[7px] tracking-[0.2em] uppercase text-[#c9a96e]">Explore</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <div className="hidden md:grid md:grid-cols-3 gap-4 lg:gap-6">
             <Link href="/collection">
-              <div className="gallery-item group relative aspect-[4/5] md:aspect-[3/4] overflow-hidden bg-muted cursor-pointer mb-3 md:mb-0">
+              <div className="gallery-item group relative aspect-[3/4] overflow-hidden bg-muted cursor-pointer">
                 <img src={categories[0].image} className="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110" alt="Oud" />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-700"></div>
-                <div className="absolute bottom-5 md:bottom-8 lg:bottom-10 left-5 md:left-8 lg:left-10">
-                  <h3 className="text-white font-serif text-xl md:text-3xl lg:text-4xl mb-2">{categories[0].name}</h3>
+                <div className="absolute bottom-8 lg:bottom-10 left-8 lg:left-10">
+                  <h3 className="text-white font-serif text-3xl lg:text-4xl mb-2">{categories[0].name}</h3>
                   <div className="w-0 h-[1px] bg-[#c9a96e] group-hover:w-full transition-all duration-700 ease-out"></div>
                 </div>
               </div>
             </Link>
             
             <Link href="/collection">
-              <div className="gallery-item group relative aspect-[4/5] md:aspect-[3/4] overflow-hidden bg-muted cursor-pointer md:translate-y-8 lg:translate-y-14 mb-3 md:mb-0">
+              <div className="gallery-item group relative aspect-[3/4] overflow-hidden bg-muted cursor-pointer translate-y-8 lg:translate-y-14">
                 <img src={categories[4].image} className="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110" alt="Gifts" />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-700"></div>
-                <div className="absolute bottom-5 md:bottom-8 lg:bottom-10 left-5 md:left-8 lg:left-10">
-                  <h3 className="text-white font-serif text-xl md:text-3xl lg:text-4xl mb-2">{categories[4].name}</h3>
+                <div className="absolute bottom-8 lg:bottom-10 left-8 lg:left-10">
+                  <h3 className="text-white font-serif text-3xl lg:text-4xl mb-2">{categories[4].name}</h3>
                   <div className="w-0 h-[1px] bg-[#c9a96e] group-hover:w-full transition-all duration-700 ease-out"></div>
                 </div>
               </div>
             </Link>
             
             <Link href="/collection">
-              <div className="gallery-item group relative aspect-[4/5] md:aspect-[3/4] overflow-hidden bg-muted cursor-pointer md:translate-y-16 lg:translate-y-28">
+              <div className="gallery-item group relative aspect-[3/4] overflow-hidden bg-muted cursor-pointer translate-y-16 lg:translate-y-28">
                 <img src={categories[1].image} className="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110" alt="Oils" />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-700"></div>
-                <div className="absolute bottom-5 md:bottom-8 lg:bottom-10 left-5 md:left-8 lg:left-10">
-                  <h3 className="text-white font-serif text-xl md:text-3xl lg:text-4xl mb-2">{categories[1].name}</h3>
+                <div className="absolute bottom-8 lg:bottom-10 left-8 lg:left-10">
+                  <h3 className="text-white font-serif text-3xl lg:text-4xl mb-2">{categories[1].name}</h3>
                   <div className="w-0 h-[1px] bg-[#c9a96e] group-hover:w-full transition-all duration-700 ease-out"></div>
                 </div>
               </div>
@@ -178,26 +201,26 @@ export default function Home() {
         </section>
 
         <section ref={pinnedSectionRef} className="relative w-full bg-[#fcfcfc] flex flex-col md:flex-row">
-          <div className="w-full md:w-1/2 md:h-screen md:sticky top-0 pinned-content flex flex-col justify-center items-center md:items-start text-center md:text-left p-8 md:p-14 lg:p-20 xl:p-28 z-10 relative bg-cover bg-center" style={{ backgroundImage: "url('https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1-1200x1490.webp')" }}>
-            <div className="absolute inset-0 bg-black/50"></div>
-            <span className="relative z-10 text-[9px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-3 md:mb-5 lg:mb-7 md:border-l md:border-[#c9a96e]/50 md:pl-4">Signature Blend</span>
-            <h2 className="relative z-10 text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-serif mb-3 md:mb-5 lg:mb-7 leading-tight text-white">{featureProduct2.name}</h2>
-            <p className="relative z-10 text-white/70 text-xs md:text-sm lg:text-base leading-relaxed mb-6 md:mb-8 lg:mb-12 max-w-md font-light">
-              A captivating journey into darkness. Discover a scent tailored to your most elegant moments, blending the finest leather accords with mysterious depths.
+          <div className="w-full md:w-1/2 md:h-screen md:sticky top-0 pinned-content flex flex-col justify-center items-center md:items-start text-center md:text-left px-6 py-14 md:p-14 lg:p-20 xl:p-28 z-10 relative bg-cover bg-center min-h-[60svh] md:min-h-0" style={{ backgroundImage: "url('https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1-1200x1490.webp')" }}>
+            <div className="absolute inset-0 bg-black/55 md:bg-black/50"></div>
+            <span className="relative z-10 text-[8px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-2 md:mb-5 lg:mb-7 md:border-l md:border-[#c9a96e]/50 md:pl-4">Signature Blend</span>
+            <h2 className="relative z-10 text-2xl md:text-5xl lg:text-6xl xl:text-7xl font-serif mb-2.5 md:mb-5 lg:mb-7 leading-tight text-white">{featureProduct2.name}</h2>
+            <p className="relative z-10 text-white/70 text-[11px] md:text-sm lg:text-base leading-relaxed mb-5 md:mb-8 lg:mb-12 max-w-xs md:max-w-md font-light">
+              A captivating journey into darkness. Discover a scent tailored to your most elegant moments.
             </p>
             <Link href={`/product/${featureProduct2.id}`}>
-              <span className="relative z-10 inline-block bg-[#c9a96e] text-white px-6 md:px-8 lg:px-10 py-3 md:py-3.5 lg:py-4 text-[9px] md:text-[10px] font-medium tracking-[0.2em] uppercase hover:bg-[#b8954f] transition-colors cursor-pointer">
+              <span className="relative z-10 inline-block bg-[#c9a96e] text-white px-5 md:px-8 lg:px-10 py-2.5 md:py-3.5 lg:py-4 text-[8px] md:text-[10px] font-medium tracking-[0.2em] uppercase hover:bg-[#b8954f] transition-colors cursor-pointer">
                 Discover The Scent
               </span>
             </Link>
           </div>
           
           <div className="w-full md:w-1/2 flex flex-col scrolling-images relative bg-white">
-            <div className="grid grid-cols-2 gap-3 md:gap-4 lg:gap-6 p-4 md:p-6 lg:p-10">
+            <div className="grid grid-cols-2 gap-2.5 md:gap-4 lg:gap-6 p-3 md:p-6 lg:p-10">
               {products.slice(0, 4).map((product) => (
                 <div key={product.id} className="group flex flex-col cursor-pointer" data-testid={`card-scroll-product-${product.id}`}>
                   <Link href={`/product/${product.id}`}>
-                    <div className="relative aspect-[3/5] mb-2 md:mb-3 overflow-hidden bg-[#f5f5f5]">
+                    <div className="relative aspect-[3/5] mb-1.5 md:mb-3 overflow-hidden bg-[#f5f5f5]">
                       <img 
                         src={product.image} 
                         alt={product.name} 
@@ -211,21 +234,20 @@ export default function Home() {
                       )}
                     </div>
                   </Link>
-                  <div className="flex flex-col items-center text-center px-1">
+                  <div className="flex flex-col items-center text-center px-0.5">
                     <Link href={`/product/${product.id}`}>
-                      <span className="text-xs md:text-sm lg:text-base font-serif mb-1 text-black hover:text-black/60 transition-colors cursor-pointer">{product.name}</span>
+                      <span className="text-[11px] md:text-sm lg:text-base font-serif mb-0.5 text-black hover:text-black/60 transition-colors cursor-pointer line-clamp-1">{product.name}</span>
                     </Link>
-                    <span className="text-[6px] md:text-[7px] lg:text-[8px] tracking-[0.2em] uppercase text-black/40 mb-1">{product.collection}</span>
-                    <p className="text-[9px] md:text-[10px] lg:text-xs font-medium text-black">{product.currency} {product.price}</p>
+                    <p className="text-[8px] md:text-[10px] lg:text-xs font-medium text-black/70">{product.currency} {product.price}</p>
                   </div>
                 </div>
               ))}
             </div>
-            <div className="grid grid-cols-2 gap-3 md:gap-4 lg:gap-6 p-4 md:p-6 lg:p-10 pt-0 md:pt-0 lg:pt-0">
+            <div className="grid grid-cols-2 gap-2.5 md:gap-4 lg:gap-6 p-3 md:p-6 lg:p-10 pt-0 md:pt-0 lg:pt-0">
               {products.slice(3, 7).map((product) => (
                 <div key={product.id} className="group flex flex-col cursor-pointer" data-testid={`card-scroll-product-${product.id}`}>
                   <Link href={`/product/${product.id}`}>
-                    <div className="relative aspect-[3/5] mb-2 md:mb-3 overflow-hidden bg-[#f5f5f5]">
+                    <div className="relative aspect-[3/5] mb-1.5 md:mb-3 overflow-hidden bg-[#f5f5f5]">
                       <img 
                         src={product.image} 
                         alt={product.name} 
@@ -239,12 +261,11 @@ export default function Home() {
                       )}
                     </div>
                   </Link>
-                  <div className="flex flex-col items-center text-center px-1">
+                  <div className="flex flex-col items-center text-center px-0.5">
                     <Link href={`/product/${product.id}`}>
-                      <span className="text-xs md:text-sm lg:text-base font-serif mb-1 text-black hover:text-black/60 transition-colors cursor-pointer">{product.name}</span>
+                      <span className="text-[11px] md:text-sm lg:text-base font-serif mb-0.5 text-black hover:text-black/60 transition-colors cursor-pointer line-clamp-1">{product.name}</span>
                     </Link>
-                    <span className="text-[6px] md:text-[7px] lg:text-[8px] tracking-[0.2em] uppercase text-black/40 mb-1">{product.collection}</span>
-                    <p className="text-[9px] md:text-[10px] lg:text-xs font-medium text-black">{product.currency} {product.price}</p>
+                    <p className="text-[8px] md:text-[10px] lg:text-xs font-medium text-black/70">{product.currency} {product.price}</p>
                   </div>
                 </div>
               ))}
@@ -252,35 +273,27 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-10 md:py-16 lg:py-24 px-5 md:px-10 lg:px-20 xl:px-28 bg-white overflow-hidden">
-          <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-6 md:mb-10 lg:mb-14 border-b border-black/10 pb-4 md:pb-6 text-center md:text-left">
+        <section className="py-8 md:py-16 lg:py-24 px-4 md:px-10 lg:px-20 xl:px-28 bg-white overflow-hidden">
+          <div className="flex justify-between items-end mb-5 md:mb-10 lg:mb-14 border-b border-black/10 pb-3 md:pb-6">
             <div>
-              <h2 className="text-[9px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-2 md:mb-3">Masterpieces</h2>
-              <h3 className="text-2xl md:text-4xl lg:text-5xl font-serif text-black">New & Trending</h3>
+              <h2 className="text-[8px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-1.5 md:mb-3">Masterpieces</h2>
+              <h3 className="text-lg md:text-4xl lg:text-5xl font-serif text-black">New & Trending</h3>
             </div>
             <Link href="/collection">
-              <span className="hidden md:inline-block text-[10px] font-medium tracking-[0.2em] uppercase hover:text-black/60 transition-colors cursor-pointer luxury-underline pb-1">
-                View All Products
+              <span className="text-[8px] md:text-[10px] font-medium tracking-[0.2em] uppercase text-black/40 hover:text-black/60 transition-colors cursor-pointer luxury-underline pb-1">
+                View All
               </span>
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-3 md:gap-x-4 lg:gap-x-6 gap-y-6 md:gap-y-8 lg:gap-y-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-2.5 md:gap-x-4 lg:gap-x-6 gap-y-5 md:gap-y-8 lg:gap-y-12">
             {newArrivals.map((product) => (
               <CreativeProductCard key={product.id} product={product} />
             ))}
           </div>
-          
-          <div className="mt-8 text-center md:hidden">
-            <Link href="/collection">
-              <span className="inline-block text-[9px] font-medium tracking-[0.2em] uppercase hover:text-[#c9a96e] transition-colors cursor-pointer border-b border-[#c9a96e] text-[#c9a96e] pb-1">
-                View All Collections
-              </span>
-            </Link>
-          </div>
         </section>
 
-        <section ref={bloomBannerRef} className="relative w-full h-[40vh] md:h-[60vh] lg:h-[75vh] overflow-hidden">
+        <section ref={bloomBannerRef} className="relative w-full h-[35svh] md:h-[60vh] lg:h-[75vh] overflow-hidden">
           <img 
             src="https://emiratespride.com/ae/wp-content/uploads/sites/10/2025/10/BLOOM-AR-scaled.webp" 
             alt="Bloom Collection" 
@@ -289,16 +302,16 @@ export default function Home() {
           <div className="absolute inset-0 bg-black/20"></div>
         </section>
 
-        <section ref={brandRef} className="relative py-14 md:py-24 lg:py-32 px-5 md:px-10 lg:px-20 xl:px-28 bg-[#1a1308] overflow-hidden">
+        <section ref={brandRef} className="relative py-10 md:py-24 lg:py-32 px-4 md:px-10 lg:px-20 xl:px-28 bg-[#1a1308] overflow-hidden">
           <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "url('https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1-1200x1490.webp')", backgroundSize: "cover", backgroundPosition: "center" }}></div>
-          <div className="relative z-10 flex flex-col lg:flex-row items-center gap-10 md:gap-16 lg:gap-24 max-w-7xl mx-auto">
+          <div className="relative z-10 flex flex-col lg:flex-row items-center gap-8 md:gap-16 lg:gap-24 max-w-7xl mx-auto">
             <div className="flex-1 text-center lg:text-left">
-              <div className="w-12 h-[1px] bg-[#c9a96e] mb-6 mx-auto lg:mx-0"></div>
-              <h2 className="text-[9px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-4 md:mb-6">Our Philosophy</h2>
-              <p className="text-xl md:text-3xl lg:text-4xl font-serif text-white leading-relaxed md:leading-snug text-balance font-light">
+              <div className="w-10 md:w-12 h-[1px] bg-[#c9a96e] mb-4 md:mb-6 mx-auto lg:mx-0"></div>
+              <h2 className="text-[8px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-3 md:mb-6">Our Philosophy</h2>
+              <p className="text-lg md:text-3xl lg:text-4xl font-serif text-white leading-relaxed md:leading-snug text-balance font-light">
                 Dedicated to the creation of highly original, artisan fragrances.
               </p>
-              <p className="text-sm md:text-base text-white/50 font-light mt-4 md:mt-6 leading-relaxed max-w-xl mx-auto lg:mx-0">
+              <p className="text-xs md:text-base text-white/50 font-light mt-3 md:mt-6 leading-relaxed max-w-xl mx-auto lg:mx-0">
                 We source the finest ingredients globally to craft scents that evoke deep emotions and lasting memories.
               </p>
             </div>
