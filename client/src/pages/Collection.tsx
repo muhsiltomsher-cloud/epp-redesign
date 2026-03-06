@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Link } from "wouter";
-import { ChevronDown, Filter, SlidersHorizontal } from "lucide-react";
+import { ChevronDown, Filter, ShoppingBag } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { products } from "@/lib/data";
 
-const CATEGORIES = ["All", "Heritage Collection", "Floral Collection", "Signature Collection"];
+const CATEGORIES = ["All", "Oud & Dakhoon", "Gift Sets", "Perfume Collection"];
 
 export default function Collection() {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -21,7 +21,7 @@ export default function Collection() {
       <main className="flex-1">
         {/* Header */}
         <header className="bg-white py-20 px-4 text-center border-b border-border/50">
-          <h1 className="text-5xl md:text-6xl font-serif mb-6 animate-in fade-in slide-in-from-bottom-4">Our Collections</h1>
+          <h1 className="text-5xl md:text-6xl font-serif mb-6 animate-in fade-in slide-in-from-bottom-4 uppercase tracking-wider">Our Collections</h1>
           <p className="text-foreground/70 max-w-2xl mx-auto text-lg animate-in fade-in slide-in-from-bottom-6 delay-150">
             Explore our curated selection of masterful fragrances, designed to evoke emotions and create lasting memories.
           </p>
@@ -70,29 +70,35 @@ export default function Collection() {
                 style={{ animationDelay: `${index * 100}ms`, animationFillMode: 'both' }}
                 data-testid={`card-product-${product.id}`}
               >
-                <Link href={`/product/${product.id}`} className="block mb-6 relative aspect-[3/4] bg-white overflow-hidden image-zoom-container">
+                <Link href={`/product/${product.id}`} className="block mb-6 relative aspect-[4/5] bg-white overflow-hidden">
                   <img 
                     src={product.image} 
                     alt={product.name} 
-                    className="w-full h-full object-contain p-8"
+                    className="w-full h-full object-cover transition-opacity duration-500 absolute inset-0 opacity-100 group-hover:opacity-0"
                   />
+                  {product.hoverImage && (
+                    <img 
+                      src={product.hoverImage} 
+                      alt={`${product.name} lifestyle`} 
+                      className="w-full h-full object-cover absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    />
+                  )}
                   
-                  <div className="absolute bottom-0 left-0 w-full p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out bg-gradient-to-t from-black/50 to-transparent flex justify-center">
+                  <div className="absolute bottom-0 left-0 w-full p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out bg-gradient-to-t from-black/50 to-transparent flex justify-center z-20">
                     <button 
-                      className="bg-background text-foreground px-6 py-3 w-full text-sm font-medium tracking-widest uppercase hover:bg-accent hover:text-accent-foreground transition-colors"
+                      className="bg-background text-foreground px-6 py-3 w-full text-sm font-medium tracking-widest uppercase hover:bg-accent hover:text-accent-foreground transition-colors flex items-center justify-center gap-2"
                       onClick={(e) => {
                         e.preventDefault();
                       }}
                       data-testid={`button-quick-add-${product.id}`}
                     >
-                      Quick Add
+                      <ShoppingBag size={16} /> Quick View
                     </button>
                   </div>
                 </Link>
                 
                 <div className="flex flex-col flex-1 text-center">
-                  <span className="text-xs tracking-widest text-foreground/50 uppercase mb-2">{product.collection}</span>
-                  <Link href={`/product/${product.id}`} className="text-xl font-serif mb-2 hover:text-accent transition-colors">
+                  <Link href={`/product/${product.id}`} className="text-lg font-serif mb-2 hover:text-accent transition-colors">
                     {product.name}
                   </Link>
                   <p className="text-accent font-medium mt-auto">
