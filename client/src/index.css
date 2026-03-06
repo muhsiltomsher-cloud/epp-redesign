@@ -4,10 +4,10 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
   --color-card: hsl(var(--card));
@@ -25,9 +25,6 @@
   --color-destructive: hsl(var(--destructive));
   --color-destructive-foreground: hsl(var(--destructive-foreground));
   --color-border: hsl(var(--border));
-  --color-primary-border: hsl(var(--primary-border));
-  --color-accent-border: hsl(var(--accent-border));
-  --color-card-border: hsl(var(--card-border));
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
 
@@ -36,36 +33,36 @@
 }
 
 :root {
-  /* H S% L% formats */
-  --background: 48 20% 96%; /* #F8F7F4 warm cream */
-  --foreground: 0 0% 17%; /* #2C2C2C charcoal text */
+  /* Creed aesthetic is very stark: pure whites, blacks, very light greys */
+  --background: 0 0% 100%; /* Pure white */
+  --foreground: 0 0% 10%; /* Very dark grey/black */
   
   --card: 0 0% 100%;
-  --card-foreground: 0 0% 17%;
+  --card-foreground: 0 0% 10%;
   
   --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 17%;
+  --popover-foreground: 0 0% 10%;
   
-  --primary: 0 0% 0%; /* #000000 black */
-  --primary-foreground: 0 0% 100%;
+  --primary: 0 0% 0%; /* Black */
+  --primary-foreground: 0 0% 100%; /* White */
   
-  --secondary: 0 0% 100%; /* #FFFFFF white */
+  --secondary: 0 0% 98%; /* Off-white for subtle contrast */
   --secondary-foreground: 0 0% 0%;
   
-  --muted: 0 0% 90%;
-  --muted-foreground: 0 0% 45%;
+  --muted: 0 0% 96%;
+  --muted-foreground: 0 0% 40%;
   
-  --accent: 43 45% 61%; /* #C9A96E champagne gold */
+  --accent: 0 0% 0%; /* Black as accent, very minimalist */
   --accent-foreground: 0 0% 100%;
   
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 0 0% 98%;
   
-  --border: 0 0% 90%;
-  --input: 0 0% 90%;
-  --ring: 43 45% 61%;
+  --border: 0 0% 92%;
+  --input: 0 0% 92%;
+  --ring: 0 0% 0%;
   
-  --radius: 0rem; /* Luxury brands typically use sharp corners */
+  --radius: 0rem; /* Razor sharp edges */
 }
 
 @layer base {
@@ -76,7 +73,7 @@
     @apply font-sans antialiased bg-background text-foreground;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif;
+    @apply font-serif font-light;
   }
 }
 
@@ -86,10 +83,10 @@
 }
 
 .hover-trigger .hover-target {
-  @apply opacity-0 translate-y-4 transition-all duration-500 ease-out;
+  @apply opacity-0 transition-opacity duration-300 ease-in-out;
 }
 .hover-trigger:hover .hover-target {
-  @apply opacity-100 translate-y-0;
+  @apply opacity-100;
 }
 
 .luxury-underline {
@@ -103,12 +100,19 @@
   @apply w-full;
 }
 
-.image-zoom-container {
-  @apply overflow-hidden;
+.creed-button {
+  @apply bg-primary text-primary-foreground px-8 py-3 text-[11px] font-medium tracking-[0.2em] uppercase hover:bg-black/80 transition-colors border border-primary;
 }
-.image-zoom-container img {
-  @apply transition-transform duration-700 ease-out;
+
+.creed-button-outline {
+  @apply bg-transparent text-primary px-8 py-3 text-[11px] font-medium tracking-[0.2em] uppercase hover:bg-primary hover:text-primary-foreground transition-colors border border-primary;
 }
-.image-zoom-container:hover img {
-  @apply scale-105;
+
+/* Hide scrollbar for horizontal scrolling containers */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

@@ -1,4 +1,4 @@
-import { Search, ShoppingBag, Menu, User, X, ChevronRight } from "lucide-react";
+import { Search, ShoppingBag, Menu, User, X, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { Link } from "wouter";
 import { products } from "@/lib/data";
@@ -6,96 +6,76 @@ import { products } from "@/lib/data";
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
+  const [isHoveringNav, setIsHoveringNav] = useState(false);
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full bg-background/90 backdrop-blur-md border-b border-border/50 transition-all duration-300">
-        {/* Top Announcement Bar */}
-        <div className="bg-primary text-primary-foreground text-xs py-2 text-center tracking-[0.2em] uppercase font-medium">
-          Complimentary shipping on orders over 500 AED
+      <header className={`sticky top-0 z-40 w-full transition-all duration-300 bg-white border-b ${isHoveringNav ? 'border-border' : 'border-transparent'}`}
+        onMouseEnter={() => setIsHoveringNav(true)}
+        onMouseLeave={() => setIsHoveringNav(false)}
+      >
+        {/* Top Announcement Bar - Very minimal */}
+        <div className="bg-primary text-primary-foreground text-[10px] py-2.5 text-center tracking-[0.15em] uppercase font-light">
+          Free Shipping Worldwide on all orders above AED 1500.
         </div>
         
-        <div className="container mx-auto px-4 md:px-6 relative">
-          <div className="flex items-center justify-between h-20">
+        <div className="container mx-auto px-4 md:px-8 relative">
+          <div className="flex items-center justify-between h-[72px]">
             {/* Mobile Menu Button */}
             <button 
               className="md:hidden p-2 -ml-2 text-foreground"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               data-testid="button-mobile-menu"
             >
-              {isMenuOpen ? <X size={24} strokeWidth={1} /> : <Menu size={24} strokeWidth={1} />}
+              {isMenuOpen ? <X size={22} strokeWidth={1} /> : <Menu size={22} strokeWidth={1} />}
             </button>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-8">
-              <div 
-                className="group py-8 cursor-pointer"
-                onMouseEnter={() => setIsMegaMenuOpen(true)}
-                onMouseLeave={() => setIsMegaMenuOpen(false)}
-              >
-                <Link href="/collection" className="text-sm font-medium tracking-widest uppercase luxury-underline pb-1 text-foreground/80 hover:text-foreground flex items-center gap-1">
-                  Collections <ChevronRight size={14} className="rotate-90" />
-                </Link>
-                
-                {/* Mega Menu Dropdown */}
-                {isMegaMenuOpen && (
-                  <div className="absolute top-full left-0 w-full bg-white border-b border-border/50 shadow-xl shadow-black/5 animate-in slide-in-from-top-2 duration-300">
-                    <div className="container mx-auto px-6 py-12 flex gap-16">
-                      <div className="w-1/4">
-                        <h3 className="font-serif text-2xl mb-6">Our Collections</h3>
-                        <ul className="flex flex-col gap-4">
-                          <li><Link href="/collection" className="text-sm tracking-widest uppercase text-foreground/70 hover:text-accent transition-colors">Heritage Collection</Link></li>
-                          <li><Link href="/collection" className="text-sm tracking-widest uppercase text-foreground/70 hover:text-accent transition-colors">Floral Collection</Link></li>
-                          <li><Link href="/collection" className="text-sm tracking-widest uppercase text-foreground/70 hover:text-accent transition-colors">Signature Collection</Link></li>
-                          <li><Link href="/collection" className="text-sm tracking-widest uppercase text-foreground/70 hover:text-accent transition-colors">Private Blends</Link></li>
-                        </ul>
-                      </div>
-                      <div className="flex-1 grid grid-cols-3 gap-8">
-                        {products.slice(0, 3).map(product => (
-                          <Link href={`/product/${product.id}`} key={product.id} className="group/item block text-center">
-                            <div className="bg-muted aspect-square mb-4 p-4 overflow-hidden relative">
-                              <img src={product.image} alt={product.name} className="w-full h-full object-contain transition-transform duration-700 group-hover/item:scale-105" />
-                            </div>
-                            <h4 className="font-serif text-lg mb-1">{product.name}</h4>
-                            <p className="text-accent text-sm">{product.currency} {product.price}</p>
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-              <Link href="/bestsellers" className="text-sm font-medium tracking-widest uppercase luxury-underline pb-1 text-foreground/80 hover:text-foreground">
-                Bestsellers
+            {/* Desktop Navigation - Left */}
+            <nav className="hidden md:flex items-center gap-8 flex-1">
+              <Link href="/collection" className="text-[11px] font-medium tracking-[0.15em] uppercase text-foreground/80 hover:text-foreground transition-colors">
+                Oud & Dakhoon
               </Link>
-              <Link href="/about" className="text-sm font-medium tracking-widest uppercase luxury-underline pb-1 text-foreground/80 hover:text-foreground">
-                Our Story
+              <Link href="/collection" className="text-[11px] font-medium tracking-[0.15em] uppercase text-foreground/80 hover:text-foreground transition-colors">
+                Perfume Collection
+              </Link>
+              <Link href="/collection" className="text-[11px] font-medium tracking-[0.15em] uppercase text-foreground/80 hover:text-foreground transition-colors">
+                Gifts
               </Link>
             </nav>
 
-            {/* Logo */}
-            <Link href="/" className="absolute left-1/2 -translate-x-1/2 text-2xl md:text-3xl font-serif font-medium tracking-wide text-center uppercase">
-              Emirates<br/>Pride
+            {/* Logo - Centered */}
+            <Link href="/" className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center">
+              <span className="text-3xl font-serif tracking-[0.1em] text-center uppercase leading-none">
+                Emirates
+              </span>
+              <span className="text-xl font-serif tracking-[0.2em] text-center uppercase leading-none mt-1">
+                Pride
+              </span>
             </Link>
 
-            {/* Actions */}
-            <div className="flex items-center gap-4 md:gap-6">
-              <button className="text-foreground hover:text-accent transition-colors" data-testid="button-search">
-                <Search size={20} strokeWidth={1.5} />
+            {/* Actions - Right */}
+            <div className="flex items-center gap-5 md:gap-6 flex-1 justify-end">
+              <button className="hidden md:flex items-center gap-2 text-[11px] font-medium tracking-[0.1em] uppercase text-foreground/80 hover:text-foreground transition-colors" data-testid="button-search">
+                <Search size={18} strokeWidth={1} />
+                <span>Search</span>
               </button>
-              <button className="hidden md:block text-foreground hover:text-accent transition-colors" data-testid="button-account">
-                <User size={20} strokeWidth={1.5} />
+              <button className="md:hidden text-foreground" data-testid="button-search-mobile">
+                <Search size={20} strokeWidth={1} />
               </button>
+              
+              <button className="hidden md:flex items-center gap-2 text-[11px] font-medium tracking-[0.1em] uppercase text-foreground/80 hover:text-foreground transition-colors" data-testid="button-account">
+                <User size={18} strokeWidth={1} />
+                <span>Sign In</span>
+              </button>
+              
               <button 
-                className="relative text-foreground hover:text-accent transition-colors" 
+                className="flex items-center gap-2 text-[11px] font-medium tracking-[0.1em] uppercase text-foreground/80 hover:text-foreground transition-colors" 
                 onClick={() => setIsCartOpen(true)}
                 data-testid="button-cart"
               >
-                <ShoppingBag size={20} strokeWidth={1.5} />
-                <span className="absolute -top-1 -right-2 bg-accent text-accent-foreground text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-medium">
-                  2
-                </span>
+                <ShoppingBag size={18} strokeWidth={1} />
+                <span className="hidden md:inline">Cart (0)</span>
+                <span className="md:hidden absolute top-3 right-3 text-[9px] bg-primary text-white w-4 h-4 rounded-full flex items-center justify-center">0</span>
               </button>
             </div>
           </div>
@@ -103,103 +83,59 @@ export default function Navbar() {
 
         {/* Mobile Menu Overlay */}
         {isMenuOpen && (
-          <div className="absolute top-[116px] left-0 w-full h-[calc(100vh-116px)] bg-background border-t border-border/50 md:hidden flex flex-col p-6 gap-6 animate-in slide-in-from-top-4 overflow-y-auto">
-            <Link href="/collection" className="text-2xl font-serif tracking-wide uppercase border-b border-border pb-4" onClick={() => setIsMenuOpen(false)}>Collections</Link>
-            <div className="pl-4 flex flex-col gap-4 pb-4 border-b border-border">
-              <Link href="/collection" className="text-sm tracking-widest uppercase text-foreground/70" onClick={() => setIsMenuOpen(false)}>Heritage Collection</Link>
-              <Link href="/collection" className="text-sm tracking-widest uppercase text-foreground/70" onClick={() => setIsMenuOpen(false)}>Floral Collection</Link>
-              <Link href="/collection" className="text-sm tracking-widest uppercase text-foreground/70" onClick={() => setIsMenuOpen(false)}>Signature Collection</Link>
+          <div className="absolute top-[108px] left-0 w-full h-[calc(100vh-108px)] bg-white border-t border-border md:hidden flex flex-col animate-in slide-in-from-left-8 duration-300 z-50 overflow-y-auto">
+            <div className="p-6 flex flex-col gap-6">
+              <Link href="/collection" className="text-xl font-serif tracking-wide uppercase border-b border-border pb-4 flex justify-between items-center" onClick={() => setIsMenuOpen(false)}>
+                Oud & Dakhoon <ChevronDown size={16} className="-rotate-90" />
+              </Link>
+              <Link href="/collection" className="text-xl font-serif tracking-wide uppercase border-b border-border pb-4 flex justify-between items-center" onClick={() => setIsMenuOpen(false)}>
+                Perfume Collection <ChevronDown size={16} className="-rotate-90" />
+              </Link>
+              <Link href="/collection" className="text-xl font-serif tracking-wide uppercase border-b border-border pb-4 flex justify-between items-center" onClick={() => setIsMenuOpen(false)}>
+                Gift Sets <ChevronDown size={16} className="-rotate-90" />
+              </Link>
+              <Link href="/bestsellers" className="text-xl font-serif tracking-wide uppercase border-b border-border pb-4" onClick={() => setIsMenuOpen(false)}>
+                Best Sellers
+              </Link>
+              
+              <div className="mt-8 flex flex-col gap-6">
+                <Link href="/account" className="text-[11px] tracking-[0.15em] uppercase flex items-center gap-3" onClick={() => setIsMenuOpen(false)}>
+                  <User size={18} strokeWidth={1} /> Sign In / Register
+                </Link>
+              </div>
             </div>
-            <Link href="/bestsellers" className="text-2xl font-serif tracking-wide uppercase border-b border-border pb-4" onClick={() => setIsMenuOpen(false)}>Bestsellers</Link>
-            <Link href="/about" className="text-2xl font-serif tracking-wide uppercase border-b border-border pb-4" onClick={() => setIsMenuOpen(false)}>Our Story</Link>
-            <Link href="/account" className="text-xl font-serif tracking-wide uppercase mt-auto pt-6 flex items-center gap-3" onClick={() => setIsMenuOpen(false)}>
-              <User size={24} strokeWidth={1} /> Account
-            </Link>
           </div>
         )}
       </header>
 
-      {/* Cart Drawer */}
+      {/* Very Minimal Cart Drawer */}
       {isCartOpen && (
         <div className="fixed inset-0 z-50 overflow-hidden">
-          {/* Backdrop */}
           <div 
-            className="absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity animate-in fade-in"
+            className="absolute inset-0 bg-black/20 backdrop-blur-sm transition-opacity animate-in fade-in"
             onClick={() => setIsCartOpen(false)}
           />
           
-          {/* Drawer */}
-          <div className="absolute inset-y-0 right-0 max-w-md w-full bg-background shadow-2xl flex flex-col animate-in slide-in-from-right duration-300">
-            <div className="flex items-center justify-between p-6 border-b border-border/50">
-              <h2 className="text-2xl font-serif uppercase tracking-wider">Your Cart (2)</h2>
+          <div className="absolute inset-y-0 right-0 max-w-[400px] w-full bg-white shadow-2xl flex flex-col animate-in slide-in-from-right duration-300">
+            <div className="flex items-center justify-between p-6 border-b border-border">
+              <h2 className="text-[11px] font-medium uppercase tracking-[0.2em]">Your Cart</h2>
               <button 
                 onClick={() => setIsCartOpen(false)}
-                className="p-2 hover:bg-muted rounded-full transition-colors"
+                className="text-foreground/50 hover:text-foreground transition-colors"
               >
-                <X size={20} />
+                <X size={20} strokeWidth={1} />
               </button>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-6">
-              {/* Cart Item 1 */}
-              <div className="flex gap-4 border-b border-border/30 pb-6">
-                <div className="w-24 h-32 bg-white flex items-center justify-center p-2 flex-shrink-0">
-                  <img src={products[0].image} alt={products[0].name} className="w-full h-full object-contain" />
-                </div>
-                <div className="flex flex-col flex-1">
-                  <div className="flex justify-between items-start mb-1">
-                    <h3 className="font-serif text-lg">{products[0].name}</h3>
-                    <button className="text-foreground/50 hover:text-destructive transition-colors">
-                      <X size={16} />
-                    </button>
-                  </div>
-                  <span className="text-xs tracking-widest text-foreground/50 uppercase mb-auto">{products[0].collection}</span>
-                  
-                  <div className="flex items-end justify-between mt-4">
-                    <div className="flex items-center border border-border bg-white w-fit">
-                      <button className="px-3 py-1 text-foreground/60 hover:text-foreground transition-colors">-</button>
-                      <span className="w-8 text-center text-sm font-medium">1</span>
-                      <button className="px-3 py-1 text-foreground/60 hover:text-foreground transition-colors">+</button>
-                    </div>
-                    <p className="font-medium text-accent">{products[0].currency} {products[0].price}</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Cart Item 2 */}
-              <div className="flex gap-4 border-b border-border/30 pb-6">
-                <div className="w-24 h-32 bg-white flex items-center justify-center p-2 flex-shrink-0">
-                  <img src={products[1].image} alt={products[1].name} className="w-full h-full object-contain" />
-                </div>
-                <div className="flex flex-col flex-1">
-                  <div className="flex justify-between items-start mb-1">
-                    <h3 className="font-serif text-lg">{products[1].name}</h3>
-                    <button className="text-foreground/50 hover:text-destructive transition-colors">
-                      <X size={16} />
-                    </button>
-                  </div>
-                  <span className="text-xs tracking-widest text-foreground/50 uppercase mb-auto">{products[1].collection}</span>
-                  
-                  <div className="flex items-end justify-between mt-4">
-                    <div className="flex items-center border border-border bg-white w-fit">
-                      <button className="px-3 py-1 text-foreground/60 hover:text-foreground transition-colors">-</button>
-                      <span className="w-8 text-center text-sm font-medium">1</span>
-                      <button className="px-3 py-1 text-foreground/60 hover:text-foreground transition-colors">+</button>
-                    </div>
-                    <p className="font-medium text-accent">{products[1].currency} {products[1].price}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-6 border-t border-border bg-muted/30">
-              <div className="flex justify-between items-center mb-6">
-                <span className="text-sm tracking-widest uppercase font-medium">Subtotal</span>
-                <span className="text-xl font-serif">AED 1,500</span>
-              </div>
-              <p className="text-xs text-foreground/60 mb-6 text-center">Shipping & taxes calculated at checkout</p>
-              <button className="w-full bg-primary text-primary-foreground py-4 text-sm font-medium tracking-widest uppercase hover:bg-accent hover:text-accent-foreground transition-all duration-300">
-                Proceed to Checkout
+            <div className="flex-1 overflow-y-auto p-6 flex flex-col items-center justify-center text-center">
+              <ShoppingBag size={48} strokeWidth={0.5} className="mb-6 text-foreground/30" />
+              <p className="font-serif text-2xl mb-2">Your cart is empty.</p>
+              <p className="text-sm text-foreground/60 mb-8">Discover our exquisite collections.</p>
+              <button 
+                onClick={() => setIsCartOpen(false)}
+                className="creed-button w-full"
+              >
+                Continue Shopping
               </button>
             </div>
           </div>
