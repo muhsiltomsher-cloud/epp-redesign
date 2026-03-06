@@ -142,7 +142,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section ref={galleryRef} className="py-8 md:py-16 lg:py-24 bg-[#e6cebb33] px-4 md:px-10 lg:px-20 xl:px-28">
+        <section ref={galleryRef} className="py-5 md:py-10 lg:py-14 bg-[#e6cebb33] px-4 md:px-10 lg:px-20 xl:px-28">
           <div className="text-center mb-6 md:mb-14">
             <h2 className="text-[8px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-2 md:mb-3">Explore</h2>
             <h3 className="text-xl md:text-4xl lg:text-5xl font-serif">A World of Fragrance</h3>
