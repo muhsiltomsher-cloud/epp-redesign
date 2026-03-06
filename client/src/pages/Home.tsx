@@ -137,11 +137,61 @@ export default function Home() {
           </div>
           
           <div className="w-full md:w-1/2 flex flex-col scrolling-images relative bg-white">
-            <div className="h-[50vh] md:h-screen w-full relative">
-              <img src={featureProduct2.image} alt="Scent 1" className="w-full h-full object-contain md:object-cover p-8 md:p-24 bg-[#f8f8f8] mix-blend-multiply" />
+            <div className="grid grid-cols-2 gap-3 md:gap-6 p-4 md:p-8">
+              {products.slice(0, 4).map((product) => (
+                <div key={product.id} className="group flex flex-col cursor-pointer" data-testid={`card-scroll-product-${product.id}`}>
+                  <Link href={`/product/${product.id}`}>
+                    <div className="relative aspect-[3/4] mb-3 overflow-hidden bg-[#f5f5f5]">
+                      <img 
+                        src={product.image} 
+                        alt={product.name} 
+                        className="absolute inset-0 w-full h-full object-contain p-4 md:p-6 mix-blend-multiply z-10 transition-transform duration-1000 group-hover:scale-105"
+                      />
+                      {product.hoverImage && (
+                        <div className="absolute inset-0 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 overflow-hidden hidden md:block">
+                          <img src={product.hoverImage} alt={`${product.name} lifestyle`} className="w-full h-full object-cover" />
+                          <div className="absolute inset-0 bg-black/10"></div>
+                        </div>
+                      )}
+                    </div>
+                  </Link>
+                  <div className="flex flex-col items-center text-center px-1">
+                    <Link href={`/product/${product.id}`}>
+                      <span className="text-sm md:text-base font-serif mb-1 text-black hover:text-black/60 transition-colors cursor-pointer">{product.name}</span>
+                    </Link>
+                    <span className="text-[7px] md:text-[8px] tracking-[0.2em] uppercase text-black/40 mb-1">{product.collection}</span>
+                    <p className="text-[10px] md:text-xs font-medium text-black">{product.currency} {product.price}</p>
+                  </div>
+                </div>
+              ))}
             </div>
-            <div className="h-[50vh] md:h-screen w-full relative">
-              <img src={featureProduct2.hoverImage || categories[0].image} alt="Scent Lifestyle" className="w-full h-full object-cover" />
+            <div className="grid grid-cols-2 gap-3 md:gap-6 p-4 md:p-8 pt-0 md:pt-0">
+              {products.slice(3, 7).map((product) => (
+                <div key={product.id} className="group flex flex-col cursor-pointer" data-testid={`card-scroll-product-${product.id}`}>
+                  <Link href={`/product/${product.id}`}>
+                    <div className="relative aspect-[3/4] mb-3 overflow-hidden bg-[#f5f5f5]">
+                      <img 
+                        src={product.image} 
+                        alt={product.name} 
+                        className="absolute inset-0 w-full h-full object-contain p-4 md:p-6 mix-blend-multiply z-10 transition-transform duration-1000 group-hover:scale-105"
+                      />
+                      {product.hoverImage && (
+                        <div className="absolute inset-0 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 overflow-hidden hidden md:block">
+                          <img src={product.hoverImage} alt={`${product.name} lifestyle`} className="w-full h-full object-cover" />
+                          <div className="absolute inset-0 bg-black/10"></div>
+                        </div>
+                      )}
+                    </div>
+                  </Link>
+                  <div className="flex flex-col items-center text-center px-1">
+                    <Link href={`/product/${product.id}`}>
+                      <span className="text-sm md:text-base font-serif mb-1 text-black hover:text-black/60 transition-colors cursor-pointer">{product.name}</span>
+                    </Link>
+                    <span className="text-[7px] md:text-[8px] tracking-[0.2em] uppercase text-black/40 mb-1">{product.collection}</span>
+                    <p className="text-[10px] md:text-xs font-medium text-black">{product.currency} {product.price}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
