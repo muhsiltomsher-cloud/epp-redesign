@@ -115,6 +115,48 @@ export default function Home() {
           
         </section>
 
+        <section ref={galleryRef} className="py-10 md:py-20 bg-[#fafafa] px-4 md:px-8">
+          <div className="text-center mb-10 md:mb-16">
+            <h2 className="text-[9px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-black/50 mb-2">Explore</h2>
+            <h3 className="text-2xl md:text-4xl font-serif">A World of Fragrance</h3>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-7xl mx-auto">
+            <Link href="/collection">
+              <div className="gallery-item group relative aspect-[4/5] md:aspect-[3/4] overflow-hidden bg-muted cursor-pointer mb-4 md:mb-0">
+                <img src={categories[0].image} className="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110" alt="Oud" />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-700"></div>
+                <div className="absolute bottom-6 md:bottom-8 left-6 md:left-8">
+                  <h3 className="text-white font-serif text-2xl md:text-3xl lg:text-4xl mb-2">{categories[0].name}</h3>
+                  <div className="w-0 h-[1px] bg-white group-hover:w-full transition-all duration-700 ease-out"></div>
+                </div>
+              </div>
+            </Link>
+            
+            <Link href="/collection">
+              <div className="gallery-item group relative aspect-[4/5] md:aspect-[3/4] overflow-hidden bg-muted cursor-pointer md:translate-y-12 mb-4 md:mb-0">
+                <img src={categories[4].image} className="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110" alt="Gifts" />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-700"></div>
+                <div className="absolute bottom-6 md:bottom-8 left-6 md:left-8">
+                  <h3 className="text-white font-serif text-2xl md:text-3xl lg:text-4xl mb-2">{categories[4].name}</h3>
+                  <div className="w-0 h-[1px] bg-white group-hover:w-full transition-all duration-700 ease-out"></div>
+                </div>
+              </div>
+            </Link>
+            
+            <Link href="/collection">
+              <div className="gallery-item group relative aspect-[4/5] md:aspect-[3/4] overflow-hidden bg-muted cursor-pointer md:translate-y-24">
+                <img src={categories[1].image} className="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110" alt="Oils" />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-700"></div>
+                <div className="absolute bottom-6 md:bottom-8 left-6 md:left-8">
+                  <h3 className="text-white font-serif text-2xl md:text-3xl lg:text-4xl mb-2">{categories[1].name}</h3>
+                  <div className="w-0 h-[1px] bg-white group-hover:w-full transition-all duration-700 ease-out"></div>
+                </div>
+              </div>
+            </Link>
+          </div>
+        </section>
+
         <section ref={pinnedSectionRef} className="relative w-full bg-[#fcfcfc] flex flex-col md:flex-row">
           <div className="w-full md:w-1/2 md:h-screen md:sticky top-0 pinned-content flex flex-col justify-center items-center md:items-start text-center md:text-left p-8 md:p-16 lg:p-24 z-10 relative bg-cover bg-center" style={{ backgroundImage: "url('https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1-1200x1490.webp')" }}>
             <div className="absolute inset-0 bg-black/50"></div>
@@ -224,49 +266,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section ref={galleryRef} className="py-10 md:py-20 bg-[#fafafa] px-4 md:px-8">
-          <div className="text-center mb-10 md:mb-20">
-            <h2 className="text-[9px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-black/50 mb-2">Explore</h2>
-            <h3 className="text-2xl md:text-4xl font-serif">A World of Fragrance</h3>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-7xl mx-auto">
-            <Link href="/collection">
-              <div className="gallery-item group relative aspect-[4/5] md:aspect-[3/4] overflow-hidden bg-muted cursor-pointer mb-4 md:mb-0">
-                <img src={categories[0].image} className="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110" alt="Oud" />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-700"></div>
-                <div className="absolute bottom-6 md:bottom-8 left-6 md:left-8">
-                  <h3 className="text-white font-serif text-2xl md:text-3xl lg:text-4xl mb-2">{categories[0].name}</h3>
-                  <div className="w-0 h-[1px] bg-white group-hover:w-full transition-all duration-700 ease-out"></div>
-                </div>
-              </div>
-            </Link>
-            
-            <Link href="/collection">
-              <div className="gallery-item group relative aspect-[4/5] md:aspect-[3/4] overflow-hidden bg-muted cursor-pointer md:translate-y-12 mb-4 md:mb-0">
-                <img src={categories[4].image} className="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110" alt="Gifts" />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-700"></div>
-                <div className="absolute bottom-6 md:bottom-8 left-6 md:left-8">
-                  <h3 className="text-white font-serif text-2xl md:text-3xl lg:text-4xl mb-2">{categories[4].name}</h3>
-                  <div className="w-0 h-[1px] bg-white group-hover:w-full transition-all duration-700 ease-out"></div>
-                </div>
-              </div>
-            </Link>
-            
-            <Link href="/collection">
-              <div className="gallery-item group relative aspect-[4/5] md:aspect-[3/4] overflow-hidden bg-muted cursor-pointer md:translate-y-24">
-                <img src={categories[1].image} className="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110" alt="Oils" />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-700"></div>
-                <div className="absolute bottom-6 md:bottom-8 left-6 md:left-8">
-                  <h3 className="text-white font-serif text-2xl md:text-3xl lg:text-4xl mb-2">{categories[1].name}</h3>
-                  <div className="w-0 h-[1px] bg-white group-hover:w-full transition-all duration-700 ease-out"></div>
-                </div>
-              </div>
-            </Link>
-          </div>
-        </section>
-        
-        <div className="hidden md:block h-16 bg-[#fafafa]"></div>
+        <div className="hidden md:block h-8 bg-white"></div>
 
         <section className="py-10 md:py-16 px-4 md:px-8 bg-black text-white">
           <div className="container mx-auto">
