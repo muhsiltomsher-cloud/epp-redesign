@@ -28,41 +28,43 @@
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
 
+  /* Added Arabic font support */
   --font-sans: 'Montserrat', sans-serif;
   --font-serif: 'Cormorant Garamond', serif;
+  --font-arabic: 'Tajawal', 'Cairo', sans-serif;
 }
 
 :root {
-  /* Creed aesthetic is very stark: pure whites, blacks, very light greys */
+  /* Ultra stark, high-end minimalist palette */
   --background: 0 0% 100%; /* Pure white */
-  --foreground: 0 0% 10%; /* Very dark grey/black */
+  --foreground: 0 0% 8%; /* Almost black */
   
   --card: 0 0% 100%;
-  --card-foreground: 0 0% 10%;
+  --card-foreground: 0 0% 8%;
   
   --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 10%;
+  --popover-foreground: 0 0% 8%;
   
   --primary: 0 0% 0%; /* Black */
   --primary-foreground: 0 0% 100%; /* White */
   
-  --secondary: 0 0% 98%; /* Off-white for subtle contrast */
+  --secondary: 0 0% 98%; 
   --secondary-foreground: 0 0% 0%;
   
   --muted: 0 0% 96%;
   --muted-foreground: 0 0% 40%;
   
-  --accent: 0 0% 0%; /* Black as accent, very minimalist */
+  --accent: 0 0% 0%;
   --accent-foreground: 0 0% 100%;
   
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 0 0% 98%;
   
-  --border: 0 0% 92%;
-  --input: 0 0% 92%;
+  --border: 0 0% 90%;
+  --input: 0 0% 90%;
   --ring: 0 0% 0%;
   
-  --radius: 0rem; /* Razor sharp edges */
+  --radius: 0rem; 
 }
 
 @layer base {
@@ -82,30 +84,23 @@
   text-wrap: balance;
 }
 
-.hover-trigger .hover-target {
-  @apply opacity-0 transition-opacity duration-300 ease-in-out;
-}
-.hover-trigger:hover .hover-target {
-  @apply opacity-100;
-}
-
 .luxury-underline {
-  @apply relative;
+  @apply relative inline-block;
 }
 .luxury-underline::after {
   content: '';
-  @apply absolute bottom-0 left-0 w-0 h-[1px] bg-foreground transition-all duration-300 ease-in-out;
+  @apply absolute bottom-[-4px] left-0 w-0 h-[1px] bg-current transition-all duration-500 ease-out;
 }
 .luxury-underline:hover::after {
   @apply w-full;
 }
 
 .creed-button {
-  @apply bg-primary text-primary-foreground px-8 py-3 text-[11px] font-medium tracking-[0.2em] uppercase hover:bg-black/80 transition-colors border border-primary;
+  @apply bg-primary text-primary-foreground px-10 py-4 text-[11px] font-medium tracking-[0.2em] uppercase hover:bg-black/80 transition-colors border border-primary text-center;
 }
 
 .creed-button-outline {
-  @apply bg-transparent text-primary px-8 py-3 text-[11px] font-medium tracking-[0.2em] uppercase hover:bg-primary hover:text-primary-foreground transition-colors border border-primary;
+  @apply bg-transparent text-primary px-10 py-4 text-[11px] font-medium tracking-[0.2em] uppercase hover:bg-primary hover:text-primary-foreground transition-all duration-300 border border-primary text-center;
 }
 
 /* Hide scrollbar for horizontal scrolling containers */
@@ -115,4 +110,13 @@
 .hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Smooth image reveal transitions */
+.image-reveal {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.image-reveal.is-visible {
+  clip-path: inset(0 0 0% 0);
 }
