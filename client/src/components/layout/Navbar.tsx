@@ -63,14 +63,14 @@ export default function Navbar() {
     setActiveMegaMenu(null);
   }, [location]);
 
-  const isDarkText = false;
+  const isDarkText = isScrolled || isHoveringNav || isMenuOpen || activeMegaMenu !== null;
 
   return (
     <>
       <header 
         className={`fixed top-0 w-full z-50 transition-all duration-500 ease-in-out ${
           isDarkText
-            ? "bg-black/40 backdrop-blur-xl shadow-[0_1px_0_rgba(0,0,0,0.1)]" 
+            ? "bg-white/95 backdrop-blur-xl shadow-[0_1px_0_rgba(0,0,0,0.04)]" 
             : "bg-black/30 backdrop-blur-lg"
         }`}
         onMouseEnter={() => setIsHoveringNav(true)}
