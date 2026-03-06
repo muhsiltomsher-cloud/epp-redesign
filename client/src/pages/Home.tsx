@@ -122,14 +122,15 @@ export default function Home() {
         </section>
 
         <section ref={pinnedSectionRef} className="relative w-full bg-[#fcfcfc] flex flex-col md:flex-row">
-          <div className="w-full md:w-1/2 md:h-screen md:sticky top-0 pinned-content flex flex-col justify-center items-center md:items-start text-center md:text-left p-8 md:p-16 lg:p-24 z-10 bg-[#fcfcfc]">
-            <span className="text-[9px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-black/50 mb-4 md:mb-6 md:border-l md:border-black/30 md:pl-4">Signature Blend</span>
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif mb-4 md:mb-6 leading-tight text-black">{featureProduct2.name}</h2>
-            <p className="text-black/70 text-sm leading-relaxed mb-8 md:mb-10 max-w-md font-light">
+          <div className="w-full md:w-1/2 md:h-screen md:sticky top-0 pinned-content flex flex-col justify-center items-center md:items-start text-center md:text-left p-8 md:p-16 lg:p-24 z-10 relative bg-cover bg-center" style={{ backgroundImage: "url('https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1-1200x1490.webp')" }}>
+            <div className="absolute inset-0 bg-black/50"></div>
+            <span className="relative z-10 text-[9px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-white/70 mb-4 md:mb-6 md:border-l md:border-white/30 md:pl-4">Signature Blend</span>
+            <h2 className="relative z-10 text-3xl md:text-5xl lg:text-6xl font-serif mb-4 md:mb-6 leading-tight text-white">{featureProduct2.name}</h2>
+            <p className="relative z-10 text-white/70 text-sm leading-relaxed mb-8 md:mb-10 max-w-md font-light">
               A captivating journey into darkness. Discover a scent tailored to your most elegant moments, blending the finest leather accords with mysterious depths.
             </p>
             <Link href={`/product/${featureProduct2.id}`}>
-              <span className="creed-button cursor-pointer inline-block">
+              <span className="relative z-10 inline-block bg-white text-black px-8 py-3.5 md:py-4 text-[9px] md:text-[10px] font-medium tracking-[0.2em] uppercase hover:bg-white/90 transition-colors cursor-pointer">
                 Discover The Scent
               </span>
             </Link>
