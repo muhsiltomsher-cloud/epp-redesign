@@ -52,7 +52,7 @@ export default function Navbar() {
           </div>
         </div>
         
-        <div className="container mx-auto px-4 md:px-8 relative text-[18px] font-medium pl-[-1px] pr-[-1px]">
+        <div className="container mx-auto px-4 md:px-8 relative text-[18px] font-medium pl-[0px] pr-[0px]">
           <div className={`flex items-center justify-between transition-all duration-500 ${isScrolled ? "h-[60px] md:h-[70px]" : "h-[60px] md:h-[90px]"}`}>
             
             {/* Mobile Menu Button */}
