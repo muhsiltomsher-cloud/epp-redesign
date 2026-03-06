@@ -1,4 +1,4 @@
-import { ArrowRight, Gift, Pencil, Truck, MailOpen } from "lucide-react";
+import { Gift, Pencil, Truck, MailOpen } from "lucide-react";
 import { Link } from "wouter";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
@@ -288,42 +288,48 @@ export default function Home() {
           <div className="absolute inset-0 bg-black/20"></div>
         </section>
 
-        <section ref={brandRef} className="py-6 md:py-12 px-4 md:px-8 lg:px-16 text-center bg-white">
-          <p className="text-lg md:text-3xl lg:text-4xl font-serif text-black leading-relaxed md:leading-tight text-balance font-light">
-            Dedicated to the creation of highly original, artisan fragrances. We source the finest ingredients globally to craft scents that evoke deep emotions and lasting memories.
-          </p>
-        </section>
-
-        <section className="py-6 md:py-12 px-4 md:px-8 lg:px-16 bg-[#1a1308] text-white">
-          <div>
-            <h2 className="text-[9px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-center text-[#c9a96e] mb-2 md:mb-3">The Experience</h2>
-            <h3 className="text-2xl md:text-4xl font-serif text-center mb-6 md:mb-10">Exclusively For You</h3>
-            
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 md:gap-x-8 gap-y-8 md:gap-y-12">
-              <ServiceCard 
-                icon={<Pencil strokeWidth={1} className="w-5 h-5 md:w-7 md:h-7" />}
-                title="Personalization"
-                description="Make your bottle uniquely yours with custom engraving."
-                linkText="Discover"
-              />
-              <ServiceCard 
-                icon={<Gift strokeWidth={1} className="w-5 h-5 md:w-7 md:h-7" />}
-                title="Gift Wrapping"
-                description="Enhance your purchase with luxurious finishing touches."
-                linkText="Gifting Art"
-              />
-              <ServiceCard 
-                icon={<Truck strokeWidth={1} className="w-5 h-5 md:w-7 md:h-7" />}
-                title="Global Delivery"
-                description="Complimentary standard shipping on orders over AED 1500."
-                linkText="Shipping Info"
-              />
-              <ServiceCard 
-                icon={<MailOpen strokeWidth={1} className="w-5 h-5 md:w-7 md:h-7" />}
-                title="Free Samples"
-                description="Elevate your experience with complimentary samples."
-                linkText="Explore"
-              />
+        <section ref={brandRef} className="relative py-16 md:py-28 px-6 md:px-12 lg:px-20 bg-[#1a1308] overflow-hidden">
+          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "url('https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1-1200x1490.webp')", backgroundSize: "cover", backgroundPosition: "center" }}></div>
+          <div className="relative z-10 flex flex-col lg:flex-row items-center gap-10 md:gap-16 lg:gap-24 max-w-7xl mx-auto">
+            <div className="flex-1 text-center lg:text-left">
+              <div className="w-12 h-[1px] bg-[#c9a96e] mb-6 mx-auto lg:mx-0"></div>
+              <h2 className="text-[9px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-4 md:mb-6">Our Philosophy</h2>
+              <p className="text-xl md:text-3xl lg:text-4xl font-serif text-white leading-relaxed md:leading-snug text-balance font-light">
+                Dedicated to the creation of highly original, artisan fragrances.
+              </p>
+              <p className="text-sm md:text-base text-white/50 font-light mt-4 md:mt-6 leading-relaxed max-w-xl mx-auto lg:mx-0">
+                We source the finest ingredients globally to craft scents that evoke deep emotions and lasting memories.
+              </p>
+            </div>
+            <div className="flex-shrink-0 grid grid-cols-2 gap-4 md:gap-6 w-full lg:w-auto lg:max-w-md">
+              <div className="group flex flex-col items-center text-center p-4 md:p-6 border border-[#c9a96e]/15 hover:border-[#c9a96e]/40 transition-all duration-500 cursor-pointer">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-[#c9a96e]/30 flex items-center justify-center text-[#c9a96e]/80 mb-3 md:mb-4 group-hover:bg-[#c9a96e] group-hover:text-white transition-colors duration-500">
+                  <Pencil strokeWidth={1} className="w-4 h-4 md:w-5 md:h-5" />
+                </div>
+                <h3 className="text-xs md:text-sm font-serif mb-1 text-white">Personalization</h3>
+                <p className="text-[9px] md:text-[10px] text-white/40 font-light leading-relaxed hidden sm:block">Custom engraving</p>
+              </div>
+              <div className="group flex flex-col items-center text-center p-4 md:p-6 border border-[#c9a96e]/15 hover:border-[#c9a96e]/40 transition-all duration-500 cursor-pointer">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-[#c9a96e]/30 flex items-center justify-center text-[#c9a96e]/80 mb-3 md:mb-4 group-hover:bg-[#c9a96e] group-hover:text-white transition-colors duration-500">
+                  <Gift strokeWidth={1} className="w-4 h-4 md:w-5 md:h-5" />
+                </div>
+                <h3 className="text-xs md:text-sm font-serif mb-1 text-white">Gift Wrapping</h3>
+                <p className="text-[9px] md:text-[10px] text-white/40 font-light leading-relaxed hidden sm:block">Luxurious finishing</p>
+              </div>
+              <div className="group flex flex-col items-center text-center p-4 md:p-6 border border-[#c9a96e]/15 hover:border-[#c9a96e]/40 transition-all duration-500 cursor-pointer">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-[#c9a96e]/30 flex items-center justify-center text-[#c9a96e]/80 mb-3 md:mb-4 group-hover:bg-[#c9a96e] group-hover:text-white transition-colors duration-500">
+                  <Truck strokeWidth={1} className="w-4 h-4 md:w-5 md:h-5" />
+                </div>
+                <h3 className="text-xs md:text-sm font-serif mb-1 text-white">Global Delivery</h3>
+                <p className="text-[9px] md:text-[10px] text-white/40 font-light leading-relaxed hidden sm:block">Free over AED 1500</p>
+              </div>
+              <div className="group flex flex-col items-center text-center p-4 md:p-6 border border-[#c9a96e]/15 hover:border-[#c9a96e]/40 transition-all duration-500 cursor-pointer">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-[#c9a96e]/30 flex items-center justify-center text-[#c9a96e]/80 mb-3 md:mb-4 group-hover:bg-[#c9a96e] group-hover:text-white transition-colors duration-500">
+                  <MailOpen strokeWidth={1} className="w-4 h-4 md:w-5 md:h-5" />
+                </div>
+                <h3 className="text-xs md:text-sm font-serif mb-1 text-white">Free Samples</h3>
+                <p className="text-[9px] md:text-[10px] text-white/40 font-light leading-relaxed hidden sm:block">With every order</p>
+              </div>
             </div>
           </div>
         </section>
@@ -380,17 +386,3 @@ function CreativeProductCard({ product }: { product: any }) {
   );
 }
 
-function ServiceCard({ icon, title, description, linkText }: any) {
-  return (
-    <div className="flex flex-col group cursor-pointer text-center items-center">
-      <div className="w-10 h-10 md:w-16 md:h-16 rounded-full border border-[#c9a96e]/30 flex items-center justify-center text-[#c9a96e]/80 mb-4 md:mb-6 group-hover:bg-[#c9a96e] group-hover:text-white transition-colors duration-500">
-        {icon}
-      </div>
-      <h3 className="text-sm md:text-lg font-serif mb-2 text-white">{title}</h3>
-      <p className="text-[10px] md:text-xs text-white/50 leading-relaxed mb-4 flex-1 max-w-[180px] font-light hidden sm:block">{description}</p>
-      <span className="text-[8px] md:text-[9px] font-medium tracking-[0.2em] uppercase border-b border-[#c9a96e] pb-0.5 hover:text-[#c9a96e]/60 hover:border-[#c9a96e]/60 transition-colors text-[#c9a96e] mt-auto">
-        {linkText}
-      </span>
-    </div>
-  );
-}
