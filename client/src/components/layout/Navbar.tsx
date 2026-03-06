@@ -47,7 +47,7 @@ export default function Navbar() {
         <div className={`transition-all duration-500 overflow-hidden hidden md:block ${
           isScrolled ? "h-0 opacity-0" : "h-[32px] opacity-100 bg-black text-white"
         }`}>
-          <div className="container mx-auto px-4 h-full flex items-center justify-center text-[10px] tracking-[0.2em] uppercase font-light">
+          <div className="container mx-auto px-4 h-full flex items-center justify-center text-[12px] tracking-[0.2em] uppercase font-light">
             Free Shipping Worldwide on all orders above AED 1500
           </div>
         </div>
@@ -68,21 +68,21 @@ export default function Navbar() {
             {/* Desktop Navigation - Left */}
             <nav className="hidden md:flex items-center gap-8 flex-1">
               <Link href="/collection">
-                <span className={`text-[10px] font-medium tracking-[0.2em] uppercase transition-colors luxury-underline cursor-pointer ${
+                <span className={`text-[13px] font-medium tracking-[0.2em] uppercase transition-colors luxury-underline cursor-pointer ${
                   !isDarkText ? "text-white/90 hover:text-white" : "text-black/80 hover:text-black"
                 }`}>
                   Oud & Dakhoon
                 </span>
               </Link>
               <Link href="/collection">
-                <span className={`text-[10px] font-medium tracking-[0.2em] uppercase transition-colors luxury-underline cursor-pointer ${
+                <span className={`text-[13px] font-medium tracking-[0.2em] uppercase transition-colors luxury-underline cursor-pointer ${
                   !isDarkText ? "text-white/90 hover:text-white" : "text-black/80 hover:text-black"
                 }`}>
                   Perfume
                 </span>
               </Link>
               <Link href="/collection">
-                <span className={`text-[10px] font-medium tracking-[0.2em] uppercase transition-colors luxury-underline cursor-pointer ${
+                <span className={`text-[13px] font-medium tracking-[0.2em] uppercase transition-colors luxury-underline cursor-pointer ${
                   !isDarkText ? "text-white/90 hover:text-white" : "text-black/80 hover:text-black"
                 }`}>
                   Gifts
@@ -109,7 +109,7 @@ export default function Navbar() {
                 onMouseEnter={() => setIsCurrencyMenuOpen(true)}
                 onMouseLeave={() => setIsCurrencyMenuOpen(false)}
               >
-                <button className={`flex items-center gap-1.5 text-[10px] font-medium tracking-[0.1em] uppercase transition-colors ${
+                <button className={`flex items-center gap-1.5 text-[13px] font-medium tracking-[0.1em] uppercase transition-colors ${
                   !isDarkText ? "text-white/90 hover:text-white" : "text-black/80 hover:text-black"
                 }`}>
                   <Globe size={14} strokeWidth={1} />
@@ -166,7 +166,7 @@ export default function Navbar() {
                 onClick={() => setIsCartOpen(true)}
               >
                 <ShoppingBag size={18} strokeWidth={1} />
-                <span className="hidden md:inline text-[10px] font-medium tracking-[0.2em] uppercase">Cart</span>
+                <span className="hidden md:inline text-[13px] font-medium tracking-[0.2em] uppercase">Cart</span>
                 <span className={`absolute -top-1 -right-2 text-[8px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-medium ${
                   !isDarkText ? "bg-white text-black" : "bg-black text-white"
                 }`}>0</span>
