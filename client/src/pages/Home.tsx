@@ -112,21 +112,7 @@ export default function Home() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
           </div>
           
-          <div className="relative z-10 max-w-5xl text-center md:text-left mx-auto md:mx-12 mt-auto">
-            <h1 className="hero-text-reveal text-[9px] md:text-[11px] font-medium tracking-[0.4em] uppercase text-white/70 mb-4 md:mb-6">
-              The Art of Gulf Perfumery
-            </h1>
-            <h2 className="hero-text-reveal text-4xl md:text-6xl lg:text-8xl font-serif text-white mb-8 md:mb-10 leading-[1] tracking-tight">
-              A Legacy Of<br className="hidden md:block"/> Elegance
-            </h2>
-            <div className="hero-text-reveal flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <Link href="/collection">
-                <span className="inline-block bg-white text-black px-8 py-3.5 md:py-4 text-[9px] md:text-[10px] font-medium tracking-[0.2em] uppercase hover:bg-white/90 transition-colors cursor-pointer text-center w-full sm:w-auto min-w-[200px]">
-                  Explore Collections
-                </span>
-              </Link>
-            </div>
-          </div>
+          
         </section>
 
         <section ref={brandRef} className="py-16 md:py-32 px-6 text-center max-w-4xl mx-auto bg-white">
