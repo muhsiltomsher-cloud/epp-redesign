@@ -1,150 +1,243 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "wouter";
-import { Minus, Plus, ShoppingBag, ArrowLeft, Star } from "lucide-react";
+import { Minus, Plus, ChevronDown, ChevronUp, Star, Truck, ShieldCheck, Box } from "lucide-react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { products } from "@/lib/data";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Product() {
   const { id } = useParams();
   const product = products.find(p => p.id === id);
   const [quantity, setQuantity] = useState(1);
+  const [activeTab, setActiveTab] = useState("description");
   const [mainImage, setMainImage] = useState(product?.image);
+  
+  const mainRef = useRef<HTMLDivElement>(null);
+  const imageColRef = useRef<HTMLDivElement>(null);
+  const detailsColRef = useRef<HTMLDivElement>(null);
 
-  if (!product) {
-    return (
-      <div className="min-h-screen bg-background flex flex-col">
-        <Navbar />
-        <main className="flex-1 flex flex-col items-center justify-center py-32 text-center px-4">
-          <h1 className="text-4xl font-serif mb-4">Product Not Found</h1>
-          <p className="text-foreground/70 mb-8">The fragrance you are looking for does not exist or has been removed.</p>
-          <Link href="/collection" className="bg-primary text-primary-foreground px-8 py-4 text-sm font-medium tracking-widest uppercase hover:bg-accent hover:text-accent-foreground transition-colors">
-            Return to Collection
-          </Link>
-        </main>
-        <Footer />
-      </div>
-    );
-  }
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+      // Pin the image on desktop
+      if (imageColRef.current && window.innerWidth >= 768) {
+        ScrollTrigger.create({
+          trigger: mainRef.current,
+          start: "top top+=70", 
+          end: "bottom bottom",
+          pin: imageColRef.current,
+          pinSpacing: false,
+        });
+      }
+      
+      // Animate elements in
+      if (detailsColRef.current) {
+        gsap.fromTo(detailsColRef.current.children, 
+          { y: 30, opacity: 0 }, 
+          { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power2.out", delay: 0.2 }
+        );
+      }
+    });
+
+    window.scrollTo(0, 0);
+
+    return () => ctx.revert();
+  }, [id]);
+
+  if (!product) return null;
 
   const images = [product.image, product.hoverImage].filter(Boolean) as string[];
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col">
       <Navbar />
 
-      <main className="flex-1 bg-white">
-        <div className="container mx-auto px-4 md:px-6 py-12 md:py-16">
-          {/* Breadcrumbs */}
-          <div className="mb-8">
-            <Link href="/collection" className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-foreground/60 hover:text-foreground transition-colors luxury-underline pb-1">
-              <ArrowLeft size={14} /> Back to Collection
-            </Link>
+      <main ref={mainRef} className="flex-1 pt-[60px] md:pt-[70px] relative">
+        <div className="flex flex-col md:flex-row w-full max-w-[1800px] mx-auto min-h-[calc(100vh-70px)]">
+          
+          {/* Left: Image Gallery (Pinned on Desktop) */}
+          <div ref={imageColRef} className="w-full md:w-1/2 md:h-[calc(100vh-70px)] bg-[#f5f5f5] flex flex-col overflow-hidden relative">
+            <div className="w-full h-full relative flex items-center justify-center p-8 md:p-16">
+              <img 
+                src={mainImage || product.image} 
+                alt={product.name} 
+                className="w-full h-full object-contain mix-blend-multiply"
+              />
+            </div>
+            
+            {/* Absolute breadcrumbs on image */}
+            <div className="absolute top-6 left-6 z-10">
+              <Link href="/collection" className="text-[9px] uppercase tracking-[0.2em] text-black/50 hover:text-black transition-colors flex items-center gap-2">
+                <span className="w-4 h-[1px] bg-current"></span> Back to Collection
+              </Link>
+            </div>
+            
+            {/* Thumbnail switcher */}
+            {images.length > 1 && (
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-4 z-10">
+                {images.map((img, i) => (
+                  <button 
+                    key={i} 
+                    onClick={() => setMainImage(img)}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                      (mainImage || product.image) === img ? 'bg-black scale-125' : 'bg-black/20 hover:bg-black/40'
+                    }`}
+                    aria-label={`View image ${i+1}`}
+                  />
+                ))}
+              </div>
+            )}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24">
-            {/* Images */}
-            <div className="flex flex-col md:flex-row-reverse gap-4 animate-in fade-in slide-in-from-left-8 duration-700">
-              {/* Main Image */}
-              <div className="flex-1 aspect-[4/5] bg-muted/10 relative overflow-hidden flex items-center justify-center">
-                <img 
-                  src={mainImage || product.image} 
-                  alt={product.name} 
-                  className="w-full h-full object-cover"
-                />
-              </div>
+          {/* Right: Product Details (Scrolls) */}
+          <div className="w-full md:w-1/2 flex flex-col bg-white">
+            <div ref={detailsColRef} className="p-6 md:p-12 lg:p-20 max-w-[650px] mx-auto w-full">
               
-              {/* Thumbnails */}
-              {images.length > 1 && (
-                <div className="flex md:flex-col gap-4 overflow-x-auto md:overflow-visible">
-                  {images.map((img, i) => (
-                    <button 
-                      key={i} 
-                      onClick={() => setMainImage(img)}
-                      className={`w-20 md:w-24 aspect-[4/5] bg-muted/10 overflow-hidden flex-shrink-0 border-2 transition-colors ${
-                        (mainImage || product.image) === img ? 'border-accent' : 'border-transparent hover:border-border'
-                      }`}
-                    >
-                      <img src={img} alt={`Thumbnail ${i}`} className="w-full h-full object-cover" />
-                    </button>
-                  ))}
+              <div className="mb-10">
+                <span className="text-[9px] md:text-[10px] tracking-[0.3em] uppercase text-black/50 mb-4 block">
+                  {product.collection}
+                </span>
+                <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif mb-4 text-black tracking-wide leading-tight">
+                  {product.name}
+                </h1>
+                
+                <div className="flex items-center gap-4 mb-6">
+                  <p className="text-lg md:text-xl text-black font-medium">
+                    {product.currency} {product.price}
+                  </p>
+                  <div className="flex items-center gap-1 text-black">
+                    <Star size={12} fill="currentColor" />
+                    <Star size={12} fill="currentColor" />
+                    <Star size={12} fill="currentColor" />
+                    <Star size={12} fill="currentColor" />
+                    <Star size={12} fill="currentColor" />
+                    <span className="text-[10px] text-black/50 ml-2 tracking-wider uppercase">(12 Reviews)</span>
+                  </div>
                 </div>
-              )}
-            </div>
-
-            {/* Product Details */}
-            <div className="flex flex-col justify-center animate-in fade-in slide-in-from-right-8 duration-700 delay-150 py-8">
-              <span className="text-accent tracking-[0.2em] text-xs uppercase mb-4 font-medium block">{product.collection}</span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif mb-4 uppercase tracking-wider">{product.name}</h1>
-              
-              <div className="flex items-center gap-4 mb-8 pb-8 border-b border-border/50">
-                <p className="text-2xl text-primary font-medium">
-                  {product.currency} {product.price}
+                
+                <p className="text-xs md:text-sm text-black/70 leading-relaxed font-light mt-6 border-t border-black/5 pt-6">
+                  {product.description}
                 </p>
-                <div className="flex items-center gap-1 text-accent ml-auto">
-                  <Star size={16} fill="currentColor" />
-                  <Star size={16} fill="currentColor" />
-                  <Star size={16} fill="currentColor" />
-                  <Star size={16} fill="currentColor" />
-                  <Star size={16} fill="currentColor" />
-                  <span className="text-foreground/50 text-sm ml-2 font-sans tracking-wide">(12 Reviews)</span>
-                </div>
               </div>
 
-              <p className="text-foreground/80 text-lg leading-relaxed mb-10 text-balance">
-                {product.description}
-                <br/><br/>
-                Crafted with meticulous attention to detail, this masterpiece embodies the essence of luxury and sophistication that Emirates Pride is renowned for.
-              </p>
-
-              {/* Add to Cart Actions */}
-              <div className="flex flex-col gap-6">
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center border border-border bg-white">
+              {/* Add to Cart Area */}
+              <div className="flex flex-col gap-4 mb-12">
+                <div className="flex items-stretch gap-4 h-12 md:h-14">
+                  <div className="flex items-center border border-black/20 bg-white w-28 md:w-32">
                     <button 
-                      className="p-4 text-foreground/60 hover:text-foreground hover:bg-muted transition-colors"
+                      className="px-3 py-2 md:px-4 text-black/50 hover:text-black transition-colors"
                       onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                      disabled={quantity <= 1}
-                      data-testid="button-decrease-qty"
                     >
-                      <Minus size={16} />
+                      <Minus size={14} strokeWidth={1} />
                     </button>
-                    <span className="w-12 text-center font-medium" data-testid="text-quantity">{quantity}</span>
+                    <span className="flex-1 text-center text-[11px] md:text-xs font-medium">{quantity}</span>
                     <button 
-                      className="p-4 text-foreground/60 hover:text-foreground hover:bg-muted transition-colors"
+                      className="px-3 py-2 md:px-4 text-black/50 hover:text-black transition-colors"
                       onClick={() => setQuantity(quantity + 1)}
-                      data-testid="button-increase-qty"
                     >
-                      <Plus size={16} />
+                      <Plus size={14} strokeWidth={1} />
                     </button>
                   </div>
                   
-                  <button 
-                    className="flex-1 bg-primary text-primary-foreground py-4 text-sm font-medium tracking-widest uppercase hover:bg-accent hover:text-accent-foreground transition-all duration-300 flex items-center justify-center gap-3"
-                    data-testid="button-add-to-cart"
-                  >
-                    <ShoppingBag size={18} />
+                  <button className="flex-1 bg-black text-white px-4 text-[9px] md:text-[10px] font-medium tracking-[0.2em] uppercase hover:bg-black/80 transition-colors text-center">
                     Add to Cart
                   </button>
                 </div>
                 
-                <div className="grid grid-cols-3 gap-4 pt-8 mt-8 border-t border-border/50 text-center">
-                  <div className="flex flex-col items-center gap-2">
-                    <span className="text-accent">✧</span>
-                    <span className="text-xs tracking-widest uppercase text-foreground/70">Complimentary<br/>Shipping</span>
+                {/* Brand Promises Grid */}
+                <div className="grid grid-cols-3 gap-2 mt-6 py-6 border-y border-black/5">
+                  <div className="flex flex-col items-center text-center gap-2">
+                    <Truck size={16} strokeWidth={1} className="text-black/60" />
+                    <span className="text-[8px] uppercase tracking-widest text-black/60 font-medium">Free<br/>Shipping</span>
                   </div>
-                  <div className="flex flex-col items-center gap-2 border-l border-r border-border/50">
-                    <span className="text-accent">✧</span>
-                    <span className="text-xs tracking-widest uppercase text-foreground/70">Luxury<br/>Packaging</span>
+                  <div className="flex flex-col items-center text-center gap-2 border-x border-black/5">
+                    <Box size={16} strokeWidth={1} className="text-black/60" />
+                    <span className="text-[8px] uppercase tracking-widest text-black/60 font-medium">Luxury<br/>Packaging</span>
                   </div>
-                  <div className="flex flex-col items-center gap-2">
-                    <span className="text-accent">✧</span>
-                    <span className="text-xs tracking-widest uppercase text-foreground/70">Secure<br/>Payment</span>
+                  <div className="flex flex-col items-center text-center gap-2">
+                    <ShieldCheck size={16} strokeWidth={1} className="text-black/60" />
+                    <span className="text-[8px] uppercase tracking-widest text-black/60 font-medium">100%<br/>Authentic</span>
                   </div>
                 </div>
               </div>
+
+              {/* Minimal Accordion Tabs */}
+              <div className="flex flex-col border-b border-black/10">
+                
+                {/* Description Tab */}
+                <div className="border-t border-black/10">
+                  <button 
+                    className="w-full py-5 flex justify-between items-center text-[9px] md:text-[10px] tracking-[0.2em] uppercase font-medium text-black"
+                    onClick={() => setActiveTab(activeTab === 'description' ? '' : 'description')}
+                  >
+                    <span>The Inspiration</span>
+                    {activeTab === 'description' ? <Minus size={14} strokeWidth={1}/> : <Plus size={14} strokeWidth={1}/>}
+                  </button>
+                  <div className={`overflow-hidden transition-all duration-500 ease-in-out ${activeTab === 'description' ? 'max-h-96 opacity-100 pb-5' : 'max-h-0 opacity-0'}`}>
+                    <p className="text-[11px] md:text-xs text-black/70 font-light leading-relaxed">
+                      Crafted with meticulous attention to detail, this masterpiece embodies the essence of luxury and sophistication that Emirates Pride is renowned for. The fragrance journey begins with vibrant top notes, settling into a rich, complex heart before revealing a long-lasting, profound base.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Notes Tab */}
+                <div className="border-t border-black/10">
+                  <button 
+                    className="w-full py-5 flex justify-between items-center text-[9px] md:text-[10px] tracking-[0.2em] uppercase font-medium text-black"
+                    onClick={() => setActiveTab(activeTab === 'notes' ? '' : 'notes')}
+                  >
+                    <span>Olfactory Notes</span>
+                    {activeTab === 'notes' ? <Minus size={14} strokeWidth={1}/> : <Plus size={14} strokeWidth={1}/>}
+                  </button>
+                  <div className={`overflow-hidden transition-all duration-500 ease-in-out ${activeTab === 'notes' ? 'max-h-96 opacity-100 pb-5' : 'max-h-0 opacity-0'}`}>
+                    <div className="flex flex-col gap-3 text-[11px] md:text-xs text-black/70 font-light">
+                      <div className="flex border-b border-black/5 pb-2">
+                        <span className="w-24 font-medium text-black uppercase tracking-wider text-[9px]">Top:</span>
+                        <span>Bergamot, Saffron, Pink Pepper</span>
+                      </div>
+                      <div className="flex border-b border-black/5 pb-2">
+                        <span className="w-24 font-medium text-black uppercase tracking-wider text-[9px]">Heart:</span>
+                        <span>Rose, Jasmine, Cedarwood</span>
+                      </div>
+                      <div className="flex">
+                        <span className="w-24 font-medium text-black uppercase tracking-wider text-[9px]">Base:</span>
+                        <span>Oud, Amber, Vanilla, Musk</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Delivery Tab */}
+                <div className="border-t border-black/10">
+                  <button 
+                    className="w-full py-5 flex justify-between items-center text-[9px] md:text-[10px] tracking-[0.2em] uppercase font-medium text-black"
+                    onClick={() => setActiveTab(activeTab === 'delivery' ? '' : 'delivery')}
+                  >
+                    <span>Delivery & Returns</span>
+                    {activeTab === 'delivery' ? <Minus size={14} strokeWidth={1}/> : <Plus size={14} strokeWidth={1}/>}
+                  </button>
+                  <div className={`overflow-hidden transition-all duration-500 ease-in-out ${activeTab === 'delivery' ? 'max-h-96 opacity-100 pb-5' : 'max-h-0 opacity-0'}`}>
+                    <p className="text-[11px] md:text-xs text-black/70 font-light leading-relaxed">
+                      Enjoy complimentary standard shipping on all orders over AED 1500. Every order is carefully packed in our signature luxurious gift wrapping. You may return any unopened item within 14 days of delivery.
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+
             </div>
+            
+            {/* Lifestyle Image placed at bottom of right column if it exists */}
+            {product.hoverImage && (
+              <div className="w-full h-[40vh] md:h-[60vh] mt-auto relative">
+                <img src={product.hoverImage} className="w-full h-full object-cover" alt="Lifestyle context" />
+              </div>
+            )}
           </div>
+
         </div>
       </main>
 
