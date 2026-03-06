@@ -145,7 +145,7 @@ export default function Home() {
                       <img 
                         src={product.image} 
                         alt={product.name} 
-                        className="absolute inset-0 w-full h-full object-contain p-4 md:p-6 mix-blend-multiply z-10 transition-transform duration-1000 group-hover:scale-105"
+                        className="absolute inset-0 w-full h-full object-cover z-10 transition-transform duration-1000 group-hover:scale-105"
                       />
                       {product.hoverImage && (
                         <div className="absolute inset-0 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 overflow-hidden hidden md:block">
@@ -173,7 +173,7 @@ export default function Home() {
                       <img 
                         src={product.image} 
                         alt={product.name} 
-                        className="absolute inset-0 w-full h-full object-contain p-4 md:p-6 mix-blend-multiply z-10 transition-transform duration-1000 group-hover:scale-105"
+                        className="absolute inset-0 w-full h-full object-cover z-10 transition-transform duration-1000 group-hover:scale-105"
                       />
                       {product.hoverImage && (
                         <div className="absolute inset-0 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 overflow-hidden hidden md:block">
@@ -316,7 +316,7 @@ function CreativeProductCard({ product }: { product: any }) {
           <img 
             src={product.image} 
             alt={product.name} 
-            className="absolute inset-0 w-full h-full object-contain p-2 md:p-6 mix-blend-multiply z-10 transition-transform duration-1000 group-hover:scale-105"
+            className="absolute inset-0 w-full h-full object-cover z-10 transition-transform duration-1000 group-hover:scale-105"
           />
           {product.hoverImage && (
             <div className="absolute inset-0 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 overflow-hidden hidden md:block">
