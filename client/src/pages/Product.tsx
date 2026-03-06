@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "wouter";
-import { Minus, Plus, ChevronDown, Star, Truck, ShieldCheck, Box } from "lucide-react";
+import { Minus, Plus, ChevronDown, Star, Truck, ShieldCheck, Box, Maximize2, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { gsap } from "gsap";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -12,6 +12,7 @@ export default function Product() {
   const product = products.find(p => p.id === id);
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState("description");
+  const [fullscreenIndex, setFullscreenIndex] = useState<number | null>(null);
   
   const detailsColRef = useRef<HTMLDivElement>(null);
 
@@ -54,14 +55,21 @@ export default function Product() {
               {gallery.map((img, i) => (
                 <div 
                   key={i} 
-                  className="bg-[#f5f5f5] flex items-center justify-center p-6 md:p-12 lg:p-16 aspect-[3/4] pl-[0px] pr-[0px] pt-[0px] pb-[0px]"
+                  className="bg-[#f5f5f5] relative aspect-[3/4] overflow-hidden group/img cursor-pointer"
+                  onClick={() => setFullscreenIndex(i)}
                 >
                   <img 
                     src={img} 
                     alt={`${product.name} - ${i + 1}`} 
-                    className="w-full h-full object-contain mix-blend-multiply"
+                    className="w-full h-full object-cover"
                     data-testid={`img-product-${i}`}
                   />
+                  <button 
+                    className="absolute top-3 right-3 md:top-4 md:right-4 w-8 h-8 md:w-9 md:h-9 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 text-black/60 hover:text-black hover:bg-white"
+                    data-testid={`button-fullscreen-${i}`}
+                  >
+                    <Maximize2 size={14} strokeWidth={1.5} />
+                  </button>
                 </div>
               ))}
             </div>
@@ -265,6 +273,57 @@ export default function Product() {
           Add to Cart — {product.currency} {product.price}
         </button>
       </div>
+      {fullscreenIndex !== null && (
+        <div 
+          className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center"
+          onClick={() => setFullscreenIndex(null)}
+        >
+          <button 
+            className="absolute top-4 right-4 md:top-6 md:right-6 w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white/80 hover:text-white hover:bg-white/20 transition-colors z-10"
+            onClick={() => setFullscreenIndex(null)}
+            data-testid="button-close-fullscreen"
+          >
+            <X size={20} strokeWidth={1.5} />
+          </button>
+
+          {gallery.length > 1 && (
+            <>
+              <button 
+                className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white/80 hover:text-white hover:bg-white/20 transition-colors z-10"
+                onClick={(e) => { e.stopPropagation(); setFullscreenIndex((fullscreenIndex - 1 + gallery.length) % gallery.length); }}
+                data-testid="button-fullscreen-prev"
+              >
+                <ChevronLeft size={20} strokeWidth={1.5} />
+              </button>
+              <button 
+                className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white/80 hover:text-white hover:bg-white/20 transition-colors z-10"
+                onClick={(e) => { e.stopPropagation(); setFullscreenIndex((fullscreenIndex + 1) % gallery.length); }}
+                data-testid="button-fullscreen-next"
+              >
+                <ChevronRight size={20} strokeWidth={1.5} />
+              </button>
+            </>
+          )}
+
+          <img 
+            src={gallery[fullscreenIndex]} 
+            alt={`${product.name} fullscreen`}
+            className="max-w-[90vw] max-h-[90vh] object-contain"
+            onClick={(e) => e.stopPropagation()}
+          />
+
+          <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2">
+            {gallery.map((_, i) => (
+              <button 
+                key={i}
+                className={`w-2 h-2 rounded-full transition-all ${i === fullscreenIndex ? 'bg-[#c9a96e] scale-125' : 'bg-white/30 hover:bg-white/60'}`}
+                onClick={(e) => { e.stopPropagation(); setFullscreenIndex(i); }}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
       <Footer />
     </div>
   );
