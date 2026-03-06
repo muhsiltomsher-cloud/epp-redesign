@@ -70,7 +70,7 @@ export default function Navbar() {
       <header 
         className={`fixed top-0 w-full z-50 transition-all duration-500 ease-in-out ${
           isDarkText
-            ? "bg-white/95 backdrop-blur-md shadow-[0_1px_0_rgba(0,0,0,0.04)]" 
+            ? "bg-white/60 backdrop-blur-xl shadow-[0_1px_0_rgba(0,0,0,0.03)]" 
             : "bg-transparent"
         }`}
         onMouseEnter={() => setIsHoveringNav(true)}
