@@ -52,7 +52,7 @@ export default function Navbar() {
           </div>
         </div>
         
-        <div className="container mx-auto px-4 md:px-8 relative">
+        <div className="container mx-auto px-4 md:px-8 relative text-[18px] font-medium pl-[-1px] pr-[-1px]">
           <div className={`flex items-center justify-between transition-all duration-500 ${isScrolled ? "h-[60px] md:h-[70px]" : "h-[60px] md:h-[90px]"}`}>
             
             {/* Mobile Menu Button */}
@@ -224,7 +224,6 @@ export default function Navbar() {
           </div>
         </div>
       </header>
-
       {/* Slide-out Cart Drawer */}
       {isCartOpen && (
         <div className="fixed inset-0 z-[100] overflow-hidden">
