@@ -134,8 +134,8 @@ export default function Home() {
           
         </section>
 
-        <section ref={galleryRef} className="py-10 md:py-20 bg-[#fafafa] px-4 md:px-8">
-          <div className="text-center mb-10 md:mb-16">
+        <section ref={galleryRef} className="py-6 md:py-12 bg-[#fafafa] px-4 md:px-8">
+          <div className="text-center mb-6 md:mb-10">
             <h2 className="text-[9px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-black/50 mb-2">Explore</h2>
             <h3 className="text-2xl md:text-4xl font-serif">A World of Fragrance</h3>
           </div>
@@ -251,8 +251,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-8 md:py-14 px-4 md:px-8 container mx-auto bg-white overflow-hidden">
-          <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-6 md:mb-10 border-b border-black/10 pb-4 md:pb-6 text-center md:text-left">
+        <section className="py-6 md:py-10 px-4 md:px-8 container mx-auto bg-white overflow-hidden">
+          <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-4 md:mb-8 border-b border-black/10 pb-3 md:pb-5 text-center md:text-left">
             <div>
               <h2 className="text-[9px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-black/50 mb-2 md:mb-3">Masterpieces</h2>
               <h3 className="text-2xl md:text-4xl font-serif text-black">New & Trending</h3>
@@ -288,16 +288,16 @@ export default function Home() {
           <div className="absolute inset-0 bg-black/20"></div>
         </section>
 
-        <section ref={brandRef} className="py-10 md:py-20 px-6 text-center max-w-4xl mx-auto bg-white">
+        <section ref={brandRef} className="py-6 md:py-12 px-6 text-center max-w-4xl mx-auto bg-white">
           <p className="text-lg md:text-3xl lg:text-4xl font-serif text-black leading-relaxed md:leading-tight text-balance font-light">
             Dedicated to the creation of highly original, artisan fragrances. We source the finest ingredients globally to craft scents that evoke deep emotions and lasting memories.
           </p>
         </section>
 
-        <section className="py-10 md:py-16 px-4 md:px-8 bg-black text-white">
+        <section className="py-6 md:py-12 px-4 md:px-8 bg-black text-white">
           <div className="container mx-auto">
-            <h2 className="text-[9px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-center text-white/50 mb-2 md:mb-4">The Experience</h2>
-            <h3 className="text-2xl md:text-4xl font-serif text-center mb-10 md:mb-16">Exclusively For You</h3>
+            <h2 className="text-[9px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-center text-white/50 mb-2 md:mb-3">The Experience</h2>
+            <h3 className="text-2xl md:text-4xl font-serif text-center mb-6 md:mb-10">Exclusively For You</h3>
             
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 md:gap-x-8 gap-y-8 md:gap-y-12">
               <ServiceCard 
