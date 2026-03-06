@@ -18,6 +18,7 @@ export default function Home() {
   const brandRef = useRef<HTMLDivElement>(null);
   const pinnedSectionRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
+  const bloomBannerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let ctx = gsap.context(() => {
@@ -88,6 +89,24 @@ export default function Home() {
             scrollTrigger: {
               trigger: galleryRef.current,
               start: "top 80%",
+            }
+          }
+        );
+      }
+
+      if (bloomBannerRef.current) {
+        const bannerImg = bloomBannerRef.current.querySelector('.bloom-banner-img');
+        gsap.fromTo(bannerImg,
+          { y: "-15%", scale: 1.15 },
+          {
+            y: "15%",
+            scale: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: bloomBannerRef.current,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
             }
           }
         );
@@ -232,14 +251,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section ref={brandRef} className="py-10 md:py-20 px-6 text-center max-w-4xl mx-auto bg-white">
-          <p className="text-lg md:text-3xl lg:text-4xl font-serif text-black leading-relaxed md:leading-tight text-balance font-light">
-            Dedicated to the creation of highly original, artisan fragrances. We source the finest ingredients globally to craft scents that evoke deep emotions and lasting memories.
-          </p>
-        </section>
-
-        <section className="py-10 md:py-20 px-4 md:px-8 container mx-auto bg-white overflow-hidden">
-          <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-10 md:mb-16 border-b border-black/10 pb-4 md:pb-6 text-center md:text-left">
+        <section className="py-8 md:py-14 px-4 md:px-8 container mx-auto bg-white overflow-hidden">
+          <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-6 md:mb-10 border-b border-black/10 pb-4 md:pb-6 text-center md:text-left">
             <div>
               <h2 className="text-[9px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-black/50 mb-2 md:mb-3">Masterpieces</h2>
               <h3 className="text-2xl md:text-4xl font-serif text-black">New & Trending</h3>
@@ -251,13 +264,13 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-3 md:gap-x-6 gap-y-10 md:gap-y-16">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-2 md:gap-x-4 gap-y-6 md:gap-y-10">
             {newArrivals.map((product) => (
               <CreativeProductCard key={product.id} product={product} />
             ))}
           </div>
           
-          <div className="mt-12 text-center md:hidden">
+          <div className="mt-8 text-center md:hidden">
             <Link href="/collection">
               <span className="inline-block text-[9px] font-medium tracking-[0.2em] uppercase hover:text-black/60 transition-colors cursor-pointer border-b border-black pb-1">
                 View All Collections
@@ -266,7 +279,20 @@ export default function Home() {
           </div>
         </section>
 
-        <div className="hidden md:block h-8 bg-white"></div>
+        <section ref={bloomBannerRef} className="relative w-full h-[50vh] md:h-[70vh] overflow-hidden">
+          <img 
+            src="https://emiratespride.com/ae/wp-content/uploads/sites/10/2025/10/BLOOM-AR-scaled.webp" 
+            alt="Bloom Collection" 
+            className="bloom-banner-img absolute inset-0 w-full h-[130%] object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-black/20"></div>
+        </section>
+
+        <section ref={brandRef} className="py-10 md:py-20 px-6 text-center max-w-4xl mx-auto bg-white">
+          <p className="text-lg md:text-3xl lg:text-4xl font-serif text-black leading-relaxed md:leading-tight text-balance font-light">
+            Dedicated to the creation of highly original, artisan fragrances. We source the finest ingredients globally to craft scents that evoke deep emotions and lasting memories.
+          </p>
+        </section>
 
         <section className="py-10 md:py-16 px-4 md:px-8 bg-black text-white">
           <div className="container mx-auto">
@@ -312,7 +338,7 @@ function CreativeProductCard({ product }: { product: any }) {
   return (
     <div className="group flex flex-col w-full cursor-pointer" data-testid={`card-product-${product.id}`}>
       <Link href={`/product/${product.id}`}>
-        <div className="block relative aspect-[3/4] mb-3 md:mb-4 overflow-hidden bg-[#f5f5f5]">
+        <div className="block relative aspect-[3/5] mb-3 md:mb-4 overflow-hidden bg-[#f5f5f5]">
           <img 
             src={product.image} 
             alt={product.name} 
