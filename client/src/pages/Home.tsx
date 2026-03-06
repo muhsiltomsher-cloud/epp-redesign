@@ -115,12 +115,6 @@ export default function Home() {
           
         </section>
 
-        <section ref={brandRef} className="py-16 md:py-32 px-6 text-center max-w-4xl mx-auto bg-white">
-          <p className="text-lg md:text-3xl lg:text-4xl font-serif text-black leading-relaxed md:leading-tight text-balance font-light">
-            Dedicated to the creation of highly original, artisan fragrances. We source the finest ingredients globally to craft scents that evoke deep emotions and lasting memories.
-          </p>
-        </section>
-
         <section ref={pinnedSectionRef} className="relative w-full bg-[#fcfcfc] flex flex-col md:flex-row">
           <div className="w-full md:w-1/2 md:h-screen md:sticky top-0 pinned-content flex flex-col justify-center items-center md:items-start text-center md:text-left p-8 md:p-16 lg:p-24 z-10 relative bg-cover bg-center" style={{ backgroundImage: "url('https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1-1200x1490.webp')" }}>
             <div className="absolute inset-0 bg-black/50"></div>
@@ -196,7 +190,13 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-16 md:py-32 px-4 md:px-8 container mx-auto bg-white overflow-hidden">
+        <section ref={brandRef} className="py-10 md:py-20 px-6 text-center max-w-4xl mx-auto bg-white">
+          <p className="text-lg md:text-3xl lg:text-4xl font-serif text-black leading-relaxed md:leading-tight text-balance font-light">
+            Dedicated to the creation of highly original, artisan fragrances. We source the finest ingredients globally to craft scents that evoke deep emotions and lasting memories.
+          </p>
+        </section>
+
+        <section className="py-10 md:py-20 px-4 md:px-8 container mx-auto bg-white overflow-hidden">
           <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-10 md:mb-16 border-b border-black/10 pb-4 md:pb-6 text-center md:text-left">
             <div>
               <h2 className="text-[9px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-black/50 mb-2 md:mb-3">Masterpieces</h2>
@@ -224,7 +224,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section ref={galleryRef} className="py-16 md:py-32 bg-[#fafafa] px-4 md:px-8">
+        <section ref={galleryRef} className="py-10 md:py-20 bg-[#fafafa] px-4 md:px-8">
           <div className="text-center mb-10 md:mb-20">
             <h2 className="text-[9px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-black/50 mb-2">Explore</h2>
             <h3 className="text-2xl md:text-4xl font-serif">A World of Fragrance</h3>
@@ -266,9 +266,9 @@ export default function Home() {
           </div>
         </section>
         
-        <div className="hidden md:block h-32 bg-[#fafafa]"></div>
+        <div className="hidden md:block h-16 bg-[#fafafa]"></div>
 
-        <section className="py-16 md:py-24 px-4 md:px-8 bg-black text-white">
+        <section className="py-10 md:py-16 px-4 md:px-8 bg-black text-white">
           <div className="container mx-auto">
             <h2 className="text-[9px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-center text-white/50 mb-2 md:mb-4">The Experience</h2>
             <h3 className="text-2xl md:text-4xl font-serif text-center mb-10 md:mb-16">Exclusively For You</h3>
