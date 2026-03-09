@@ -246,9 +246,11 @@ export default function Home() {
               </Link>
             </div>
 
-            <div className="grid grid-cols-2 gap-x-2.5 gap-y-4 md:hidden">
-              {newArrivals.slice(0, 4).map((product) => (
-                <CreativeProductCard key={product.id} product={product} />
+            <div className="flex md:hidden gap-3 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4 hide-scrollbar">
+              {newArrivals.slice(0, 6).map((product) => (
+                <div key={product.id} className="flex-shrink-0 w-[42vw] snap-start">
+                  <CreativeProductCard product={product} />
+                </div>
               ))}
             </div>
 
