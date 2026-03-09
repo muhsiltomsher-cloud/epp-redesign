@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { products, categories } from "@/lib/data";
-import { getRecentlyViewedIds } from "@/lib/recentlyViewed";
+
 import { addToCart } from "@/lib/cart";
 import { toggleWishlist, isInWishlist } from "@/lib/wishlist";
 
@@ -17,7 +17,6 @@ export default function Home() {
   const featureProduct = products.find(p => p.name.includes("Future Bakhoor")) || products[0];
   const featureProduct2 = products.find(p => p.name.includes("Hidden Leather")) || products[1];
 
-  const [recentlyViewed, setRecentlyViewed] = useState<typeof products>([]);
 
   const heroRef = useRef<HTMLDivElement>(null);
   const brandRef = useRef<HTMLDivElement>(null);
@@ -143,14 +142,6 @@ export default function Home() {
     });
 
     return () => ctx.revert();
-  }, []);
-
-  useEffect(() => {
-    const ids = getRecentlyViewedIds();
-    const viewed = ids
-      .map(id => products.find(p => p.id === id))
-      .filter(Boolean) as typeof products;
-    setRecentlyViewed(viewed);
   }, []);
 
   return (
@@ -314,37 +305,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-        {recentlyViewed.length > 0 && (
-          <section className="py-6 md:py-10 lg:py-14 px-4 md:px-10 lg:px-20 xl:px-28 bg-[#fafafa] overflow-hidden">
-            <div className="flex justify-between items-end mb-4 md:mb-6 lg:mb-8 border-b border-black/10 pb-2.5 md:pb-4">
-              <div>
-                <h2 className="text-[11px] md:text-xs font-sans font-semibold tracking-[0.3em] uppercase text-[#8a6d3b] mb-1 md:mb-2">Your Journey</h2>
-                <h3 className="text-base md:text-2xl lg:text-3xl font-serif text-black">Recently Viewed</h3>
-              </div>
-            </div>
-            <div className="flex md:hidden gap-3 overflow-x-auto snap-x snap-mandatory pb-2 -mx-4 px-4 hide-scrollbar">
-              {recentlyViewed.slice(0, 6).map((product) => (
-                <Link key={product.id} href={`/product/${product.id}`}>
-                  <div className="group flex flex-col w-[40vw] flex-shrink-0 snap-start cursor-pointer" data-testid={`card-recent-${product.id}`}>
-                    <div className="relative aspect-[3/5] mb-2 overflow-hidden bg-[#f5f5f5]">
-                      <img src={product.image} alt={product.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                    </div>
-                    <div className="flex flex-col items-center text-center">
-                      <span className="text-sm font-serif mb-0.5 text-black line-clamp-1">{product.name}</span>
-                      <p className="text-xs font-medium text-black/70">{product.currency} {product.price}</p>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-            <div className="hidden md:grid md:grid-cols-4 gap-x-4 lg:gap-x-6 gap-y-8">
-              {recentlyViewed.slice(0, 4).map((product) => (
-                <CreativeProductCard key={product.id} product={product} />
-              ))}
-            </div>
-          </section>
-        )}
 
         <section ref={bloomBannerRef} className="relative w-full overflow-hidden">
           <img 
