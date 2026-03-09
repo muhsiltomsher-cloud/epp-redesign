@@ -134,11 +134,16 @@ export default function Home() {
       <main className="flex-1">
         <section ref={heroRef} className="relative h-[70svh] md:h-[75vh] w-full flex flex-col justify-end pb-8 md:pb-24 lg:pb-32 px-4 md:px-10 lg:px-20 xl:px-28 overflow-hidden bg-black">
           <div className="absolute inset-0 w-full h-full">
-            <img 
-              src="https://emiratespride.com/wp-content/uploads/2026/02/Desktop-Banner-ENG-scaled.jpg" 
-              alt="Emirates Pride Perfumes" 
-              className="hero-image w-full h-[130%] object-cover object-center absolute -top-[15%]"
-            />
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              poster="https://emiratespride.com/wp-content/uploads/2026/02/Desktop-Banner-ENG-scaled.jpg"
+              className="hero-image w-full h-full object-cover object-center absolute inset-0"
+            >
+              <source src="https://videos.pexels.com/video-files/5765297/5765297-uhd_2560_1440_25fps.mp4" type="video/mp4" />
+            </video>
           </div>
         </section>
 
