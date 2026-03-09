@@ -79,7 +79,7 @@ export default function Navbar() {
         <div className={`transition-all duration-500 overflow-hidden hidden md:block ${
           isScrolled ? "h-0 opacity-0" : "h-[32px] opacity-100 bg-[#1a1308] text-[#c9a96e]"
         }`}>
-          <div className="px-5 md:px-10 lg:px-20 xl:px-28 h-full flex items-center justify-center text-[12px] tracking-[0.2em] uppercase font-light">
+          <div className="px-5 md:px-10 lg:px-20 xl:px-28 h-full flex items-center justify-center text-[12px] tracking-[0.2em] uppercase font-light text-[#ffffff]">
             Free Shipping Worldwide on all orders above AED 1500
           </div>
         </div>
@@ -332,7 +332,6 @@ export default function Navbar() {
           </div>
         </div>
       </header>
-
       {!location.startsWith("/product/") && (
         <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-white border-t border-black/10 safe-area-bottom">
           <div className="flex items-center justify-around h-14">
@@ -367,7 +366,6 @@ export default function Navbar() {
           </div>
         </div>
       )}
-
       {isCartOpen && (
         <div className="fixed inset-0 z-[100] overflow-hidden">
           <div 
