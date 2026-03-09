@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { products, categories } from "@/lib/data";
+import heroVideoUrl from "@assets/Image_to_Slow_Motion_Video_1773040640384.mp4";
 
 import { addToCart } from "@/lib/cart";
 import { toggleWishlist, isInWishlist } from "@/lib/wishlist";
@@ -159,7 +160,7 @@ export default function Home() {
               poster="https://emiratespride.com/wp-content/uploads/2026/02/Desktop-Banner-ENG-scaled.jpg"
               className="hero-image w-full h-full object-cover object-center absolute inset-0"
             >
-              <source src="https://videos.pexels.com/video-files/5765297/5765297-uhd_2560_1440_25fps.mp4" type="video/mp4" />
+              <source src={heroVideoUrl} type="video/mp4" />
             </video>
           </div>
         </section>
