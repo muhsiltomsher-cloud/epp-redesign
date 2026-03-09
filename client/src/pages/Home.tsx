@@ -149,7 +149,7 @@ export default function Home() {
 
         <section ref={galleryRef} className="py-4 md:py-8 lg:py-10 bg-[#e6cebb33] px-4 md:px-10 lg:px-20 xl:px-28">
           <div className="text-center mb-4 md:mb-8">
-            <h2 className="text-[11px] md:text-xs font-semibold tracking-[0.3em] uppercase text-[#8a6d3b] mb-2 md:mb-3">Explore</h2>
+            <h2 className="text-[11px] md:text-xs font-sans font-semibold tracking-[0.3em] uppercase text-[#8a6d3b] mb-2 md:mb-3">Explore</h2>
             <h3 className="text-lg md:text-2xl lg:text-3xl font-serif">A World of Fragrance</h3>
           </div>
           
@@ -260,7 +260,7 @@ export default function Home() {
         <section className="py-6 md:py-10 lg:py-14 px-4 md:px-10 lg:px-20 xl:px-28 bg-white overflow-hidden">
           <div className="flex justify-between items-end mb-4 md:mb-6 lg:mb-8 border-b border-black/10 pb-2.5 md:pb-4">
             <div>
-              <h2 className="text-[11px] md:text-xs font-semibold tracking-[0.3em] uppercase text-[#8a6d3b] mb-1 md:mb-2">Masterpieces</h2>
+              <h2 className="text-[11px] md:text-xs font-sans font-semibold tracking-[0.3em] uppercase text-[#8a6d3b] mb-1 md:mb-2">Masterpieces</h2>
               <h3 className="text-base md:text-2xl lg:text-3xl font-serif text-black">New & Trending</h3>
             </div>
             <Link href="/collection">
@@ -281,7 +281,7 @@ export default function Home() {
           <section className="py-6 md:py-10 lg:py-14 px-4 md:px-10 lg:px-20 xl:px-28 bg-[#fafafa] overflow-hidden">
             <div className="flex justify-between items-end mb-4 md:mb-6 lg:mb-8 border-b border-black/10 pb-2.5 md:pb-4">
               <div>
-                <h2 className="text-[11px] md:text-xs font-semibold tracking-[0.3em] uppercase text-[#8a6d3b] mb-1 md:mb-2">Your Journey</h2>
+                <h2 className="text-[11px] md:text-xs font-sans font-semibold tracking-[0.3em] uppercase text-[#8a6d3b] mb-1 md:mb-2">Your Journey</h2>
                 <h3 className="text-base md:text-2xl lg:text-3xl font-serif text-black">Recently Viewed</h3>
               </div>
             </div>
@@ -321,7 +321,7 @@ export default function Home() {
           <div className="relative z-10 flex flex-col lg:flex-row items-center gap-6 md:gap-10 lg:gap-16 max-w-7xl mx-auto">
             <div className="flex-1 text-center lg:text-left">
               <div className="w-10 md:w-12 h-[1px] bg-[#c9a96e] mb-4 md:mb-6 mx-auto lg:mx-0"></div>
-              <h2 className="text-[11px] md:text-xs font-semibold tracking-[0.3em] uppercase text-[#8a6d3b] mb-3 md:mb-6">Our Philosophy</h2>
+              <h2 className="text-[11px] md:text-xs font-sans font-semibold tracking-[0.3em] uppercase text-[#8a6d3b] mb-3 md:mb-6">Our Philosophy</h2>
               <p className="text-base md:text-xl lg:text-2xl font-serif text-white leading-relaxed md:leading-snug text-balance font-light">
                 Dedicated to the creation of highly original, artisan fragrances.
               </p>
