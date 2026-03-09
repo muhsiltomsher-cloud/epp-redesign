@@ -85,7 +85,7 @@ export default function Navbar() {
         </div>
         
         <div className="px-4 md:px-10 lg:px-20 xl:px-28 relative text-[18px] font-medium">
-          <div className={`flex items-center justify-between transition-all duration-500 ${isScrolled ? "h-[52px] md:h-[70px]" : "h-[56px] md:h-[90px]"}`}>
+          <div className={`flex items-center justify-between transition-all duration-500 ${isScrolled ? "h-[44px] md:h-[56px]" : "h-[48px] md:h-[64px]"}`}>
             
             <button 
               className={`md:hidden p-2 -ml-2 transition-colors duration-300 ${
