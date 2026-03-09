@@ -156,12 +156,13 @@ export default function Home() {
           <div className="flex md:hidden gap-3 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4 hide-scrollbar">
             {categories.map((cat) => (
               <Link key={cat.name} href="/collection">
-                <div className="gallery-item group relative aspect-[3/4] w-[45vw] flex-shrink-0 snap-start overflow-hidden bg-muted cursor-pointer">
-                  <img src={cat.image} className="w-full h-full object-cover" alt={cat.name} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                  <div className="absolute bottom-4 left-4">
-                    <h3 className="text-white font-serif text-sm mb-1 line-clamp-1">{cat.name}</h3>
-                    <span className="text-[10px] tracking-[0.2em] uppercase text-[#8a6d3b]">Explore</span>
+                <div className="gallery-item group w-[45vw] flex-shrink-0 snap-start cursor-pointer">
+                  <div className="relative aspect-[3/4] overflow-hidden bg-muted">
+                    <img src={cat.image} className="w-full h-full object-cover" alt={cat.name} />
+                    <div className="absolute inset-0 bg-black/10"></div>
+                  </div>
+                  <div className="pt-2 text-center">
+                    <h3 className="text-black font-serif text-sm line-clamp-1">{cat.name}</h3>
                   </div>
                 </div>
               </Link>
@@ -171,12 +172,13 @@ export default function Home() {
           <div className="hidden md:grid md:grid-cols-6 gap-3 lg:gap-4">
             {categories.map((cat) => (
               <Link key={cat.name} href="/collection">
-                <div className="gallery-item group relative aspect-[3/4] overflow-hidden bg-muted cursor-pointer">
-                  <img src={cat.image} className="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110" alt={cat.name} />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-700"></div>
-                  <div className="absolute bottom-5 lg:bottom-6 left-5 lg:left-6">
-                    <h3 className="text-white font-serif text-sm lg:text-base mb-1 leading-tight">{cat.name}</h3>
-                    <div className="w-0 h-[1px] bg-[#c9a96e] group-hover:w-full transition-all duration-700 ease-out"></div>
+                <div className="gallery-item group cursor-pointer">
+                  <div className="relative aspect-[3/4] overflow-hidden bg-muted">
+                    <img src={cat.image} className="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110" alt={cat.name} />
+                    <div className="absolute inset-0 bg-black/10 group-hover:bg-black/25 transition-colors duration-700"></div>
+                  </div>
+                  <div className="pt-3 text-center">
+                    <h3 className="text-black font-serif text-sm lg:text-base leading-tight group-hover:text-[#8a6d3b] transition-colors">{cat.name}</h3>
                   </div>
                 </div>
               </Link>
