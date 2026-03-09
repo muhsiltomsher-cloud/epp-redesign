@@ -150,7 +150,7 @@ export default function Home() {
         <section ref={galleryRef} className="py-5 md:py-10 lg:py-14 bg-[#e6cebb33] px-4 md:px-10 lg:px-20 xl:px-28">
           <div className="text-center mb-6 md:mb-14">
             <h2 className="text-[8px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-2 md:mb-3">Explore</h2>
-            <h3 className="text-xl md:text-4xl lg:text-5xl font-serif">A World of Fragrance</h3>
+            <h3 className="text-lg md:text-2xl lg:text-3xl font-serif">A World of Fragrance</h3>
           </div>
           
           <div className="flex md:hidden gap-3 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4 hide-scrollbar">
@@ -175,7 +175,7 @@ export default function Home() {
                   <img src={cat.image} className="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110" alt={cat.name} />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-700"></div>
                   <div className="absolute bottom-5 lg:bottom-6 left-5 lg:left-6">
-                    <h3 className="text-white font-serif text-lg lg:text-xl mb-1 leading-tight">{cat.name}</h3>
+                    <h3 className="text-white font-serif text-sm lg:text-base mb-1 leading-tight">{cat.name}</h3>
                     <div className="w-0 h-[1px] bg-[#c9a96e] group-hover:w-full transition-all duration-700 ease-out"></div>
                   </div>
                 </div>
@@ -188,8 +188,8 @@ export default function Home() {
           <div className="w-full md:w-1/2 md:h-screen md:sticky top-0 pinned-content flex flex-col justify-center items-center md:items-start text-center md:text-left px-6 py-14 md:p-14 lg:p-20 xl:p-28 z-10 relative bg-cover bg-center min-h-[100svh] md:min-h-0" style={{ backgroundImage: "url('https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1-1200x1490.webp')" }}>
             <div className="absolute inset-0 bg-black/55 md:bg-black/50"></div>
             <span className="relative z-10 text-[8px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-2 md:mb-5 lg:mb-7 md:border-l md:border-[#c9a96e]/50 md:pl-4">Signature Blend</span>
-            <h2 className="relative z-10 text-2xl md:text-5xl lg:text-6xl xl:text-7xl font-serif mb-2.5 md:mb-5 lg:mb-7 leading-tight text-white">{featureProduct2.name}</h2>
-            <p className="relative z-10 text-white/70 text-[11px] md:text-sm lg:text-base leading-relaxed mb-5 md:mb-8 lg:mb-12 max-w-xs md:max-w-md font-light">
+            <h2 className="relative z-10 text-xl md:text-3xl lg:text-4xl xl:text-5xl font-serif mb-2.5 md:mb-5 lg:mb-7 leading-tight text-white">{featureProduct2.name}</h2>
+            <p className="relative z-10 text-white/70 text-[10px] md:text-xs lg:text-sm leading-relaxed mb-5 md:mb-8 lg:mb-12 max-w-xs md:max-w-md font-light">
               A captivating journey into darkness. Discover a scent tailored to your most elegant moments.
             </p>
             <Link href={`/product/${featureProduct2.id}`}>
@@ -261,7 +261,7 @@ export default function Home() {
           <div className="flex justify-between items-end mb-5 md:mb-10 lg:mb-14 border-b border-black/10 pb-3 md:pb-6">
             <div>
               <h2 className="text-[8px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-1.5 md:mb-3">Masterpieces</h2>
-              <h3 className="text-lg md:text-4xl lg:text-5xl font-serif text-black">New & Trending</h3>
+              <h3 className="text-base md:text-2xl lg:text-3xl font-serif text-black">New & Trending</h3>
             </div>
             <Link href="/collection">
               <span className="text-[8px] md:text-[10px] font-medium tracking-[0.2em] uppercase text-black/40 hover:text-black/60 transition-colors cursor-pointer luxury-underline pb-1">
@@ -282,7 +282,7 @@ export default function Home() {
             <div className="flex justify-between items-end mb-5 md:mb-10 lg:mb-14 border-b border-black/10 pb-3 md:pb-6">
               <div>
                 <h2 className="text-[8px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-1.5 md:mb-3">Your Journey</h2>
-                <h3 className="text-lg md:text-4xl lg:text-5xl font-serif text-black">Recently Viewed</h3>
+                <h3 className="text-base md:text-2xl lg:text-3xl font-serif text-black">Recently Viewed</h3>
               </div>
             </div>
             <div className="flex md:hidden gap-3 overflow-x-auto snap-x snap-mandatory pb-2 -mx-4 px-4 hide-scrollbar">
@@ -322,10 +322,10 @@ export default function Home() {
             <div className="flex-1 text-center lg:text-left">
               <div className="w-10 md:w-12 h-[1px] bg-[#c9a96e] mb-4 md:mb-6 mx-auto lg:mx-0"></div>
               <h2 className="text-[8px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-3 md:mb-6">Our Philosophy</h2>
-              <p className="text-lg md:text-3xl lg:text-4xl font-serif text-white leading-relaxed md:leading-snug text-balance font-light">
+              <p className="text-base md:text-xl lg:text-2xl font-serif text-white leading-relaxed md:leading-snug text-balance font-light">
                 Dedicated to the creation of highly original, artisan fragrances.
               </p>
-              <p className="text-xs md:text-base text-white/50 font-light mt-3 md:mt-6 leading-relaxed max-w-xl mx-auto lg:mx-0">
+              <p className="text-[10px] md:text-sm text-white/50 font-light mt-3 md:mt-6 leading-relaxed max-w-xl mx-auto lg:mx-0">
                 We source the finest ingredients globally to craft scents that evoke deep emotions and lasting memories.
               </p>
             </div>
@@ -399,14 +399,14 @@ function CreativeProductCard({ product }: { product: any }) {
       
       <div className="flex flex-col items-center px-1 text-center">
         <Link href={`/product/${product.id}`}>
-          <span className="text-sm md:text-lg lg:text-xl font-serif mb-1 text-black hover:text-black/60 transition-colors cursor-pointer" data-testid={`text-product-name-${product.id}`}>
+          <span className="text-xs md:text-sm lg:text-base font-serif mb-1 text-black hover:text-black/60 transition-colors cursor-pointer" data-testid={`text-product-name-${product.id}`}>
             {product.name}
           </span>
         </Link>
         <span className="text-[7px] md:text-[8px] lg:text-[9px] tracking-[0.2em] uppercase text-black/40 mb-1 lg:mb-1.5 line-clamp-1">
           {product.collection}
         </span>
-        <p className="text-[10px] md:text-xs lg:text-sm font-medium text-black" data-testid={`text-price-${product.id}`}>
+        <p className="text-[9px] md:text-[11px] lg:text-xs font-medium text-black" data-testid={`text-price-${product.id}`}>
           {product.currency} {product.price}
         </p>
       </div>
