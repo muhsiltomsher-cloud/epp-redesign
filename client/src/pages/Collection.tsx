@@ -20,15 +20,15 @@ export default function Collection() {
     <div className="min-h-screen bg-white flex flex-col">
       <Navbar />
       <main className="flex-1 pt-[52px] md:pt-24">
-        <header className="bg-white py-4 md:py-10 lg:py-14 px-4 md:px-10 lg:px-20 xl:px-28 text-center border-b border-black/5">
-          <h1 className="text-xl md:text-3xl lg:text-4xl font-serif mb-2 md:mb-4 uppercase tracking-wider text-black animate-in fade-in slide-in-from-bottom-4" data-testid="text-collection-title">Our Collections</h1>
+        <header className="bg-white py-3 md:py-6 lg:py-8 px-4 md:px-10 lg:px-20 xl:px-28 text-center border-b border-black/5">
+          <h1 className="md:text-3xl lg:text-4xl font-serif mb-2 md:mb-4 uppercase tracking-wider text-black animate-in fade-in slide-in-from-bottom-4 text-[30px]" data-testid="text-collection-title">Our Collections</h1>
           <p className="text-black/50 max-w-2xl mx-auto text-[11px] md:text-sm lg:text-base font-light animate-in fade-in slide-in-from-bottom-6 delay-150">
             Explore our curated selection of masterful fragrances.
           </p>
         </header>
 
-        <section className="px-4 md:px-10 lg:px-20 xl:px-28 py-6 md:py-14 lg:py-20 pl-[112px] pr-[112px] pt-[40px] pb-[40px]">
-          <div className="flex flex-col md:flex-row justify-between items-center mb-5 md:mb-12 gap-4 md:gap-6 pb-4 md:pb-6 border-b border-black/5">
+        <section className="px-4 md:px-10 lg:px-20 xl:px-28 py-4 md:py-8 lg:py-10">
+          <div className="flex flex-col md:flex-row justify-between items-center mb-4 md:mb-6 gap-3 md:gap-4 pb-3 md:pb-4 border-b border-black/5">
             <div className="flex md:hidden items-center gap-4 overflow-x-auto w-full pb-1 hide-scrollbar">
               {CATEGORIES.map(category => (
                 <button
