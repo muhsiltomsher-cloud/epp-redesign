@@ -18,7 +18,7 @@ export default function Collection() {
     <div className="min-h-screen bg-white flex flex-col">
       <Navbar />
       <main className="flex-1 pt-[52px] md:pt-24">
-        <header className="bg-white py-8 md:py-20 lg:py-28 px-4 md:px-10 lg:px-20 xl:px-28 text-center border-b border-black/5 pt-[60px] pb-[60px]">
+        <header className="bg-white py-4 md:py-10 lg:py-14 px-4 md:px-10 lg:px-20 xl:px-28 text-center border-b border-black/5">
           <h1 className="text-[40px] md:text-5xl lg:text-6xl font-serif mb-2 md:mb-6 uppercase tracking-wider text-black animate-in fade-in slide-in-from-bottom-4" data-testid="text-collection-title">Our Collections</h1>
           <p className="text-black/50 max-w-2xl mx-auto text-[11px] md:text-sm lg:text-base font-light animate-in fade-in slide-in-from-bottom-6 delay-150">
             Explore our curated selection of masterful fragrances.
