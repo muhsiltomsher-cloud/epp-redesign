@@ -48,7 +48,7 @@ export default function Footer() {
 
             {/* Newsletter Col */}
             <div className="col-span-2 md:col-span-4 lg:col-span-3 flex flex-col gap-4 md:gap-5">
-              <h4 className="text-[8px] md:text-[9px] font-medium tracking-[0.2em] uppercase text-[#c9a96e]/50">Newsletter</h4>
+              <h4 className="text-[8px] md:text-[9px] font-medium tracking-[0.2em] uppercase text-[#ffffff80]">Newsletter</h4>
               <p className="text-white/50 text-[11px] md:text-xs leading-relaxed font-light">Join the house to receive exclusive access to new arrivals and limited editions.</p>
               <form className="flex flex-col mt-1 group relative border-b border-[#c9a96e]/30 focus-within:border-[#c9a96e] transition-colors pb-2">
                 <input 
