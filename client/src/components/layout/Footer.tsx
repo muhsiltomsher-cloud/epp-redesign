@@ -18,10 +18,10 @@ export default function Footer() {
                 Crafting exceptional fragrances that capture the essence of luxury, heritage, and modern elegance since 2011.
               </p>
               <div className="flex gap-5 mt-1 md:mt-2">
-                <a href="#" className="text-[#c9a96e]/50 hover:text-[#c9a96e] transition-colors duration-300"><Instagram size={16} strokeWidth={1}/></a>
-                <a href="#" className="text-[#c9a96e]/50 hover:text-[#c9a96e] transition-colors duration-300"><Facebook size={16} strokeWidth={1}/></a>
-                <a href="#" className="text-[#c9a96e]/50 hover:text-[#c9a96e] transition-colors duration-300"><Twitter size={16} strokeWidth={1}/></a>
-                <a href="#" className="text-[#c9a96e]/50 hover:text-[#c9a96e] transition-colors duration-300"><Youtube size={16} strokeWidth={1}/></a>
+                <a href="#" className="text-white/50 hover:text-white transition-colors duration-300"><Instagram size={16} strokeWidth={1}/></a>
+                <a href="#" className="text-white/50 hover:text-white transition-colors duration-300"><Facebook size={16} strokeWidth={1}/></a>
+                <a href="#" className="text-white/50 hover:text-white transition-colors duration-300"><Twitter size={16} strokeWidth={1}/></a>
+                <a href="#" className="text-white/50 hover:text-white transition-colors duration-300"><Youtube size={16} strokeWidth={1}/></a>
               </div>
             </div>
 
