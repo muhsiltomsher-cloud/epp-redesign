@@ -1,6 +1,6 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { Link } from "wouter";
-import { ChevronDown, Heart, ShoppingBag } from "lucide-react";
+import { ChevronDown, Heart, ShoppingBag, X } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { products } from "@/lib/data";
@@ -8,13 +8,47 @@ import { addToCart } from "@/lib/cart";
 import { toggleWishlist, isInWishlist } from "@/lib/wishlist";
 
 const CATEGORIES = ["All", "Oud & Dakhoon", "Gift Sets", "Perfume Collection"];
+const SORT_OPTIONS = [
+  { label: "Best Sellers", value: "best" },
+  { label: "Newest", value: "newest" },
+  { label: "Price: Low to High", value: "price-asc" },
+  { label: "Price: High to Low", value: "price-desc" },
+  { label: "Name: A - Z", value: "name-asc" },
+];
 
 export default function Collection() {
   const [activeCategory, setActiveCategory] = useState("All");
+  const [sortBy, setSortBy] = useState("best");
+  const [isSortOpen, setIsSortOpen] = useState(false);
+  const [isMobileSortOpen, setIsMobileSortOpen] = useState(false);
+  const sortRef = useRef<HTMLDivElement>(null);
 
-  const filteredProducts = activeCategory === "All" 
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (sortRef.current && !sortRef.current.contains(e.target as Node)) {
+        setIsSortOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const categoryFiltered = activeCategory === "All" 
     ? products 
     : products.filter(p => p.collection === activeCategory);
+
+  const filteredProducts = [...categoryFiltered].sort((a, b) => {
+    switch (sortBy) {
+      case "price-asc": return a.price - b.price;
+      case "price-desc": return b.price - a.price;
+      case "name-asc": return a.name.localeCompare(b.name);
+      case "newest": return 0;
+      case "best":
+      default: return 0;
+    }
+  });
+
+  const activeSortLabel = SORT_OPTIONS.find(o => o.value === sortBy)?.label || "Best Sellers";
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
@@ -29,22 +63,33 @@ export default function Collection() {
 
         <section className="px-4 md:px-10 lg:px-20 xl:px-28 py-4 md:py-8 lg:py-10">
           <div className="flex flex-col md:flex-row justify-between items-center mb-4 md:mb-6 gap-3 md:gap-4 pb-3 md:pb-4 border-b border-black/5">
-            <div className="flex md:hidden items-center gap-4 overflow-x-auto w-full pb-1 hide-scrollbar">
-              {CATEGORIES.map(category => (
-                <button
-                  key={category}
-                  onClick={() => setActiveCategory(category)}
-                  data-testid={`button-category-${category.toLowerCase().replace(/\s+/g, '-')}`}
-                  className={`text-[9px] tracking-[0.15em] uppercase transition-colors whitespace-nowrap py-1.5 ${
-                    activeCategory === category 
-                      ? 'text-[#c9a96e] font-medium border-b-2 border-[#c9a96e]' 
-                      : 'text-black/40'
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
+            <div className="flex md:hidden items-center justify-between w-full">
+              <div className="flex items-center gap-4 overflow-x-auto pb-1 hide-scrollbar flex-1">
+                {CATEGORIES.map(category => (
+                  <button
+                    key={category}
+                    onClick={() => setActiveCategory(category)}
+                    data-testid={`button-category-${category.toLowerCase().replace(/\s+/g, '-')}`}
+                    className={`text-[9px] tracking-[0.15em] uppercase transition-colors whitespace-nowrap py-1.5 ${
+                      activeCategory === category 
+                        ? 'text-[#c9a96e] font-medium border-b-2 border-[#c9a96e]' 
+                        : 'text-black/40'
+                    }`}
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
+              <button
+                onClick={() => setIsMobileSortOpen(true)}
+                className="flex items-center gap-1 text-[9px] tracking-[0.15em] uppercase text-black/50 ml-3 flex-shrink-0"
+                data-testid="button-sort-mobile"
+              >
+                Sort
+                <ChevronDown size={12} strokeWidth={1.5} />
+              </button>
             </div>
+
             <div className="hidden md:flex items-center gap-10 overflow-x-auto w-full md:w-auto pb-4 md:pb-0">
               {CATEGORIES.map(category => (
                 <button
@@ -62,11 +107,70 @@ export default function Collection() {
               ))}
             </div>
 
-            <div className="hidden md:flex items-center gap-2 text-[10px] tracking-[0.2em] uppercase text-black/60 cursor-pointer hover:text-black transition-colors group w-full md:w-auto justify-between md:justify-end py-4 md:py-0 border-b border-black/10 md:border-none">
-              <span className="group-hover:border-b group-hover:border-black pb-0.5">Sort By</span>
-              <ChevronDown size={14} strokeWidth={1} />
+            <div ref={sortRef} className="hidden md:block relative flex-shrink-0">
+              <button
+                onClick={() => setIsSortOpen(!isSortOpen)}
+                className="flex items-center gap-2 text-[10px] tracking-[0.2em] uppercase text-black/60 hover:text-black transition-colors"
+                data-testid="button-sort-desktop"
+              >
+                <span>{activeSortLabel}</span>
+                <ChevronDown size={14} strokeWidth={1} className={`transition-transform duration-300 ${isSortOpen ? "rotate-180" : ""}`} />
+              </button>
+
+              {isSortOpen && (
+                <div className="absolute right-0 top-full mt-3 w-52 bg-white border border-black/10 shadow-lg z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                  {SORT_OPTIONS.map(option => (
+                    <button
+                      key={option.value}
+                      onClick={() => { setSortBy(option.value); setIsSortOpen(false); }}
+                      data-testid={`button-sort-${option.value}`}
+                      className={`w-full text-left px-5 py-3 text-[10px] tracking-[0.15em] uppercase transition-colors ${
+                        sortBy === option.value
+                          ? "text-[#c9a96e] bg-[#c9a96e]/5 font-medium"
+                          : "text-black/60 hover:text-black hover:bg-black/[0.02]"
+                      }`}
+                    >
+                      {option.label}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
+
+          {isMobileSortOpen && (
+            <div className="fixed inset-0 z-50 md:hidden">
+              <div className="absolute inset-0 bg-black/40" onClick={() => setIsMobileSortOpen(false)}></div>
+              <div className="absolute bottom-0 left-0 right-0 bg-white rounded-t-2xl animate-in slide-in-from-bottom duration-300 pb-safe">
+                <div className="flex items-center justify-between px-5 py-4 border-b border-black/5">
+                  <h3 className="text-sm font-serif">Sort By</h3>
+                  <button onClick={() => setIsMobileSortOpen(false)} data-testid="button-sort-close">
+                    <X size={18} strokeWidth={1.5} className="text-black/40" />
+                  </button>
+                </div>
+                <div className="py-2">
+                  {SORT_OPTIONS.map(option => (
+                    <button
+                      key={option.value}
+                      onClick={() => { setSortBy(option.value); setIsMobileSortOpen(false); }}
+                      data-testid={`button-sort-mobile-${option.value}`}
+                      className={`w-full text-left px-5 py-3.5 text-[11px] tracking-[0.15em] uppercase transition-colors flex items-center justify-between ${
+                        sortBy === option.value
+                          ? "text-[#c9a96e] font-medium"
+                          : "text-black/60"
+                      }`}
+                    >
+                      {option.label}
+                      {sortBy === option.value && (
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#c9a96e]"></div>
+                      )}
+                    </button>
+                  ))}
+                </div>
+                <div className="h-6"></div>
+              </div>
+            </div>
+          )}
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-2.5 md:gap-x-3 lg:gap-x-5 gap-y-4 md:gap-y-6 lg:gap-y-8">
             {filteredProducts.map((product, index) => (
