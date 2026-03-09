@@ -25,7 +25,7 @@ export default function Collection() {
           </p>
         </header>
 
-        <section className="px-4 md:px-10 lg:px-20 xl:px-28 py-6 md:py-14 lg:py-20">
+        <section className="px-4 md:px-10 lg:px-20 xl:px-28 py-6 md:py-14 lg:py-20 pl-[112px] pr-[112px] pt-[40px] pb-[40px]">
           <div className="flex flex-col md:flex-row justify-between items-center mb-5 md:mb-12 gap-4 md:gap-6 pb-4 md:pb-6 border-b border-black/5">
             <div className="flex md:hidden items-center gap-4 overflow-x-auto w-full pb-1 hide-scrollbar">
               {CATEGORIES.map(category => (
