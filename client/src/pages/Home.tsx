@@ -272,47 +272,47 @@ export default function Home() {
           />
         </section>
 
-        <section ref={brandRef} className="relative py-8 md:py-14 lg:py-20 px-4 md:px-10 lg:px-20 xl:px-28 bg-[#1a1308] overflow-hidden">
-          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "url('https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1-1200x1490.webp')", backgroundSize: "cover", backgroundPosition: "center" }}></div>
+        <section ref={brandRef} className="relative py-8 md:py-14 lg:py-20 px-4 md:px-10 lg:px-20 xl:px-28 bg-[#f3f0eb] overflow-hidden">
+          <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: "url('https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1-1200x1490.webp')", backgroundSize: "cover", backgroundPosition: "center" }}></div>
           <div className="relative z-10 flex flex-col lg:flex-row items-center gap-6 md:gap-10 lg:gap-16 max-w-7xl mx-auto">
             <div className="flex-1 text-center lg:text-left">
-              <div className="w-10 md:w-12 h-[1px] bg-[#c9a96e] mb-4 md:mb-6 mx-auto lg:mx-0"></div>
-              <h2 className="text-[11px] md:text-xs font-sans font-semibold tracking-[0.3em] uppercase mb-3 md:mb-6 text-[#ffffffa3]">Our Philosophy</h2>
-              <p className="text-base md:text-xl lg:text-2xl font-serif text-white leading-relaxed md:leading-snug text-balance font-light">
+              <div className="w-10 md:w-12 h-[1px] bg-[#8a6d3b] mb-4 md:mb-6 mx-auto lg:mx-0"></div>
+              <h2 className="text-[11px] md:text-xs font-sans font-semibold tracking-[0.3em] uppercase mb-3 md:mb-6 text-[#8a6d3b]">Our Philosophy</h2>
+              <p className="text-base md:text-xl lg:text-2xl font-serif text-black leading-relaxed md:leading-snug text-balance font-light">
                 Dedicated to the creation of highly original, artisan fragrances.
               </p>
-              <p className="text-xs md:text-sm text-white/50 font-light mt-3 md:mt-6 leading-relaxed max-w-xl mx-auto lg:mx-0">
+              <p className="text-xs md:text-sm text-black/60 font-light mt-3 md:mt-6 leading-relaxed max-w-xl mx-auto lg:mx-0">
                 We source the finest ingredients globally to craft scents that evoke deep emotions and lasting memories.
               </p>
             </div>
             <div className="flex-shrink-0 grid grid-cols-2 gap-3 md:gap-4 lg:gap-6 w-full lg:w-auto lg:max-w-md">
-              <div className="group flex flex-col items-center text-center p-4 md:p-5 lg:p-7 border border-[#c9a96e]/15 hover:border-[#c9a96e]/40 transition-all duration-500 cursor-pointer">
-                <div className="w-9 h-9 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border border-[#c9a96e]/30 flex items-center justify-center text-[#c9a96e]/80 mb-2.5 md:mb-3.5 lg:mb-4 group-hover:bg-[#c9a96e] group-hover:text-white transition-colors duration-500">
+              <div className="group flex flex-col items-center text-center p-4 md:p-5 lg:p-7 border border-black/8 hover:border-[#8a6d3b]/40 transition-all duration-500 cursor-pointer">
+                <div className="w-9 h-9 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border border-[#8a6d3b]/30 flex items-center justify-center text-[#8a6d3b] mb-2.5 md:mb-3.5 lg:mb-4 group-hover:bg-[#8a6d3b] group-hover:text-white transition-colors duration-500">
                   <Pencil strokeWidth={1} className="w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5" />
                 </div>
-                <h3 className="text-xs md:text-sm font-serif mb-1 text-white">Personalization</h3>
-                <p className="text-[10px] md:text-[11px] lg:text-xs text-white/40 font-light leading-relaxed hidden sm:block">Custom engraving</p>
+                <h3 className="text-xs md:text-sm font-serif mb-1 text-black">Personalization</h3>
+                <p className="text-[10px] md:text-[11px] lg:text-xs text-black/50 font-light leading-relaxed hidden sm:block">Custom engraving</p>
               </div>
-              <div className="group flex flex-col items-center text-center p-4 md:p-5 lg:p-7 border border-[#c9a96e]/15 hover:border-[#c9a96e]/40 transition-all duration-500 cursor-pointer">
-                <div className="w-9 h-9 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border border-[#c9a96e]/30 flex items-center justify-center text-[#c9a96e]/80 mb-2.5 md:mb-3.5 lg:mb-4 group-hover:bg-[#c9a96e] group-hover:text-white transition-colors duration-500">
+              <div className="group flex flex-col items-center text-center p-4 md:p-5 lg:p-7 border border-black/8 hover:border-[#8a6d3b]/40 transition-all duration-500 cursor-pointer">
+                <div className="w-9 h-9 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border border-[#8a6d3b]/30 flex items-center justify-center text-[#8a6d3b] mb-2.5 md:mb-3.5 lg:mb-4 group-hover:bg-[#8a6d3b] group-hover:text-white transition-colors duration-500">
                   <Gift strokeWidth={1} className="w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5" />
                 </div>
-                <h3 className="text-xs md:text-sm font-serif mb-1 text-white">Gift Wrapping</h3>
-                <p className="text-[10px] md:text-[11px] lg:text-xs text-white/40 font-light leading-relaxed hidden sm:block">Luxurious finishing</p>
+                <h3 className="text-xs md:text-sm font-serif mb-1 text-black">Gift Wrapping</h3>
+                <p className="text-[10px] md:text-[11px] lg:text-xs text-black/50 font-light leading-relaxed hidden sm:block">Luxurious finishing</p>
               </div>
-              <div className="group flex flex-col items-center text-center p-4 md:p-5 lg:p-7 border border-[#c9a96e]/15 hover:border-[#c9a96e]/40 transition-all duration-500 cursor-pointer">
-                <div className="w-9 h-9 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border border-[#c9a96e]/30 flex items-center justify-center text-[#c9a96e]/80 mb-2.5 md:mb-3.5 lg:mb-4 group-hover:bg-[#c9a96e] group-hover:text-white transition-colors duration-500">
+              <div className="group flex flex-col items-center text-center p-4 md:p-5 lg:p-7 border border-black/8 hover:border-[#8a6d3b]/40 transition-all duration-500 cursor-pointer">
+                <div className="w-9 h-9 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border border-[#8a6d3b]/30 flex items-center justify-center text-[#8a6d3b] mb-2.5 md:mb-3.5 lg:mb-4 group-hover:bg-[#8a6d3b] group-hover:text-white transition-colors duration-500">
                   <Truck strokeWidth={1} className="w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5" />
                 </div>
-                <h3 className="text-xs md:text-sm font-serif mb-1 text-white">Global Delivery</h3>
-                <p className="text-[10px] md:text-[11px] lg:text-xs text-white/40 font-light leading-relaxed hidden sm:block">Free over AED 1500</p>
+                <h3 className="text-xs md:text-sm font-serif mb-1 text-black">Global Delivery</h3>
+                <p className="text-[10px] md:text-[11px] lg:text-xs text-black/50 font-light leading-relaxed hidden sm:block">Free over AED 1500</p>
               </div>
-              <div className="group flex flex-col items-center text-center p-4 md:p-5 lg:p-7 border border-[#c9a96e]/15 hover:border-[#c9a96e]/40 transition-all duration-500 cursor-pointer">
-                <div className="w-9 h-9 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border border-[#c9a96e]/30 flex items-center justify-center text-[#c9a96e]/80 mb-2.5 md:mb-3.5 lg:mb-4 group-hover:bg-[#c9a96e] group-hover:text-white transition-colors duration-500">
+              <div className="group flex flex-col items-center text-center p-4 md:p-5 lg:p-7 border border-black/8 hover:border-[#8a6d3b]/40 transition-all duration-500 cursor-pointer">
+                <div className="w-9 h-9 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border border-[#8a6d3b]/30 flex items-center justify-center text-[#8a6d3b] mb-2.5 md:mb-3.5 lg:mb-4 group-hover:bg-[#8a6d3b] group-hover:text-white transition-colors duration-500">
                   <MailOpen strokeWidth={1} className="w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5" />
                 </div>
-                <h3 className="text-xs md:text-sm font-serif mb-1 text-white">Free Samples</h3>
-                <p className="text-[10px] md:text-[11px] lg:text-xs text-white/40 font-light leading-relaxed hidden sm:block">With every order</p>
+                <h3 className="text-xs md:text-sm font-serif mb-1 text-black">Free Samples</h3>
+                <p className="text-[10px] md:text-[11px] lg:text-xs text-black/50 font-light leading-relaxed hidden sm:block">With every order</p>
               </div>
             </div>
           </div>
