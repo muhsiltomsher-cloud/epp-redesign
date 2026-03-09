@@ -96,7 +96,7 @@ export default function Navbar() {
               {isMenuOpen ? <X size={20} strokeWidth={1} /> : <Menu size={20} strokeWidth={1} />}
             </button>
 
-            <nav className="hidden md:flex items-center gap-8 flex-1">
+            <nav className="hidden md:flex items-center gap-6 flex-1">
               {Object.keys(megaMenuData).map((menuKey) => (
                 <div
                   key={menuKey}
@@ -104,7 +104,7 @@ export default function Navbar() {
                   onMouseEnter={() => setActiveMegaMenu(menuKey)}
                 >
                   <Link href="/collection">
-                    <span className={`text-[13px] font-medium tracking-[0.2em] uppercase transition-colors luxury-underline cursor-pointer flex items-center gap-1 ${
+                    <span className={`text-[10px] font-medium tracking-[0.15em] uppercase transition-colors luxury-underline cursor-pointer flex items-center gap-1 ${
                       !isDarkText ? "text-white/90 hover:text-white" : "text-black/80 hover:text-black"
                     } ${activeMegaMenu === menuKey ? "!text-[#c9a96e]" : ""}`}>
                       {menuKey}
@@ -113,7 +113,7 @@ export default function Navbar() {
                 </div>
               ))}
               <Link href="/collection">
-                <span className={`text-[13px] font-medium tracking-[0.2em] uppercase transition-colors luxury-underline cursor-pointer ${
+                <span className={`text-[10px] font-medium tracking-[0.15em] uppercase transition-colors luxury-underline cursor-pointer ${
                   !isDarkText ? "text-white/90 hover:text-white" : "text-black/80 hover:text-black"
                 }`}
                 onMouseEnter={() => setActiveMegaMenu(null)}
@@ -139,7 +139,7 @@ export default function Navbar() {
                 onMouseEnter={() => { setIsCurrencyMenuOpen(true); setActiveMegaMenu(null); }}
                 onMouseLeave={() => setIsCurrencyMenuOpen(false)}
               >
-                <button className={`flex items-center gap-1.5 text-[13px] font-medium tracking-[0.1em] uppercase transition-colors ${
+                <button className={`flex items-center gap-1.5 text-[10px] font-medium tracking-[0.1em] uppercase transition-colors ${
                   !isDarkText ? "text-white/90 hover:text-white" : "text-black/80 hover:text-black"
                 }`}>
                   <Globe size={14} strokeWidth={1} />
@@ -213,7 +213,7 @@ export default function Navbar() {
                 onMouseEnter={() => setActiveMegaMenu(null)}
               >
                 <ShoppingBag size={18} strokeWidth={1} />
-                <span className="hidden md:inline text-[13px] font-medium tracking-[0.2em] uppercase">Cart</span>
+                <span className="hidden md:inline text-[10px] font-medium tracking-[0.15em] uppercase">Cart</span>
                 <span className={`absolute -top-1 -right-2 text-[8px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-medium ${
                   !isDarkText ? "bg-[#c9a96e] text-white" : "bg-[#c9a96e] text-white"
                 }`}>0</span>
