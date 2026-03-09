@@ -1,0 +1,37 @@
+const STORAGE_KEY = "ep_cart";
+
+export interface CartItem {
+  productId: string;
+  quantity: number;
+}
+
+export function getCart(): CartItem[] {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return [];
+    return JSON.parse(raw);
+  } catch {
+    return [];
+  }
+}
+
+export function addToCart(productId: string): CartItem[] {
+  try {
+    const items = getCart();
+    const existing = items.find(i => i.productId === productId);
+    if (existing) {
+      existing.quantity += 1;
+    } else {
+      items.push({ productId, quantity: 1 });
+    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+    window.dispatchEvent(new Event("cart-updated"));
+    return items;
+  } catch {
+    return [];
+  }
+}
+
+export function getCartCount(): number {
+  return getCart().reduce((sum, item) => sum + item.quantity, 0);
+}

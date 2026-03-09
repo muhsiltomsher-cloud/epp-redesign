@@ -2,6 +2,7 @@ import { Search, ShoppingBag, Menu, User, X, ChevronDown, Globe, Instagram, Face
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { products } from "@/lib/data";
+import { getCartCount } from "@/lib/cart";
 
 const megaMenuData: Record<string, { subcategories: { name: string; link: string }[]; featured: { name: string; image: string; price: number; id: string }[] }> = {
   "Oud & Dakhoon": {
@@ -45,10 +46,17 @@ export default function Navbar() {
   const [isCurrencyMenuOpen, setIsCurrencyMenuOpen] = useState(false);
   const [activeCurrency, setActiveCurrency] = useState("AED");
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
+  const [cartCount, setCartCount] = useState(() => getCartCount());
   const [location] = useLocation();
 
   const currencies = ["AED", "USD", "EUR", "GBP", "SAR", "KWD", "QAR"];
   const logoUrl = "https://emiratespride.com/wp-content/uploads/2026/01/logo-epp.png";
+
+  useEffect(() => {
+    const updateCart = () => setCartCount(getCartCount());
+    window.addEventListener("cart-updated", updateCart);
+    return () => window.removeEventListener("cart-updated", updateCart);
+  }, []);
   
   useEffect(() => {
     const handleScroll = () => {
@@ -214,9 +222,9 @@ export default function Navbar() {
               >
                 <ShoppingBag size={18} strokeWidth={1} />
                 <span className="hidden md:inline text-[10px] font-medium tracking-[0.15em] uppercase">Cart</span>
-                <span className={`absolute -top-1 -right-2 text-[8px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-medium ${
-                  !isDarkText ? "bg-[#c9a96e] text-white" : "bg-[#c9a96e] text-white"
-                }`}>0</span>
+                {cartCount > 0 && (
+                  <span className="absolute -top-1 -right-2 text-[8px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-medium bg-[#c9a96e] text-white">{cartCount}</span>
+                )}
               </button>
             </div>
           </div>

@@ -1,12 +1,14 @@
-import { Gift, Pencil, Truck, MailOpen } from "lucide-react";
+import { Gift, Pencil, Truck, MailOpen, Heart, ShoppingBag } from "lucide-react";
 import { Link } from "wouter";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { products, categories } from "@/lib/data";
 import { getRecentlyViewedIds } from "@/lib/recentlyViewed";
+import { addToCart } from "@/lib/cart";
+import { toggleWishlist, isInWishlist } from "@/lib/wishlist";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -371,10 +373,28 @@ export default function Home() {
 }
 
 function CreativeProductCard({ product }: { product: any }) {
+  const [wishlisted, setWishlisted] = useState(() => isInWishlist(product.id));
+  const [addedToCart, setAddedToCart] = useState(false);
+
+  const handleWishlist = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const result = toggleWishlist(product.id);
+    setWishlisted(result);
+  }, [product.id]);
+
+  const handleAddToCart = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addToCart(product.id);
+    setAddedToCart(true);
+    setTimeout(() => setAddedToCart(false), 1500);
+  }, [product.id]);
+
   return (
     <div className="group flex flex-col w-full cursor-pointer" data-testid={`card-product-${product.id}`}>
-      <Link href={`/product/${product.id}`}>
-        <div className="block relative aspect-[3/5] mb-1.5 md:mb-2 lg:mb-3 overflow-hidden bg-[#f5f5f5]">
+      <div className="block relative aspect-[3/5] mb-1.5 md:mb-2 lg:mb-3 overflow-hidden bg-[#f5f5f5]">
+        <Link href={`/product/${product.id}`}>
           <img 
             src={product.image} 
             alt={product.name} 
@@ -390,14 +410,39 @@ function CreativeProductCard({ product }: { product: any }) {
               <div className="absolute inset-0 bg-black/10"></div>
             </div>
           )}
-          
-          <div className="absolute bottom-0 left-0 w-full z-30 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out bg-white hidden md:block">
-            <button className="w-full py-3 text-[11px] font-medium tracking-[0.2em] uppercase hover:bg-[#1a1308] hover:text-white transition-colors" data-testid={`button-quickview-${product.id}`}>
-              Quick View
-            </button>
-          </div>
+        </Link>
+
+        <button
+          onClick={handleWishlist}
+          className="absolute top-2 right-2 md:top-3 md:right-3 z-30 w-8 h-8 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white/90 backdrop-blur-sm hover:bg-white transition-all duration-300 shadow-sm"
+          data-testid={`button-wishlist-${product.id}`}
+        >
+          <Heart
+            size={14}
+            strokeWidth={1.5}
+            className={`transition-colors duration-300 ${wishlisted ? "fill-red-500 text-red-500" : "text-black/60 hover:text-black"}`}
+          />
+        </button>
+
+        <div className="absolute bottom-0 left-0 w-full z-30 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out hidden md:block">
+          <button
+            onClick={handleAddToCart}
+            className="w-full py-3 text-[11px] font-medium tracking-[0.2em] uppercase bg-white hover:bg-[#1a1308] hover:text-white transition-colors flex items-center justify-center gap-2"
+            data-testid={`button-add-to-cart-${product.id}`}
+          >
+            <ShoppingBag size={13} strokeWidth={1.5} />
+            {addedToCart ? "Added!" : "Add to Cart"}
+          </button>
         </div>
-      </Link>
+
+        <button
+          onClick={handleAddToCart}
+          className="absolute bottom-2 right-2 z-30 w-8 h-8 flex items-center justify-center rounded-full bg-white/90 backdrop-blur-sm hover:bg-white transition-all duration-300 shadow-sm md:hidden"
+          data-testid={`button-add-to-cart-mobile-${product.id}`}
+        >
+          <ShoppingBag size={14} strokeWidth={1.5} className={`transition-colors duration-300 ${addedToCart ? "text-[#c9a96e]" : "text-black/60"}`} />
+        </button>
+      </div>
       
       <div className="flex flex-col items-center px-1 text-center">
         <Link href={`/product/${product.id}`}>
