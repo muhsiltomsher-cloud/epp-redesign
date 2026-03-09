@@ -105,7 +105,7 @@ export default function Navbar() {
                 >
                   <Link href="/collection">
                     <span className={`text-[10px] font-medium tracking-[0.15em] uppercase transition-colors luxury-underline cursor-pointer flex items-center gap-1 ${
-                      !isDarkText ? "text-white/90 hover:text-white" : "text-black/80 hover:text-black"
+                      !isDarkText ? "text-white/90 hover:text-white" : "text-black hover:text-black"
                     } ${activeMegaMenu === menuKey ? "!text-[#c9a96e]" : ""}`}>
                       {menuKey}
                     </span>
@@ -114,7 +114,7 @@ export default function Navbar() {
               ))}
               <Link href="/collection">
                 <span className={`text-[10px] font-medium tracking-[0.15em] uppercase transition-colors luxury-underline cursor-pointer ${
-                  !isDarkText ? "text-white/90 hover:text-white" : "text-black/80 hover:text-black"
+                  !isDarkText ? "text-white/90 hover:text-white" : "text-black hover:text-black"
                 }`}
                 onMouseEnter={() => setActiveMegaMenu(null)}
                 >
@@ -140,7 +140,7 @@ export default function Navbar() {
                 onMouseLeave={() => setIsCurrencyMenuOpen(false)}
               >
                 <button className={`flex items-center gap-1.5 text-[10px] font-medium tracking-[0.1em] uppercase transition-colors ${
-                  !isDarkText ? "text-white/90 hover:text-white" : "text-black/80 hover:text-black"
+                  !isDarkText ? "text-white/90 hover:text-white" : "text-black hover:text-black"
                 }`}>
                   <Globe size={14} strokeWidth={1} />
                   <span>{activeCurrency}</span>
@@ -178,7 +178,7 @@ export default function Navbar() {
               </div>
 
               <button className={`hidden md:block transition-colors ${
-                !isDarkText ? "text-white/90 hover:text-white" : "text-black/80 hover:text-black"
+                !isDarkText ? "text-white/90 hover:text-white" : "text-black hover:text-black/70"
               }`}
               onMouseEnter={() => setActiveMegaMenu(null)}
               >
@@ -186,7 +186,7 @@ export default function Navbar() {
               </button>
               
               <button className={`hidden md:block transition-colors ${
-                !isDarkText ? "text-white/90 hover:text-white" : "text-black/80 hover:text-black"
+                !isDarkText ? "text-white/90 hover:text-white" : "text-black hover:text-black/70"
               }`}
               onMouseEnter={() => setActiveMegaMenu(null)}
               >
@@ -196,7 +196,7 @@ export default function Navbar() {
               <Link href="/wishlist">
                 <button 
                   className={`transition-colors ${
-                    !isDarkText ? "text-white/90 hover:text-white" : "text-black/80 hover:text-black"
+                    !isDarkText ? "text-white/90 hover:text-white" : "text-black hover:text-black/70"
                   }`}
                   onMouseEnter={() => setActiveMegaMenu(null)}
                   data-testid="button-wishlist-header"
@@ -207,7 +207,7 @@ export default function Navbar() {
 
               <button 
                 className={`flex items-center gap-2 transition-colors relative ${
-                  !isDarkText ? "text-white/90 hover:text-white" : "text-black/80 hover:text-black"
+                  !isDarkText ? "text-white/90 hover:text-white" : "text-black hover:text-black/70"
                 }`}
                 onClick={() => setIsCartOpen(true)}
                 onMouseEnter={() => setActiveMegaMenu(null)}
