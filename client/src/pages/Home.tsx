@@ -148,7 +148,6 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
-
       <main className="flex-1">
         <section ref={heroRef} className="relative h-[70svh] md:h-[75vh] w-full flex flex-col justify-end pb-8 md:pb-24 lg:pb-32 px-4 md:px-10 lg:px-20 xl:px-28 overflow-hidden bg-black">
           <div className="absolute inset-0 w-full h-full">
@@ -320,7 +319,7 @@ export default function Home() {
           <div className="relative z-10 flex flex-col lg:flex-row items-center gap-6 md:gap-10 lg:gap-16 max-w-7xl mx-auto">
             <div className="flex-1 text-center lg:text-left">
               <div className="w-10 md:w-12 h-[1px] bg-[#c9a96e] mb-4 md:mb-6 mx-auto lg:mx-0"></div>
-              <h2 className="text-[11px] md:text-xs font-sans font-semibold tracking-[0.3em] uppercase text-[#8a6d3b] mb-3 md:mb-6">Our Philosophy</h2>
+              <h2 className="text-[11px] md:text-xs font-sans font-semibold tracking-[0.3em] uppercase mb-3 md:mb-6 text-[#ffffffa3]">Our Philosophy</h2>
               <p className="text-base md:text-xl lg:text-2xl font-serif text-white leading-relaxed md:leading-snug text-balance font-light">
                 Dedicated to the creation of highly original, artisan fragrances.
               </p>
@@ -361,7 +360,6 @@ export default function Home() {
           </div>
         </section>
       </main>
-
       <Footer />
     </div>
   );
