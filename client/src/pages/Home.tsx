@@ -149,13 +149,13 @@ export default function Home() {
           </div>
           
           <div className="flex md:hidden gap-3 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4 hide-scrollbar">
-            {[categories[0], categories[4], categories[1]].map((cat) => (
+            {categories.map((cat) => (
               <Link key={cat.name} href="/collection">
-                <div className="gallery-item group relative aspect-[3/4] w-[70vw] flex-shrink-0 snap-start overflow-hidden bg-muted cursor-pointer">
+                <div className="gallery-item group relative aspect-[3/4] w-[45vw] flex-shrink-0 snap-start overflow-hidden bg-muted cursor-pointer">
                   <img src={cat.image} className="w-full h-full object-cover" alt={cat.name} />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                   <div className="absolute bottom-4 left-4">
-                    <h3 className="text-white font-serif text-lg mb-1">{cat.name}</h3>
+                    <h3 className="text-white font-serif text-sm mb-1 line-clamp-1">{cat.name}</h3>
                     <span className="text-[7px] tracking-[0.2em] uppercase text-[#c9a96e]">Explore</span>
                   </div>
                 </div>
@@ -163,41 +163,20 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="hidden md:grid md:grid-cols-3 gap-4 lg:gap-6">
-            <Link href="/collection">
-              <div className="gallery-item group relative aspect-[3/4] overflow-hidden bg-muted cursor-pointer">
-                <img src={categories[0].image} className="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110" alt="Oud" />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-700"></div>
-                <div className="absolute bottom-8 lg:bottom-10 left-8 lg:left-10">
-                  <h3 className="text-white font-serif text-3xl lg:text-4xl mb-2">{categories[0].name}</h3>
-                  <div className="w-0 h-[1px] bg-[#c9a96e] group-hover:w-full transition-all duration-700 ease-out"></div>
+          <div className="hidden md:grid md:grid-cols-6 gap-3 lg:gap-4">
+            {categories.map((cat) => (
+              <Link key={cat.name} href="/collection">
+                <div className="gallery-item group relative aspect-[3/4] overflow-hidden bg-muted cursor-pointer">
+                  <img src={cat.image} className="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110" alt={cat.name} />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-700"></div>
+                  <div className="absolute bottom-5 lg:bottom-6 left-5 lg:left-6">
+                    <h3 className="text-white font-serif text-lg lg:text-xl mb-1 leading-tight">{cat.name}</h3>
+                    <div className="w-0 h-[1px] bg-[#c9a96e] group-hover:w-full transition-all duration-700 ease-out"></div>
+                  </div>
                 </div>
-              </div>
-            </Link>
-            
-            <Link href="/collection">
-              <div className="gallery-item group relative aspect-[3/4] overflow-hidden bg-muted cursor-pointer translate-y-8 lg:translate-y-14">
-                <img src={categories[4].image} className="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110" alt="Gifts" />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-700"></div>
-                <div className="absolute bottom-8 lg:bottom-10 left-8 lg:left-10">
-                  <h3 className="text-white font-serif text-3xl lg:text-4xl mb-2">{categories[4].name}</h3>
-                  <div className="w-0 h-[1px] bg-[#c9a96e] group-hover:w-full transition-all duration-700 ease-out"></div>
-                </div>
-              </div>
-            </Link>
-            
-            <Link href="/collection">
-              <div className="gallery-item group relative aspect-[3/4] overflow-hidden bg-muted cursor-pointer translate-y-16 lg:translate-y-28">
-                <img src={categories[1].image} className="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110" alt="Oils" />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-700"></div>
-                <div className="absolute bottom-8 lg:bottom-10 left-8 lg:left-10">
-                  <h3 className="text-white font-serif text-3xl lg:text-4xl mb-2">{categories[1].name}</h3>
-                  <div className="w-0 h-[1px] bg-[#c9a96e] group-hover:w-full transition-all duration-700 ease-out"></div>
-                </div>
-              </div>
-            </Link>
+              </Link>
+            ))}
           </div>
-          <div className="hidden md:block h-8 lg:h-16"></div>
         </section>
 
         <section ref={pinnedSectionRef} className="relative w-full bg-[#fcfcfc] flex flex-col md:flex-row">

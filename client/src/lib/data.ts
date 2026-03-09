@@ -257,5 +257,11 @@ export const categories = [
     name: 'Perfume Gift Sets',
     count: 8,
     image: 'https://emiratespride.com/wp-content/uploads/2025/07/EP281124_40944-copy-440x700.webp'
+  },
+  {
+    id: 'bestsellers',
+    name: 'Best Sellers',
+    count: 12,
+    image: 'https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1-1200x1490.webp'
   }
 ];
