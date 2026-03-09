@@ -13,7 +13,7 @@ import { toggleWishlist, isInWishlist } from "@/lib/wishlist";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
-  const newArrivals = products.slice(0, 4);
+  const newArrivals = products.slice(0, 8);
   const featureProduct = products.find(p => p.name.includes("Future Bakhoor")) || products[0];
   const featureProduct2 = products.find(p => p.name.includes("Hidden Leather")) || products[1];
 
@@ -24,6 +24,8 @@ export default function Home() {
   const pinnedSectionRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
   const bloomBannerRef = useRef<HTMLDivElement>(null);
+  const sliderSectionRef = useRef<HTMLDivElement>(null);
+  const sliderTrackRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let ctx = gsap.context(() => {
@@ -115,6 +117,28 @@ export default function Home() {
             }
           }
         );
+      }
+
+      if (sliderSectionRef.current && sliderTrackRef.current) {
+        let mm = gsap.matchMedia();
+
+        mm.add("(min-width: 768px)", () => {
+          const track = sliderTrackRef.current!;
+          const scrollWidth = track.scrollWidth - track.offsetWidth;
+
+          gsap.to(track, {
+            x: -scrollWidth,
+            ease: "none",
+            scrollTrigger: {
+              trigger: sliderSectionRef.current,
+              start: "top top",
+              end: () => `+=${scrollWidth}`,
+              scrub: 1,
+              pin: true,
+              anticipatePin: 1,
+            }
+          });
+        });
       }
     });
 
@@ -261,23 +285,33 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-6 md:py-10 lg:py-14 px-4 md:px-10 lg:px-20 xl:px-28 bg-white overflow-hidden">
-          <div className="flex justify-between items-end mb-4 md:mb-6 lg:mb-8 border-b border-black/10 pb-2.5 md:pb-4">
-            <div>
-              <h2 className="text-[11px] md:text-xs font-sans font-semibold tracking-[0.3em] uppercase text-[#8a6d3b] mb-1 md:mb-2">Masterpieces</h2>
-              <h3 className="text-base md:text-2xl lg:text-3xl font-serif text-black">New & Trending</h3>
+        <section ref={sliderSectionRef} className="relative bg-white overflow-hidden">
+          <div className="py-6 md:py-10 lg:py-14 px-4 md:px-10 lg:px-20 xl:px-28">
+            <div className="flex justify-between items-end mb-4 md:mb-6 lg:mb-8 border-b border-black/10 pb-2.5 md:pb-4">
+              <div>
+                <h2 className="text-[11px] md:text-xs font-sans font-semibold tracking-[0.3em] uppercase text-[#8a6d3b] mb-1 md:mb-2">Masterpieces</h2>
+                <h3 className="text-base md:text-2xl lg:text-3xl font-serif text-black">New & Trending</h3>
+              </div>
+              <Link href="/collection">
+                <span className="text-[11px] md:text-xs font-medium tracking-[0.2em] uppercase text-black/40 hover:text-black/60 transition-colors cursor-pointer luxury-underline pb-1">
+                  View All
+                </span>
+              </Link>
             </div>
-            <Link href="/collection">
-              <span className="text-[11px] md:text-xs font-medium tracking-[0.2em] uppercase text-black/40 hover:text-black/60 transition-colors cursor-pointer luxury-underline pb-1">
-                View All
-              </span>
-            </Link>
-          </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-2.5 md:gap-x-3 lg:gap-x-5 gap-y-4 md:gap-y-6 lg:gap-y-8">
-            {newArrivals.map((product) => (
-              <CreativeProductCard key={product.id} product={product} />
-            ))}
+            <div className="grid grid-cols-2 gap-x-2.5 gap-y-4 md:hidden">
+              {newArrivals.slice(0, 4).map((product) => (
+                <CreativeProductCard key={product.id} product={product} />
+              ))}
+            </div>
+
+            <div ref={sliderTrackRef} className="hidden md:flex gap-4 lg:gap-6 will-change-transform">
+              {newArrivals.map((product) => (
+                <div key={product.id} className="flex-shrink-0 w-[280px] lg:w-[300px] xl:w-[320px]">
+                  <CreativeProductCard product={product} />
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
