@@ -147,8 +147,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section ref={galleryRef} className="py-5 md:py-10 lg:py-14 bg-[#e6cebb33] px-4 md:px-10 lg:px-20 xl:px-28">
-          <div className="text-center mb-6 md:mb-14">
+        <section ref={galleryRef} className="py-4 md:py-8 lg:py-10 bg-[#e6cebb33] px-4 md:px-10 lg:px-20 xl:px-28">
+          <div className="text-center mb-4 md:mb-8">
             <h2 className="text-[8px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-2 md:mb-3">Explore</h2>
             <h3 className="text-lg md:text-2xl lg:text-3xl font-serif">A World of Fragrance</h3>
           </div>
@@ -185,7 +185,7 @@ export default function Home() {
         </section>
 
         <section ref={pinnedSectionRef} className="relative w-full bg-[#fcfcfc] flex flex-col md:flex-row">
-          <div className="w-full md:w-1/2 md:h-screen md:sticky top-0 pinned-content flex flex-col justify-center items-center md:items-start text-center md:text-left px-6 py-14 md:p-14 lg:p-20 xl:p-28 z-10 relative bg-cover bg-center min-h-[100svh] md:min-h-0" style={{ backgroundImage: "url('https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1-1200x1490.webp')" }}>
+          <div className="w-full md:w-1/2 md:h-screen md:sticky top-0 pinned-content flex flex-col justify-center items-center md:items-start text-center md:text-left px-6 py-10 md:p-10 lg:p-16 xl:p-20 z-10 relative bg-cover bg-center min-h-[80svh] md:min-h-0" style={{ backgroundImage: "url('https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1-1200x1490.webp')" }}>
             <div className="absolute inset-0 bg-black/55 md:bg-black/50"></div>
             <span className="relative z-10 text-[8px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-2 md:mb-5 lg:mb-7 md:border-l md:border-[#c9a96e]/50 md:pl-4">Signature Blend</span>
             <h2 className="relative z-10 text-xl md:text-3xl lg:text-4xl xl:text-5xl font-serif mb-2.5 md:mb-5 lg:mb-7 leading-tight text-white">{featureProduct2.name}</h2>
@@ -200,7 +200,7 @@ export default function Home() {
           </div>
           
           <div className="w-full md:w-1/2 flex flex-col scrolling-images relative bg-white">
-            <div className="grid grid-cols-2 gap-2.5 md:gap-4 lg:gap-6 p-3 md:p-6 lg:p-10">
+            <div className="grid grid-cols-2 gap-2 md:gap-3 lg:gap-4 p-2.5 md:p-4 lg:p-6">
               {products.slice(0, 4).map((product) => (
                 <div key={product.id} className="group flex flex-col cursor-pointer" data-testid={`card-scroll-product-${product.id}`}>
                   <Link href={`/product/${product.id}`}>
@@ -227,7 +227,7 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <div className="grid grid-cols-2 gap-2.5 md:gap-4 lg:gap-6 p-3 md:p-6 lg:p-10 pt-0 md:pt-0 lg:pt-0">
+            <div className="grid grid-cols-2 gap-2 md:gap-3 lg:gap-4 p-2.5 md:p-4 lg:p-6 pt-0 md:pt-0 lg:pt-0">
               {products.slice(3, 7).map((product) => (
                 <div key={product.id} className="group flex flex-col cursor-pointer" data-testid={`card-scroll-product-${product.id}`}>
                   <Link href={`/product/${product.id}`}>
@@ -257,10 +257,10 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-8 md:py-16 lg:py-24 px-4 md:px-10 lg:px-20 xl:px-28 bg-white overflow-hidden">
-          <div className="flex justify-between items-end mb-5 md:mb-10 lg:mb-14 border-b border-black/10 pb-3 md:pb-6">
+        <section className="py-6 md:py-10 lg:py-14 px-4 md:px-10 lg:px-20 xl:px-28 bg-white overflow-hidden">
+          <div className="flex justify-between items-end mb-4 md:mb-6 lg:mb-8 border-b border-black/10 pb-2.5 md:pb-4">
             <div>
-              <h2 className="text-[8px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-1.5 md:mb-3">Masterpieces</h2>
+              <h2 className="text-[8px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-1 md:mb-2">Masterpieces</h2>
               <h3 className="text-base md:text-2xl lg:text-3xl font-serif text-black">New & Trending</h3>
             </div>
             <Link href="/collection">
@@ -270,7 +270,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-2.5 md:gap-x-4 lg:gap-x-6 gap-y-5 md:gap-y-8 lg:gap-y-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-2.5 md:gap-x-3 lg:gap-x-5 gap-y-4 md:gap-y-6 lg:gap-y-8">
             {newArrivals.map((product) => (
               <CreativeProductCard key={product.id} product={product} />
             ))}
@@ -278,10 +278,10 @@ export default function Home() {
         </section>
 
         {recentlyViewed.length > 0 && (
-          <section className="py-8 md:py-16 lg:py-24 px-4 md:px-10 lg:px-20 xl:px-28 bg-[#fafafa] overflow-hidden">
-            <div className="flex justify-between items-end mb-5 md:mb-10 lg:mb-14 border-b border-black/10 pb-3 md:pb-6">
+          <section className="py-6 md:py-10 lg:py-14 px-4 md:px-10 lg:px-20 xl:px-28 bg-[#fafafa] overflow-hidden">
+            <div className="flex justify-between items-end mb-4 md:mb-6 lg:mb-8 border-b border-black/10 pb-2.5 md:pb-4">
               <div>
-                <h2 className="text-[8px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-1.5 md:mb-3">Your Journey</h2>
+                <h2 className="text-[8px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-1 md:mb-2">Your Journey</h2>
                 <h3 className="text-base md:text-2xl lg:text-3xl font-serif text-black">Recently Viewed</h3>
               </div>
             </div>
@@ -316,9 +316,9 @@ export default function Home() {
           />
         </section>
 
-        <section ref={brandRef} className="relative py-10 md:py-24 lg:py-32 px-4 md:px-10 lg:px-20 xl:px-28 bg-[#1a1308] overflow-hidden">
+        <section ref={brandRef} className="relative py-8 md:py-14 lg:py-20 px-4 md:px-10 lg:px-20 xl:px-28 bg-[#1a1308] overflow-hidden">
           <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "url('https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1-1200x1490.webp')", backgroundSize: "cover", backgroundPosition: "center" }}></div>
-          <div className="relative z-10 flex flex-col lg:flex-row items-center gap-8 md:gap-16 lg:gap-24 max-w-7xl mx-auto">
+          <div className="relative z-10 flex flex-col lg:flex-row items-center gap-6 md:gap-10 lg:gap-16 max-w-7xl mx-auto">
             <div className="flex-1 text-center lg:text-left">
               <div className="w-10 md:w-12 h-[1px] bg-[#c9a96e] mb-4 md:mb-6 mx-auto lg:mx-0"></div>
               <h2 className="text-[8px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-3 md:mb-6">Our Philosophy</h2>
@@ -372,7 +372,7 @@ function CreativeProductCard({ product }: { product: any }) {
   return (
     <div className="group flex flex-col w-full cursor-pointer" data-testid={`card-product-${product.id}`}>
       <Link href={`/product/${product.id}`}>
-        <div className="block relative aspect-[3/5] mb-2 md:mb-3 lg:mb-4 overflow-hidden bg-[#f5f5f5]">
+        <div className="block relative aspect-[3/5] mb-1.5 md:mb-2 lg:mb-3 overflow-hidden bg-[#f5f5f5]">
           <img 
             src={product.image} 
             alt={product.name} 
