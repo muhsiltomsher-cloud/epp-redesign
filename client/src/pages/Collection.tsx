@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Link } from "wouter";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Heart, ShoppingBag } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { products } from "@/lib/data";
+import { addToCart } from "@/lib/cart";
+import { toggleWishlist, isInWishlist } from "@/lib/wishlist";
 
 const CATEGORIES = ["All", "Oud & Dakhoon", "Gift Sets", "Perfume Collection"];
 
@@ -66,54 +68,9 @@ export default function Collection() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-2.5 md:gap-x-4 lg:gap-x-6 gap-y-6 md:gap-y-12 lg:gap-y-16">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-2.5 md:gap-x-3 lg:gap-x-5 gap-y-4 md:gap-y-6 lg:gap-y-8">
             {filteredProducts.map((product, index) => (
-              <div 
-                key={product.id} 
-                className="group flex flex-col w-full cursor-pointer animate-in fade-in slide-in-from-bottom-8"
-                style={{ animationDelay: `${index * 100}ms`, animationFillMode: 'both' }}
-                data-testid={`card-product-${product.id}`}
-              >
-                <Link href={`/product/${product.id}`}>
-                  <div className="block relative aspect-[3/5] mb-2.5 md:mb-3 lg:mb-4 overflow-hidden bg-[#f8f8f8]">
-                    <img 
-                      src={product.image} 
-                      alt={product.name} 
-                      className="absolute inset-0 w-full h-full object-cover z-10 transition-transform duration-1000 group-hover:scale-105"
-                    />
-                    {product.hoverImage && (
-                      <div className="absolute inset-0 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 overflow-hidden">
-                        <img 
-                          src={product.hoverImage} 
-                          alt={`${product.name} lifestyle`} 
-                          className="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-transform duration-1000 ease-out"
-                        />
-                        <div className="absolute inset-0 bg-black/5"></div>
-                      </div>
-                    )}
-                    
-                    <div className="absolute bottom-0 left-0 w-full z-30 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out bg-white hidden md:block">
-                      <button className="w-full py-4 text-[10px] font-medium tracking-[0.2em] uppercase hover:bg-[#1a1308] hover:text-white transition-colors" data-testid={`button-discover-${product.id}`}>
-                        Discover
-                      </button>
-                    </div>
-                  </div>
-                </Link>
-                
-                <div className="flex flex-col items-center px-1 text-center">
-                  <Link href={`/product/${product.id}`}>
-                    <span className="text-sm md:text-lg lg:text-xl font-serif mb-1 text-black hover:text-black/60 transition-colors cursor-pointer" data-testid={`text-product-name-${product.id}`}>
-                      {product.name}
-                    </span>
-                  </Link>
-                  <span className="text-[7px] md:text-[8px] lg:text-[9px] tracking-[0.2em] uppercase text-black/40 mb-1 lg:mb-2">
-                    {product.collection}
-                  </span>
-                  <p className="text-[10px] md:text-xs lg:text-sm font-medium text-black" data-testid={`text-price-${product.id}`}>
-                    {product.currency} {product.price}
-                  </p>
-                </div>
-              </div>
+              <CollectionProductCard key={product.id} product={product} index={index} />
             ))}
           </div>
 
@@ -125,6 +82,99 @@ export default function Collection() {
         </section>
       </main>
       <Footer />
+    </div>
+  );
+}
+
+function CollectionProductCard({ product, index }: { product: any; index: number }) {
+  const [wishlisted, setWishlisted] = useState(() => isInWishlist(product.id));
+  const [addedToCart, setAddedToCart] = useState(false);
+
+  const handleWishlist = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const result = toggleWishlist(product.id);
+    setWishlisted(result);
+  }, [product.id]);
+
+  const handleAddToCart = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addToCart(product.id);
+    setAddedToCart(true);
+    setTimeout(() => setAddedToCart(false), 1500);
+  }, [product.id]);
+
+  return (
+    <div
+      className="group flex flex-col w-full cursor-pointer animate-in fade-in slide-in-from-bottom-8"
+      style={{ animationDelay: `${index * 80}ms`, animationFillMode: 'both' }}
+      data-testid={`card-product-${product.id}`}
+    >
+      <div className="block relative aspect-[3/5] mb-1.5 md:mb-2 lg:mb-3 overflow-hidden bg-[#f5f5f5]">
+        <Link href={`/product/${product.id}`}>
+          <img
+            src={product.image}
+            alt={product.name}
+            className="absolute inset-0 w-full h-full object-cover z-10 transition-transform duration-1000 group-hover:scale-105"
+          />
+          {product.hoverImage && (
+            <div className="absolute inset-0 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 overflow-hidden hidden md:block">
+              <img
+                src={product.hoverImage}
+                alt={`${product.name} lifestyle`}
+                className="w-full h-full object-cover transform scale-105 group-hover:scale-100 transition-transform duration-1000 ease-out"
+              />
+              <div className="absolute inset-0 bg-black/10"></div>
+            </div>
+          )}
+        </Link>
+
+        <button
+          onClick={handleWishlist}
+          className="absolute top-2 right-2 md:top-3 md:right-3 z-30 w-8 h-8 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white/90 backdrop-blur-sm hover:bg-white transition-all duration-300 shadow-sm"
+          data-testid={`button-wishlist-${product.id}`}
+        >
+          <Heart
+            size={14}
+            strokeWidth={1.5}
+            className={`transition-colors duration-300 ${wishlisted ? "fill-red-500 text-red-500" : "text-black/60 hover:text-black"}`}
+          />
+        </button>
+
+        <div className="absolute bottom-0 left-0 w-full z-30 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out hidden md:block">
+          <button
+            onClick={handleAddToCart}
+            className="w-full py-3 text-[11px] font-medium tracking-[0.2em] uppercase bg-white hover:bg-[#1a1308] hover:text-white transition-colors flex items-center justify-center gap-2"
+            data-testid={`button-add-to-cart-${product.id}`}
+          >
+            <ShoppingBag size={13} strokeWidth={1.5} />
+            {addedToCart ? "Added!" : "Add to Cart"}
+          </button>
+        </div>
+
+        <button
+          onClick={handleAddToCart}
+          className="absolute bottom-2 right-2 z-30 w-8 h-8 flex items-center justify-center rounded-full bg-white/90 backdrop-blur-sm hover:bg-white transition-all duration-300 shadow-sm md:hidden"
+          data-testid={`button-add-to-cart-mobile-${product.id}`}
+        >
+          <ShoppingBag size={14} strokeWidth={1.5} className={`transition-colors duration-300 ${addedToCart ? "text-[#c9a96e]" : "text-black/60"}`} />
+        </button>
+      </div>
+
+      <div className="flex flex-col items-center px-1 text-center">
+        <Link href={`/product/${product.id}`}>
+          <span className="text-xs md:text-sm lg:text-base font-serif mb-1 text-black hover:text-black/60 transition-colors cursor-pointer" data-testid={`text-product-name-${product.id}`}>
+            {product.name}
+          </span>
+        </Link>
+        <span className="text-[10px] md:text-[11px] lg:text-xs tracking-[0.2em] uppercase text-black/40 mb-1 lg:mb-1.5 line-clamp-1">
+          {product.collection}
+        </span>
+        <p className="text-[9px] md:text-[11px] lg:text-xs font-medium text-black" data-testid={`text-price-${product.id}`}>
+          {product.currency} {product.price}
+        </p>
+      </div>
     </div>
   );
 }
