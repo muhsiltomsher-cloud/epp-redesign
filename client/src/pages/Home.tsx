@@ -312,11 +312,11 @@ export default function Home() {
           </section>
         )}
 
-        <section ref={bloomBannerRef} className="relative w-full h-[100svh] md:h-screen overflow-hidden">
+        <section ref={bloomBannerRef} className="relative w-full overflow-hidden">
           <img 
             src="https://emiratespride.com/ae/wp-content/uploads/sites/10/2025/10/BLOOM-AR-scaled.webp" 
             alt="Bloom Collection" 
-            className="bloom-banner-img absolute inset-0 w-full h-[130%] object-cover object-center"
+            className="bloom-banner-img w-full h-auto object-cover"
           />
         </section>
 
