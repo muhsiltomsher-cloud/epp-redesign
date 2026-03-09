@@ -221,56 +221,12 @@ export default function Home() {
           <div className="w-full md:w-1/2 flex flex-col scrolling-images relative bg-white">
             <div className="grid grid-cols-2 gap-2 md:gap-3 lg:gap-4 p-2.5 md:p-4 lg:p-6">
               {products.slice(0, 4).map((product) => (
-                <div key={product.id} className="group flex flex-col cursor-pointer" data-testid={`card-scroll-product-${product.id}`}>
-                  <Link href={`/product/${product.id}`}>
-                    <div className="relative aspect-[3/5] mb-1.5 md:mb-3 overflow-hidden bg-[#f5f5f5]">
-                      <img 
-                        src={product.image} 
-                        alt={product.name} 
-                        className="absolute inset-0 w-full h-full object-cover z-10 transition-transform duration-1000 group-hover:scale-105"
-                      />
-                      {product.hoverImage && (
-                        <div className="absolute inset-0 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 overflow-hidden hidden md:block">
-                          <img src={product.hoverImage} alt={`${product.name} lifestyle`} className="w-full h-full object-cover" />
-                          <div className="absolute inset-0 bg-black/10"></div>
-                        </div>
-                      )}
-                    </div>
-                  </Link>
-                  <div className="flex flex-col items-center text-center px-0.5">
-                    <Link href={`/product/${product.id}`}>
-                      <span className="text-xs md:text-sm lg:text-base font-serif mb-0.5 text-black hover:text-black/60 transition-colors cursor-pointer line-clamp-1">{product.name}</span>
-                    </Link>
-                    <p className="text-[10px] md:text-xs lg:text-sm font-medium text-black/70">{product.currency} {product.price}</p>
-                  </div>
-                </div>
+                <CreativeProductCard key={product.id} product={product} />
               ))}
             </div>
             <div className="grid grid-cols-2 gap-2 md:gap-3 lg:gap-4 p-2.5 md:p-4 lg:p-6 pt-0 md:pt-0 lg:pt-0">
               {products.slice(3, 7).map((product) => (
-                <div key={product.id} className="group flex flex-col cursor-pointer" data-testid={`card-scroll-product-${product.id}`}>
-                  <Link href={`/product/${product.id}`}>
-                    <div className="relative aspect-[3/5] mb-1.5 md:mb-3 overflow-hidden bg-[#f5f5f5]">
-                      <img 
-                        src={product.image} 
-                        alt={product.name} 
-                        className="absolute inset-0 w-full h-full object-cover z-10 transition-transform duration-1000 group-hover:scale-105"
-                      />
-                      {product.hoverImage && (
-                        <div className="absolute inset-0 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 overflow-hidden hidden md:block">
-                          <img src={product.hoverImage} alt={`${product.name} lifestyle`} className="w-full h-full object-cover" />
-                          <div className="absolute inset-0 bg-black/10"></div>
-                        </div>
-                      )}
-                    </div>
-                  </Link>
-                  <div className="flex flex-col items-center text-center px-0.5">
-                    <Link href={`/product/${product.id}`}>
-                      <span className="text-xs md:text-sm lg:text-base font-serif mb-0.5 text-black hover:text-black/60 transition-colors cursor-pointer line-clamp-1">{product.name}</span>
-                    </Link>
-                    <p className="text-[10px] md:text-xs lg:text-sm font-medium text-black/70">{product.currency} {product.price}</p>
-                  </div>
-                </div>
+                <CreativeProductCard key={product.id} product={product} />
               ))}
             </div>
           </div>
