@@ -149,7 +149,7 @@ export default function Home() {
 
         <section ref={galleryRef} className="py-4 md:py-8 lg:py-10 bg-[#e6cebb33] px-4 md:px-10 lg:px-20 xl:px-28">
           <div className="text-center mb-4 md:mb-8">
-            <h2 className="text-[8px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-2 md:mb-3">Explore</h2>
+            <h2 className="text-[11px] md:text-xs font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-2 md:mb-3">Explore</h2>
             <h3 className="text-lg md:text-2xl lg:text-3xl font-serif">A World of Fragrance</h3>
           </div>
           
@@ -161,7 +161,7 @@ export default function Home() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                   <div className="absolute bottom-4 left-4">
                     <h3 className="text-white font-serif text-sm mb-1 line-clamp-1">{cat.name}</h3>
-                    <span className="text-[7px] tracking-[0.2em] uppercase text-[#c9a96e]">Explore</span>
+                    <span className="text-[10px] tracking-[0.2em] uppercase text-[#c9a96e]">Explore</span>
                   </div>
                 </div>
               </Link>
@@ -187,13 +187,13 @@ export default function Home() {
         <section ref={pinnedSectionRef} className="relative w-full bg-[#fcfcfc] flex flex-col md:flex-row">
           <div className="w-full md:w-1/2 md:h-screen md:sticky top-0 pinned-content flex flex-col justify-center items-center md:items-start text-center md:text-left px-6 py-10 md:p-10 lg:p-16 xl:p-20 z-10 relative bg-cover bg-center min-h-[80svh] md:min-h-0" style={{ backgroundImage: "url('https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1-1200x1490.webp')" }}>
             <div className="absolute inset-0 bg-black/55 md:bg-black/50"></div>
-            <span className="relative z-10 text-[8px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-2 md:mb-5 lg:mb-7 md:border-l md:border-[#c9a96e]/50 md:pl-4">Signature Blend</span>
+            <span className="relative z-10 text-[11px] md:text-xs font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-2 md:mb-5 lg:mb-7 md:border-l md:border-[#c9a96e]/50 md:pl-4">Signature Blend</span>
             <h2 className="relative z-10 text-xl md:text-3xl lg:text-4xl xl:text-5xl font-serif mb-2.5 md:mb-5 lg:mb-7 leading-tight text-white">{featureProduct2.name}</h2>
             <p className="relative z-10 text-white/70 text-[10px] md:text-xs lg:text-sm leading-relaxed mb-5 md:mb-8 lg:mb-12 max-w-xs md:max-w-md font-light">
               A captivating journey into darkness. Discover a scent tailored to your most elegant moments.
             </p>
             <Link href={`/product/${featureProduct2.id}`}>
-              <span className="relative z-10 inline-block bg-[#c9a96e] text-white px-5 md:px-8 lg:px-10 py-2.5 md:py-3.5 lg:py-4 text-[8px] md:text-[10px] font-medium tracking-[0.2em] uppercase hover:bg-[#b8954f] transition-colors cursor-pointer">
+              <span className="relative z-10 inline-block bg-[#c9a96e] text-white px-5 md:px-8 lg:px-10 py-2.5 md:py-3.5 lg:py-4 text-[11px] md:text-xs font-medium tracking-[0.2em] uppercase hover:bg-[#b8954f] transition-colors cursor-pointer">
                 Discover The Scent
               </span>
             </Link>
@@ -220,9 +220,9 @@ export default function Home() {
                   </Link>
                   <div className="flex flex-col items-center text-center px-0.5">
                     <Link href={`/product/${product.id}`}>
-                      <span className="text-[11px] md:text-sm lg:text-base font-serif mb-0.5 text-black hover:text-black/60 transition-colors cursor-pointer line-clamp-1">{product.name}</span>
+                      <span className="text-xs md:text-sm lg:text-base font-serif mb-0.5 text-black hover:text-black/60 transition-colors cursor-pointer line-clamp-1">{product.name}</span>
                     </Link>
-                    <p className="text-[8px] md:text-[10px] lg:text-xs font-medium text-black/70">{product.currency} {product.price}</p>
+                    <p className="text-[10px] md:text-xs lg:text-sm font-medium text-black/70">{product.currency} {product.price}</p>
                   </div>
                 </div>
               ))}
@@ -247,9 +247,9 @@ export default function Home() {
                   </Link>
                   <div className="flex flex-col items-center text-center px-0.5">
                     <Link href={`/product/${product.id}`}>
-                      <span className="text-[11px] md:text-sm lg:text-base font-serif mb-0.5 text-black hover:text-black/60 transition-colors cursor-pointer line-clamp-1">{product.name}</span>
+                      <span className="text-xs md:text-sm lg:text-base font-serif mb-0.5 text-black hover:text-black/60 transition-colors cursor-pointer line-clamp-1">{product.name}</span>
                     </Link>
-                    <p className="text-[8px] md:text-[10px] lg:text-xs font-medium text-black/70">{product.currency} {product.price}</p>
+                    <p className="text-[10px] md:text-xs lg:text-sm font-medium text-black/70">{product.currency} {product.price}</p>
                   </div>
                 </div>
               ))}
@@ -260,11 +260,11 @@ export default function Home() {
         <section className="py-6 md:py-10 lg:py-14 px-4 md:px-10 lg:px-20 xl:px-28 bg-white overflow-hidden">
           <div className="flex justify-between items-end mb-4 md:mb-6 lg:mb-8 border-b border-black/10 pb-2.5 md:pb-4">
             <div>
-              <h2 className="text-[8px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-1 md:mb-2">Masterpieces</h2>
+              <h2 className="text-[11px] md:text-xs font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-1 md:mb-2">Masterpieces</h2>
               <h3 className="text-base md:text-2xl lg:text-3xl font-serif text-black">New & Trending</h3>
             </div>
             <Link href="/collection">
-              <span className="text-[8px] md:text-[10px] font-medium tracking-[0.2em] uppercase text-black/40 hover:text-black/60 transition-colors cursor-pointer luxury-underline pb-1">
+              <span className="text-[11px] md:text-xs font-medium tracking-[0.2em] uppercase text-black/40 hover:text-black/60 transition-colors cursor-pointer luxury-underline pb-1">
                 View All
               </span>
             </Link>
@@ -281,7 +281,7 @@ export default function Home() {
           <section className="py-6 md:py-10 lg:py-14 px-4 md:px-10 lg:px-20 xl:px-28 bg-[#fafafa] overflow-hidden">
             <div className="flex justify-between items-end mb-4 md:mb-6 lg:mb-8 border-b border-black/10 pb-2.5 md:pb-4">
               <div>
-                <h2 className="text-[8px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-1 md:mb-2">Your Journey</h2>
+                <h2 className="text-[11px] md:text-xs font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-1 md:mb-2">Your Journey</h2>
                 <h3 className="text-base md:text-2xl lg:text-3xl font-serif text-black">Recently Viewed</h3>
               </div>
             </div>
@@ -293,8 +293,8 @@ export default function Home() {
                       <img src={product.image} alt={product.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                     </div>
                     <div className="flex flex-col items-center text-center">
-                      <span className="text-xs font-serif mb-0.5 text-black line-clamp-1">{product.name}</span>
-                      <p className="text-[9px] font-medium text-black/70">{product.currency} {product.price}</p>
+                      <span className="text-sm font-serif mb-0.5 text-black line-clamp-1">{product.name}</span>
+                      <p className="text-xs font-medium text-black/70">{product.currency} {product.price}</p>
                     </div>
                   </div>
                 </Link>
@@ -321,11 +321,11 @@ export default function Home() {
           <div className="relative z-10 flex flex-col lg:flex-row items-center gap-6 md:gap-10 lg:gap-16 max-w-7xl mx-auto">
             <div className="flex-1 text-center lg:text-left">
               <div className="w-10 md:w-12 h-[1px] bg-[#c9a96e] mb-4 md:mb-6 mx-auto lg:mx-0"></div>
-              <h2 className="text-[8px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-3 md:mb-6">Our Philosophy</h2>
+              <h2 className="text-[11px] md:text-xs font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-3 md:mb-6">Our Philosophy</h2>
               <p className="text-base md:text-xl lg:text-2xl font-serif text-white leading-relaxed md:leading-snug text-balance font-light">
                 Dedicated to the creation of highly original, artisan fragrances.
               </p>
-              <p className="text-[10px] md:text-sm text-white/50 font-light mt-3 md:mt-6 leading-relaxed max-w-xl mx-auto lg:mx-0">
+              <p className="text-xs md:text-sm text-white/50 font-light mt-3 md:mt-6 leading-relaxed max-w-xl mx-auto lg:mx-0">
                 We source the finest ingredients globally to craft scents that evoke deep emotions and lasting memories.
               </p>
             </div>
@@ -334,29 +334,29 @@ export default function Home() {
                 <div className="w-9 h-9 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border border-[#c9a96e]/30 flex items-center justify-center text-[#c9a96e]/80 mb-2.5 md:mb-3.5 lg:mb-4 group-hover:bg-[#c9a96e] group-hover:text-white transition-colors duration-500">
                   <Pencil strokeWidth={1} className="w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5" />
                 </div>
-                <h3 className="text-[10px] md:text-xs lg:text-sm font-serif mb-1 text-white">Personalization</h3>
-                <p className="text-[8px] md:text-[9px] lg:text-[10px] text-white/40 font-light leading-relaxed hidden sm:block">Custom engraving</p>
+                <h3 className="text-xs md:text-sm font-serif mb-1 text-white">Personalization</h3>
+                <p className="text-[10px] md:text-[11px] lg:text-xs text-white/40 font-light leading-relaxed hidden sm:block">Custom engraving</p>
               </div>
               <div className="group flex flex-col items-center text-center p-4 md:p-5 lg:p-7 border border-[#c9a96e]/15 hover:border-[#c9a96e]/40 transition-all duration-500 cursor-pointer">
                 <div className="w-9 h-9 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border border-[#c9a96e]/30 flex items-center justify-center text-[#c9a96e]/80 mb-2.5 md:mb-3.5 lg:mb-4 group-hover:bg-[#c9a96e] group-hover:text-white transition-colors duration-500">
                   <Gift strokeWidth={1} className="w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5" />
                 </div>
-                <h3 className="text-[10px] md:text-xs lg:text-sm font-serif mb-1 text-white">Gift Wrapping</h3>
-                <p className="text-[8px] md:text-[9px] lg:text-[10px] text-white/40 font-light leading-relaxed hidden sm:block">Luxurious finishing</p>
+                <h3 className="text-xs md:text-sm font-serif mb-1 text-white">Gift Wrapping</h3>
+                <p className="text-[10px] md:text-[11px] lg:text-xs text-white/40 font-light leading-relaxed hidden sm:block">Luxurious finishing</p>
               </div>
               <div className="group flex flex-col items-center text-center p-4 md:p-5 lg:p-7 border border-[#c9a96e]/15 hover:border-[#c9a96e]/40 transition-all duration-500 cursor-pointer">
                 <div className="w-9 h-9 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border border-[#c9a96e]/30 flex items-center justify-center text-[#c9a96e]/80 mb-2.5 md:mb-3.5 lg:mb-4 group-hover:bg-[#c9a96e] group-hover:text-white transition-colors duration-500">
                   <Truck strokeWidth={1} className="w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5" />
                 </div>
-                <h3 className="text-[10px] md:text-xs lg:text-sm font-serif mb-1 text-white">Global Delivery</h3>
-                <p className="text-[8px] md:text-[9px] lg:text-[10px] text-white/40 font-light leading-relaxed hidden sm:block">Free over AED 1500</p>
+                <h3 className="text-xs md:text-sm font-serif mb-1 text-white">Global Delivery</h3>
+                <p className="text-[10px] md:text-[11px] lg:text-xs text-white/40 font-light leading-relaxed hidden sm:block">Free over AED 1500</p>
               </div>
               <div className="group flex flex-col items-center text-center p-4 md:p-5 lg:p-7 border border-[#c9a96e]/15 hover:border-[#c9a96e]/40 transition-all duration-500 cursor-pointer">
                 <div className="w-9 h-9 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border border-[#c9a96e]/30 flex items-center justify-center text-[#c9a96e]/80 mb-2.5 md:mb-3.5 lg:mb-4 group-hover:bg-[#c9a96e] group-hover:text-white transition-colors duration-500">
                   <MailOpen strokeWidth={1} className="w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5" />
                 </div>
-                <h3 className="text-[10px] md:text-xs lg:text-sm font-serif mb-1 text-white">Free Samples</h3>
-                <p className="text-[8px] md:text-[9px] lg:text-[10px] text-white/40 font-light leading-relaxed hidden sm:block">With every order</p>
+                <h3 className="text-xs md:text-sm font-serif mb-1 text-white">Free Samples</h3>
+                <p className="text-[10px] md:text-[11px] lg:text-xs text-white/40 font-light leading-relaxed hidden sm:block">With every order</p>
               </div>
             </div>
           </div>
@@ -390,7 +390,7 @@ function CreativeProductCard({ product }: { product: any }) {
           )}
           
           <div className="absolute bottom-0 left-0 w-full z-30 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out bg-white hidden md:block">
-            <button className="w-full py-3 text-[9px] font-medium tracking-[0.2em] uppercase hover:bg-[#1a1308] hover:text-white transition-colors" data-testid={`button-quickview-${product.id}`}>
+            <button className="w-full py-3 text-[11px] font-medium tracking-[0.2em] uppercase hover:bg-[#1a1308] hover:text-white transition-colors" data-testid={`button-quickview-${product.id}`}>
               Quick View
             </button>
           </div>
@@ -403,7 +403,7 @@ function CreativeProductCard({ product }: { product: any }) {
             {product.name}
           </span>
         </Link>
-        <span className="text-[7px] md:text-[8px] lg:text-[9px] tracking-[0.2em] uppercase text-black/40 mb-1 lg:mb-1.5 line-clamp-1">
+        <span className="text-[10px] md:text-[11px] lg:text-xs tracking-[0.2em] uppercase text-black/40 mb-1 lg:mb-1.5 line-clamp-1">
           {product.collection}
         </span>
         <p className="text-[9px] md:text-[11px] lg:text-xs font-medium text-black" data-testid={`text-price-${product.id}`}>
