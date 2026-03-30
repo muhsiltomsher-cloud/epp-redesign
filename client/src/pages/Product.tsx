@@ -1,11 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "wouter";
-import { Minus, Plus, ChevronDown, Star, Truck, ShieldCheck, Box, Maximize2, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { Minus, Plus, ChevronDown, Star, Truck, ShieldCheck, Box, Maximize2, X, ChevronLeft, ChevronRight, Heart, Check } from "lucide-react";
 import { gsap } from "gsap";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { products } from "@/lib/data";
 import { addRecentlyViewed } from "@/lib/recentlyViewed";
+import { addToCart } from "@/lib/cart";
+import { toggleWishlist, isInWishlist } from "@/lib/wishlist";
 
 export default function Product() {
   const { id } = useParams();
@@ -13,11 +15,20 @@ export default function Product() {
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState("description");
   const [fullscreenIndex, setFullscreenIndex] = useState<number | null>(null);
+  const [addedToCart, setAddedToCart] = useState(false);
+  const [wishlisted, setWishlisted] = useState(false);
+  const [hoveredRelated, setHoveredRelated] = useState<string | null>(null);
   
   const detailsColRef = useRef<HTMLDivElement>(null);
+  const addedTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    if (id) addRecentlyViewed(id);
+    if (id) {
+      addRecentlyViewed(id);
+      setWishlisted(isInWishlist(id));
+      setAddedToCart(false);
+      if (addedTimerRef.current) clearTimeout(addedTimerRef.current);
+    }
   }, [id]);
 
   useEffect(() => {
@@ -46,9 +57,13 @@ export default function Product() {
           
           <div className="w-full md:w-1/2">
             <div className="absolute top-3 left-4 md:top-6 md:left-6 z-10">
-              <Link href="/collection" className="text-[8px] md:text-[9px] uppercase tracking-[0.2em] text-black/50 hover:text-black transition-colors flex items-center gap-2" data-testid="link-back-collection">
-                <span className="w-3 md:w-4 h-[1px] bg-current"></span> Back
-              </Link>
+              <nav className="flex items-center gap-1.5 text-[8px] md:text-[9px] uppercase tracking-[0.15em]" data-testid="breadcrumb-nav">
+                <Link href="/" className="text-black/40 hover:text-black transition-colors">Home</Link>
+                <span className="text-black/25">/</span>
+                <Link href="/collection" className="text-black/40 hover:text-black transition-colors">{product.collection}</Link>
+                <span className="text-black/25">/</span>
+                <span className="text-black/70">{product.name}</span>
+              </nav>
             </div>
 
             <div className="flex flex-col">
@@ -80,25 +95,57 @@ export default function Product() {
               <div className="details-inner px-4 py-5 md:p-10 lg:p-16 xl:p-20 max-w-[650px] mx-auto w-full">
                 
                 <div className="mb-6 md:mb-10">
-                  <span className="text-[8px] md:text-[10px] tracking-[0.3em] uppercase text-[#c9a96e] mb-2 md:mb-4 block" data-testid="text-product-collection">
-                    {product.collection}
-                  </span>
+                  <div className="flex items-center gap-3 mb-2 md:mb-4">
+                    <span className="text-[8px] md:text-[10px] tracking-[0.3em] uppercase text-[#c9a96e]" data-testid="text-product-collection">
+                      {product.collection}
+                    </span>
+                    {product.badge && (
+                      <span 
+                        className={`text-[7px] md:text-[8px] font-semibold tracking-[0.15em] uppercase px-2.5 py-0.5 ${
+                          product.badge === 'BESTSELLER' 
+                            ? 'bg-[#c9a96e] text-white' 
+                            : 'bg-white text-[#1a1308] border border-[#c9a96e]/40'
+                        }`}
+                        data-testid="badge-product"
+                      >
+                        {product.badge}
+                      </span>
+                    )}
+                  </div>
                   <h1 className="text-2xl md:text-5xl lg:text-6xl font-serif mb-2 md:mb-4 text-black tracking-wide leading-tight" data-testid="text-product-name">
                     {product.name}
                   </h1>
                   
-                  <div className="flex items-center gap-3 md:gap-4 mb-3 md:mb-6">
-                    <p className="text-base md:text-xl text-black font-medium" data-testid="text-product-price">
-                      {product.currency} {product.price}
-                    </p>
-                    <div className="flex items-center gap-0.5 text-[#c9a96e]">
-                      <Star size={10} fill="currentColor" />
-                      <Star size={10} fill="currentColor" />
-                      <Star size={10} fill="currentColor" />
-                      <Star size={10} fill="currentColor" />
-                      <Star size={10} fill="currentColor" />
-                      <span className="text-[8px] md:text-[10px] text-black/50 ml-1.5 tracking-wider uppercase">(12)</span>
+                  <div className="flex items-center justify-between mb-3 md:mb-6">
+                    <div className="flex items-center gap-3 md:gap-4">
+                      <p className="text-base md:text-xl text-black font-medium" data-testid="text-product-price">
+                        {product.currency} {product.price}
+                      </p>
+                      <div className="flex items-center gap-0.5 text-[#c9a96e]">
+                        <Star size={10} fill="currentColor" />
+                        <Star size={10} fill="currentColor" />
+                        <Star size={10} fill="currentColor" />
+                        <Star size={10} fill="currentColor" />
+                        <Star size={10} fill="currentColor" />
+                        <span className="text-[8px] md:text-[10px] text-black/50 ml-1.5 tracking-wider uppercase">(12)</span>
+                      </div>
                     </div>
+                    <button
+                      className={`w-9 h-9 md:w-10 md:h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${
+                        wishlisted 
+                          ? 'border-[#c9a96e] bg-[#c9a96e]/10 text-[#c9a96e]' 
+                          : 'border-black/15 text-black/40 hover:border-[#c9a96e] hover:text-[#c9a96e]'
+                      }`}
+                      onClick={() => {
+                        if (id) {
+                          const added = toggleWishlist(id);
+                          setWishlisted(added);
+                        }
+                      }}
+                      data-testid="button-wishlist"
+                    >
+                      <Heart size={15} strokeWidth={1.5} fill={wishlisted ? 'currentColor' : 'none'} />
+                    </button>
                   </div>
                   
                   <p className="text-[11px] md:text-sm text-black/70 leading-relaxed font-light mt-4 md:mt-6 border-t border-black/5 pt-4 md:pt-6" data-testid="text-product-description">
@@ -107,6 +154,14 @@ export default function Product() {
                 </div>
 
                 <div className="hidden md:flex flex-col gap-4 mb-12">
+                  <div className="mb-2">
+                    <span className="text-[8px] md:text-[9px] tracking-[0.2em] uppercase text-black/40 mb-2 block">Size</span>
+                    <div className="flex gap-2">
+                      <span className="px-4 py-2 text-[9px] md:text-[10px] tracking-[0.15em] uppercase font-medium border-2 border-[#c9a96e] text-[#1a1308] bg-[#c9a96e]/5 cursor-default" data-testid="size-selector">
+                        50 ML
+                      </span>
+                    </div>
+                  </div>
                   <div className="flex items-stretch gap-4 h-14">
                     <div className="flex items-center border border-[#c9a96e]/30 bg-white w-32">
                       <button 
@@ -126,8 +181,27 @@ export default function Product() {
                       </button>
                     </div>
                     
-                    <button className="flex-1 bg-[#1a1308] text-white px-4 text-[10px] font-medium tracking-[0.2em] uppercase hover:bg-[#c9a96e] transition-colors text-center" data-testid="button-add-to-cart">
-                      Add to Cart
+                    <button 
+                      className={`flex-1 px-4 text-[10px] font-medium tracking-[0.2em] uppercase transition-all duration-500 text-center flex items-center justify-center gap-2 ${
+                        addedToCart 
+                          ? 'bg-[#c9a96e] text-white' 
+                          : 'bg-[#1a1308] text-white hover:bg-[#c9a96e]'
+                      }`}
+                      onClick={() => {
+                        if (product && !addedToCart) {
+                          addToCart(product.id, quantity);
+                          setAddedToCart(true);
+                          setQuantity(1);
+                          addedTimerRef.current = setTimeout(() => setAddedToCart(false), 2500);
+                        }
+                      }}
+                      data-testid="button-add-to-cart"
+                    >
+                      {addedToCart ? (
+                        <><Check size={14} strokeWidth={2} /> Added to Cart</>
+                      ) : (
+                        'Add to Cart'
+                      )}
                     </button>
                   </div>
                   
@@ -232,15 +306,36 @@ export default function Product() {
         </div>
 
         {relatedProducts.length > 0 && (
-          <section className="px-4 md:px-10 lg:px-20 xl:px-28 py-10 md:py-20 bg-white border-t border-black/5">
+          <section className="px-4 md:px-10 lg:px-20 xl:px-28 py-10 md:py-20 bg-[#faf9f7]">
+            <div className="w-12 h-[1px] bg-[#c9a96e] mx-auto mb-4 md:mb-6"></div>
             <h2 className="text-[8px] md:text-[10px] font-medium tracking-[0.3em] uppercase text-[#c9a96e] mb-2 md:mb-3 text-center">You May Also Like</h2>
             <h3 className="text-xl md:text-3xl lg:text-4xl font-serif text-center mb-6 md:mb-12">From {product.collection}</h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-x-2.5 md:gap-x-4 lg:gap-x-6 gap-y-6 md:gap-y-10">
               {relatedProducts.map((p) => (
                 <Link key={p.id} href={`/product/${p.id}`}>
-                  <div className="group flex flex-col cursor-pointer" data-testid={`card-related-${p.id}`}>
+                  <div 
+                    className="group flex flex-col cursor-pointer" 
+                    data-testid={`card-related-${p.id}`}
+                    onMouseEnter={() => setHoveredRelated(p.id)}
+                    onMouseLeave={() => setHoveredRelated(null)}
+                  >
                     <div className="relative aspect-[3/5] mb-2.5 md:mb-3 overflow-hidden bg-[#f8f8f8]">
-                      <img src={p.image} alt={p.name} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+                      <img 
+                        src={hoveredRelated === p.id && p.hoverImage ? p.hoverImage : p.image} 
+                        alt={p.name} 
+                        className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105" 
+                      />
+                      {p.badge && (
+                        <span 
+                          className={`absolute top-2 left-2 md:top-3 md:left-3 text-[7px] md:text-[8px] font-semibold tracking-[0.15em] uppercase px-2 py-0.5 ${
+                            p.badge === 'BESTSELLER' 
+                              ? 'bg-[#c9a96e] text-white' 
+                              : 'bg-white text-[#1a1308] border border-[#c9a96e]/40'
+                          }`}
+                        >
+                          {p.badge}
+                        </span>
+                      )}
                     </div>
                     <div className="flex flex-col items-center text-center">
                       <span className="text-sm md:text-base font-serif mb-0.5 text-black group-hover:text-black/60 transition-colors">{p.name}</span>
@@ -269,8 +364,27 @@ export default function Product() {
             <Plus size={12} strokeWidth={1.5} />
           </button>
         </div>
-        <button className="flex-1 bg-[#1a1308] text-white h-10 text-[9px] font-medium tracking-[0.2em] uppercase active:bg-[#c9a96e] transition-colors" data-testid="button-add-to-cart-mobile">
-          Add to Cart — {product.currency} {product.price}
+        <button 
+          className={`flex-1 h-10 text-[9px] font-medium tracking-[0.2em] uppercase transition-all duration-500 flex items-center justify-center gap-1.5 ${
+            addedToCart 
+              ? 'bg-[#c9a96e] text-white' 
+              : 'bg-[#1a1308] text-white active:bg-[#c9a96e]'
+          }`}
+          onClick={() => {
+            if (product && !addedToCart) {
+              addToCart(product.id, quantity);
+              setAddedToCart(true);
+              setQuantity(1);
+              addedTimerRef.current = setTimeout(() => setAddedToCart(false), 2500);
+            }
+          }}
+          data-testid="button-add-to-cart-mobile"
+        >
+          {addedToCart ? (
+            <><Check size={12} strokeWidth={2} /> Added</>
+          ) : (
+            <>Add to Cart — {product.currency} {product.price}</>
+          )}
         </button>
       </div>
       {fullscreenIndex !== null && (

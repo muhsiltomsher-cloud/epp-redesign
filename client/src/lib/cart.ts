@@ -15,14 +15,14 @@ export function getCart(): CartItem[] {
   }
 }
 
-export function addToCart(productId: string): CartItem[] {
+export function addToCart(productId: string, qty: number = 1): CartItem[] {
   try {
     const items = getCart();
     const existing = items.find(i => i.productId === productId);
     if (existing) {
-      existing.quantity += 1;
+      existing.quantity += qty;
     } else {
-      items.push({ productId, quantity: 1 });
+      items.push({ productId, quantity: qty });
     }
     localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
     window.dispatchEvent(new Event("cart-updated"));
