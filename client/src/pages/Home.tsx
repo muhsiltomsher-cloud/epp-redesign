@@ -204,15 +204,16 @@ export default function Home() {
         </section>
 
         <section ref={pinnedSectionRef} className="relative w-full bg-[#fcfcfc] flex flex-col md:flex-row">
-          <div className="w-full md:w-1/2 md:h-screen md:sticky top-0 pinned-content flex flex-col justify-center items-center md:items-start text-center md:text-left px-6 py-10 md:p-10 lg:p-16 xl:p-20 z-10 relative bg-cover bg-center min-h-[80svh] md:min-h-0" style={{ backgroundImage: "url('https://emiratespride.com/wp-content/uploads/2021/03/Hidden-leather-lifestyle-1.webp')" }}>
-            <div className="absolute inset-0 bg-black/55 md:bg-black/50"></div>
-            <span className="relative z-10 text-[11px] md:text-xs font-semibold tracking-[0.3em] uppercase text-white mb-2 md:mb-5 lg:mb-7 md:border-l md:border-white/50 md:pl-4">Signature Blend</span>
-            <h2 className="relative z-10 text-xl md:text-3xl lg:text-4xl xl:text-5xl font-serif mb-2.5 md:mb-5 lg:mb-7 leading-tight text-white">{featureProduct2.name}</h2>
-            <p className="relative z-10 text-white text-[10px] md:text-xs lg:text-sm leading-relaxed mb-5 md:mb-8 lg:mb-12 max-w-xs md:max-w-md font-light">
+          <div className="group/leather w-full md:w-1/2 md:h-screen md:sticky top-0 pinned-content flex flex-col justify-center items-center md:items-start text-center md:text-left px-6 py-10 md:p-10 lg:p-16 xl:p-20 z-10 relative overflow-hidden min-h-[80svh] md:min-h-0">
+            <div className="absolute inset-0 bg-cover bg-center transition-transform duration-[1.5s] ease-out group-hover/leather:scale-110" style={{ backgroundImage: "url('https://emiratespride.com/wp-content/uploads/2021/03/Hidden-leather-lifestyle-1.webp')" }}></div>
+            <div className="absolute inset-0 bg-black/55 md:bg-black/50 transition-all duration-700 group-hover/leather:bg-black/40"></div>
+            <span className="relative z-10 text-[11px] md:text-xs font-semibold tracking-[0.3em] uppercase text-white mb-2 md:mb-5 lg:mb-7 md:border-l md:border-white/50 md:pl-4 transition-transform duration-700 group-hover/leather:translate-y-[-4px]">Signature Blend</span>
+            <h2 className="relative z-10 text-xl md:text-3xl lg:text-4xl xl:text-5xl font-serif mb-2.5 md:mb-5 lg:mb-7 leading-tight text-white transition-transform duration-700 group-hover/leather:translate-y-[-4px]">{featureProduct2.name}</h2>
+            <p className="relative z-10 text-white text-[10px] md:text-xs lg:text-sm leading-relaxed mb-5 md:mb-8 lg:mb-12 max-w-xs md:max-w-md font-light transition-transform duration-700 group-hover/leather:translate-y-[-4px]">
               A captivating journey into darkness. Discover a scent tailored to your most elegant moments.
             </p>
             <Link href={`/product/${featureProduct2.id}`}>
-              <span className="relative z-10 inline-block bg-[#c9a96e] text-white px-5 md:px-8 lg:px-10 py-2.5 md:py-3.5 lg:py-4 text-[11px] md:text-xs font-medium tracking-[0.2em] uppercase hover:bg-[#b8954f] transition-colors cursor-pointer">
+              <span className="relative z-10 inline-block bg-[#c9a96e] text-white px-5 md:px-8 lg:px-10 py-2.5 md:py-3.5 lg:py-4 text-[11px] md:text-xs font-medium tracking-[0.2em] uppercase hover:bg-[#b8954f] transition-all duration-700 cursor-pointer group-hover/leather:translate-y-[-4px] group-hover/leather:shadow-lg">
                 Discover The Scent
               </span>
             </Link>
