@@ -93,7 +93,7 @@ export default function Navbar() {
         </div>
         
         <div className="px-4 md:px-10 lg:px-20 xl:px-28 relative text-[18px] font-medium">
-          <div className={`flex items-center justify-between transition-all duration-500 ${isScrolled ? "h-[44px] md:h-[56px]" : "h-[48px] md:h-[64px]"}`}>
+          <div className={`flex items-center justify-between transition-all duration-500 ${isScrolled ? "h-[52px] md:h-[64px]" : "h-[56px] md:h-[80px]"}`}>
             
             <button 
               className={`md:hidden p-2 -ml-2 transition-colors duration-300 ${
@@ -135,7 +135,7 @@ export default function Navbar() {
               <img 
                 src={logoUrl} 
                 alt="Emirates Pride" 
-                className={`transition-all duration-500 w-full object-contain ${isScrolled ? "max-h-[20px] md:max-h-[30px]" : "max-h-[24px] md:max-h-[40px]"} ${
+                className={`transition-all duration-500 w-full object-contain ${isScrolled ? "max-h-[24px] md:max-h-[36px]" : "max-h-[30px] md:max-h-[50px]"} ${
                   !isDarkText ? "filter brightness-0 invert" : "filter-none"
                 }`}
               />
@@ -283,9 +283,9 @@ export default function Navbar() {
         )}
 
         <div className={`absolute top-full left-0 w-full bg-white transition-all duration-500 ease-in-out origin-top border-t border-black/5 overflow-hidden md:hidden shadow-2xl ${
-          isMenuOpen ? "max-h-[calc(100svh-52px)] opacity-100" : "max-h-0 opacity-0"
+          isMenuOpen ? "max-h-[calc(100svh-56px)] opacity-100" : "max-h-0 opacity-0"
         }`}>
-          <div className="px-5 py-6 flex flex-col gap-0 h-[calc(100svh-52px)] overflow-y-auto">
+          <div className="px-5 py-6 flex flex-col gap-0 h-[calc(100svh-56px)] overflow-y-auto">
             <Link href="/collection">
               <span className="text-[15px] font-serif tracking-wide uppercase border-b border-black/8 py-4 flex justify-between items-center block cursor-pointer active:bg-black/3 -mx-5 px-5">
                 Oud & Dakhoon <ChevronDown size={12} className="-rotate-90 text-black" />
