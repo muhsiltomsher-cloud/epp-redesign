@@ -283,9 +283,9 @@ export default function Navbar() {
         )}
 
         <div className={`absolute top-full left-0 w-full bg-white transition-all duration-500 ease-in-out origin-top border-t border-black/5 overflow-hidden md:hidden shadow-2xl ${
-          isMenuOpen ? "max-h-[calc(100svh-52px)] opacity-100" : "max-h-0 opacity-0"
+          isMenuOpen ? "max-h-[calc(100svh-56px)] opacity-100" : "max-h-0 opacity-0"
         }`}>
-          <div className="px-5 py-6 flex flex-col gap-0 h-[calc(100svh-52px)] overflow-y-auto">
+          <div className="px-5 py-6 flex flex-col gap-0 h-[calc(100svh-56px)] overflow-y-auto">
             <Link href="/collection">
               <span className="text-[15px] font-serif tracking-wide uppercase border-b border-black/8 py-4 flex justify-between items-center block cursor-pointer active:bg-black/3 -mx-5 px-5">
                 Oud & Dakhoon <ChevronDown size={12} className="-rotate-90 text-black" />
