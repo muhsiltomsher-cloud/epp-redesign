@@ -93,7 +93,7 @@ export default function Navbar() {
         </div>
         
         <div className="px-4 md:px-10 lg:px-20 xl:px-28 relative text-[18px] font-medium">
-          <div className={`flex items-center justify-between transition-all duration-500 ${isScrolled ? "h-[44px] md:h-[56px]" : "h-[48px] md:h-[64px]"}`}>
+          <div className={`flex items-center justify-between transition-all duration-500 ${isScrolled ? "h-[52px] md:h-[64px]" : "h-[56px] md:h-[80px]"}`}>
             
             <button 
               className={`md:hidden p-2 -ml-2 transition-colors duration-300 ${
@@ -135,7 +135,7 @@ export default function Navbar() {
               <img 
                 src={logoUrl} 
                 alt="Emirates Pride" 
-                className={`transition-all duration-500 w-full object-contain ${isScrolled ? "max-h-[20px] md:max-h-[30px]" : "max-h-[24px] md:max-h-[40px]"} ${
+                className={`transition-all duration-500 w-full object-contain ${isScrolled ? "max-h-[24px] md:max-h-[36px]" : "max-h-[30px] md:max-h-[50px]"} ${
                   !isDarkText ? "filter brightness-0 invert" : "filter-none"
                 }`}
               />

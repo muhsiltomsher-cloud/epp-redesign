@@ -53,7 +53,7 @@ export default function Collection() {
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <Navbar />
-      <main className="flex-1 pt-[52px] md:pt-24">
+      <main className="flex-1 pt-[60px] md:pt-28">
         <header className="bg-white py-3 md:py-6 lg:py-8 px-4 md:px-10 lg:px-20 xl:px-28 text-center border-b border-black/5">
           <h1 className="md:text-3xl lg:text-4xl font-serif mb-2 md:mb-4 uppercase tracking-wider text-black animate-in fade-in slide-in-from-bottom-4 text-[30px]" data-testid="text-collection-title">Our Collections</h1>
           <p className="text-black max-w-2xl mx-auto text-[11px] md:text-sm lg:text-base font-light animate-in fade-in slide-in-from-bottom-6 delay-150">
