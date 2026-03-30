@@ -204,7 +204,7 @@ export default function Home() {
         </section>
 
         <section ref={pinnedSectionRef} className="relative w-full bg-[#fcfcfc] flex flex-col md:flex-row">
-          <div className="w-full md:w-1/2 md:h-screen md:sticky top-0 pinned-content flex flex-col justify-center items-center md:items-start text-center md:text-left px-6 py-10 md:p-10 lg:p-16 xl:p-20 z-10 relative bg-cover bg-center min-h-[80svh] md:min-h-0" style={{ backgroundImage: "url('https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1-1200x1490.webp')" }}>
+          <div className="w-full md:w-1/2 md:h-screen md:sticky top-0 pinned-content flex flex-col justify-center items-center md:items-start text-center md:text-left px-6 py-10 md:p-10 lg:p-16 xl:p-20 z-10 relative bg-cover bg-center min-h-[80svh] md:min-h-0" style={{ backgroundImage: "url('https://emiratespride.com/wp-content/uploads/2021/03/Hidden-leather-lifestyle-1.webp')" }}>
             <div className="absolute inset-0 bg-black/55 md:bg-black/50"></div>
             <span className="relative z-10 text-[11px] md:text-xs font-semibold tracking-[0.3em] uppercase text-white mb-2 md:mb-5 lg:mb-7 md:border-l md:border-white/50 md:pl-4">Signature Blend</span>
             <h2 className="relative z-10 text-xl md:text-3xl lg:text-4xl xl:text-5xl font-serif mb-2.5 md:mb-5 lg:mb-7 leading-tight text-white">{featureProduct2.name}</h2>
