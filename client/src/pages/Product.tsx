@@ -27,6 +27,8 @@ export default function Product() {
       addRecentlyViewed(id);
       setWishlisted(isInWishlist(id));
       setAddedToCart(false);
+      setQuantity(1);
+      setFullscreenIndex(null);
       if (addedTimerRef.current) clearTimeout(addedTimerRef.current);
     }
   }, [id]);
