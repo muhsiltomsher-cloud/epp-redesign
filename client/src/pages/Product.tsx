@@ -54,7 +54,7 @@ export default function Product() {
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <Navbar />
-      <main className="flex-1 pt-[52px] md:pt-[70px]">
+      <main className="flex-1 pt-[72px] md:pt-[100px]">
         <div className="flex flex-col md:flex-row w-full max-w-[1800px] mx-auto relative">
           
           <div className="w-full md:w-1/2">
