@@ -20,12 +20,14 @@ export default function Product() {
   const [hoveredRelated, setHoveredRelated] = useState<string | null>(null);
   
   const detailsColRef = useRef<HTMLDivElement>(null);
+  const addedTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (id) {
       addRecentlyViewed(id);
       setWishlisted(isInWishlist(id));
       setAddedToCart(false);
+      if (addedTimerRef.current) clearTimeout(addedTimerRef.current);
     }
   }, [id]);
 
@@ -187,9 +189,10 @@ export default function Product() {
                       }`}
                       onClick={() => {
                         if (product && !addedToCart) {
-                          addToCart(product.id);
+                          addToCart(product.id, quantity);
                           setAddedToCart(true);
-                          setTimeout(() => setAddedToCart(false), 2500);
+                          setQuantity(1);
+                          addedTimerRef.current = setTimeout(() => setAddedToCart(false), 2500);
                         }
                       }}
                       data-testid="button-add-to-cart"
@@ -369,9 +372,10 @@ export default function Product() {
           }`}
           onClick={() => {
             if (product && !addedToCart) {
-              addToCart(product.id);
+              addToCart(product.id, quantity);
               setAddedToCart(true);
-              setTimeout(() => setAddedToCart(false), 2500);
+              setQuantity(1);
+              addedTimerRef.current = setTimeout(() => setAddedToCart(false), 2500);
             }
           }}
           data-testid="button-add-to-cart-mobile"
