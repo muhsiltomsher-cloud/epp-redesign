@@ -7,6 +7,7 @@ export const products = [
     collection: 'Oud & Dakhoon',
     price: 695,
     currency: 'AED',
+    badge: 'NEW' as const,
     image: 'https://emiratespride.com/wp-content/uploads/2026/01/Future-Bakhoor-scaled-1.webp',
     hoverImage: 'https://emiratespride.com/wp-content/uploads/2026/01/Future-Bakhoor-Lifestyle-scaled-1.webp',
     gallery: [
@@ -21,6 +22,7 @@ export const products = [
     collection: 'Gift Sets',
     price: 1490,
     currency: 'AED',
+    badge: 'NEW' as const,
     image: 'https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-scaled-1.webp',
     hoverImage: 'https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1.webp',
     gallery: [
@@ -35,6 +37,7 @@ export const products = [
     collection: 'Perfume Collection',
     price: 585,
     currency: 'AED',
+    badge: 'NEW' as const,
     image: 'https://emiratespride.com/wp-content/uploads/2025/09/Burgundy.webp',
     hoverImage: 'https://emiratespride.com/wp-content/uploads/2025/09/MIDNIGHT-BLOOM.webp',
     gallery: [
@@ -63,6 +66,7 @@ export const products = [
     collection: 'Oud & Dakhoon',
     price: 795,
     currency: 'AED',
+    badge: 'NEW' as const,
     image: 'https://emiratespride.com/wp-content/uploads/2026/01/Future-Oud-scaled-1.webp',
     hoverImage: 'https://emiratespride.com/wp-content/uploads/2026/01/Future-Oud-Lifestyle-scaled-1.webp',
     gallery: [
@@ -77,6 +81,7 @@ export const products = [
     collection: 'Perfume Collection',
     price: 465,
     currency: 'AED',
+    badge: 'BESTSELLER' as const,
     image: 'https://emiratespride.com/wp-content/uploads/2021/03/HIDDEN-LEATHER-01.webp',
     hoverImage: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/03/Hidden-leather-with-box.webp',
     gallery: [
@@ -119,6 +124,7 @@ export const products = [
     collection: 'Oud & Dakhoon',
     price: 895,
     currency: 'AED',
+    badge: 'BESTSELLER' as const,
     image: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Al-Emarat1.webp',
     hoverImage: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Al-Emarat2.webp',
     gallery: [
@@ -147,6 +153,7 @@ export const products = [
     collection: 'Oud & Dakhoon',
     price: 1250,
     currency: 'AED',
+    badge: 'BESTSELLER' as const,
     image: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Barjeel1.webp',
     hoverImage: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Barjeel2.webp',
     gallery: [
@@ -203,6 +210,7 @@ export const products = [
     collection: 'Oud & Dakhoon',
     price: 595,
     currency: 'AED',
+    badge: 'NEW' as const,
     image: 'https://emiratespride.com/wp-content/uploads/2026/01/Future-Dakhoon-scaled-1.webp',
     hoverImage: 'https://emiratespride.com/wp-content/uploads/2026/01/Future-Bakhoor-Lifestyle-scaled-1.webp',
     gallery: [
