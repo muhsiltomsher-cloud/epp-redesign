@@ -176,10 +176,10 @@ export default function Home() {
                 <div className="gallery-item group w-[45vw] flex-shrink-0 snap-start cursor-pointer">
                   <div className="relative aspect-[3/4] overflow-hidden bg-muted">
                     <img src={cat.image} className="w-full h-full object-cover" alt={cat.name} />
-                    <div className="absolute inset-0 bg-black/10"></div>
-                  </div>
-                  <div className="pt-2 text-center">
-                    <h3 className="text-black font-serif text-sm line-clamp-1">{cat.name}</h3>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
+                    <div className="absolute bottom-0 left-0 right-0 p-3">
+                      <h3 className="text-white font-serif text-sm line-clamp-1 drop-shadow-sm">{cat.name}</h3>
+                    </div>
                   </div>
                 </div>
               </Link>
@@ -192,10 +192,10 @@ export default function Home() {
                 <div className="gallery-item group cursor-pointer">
                   <div className="relative aspect-[3/4] overflow-hidden bg-muted">
                     <img src={cat.image} className="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110" alt={cat.name} />
-                    <div className="absolute inset-0 bg-black/10 group-hover:bg-black/25 transition-colors duration-700"></div>
-                  </div>
-                  <div className="pt-3 text-center">
-                    <h3 className="text-black font-serif text-sm lg:text-base leading-tight group-hover:text-[#8a6d3b] transition-colors">{cat.name}</h3>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent group-hover:from-black/70 transition-colors duration-700"></div>
+                    <div className="absolute bottom-0 left-0 right-0 p-3 lg:p-4">
+                      <h3 className="text-white font-serif text-sm lg:text-base leading-tight drop-shadow-sm group-hover:translate-y-[-2px] transition-transform duration-500">{cat.name}</h3>
+                    </div>
                   </div>
                 </div>
               </Link>
@@ -362,6 +362,16 @@ function CreativeProductCard({ product }: { product: any }) {
             </div>
           )}
         </Link>
+
+        {product.badge && (
+          <span className={`absolute top-2 left-2 md:top-3 md:left-3 z-30 px-2 py-0.5 md:px-2.5 md:py-1 text-[8px] md:text-[9px] font-medium tracking-[0.15em] uppercase border ${
+            product.badge === 'NEW'
+              ? 'bg-white text-[#1a1308] border-[#c9a96e]/30'
+              : 'bg-[#c9a96e] text-white border-[#c9a96e]'
+          }`}>
+            {product.badge}
+          </span>
+        )}
 
         <button
           onClick={handleWishlist}

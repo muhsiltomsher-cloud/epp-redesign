@@ -234,6 +234,16 @@ function CollectionProductCard({ product, index }: { product: any; index: number
           )}
         </Link>
 
+        {product.badge && (
+          <span className={`absolute top-2 left-2 md:top-3 md:left-3 z-30 px-2 py-0.5 md:px-2.5 md:py-1 text-[8px] md:text-[9px] font-medium tracking-[0.15em] uppercase border ${
+            product.badge === 'NEW'
+              ? 'bg-white text-[#1a1308] border-[#c9a96e]/30'
+              : 'bg-[#c9a96e] text-white border-[#c9a96e]'
+          }`}>
+            {product.badge}
+          </span>
+        )}
+
         <button
           onClick={handleWishlist}
           className="absolute top-2 right-2 md:top-3 md:right-3 z-30 w-8 h-8 md:w-9 md:h-9 flex items-center justify-center rounded-full bg-white/90 backdrop-blur-sm hover:bg-white transition-all duration-300 shadow-sm"
