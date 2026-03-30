@@ -208,7 +208,7 @@ export default function Home() {
             <div className="absolute inset-0 bg-black/55 md:bg-black/50"></div>
             <span className="relative z-10 text-[11px] md:text-xs font-semibold tracking-[0.3em] uppercase text-white mb-2 md:mb-5 lg:mb-7 md:border-l md:border-white/50 md:pl-4">Signature Blend</span>
             <h2 className="relative z-10 text-xl md:text-3xl lg:text-4xl xl:text-5xl font-serif mb-2.5 md:mb-5 lg:mb-7 leading-tight text-white">{featureProduct2.name}</h2>
-            <p className="relative z-10 text-white/70 text-[10px] md:text-xs lg:text-sm leading-relaxed mb-5 md:mb-8 lg:mb-12 max-w-xs md:max-w-md font-light">
+            <p className="relative z-10 text-white text-[10px] md:text-xs lg:text-sm leading-relaxed mb-5 md:mb-8 lg:mb-12 max-w-xs md:max-w-md font-light">
               A captivating journey into darkness. Discover a scent tailored to your most elegant moments.
             </p>
             <Link href={`/product/${featureProduct2.id}`}>
@@ -240,7 +240,7 @@ export default function Home() {
                 <h3 className="text-base md:text-2xl lg:text-3xl font-serif text-black">New & Trending</h3>
               </div>
               <Link href="/collection">
-                <span className="text-[11px] md:text-xs font-medium tracking-[0.2em] uppercase text-black/40 hover:text-black/60 transition-colors cursor-pointer luxury-underline pb-1">
+                <span className="text-[11px] md:text-xs font-medium tracking-[0.2em] uppercase text-black hover:text-black transition-colors cursor-pointer luxury-underline pb-1">
                   View All
                 </span>
               </Link>
@@ -281,7 +281,7 @@ export default function Home() {
               <p className="text-base md:text-xl lg:text-2xl font-serif text-black leading-relaxed md:leading-snug text-balance font-light">
                 Dedicated to the creation of highly original, artisan fragrances.
               </p>
-              <p className="text-xs md:text-sm text-black/60 font-light mt-3 md:mt-6 leading-relaxed max-w-xl mx-auto lg:mx-0">
+              <p className="text-xs md:text-sm text-black font-light mt-3 md:mt-6 leading-relaxed max-w-xl mx-auto lg:mx-0">
                 We source the finest ingredients globally to craft scents that evoke deep emotions and lasting memories.
               </p>
             </div>
@@ -291,28 +291,28 @@ export default function Home() {
                   <Pencil strokeWidth={1} className="w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5" />
                 </div>
                 <h3 className="text-xs md:text-sm font-serif mb-1 text-black">Personalization</h3>
-                <p className="text-[10px] md:text-[11px] lg:text-xs text-black/50 font-light leading-relaxed hidden sm:block">Custom engraving</p>
+                <p className="text-[10px] md:text-[11px] lg:text-xs text-black font-light leading-relaxed hidden sm:block">Custom engraving</p>
               </div>
               <div className="group flex flex-col items-center text-center p-4 md:p-5 lg:p-7 border border-black/8 hover:border-[#8a6d3b]/40 transition-all duration-500 cursor-pointer">
                 <div className="w-9 h-9 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border border-[#8a6d3b]/30 flex items-center justify-center text-[#8a6d3b] mb-2.5 md:mb-3.5 lg:mb-4 group-hover:bg-[#8a6d3b] group-hover:text-white transition-colors duration-500">
                   <Gift strokeWidth={1} className="w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5" />
                 </div>
                 <h3 className="text-xs md:text-sm font-serif mb-1 text-black">Gift Wrapping</h3>
-                <p className="text-[10px] md:text-[11px] lg:text-xs text-black/50 font-light leading-relaxed hidden sm:block">Luxurious finishing</p>
+                <p className="text-[10px] md:text-[11px] lg:text-xs text-black font-light leading-relaxed hidden sm:block">Luxurious finishing</p>
               </div>
               <div className="group flex flex-col items-center text-center p-4 md:p-5 lg:p-7 border border-black/8 hover:border-[#8a6d3b]/40 transition-all duration-500 cursor-pointer">
                 <div className="w-9 h-9 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border border-[#8a6d3b]/30 flex items-center justify-center text-[#8a6d3b] mb-2.5 md:mb-3.5 lg:mb-4 group-hover:bg-[#8a6d3b] group-hover:text-white transition-colors duration-500">
                   <Truck strokeWidth={1} className="w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5" />
                 </div>
                 <h3 className="text-xs md:text-sm font-serif mb-1 text-black">Global Delivery</h3>
-                <p className="text-[10px] md:text-[11px] lg:text-xs text-black/50 font-light leading-relaxed hidden sm:block">Free over AED 1500</p>
+                <p className="text-[10px] md:text-[11px] lg:text-xs text-black font-light leading-relaxed hidden sm:block">Free over AED 1500</p>
               </div>
               <div className="group flex flex-col items-center text-center p-4 md:p-5 lg:p-7 border border-black/8 hover:border-[#8a6d3b]/40 transition-all duration-500 cursor-pointer">
                 <div className="w-9 h-9 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border border-[#8a6d3b]/30 flex items-center justify-center text-[#8a6d3b] mb-2.5 md:mb-3.5 lg:mb-4 group-hover:bg-[#8a6d3b] group-hover:text-white transition-colors duration-500">
                   <MailOpen strokeWidth={1} className="w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5" />
                 </div>
                 <h3 className="text-xs md:text-sm font-serif mb-1 text-black">Free Samples</h3>
-                <p className="text-[10px] md:text-[11px] lg:text-xs text-black/50 font-light leading-relaxed hidden sm:block">With every order</p>
+                <p className="text-[10px] md:text-[11px] lg:text-xs text-black font-light leading-relaxed hidden sm:block">With every order</p>
               </div>
             </div>
           </div>
@@ -381,7 +381,7 @@ function CreativeProductCard({ product }: { product: any }) {
           <Heart
             size={14}
             strokeWidth={1.5}
-            className={`transition-colors duration-300 ${wishlisted ? "fill-red-500 text-red-500" : "text-black/60 hover:text-black"}`}
+            className={`transition-colors duration-300 ${wishlisted ? "fill-red-500 text-red-500" : "text-black hover:text-black"}`}
           />
         </button>
 
@@ -401,17 +401,17 @@ function CreativeProductCard({ product }: { product: any }) {
           className="absolute bottom-2 right-2 z-30 w-8 h-8 flex items-center justify-center rounded-full bg-white/90 backdrop-blur-sm hover:bg-white transition-all duration-300 shadow-sm md:hidden"
           data-testid={`button-add-to-cart-mobile-${product.id}`}
         >
-          <ShoppingBag size={14} strokeWidth={1.5} className={`transition-colors duration-300 ${addedToCart ? "text-[#c9a96e]" : "text-black/60"}`} />
+          <ShoppingBag size={14} strokeWidth={1.5} className={`transition-colors duration-300 ${addedToCart ? "text-[#c9a96e]" : "text-black"}`} />
         </button>
       </div>
       
       <div className="flex flex-col items-center px-1 text-center">
         <Link href={`/product/${product.id}`}>
-          <span className="text-xs md:text-sm lg:text-base font-serif mb-1 text-black hover:text-black/60 transition-colors cursor-pointer" data-testid={`text-product-name-${product.id}`}>
+          <span className="text-xs md:text-sm lg:text-base font-serif mb-1 text-black hover:text-black transition-colors cursor-pointer" data-testid={`text-product-name-${product.id}`}>
             {product.name}
           </span>
         </Link>
-        <span className="text-[10px] md:text-[11px] lg:text-xs tracking-[0.2em] uppercase text-black/40 mb-1 lg:mb-1.5 line-clamp-1">
+        <span className="text-[10px] md:text-[11px] lg:text-xs tracking-[0.2em] uppercase text-black mb-1 lg:mb-1.5 line-clamp-1">
           {product.collection}
         </span>
         <p className="text-[9px] md:text-[11px] lg:text-xs font-medium text-black" data-testid={`text-price-${product.id}`}>

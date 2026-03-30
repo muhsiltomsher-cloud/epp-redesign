@@ -58,11 +58,11 @@ export default function Product() {
           <div className="w-full md:w-1/2">
             <div className="absolute top-3 left-4 md:top-6 md:left-6 z-10">
               <nav className="flex items-center gap-1.5 text-[8px] md:text-[9px] uppercase tracking-[0.15em]" data-testid="breadcrumb-nav">
-                <Link href="/" className="text-black/40 hover:text-black transition-colors">Home</Link>
-                <span className="text-black/25">/</span>
-                <Link href="/collection" className="text-black/40 hover:text-black transition-colors">{product.collection}</Link>
-                <span className="text-black/25">/</span>
-                <span className="text-black/70">{product.name}</span>
+                <Link href="/" className="text-black hover:text-black transition-colors">Home</Link>
+                <span className="text-black">/</span>
+                <Link href="/collection" className="text-black hover:text-black transition-colors">{product.collection}</Link>
+                <span className="text-black">/</span>
+                <span className="text-black">{product.name}</span>
               </nav>
             </div>
 
@@ -80,7 +80,7 @@ export default function Product() {
                     data-testid={`img-product-${i}`}
                   />
                   <button 
-                    className="absolute top-3 right-3 md:top-4 md:right-4 w-8 h-8 md:w-9 md:h-9 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 text-black/60 hover:text-black hover:bg-white"
+                    className="absolute top-3 right-3 md:top-4 md:right-4 w-8 h-8 md:w-9 md:h-9 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 text-black hover:text-black hover:bg-white"
                     data-testid={`button-fullscreen-${i}`}
                   >
                     <Maximize2 size={14} strokeWidth={1.5} />
@@ -127,14 +127,14 @@ export default function Product() {
                         <Star size={10} fill="currentColor" />
                         <Star size={10} fill="currentColor" />
                         <Star size={10} fill="currentColor" />
-                        <span className="text-[8px] md:text-[10px] text-black/50 ml-1.5 tracking-wider uppercase">(12)</span>
+                        <span className="text-[8px] md:text-[10px] text-black ml-1.5 tracking-wider uppercase">(12)</span>
                       </div>
                     </div>
                     <button
                       className={`w-9 h-9 md:w-10 md:h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${
                         wishlisted 
                           ? 'border-[#c9a96e] bg-[#c9a96e]/10 text-[#c9a96e]' 
-                          : 'border-black/15 text-black/40 hover:border-[#c9a96e] hover:text-[#c9a96e]'
+                          : 'border-black/15 text-black hover:border-[#c9a96e] hover:text-[#c9a96e]'
                       }`}
                       onClick={() => {
                         if (id) {
@@ -148,14 +148,14 @@ export default function Product() {
                     </button>
                   </div>
                   
-                  <p className="text-[11px] md:text-sm text-black/70 leading-relaxed font-light mt-4 md:mt-6 border-t border-black/5 pt-4 md:pt-6" data-testid="text-product-description">
+                  <p className="text-[11px] md:text-sm text-black leading-relaxed font-light mt-4 md:mt-6 border-t border-black/5 pt-4 md:pt-6" data-testid="text-product-description">
                     {product.description}
                   </p>
                 </div>
 
                 <div className="hidden md:flex flex-col gap-4 mb-12">
                   <div className="mb-2">
-                    <span className="text-[8px] md:text-[9px] tracking-[0.2em] uppercase text-black/40 mb-2 block">Size</span>
+                    <span className="text-[8px] md:text-[9px] tracking-[0.2em] uppercase text-black mb-2 block">Size</span>
                     <div className="flex gap-2">
                       <span className="px-4 py-2 text-[9px] md:text-[10px] tracking-[0.15em] uppercase font-medium border-2 border-[#c9a96e] text-[#1a1308] bg-[#c9a96e]/5 cursor-default" data-testid="size-selector">
                         50 ML
@@ -165,7 +165,7 @@ export default function Product() {
                   <div className="flex items-stretch gap-4 h-14">
                     <div className="flex items-center border border-[#c9a96e]/30 bg-white w-32">
                       <button 
-                        className="px-4 text-black/50 hover:text-black transition-colors"
+                        className="px-4 text-black hover:text-black transition-colors"
                         onClick={() => setQuantity(Math.max(1, quantity - 1))}
                         data-testid="button-quantity-minus"
                       >
@@ -173,7 +173,7 @@ export default function Product() {
                       </button>
                       <span className="flex-1 text-center text-xs font-medium" data-testid="text-quantity">{quantity}</span>
                       <button 
-                        className="px-4 text-black/50 hover:text-black transition-colors"
+                        className="px-4 text-black hover:text-black transition-colors"
                         onClick={() => setQuantity(quantity + 1)}
                         data-testid="button-quantity-plus"
                       >
@@ -208,29 +208,29 @@ export default function Product() {
                   <div className="grid grid-cols-3 gap-2 mt-6 py-6 border-y border-black/5">
                     <div className="flex flex-col items-center text-center gap-2">
                       <Truck size={16} strokeWidth={1} className="text-[#c9a96e]" />
-                      <span className="text-[8px] uppercase tracking-widest text-black/60 font-medium">Free<br/>Shipping</span>
+                      <span className="text-[8px] uppercase tracking-widest text-black font-medium">Free<br/>Shipping</span>
                     </div>
                     <div className="flex flex-col items-center text-center gap-2 border-x border-black/5">
                       <Box size={16} strokeWidth={1} className="text-[#c9a96e]" />
-                      <span className="text-[8px] uppercase tracking-widest text-black/60 font-medium">Luxury<br/>Packaging</span>
+                      <span className="text-[8px] uppercase tracking-widest text-black font-medium">Luxury<br/>Packaging</span>
                     </div>
                     <div className="flex flex-col items-center text-center gap-2">
                       <ShieldCheck size={16} strokeWidth={1} className="text-[#c9a96e]" />
-                      <span className="text-[8px] uppercase tracking-widest text-black/60 font-medium">100%<br/>Authentic</span>
+                      <span className="text-[8px] uppercase tracking-widest text-black font-medium">100%<br/>Authentic</span>
                     </div>
                   </div>
                 </div>
 
                 <div className="flex md:hidden items-center justify-between py-4 mb-4 border-y border-black/5">
-                  <div className="flex items-center gap-3 text-[8px] uppercase tracking-widest text-black/50">
+                  <div className="flex items-center gap-3 text-[8px] uppercase tracking-widest text-black">
                     <Truck size={13} strokeWidth={1} className="text-[#c9a96e]" />
                     <span>Free Shipping</span>
                   </div>
-                  <div className="flex items-center gap-3 text-[8px] uppercase tracking-widest text-black/50">
+                  <div className="flex items-center gap-3 text-[8px] uppercase tracking-widest text-black">
                     <Box size={13} strokeWidth={1} className="text-[#c9a96e]" />
                     <span>Gift Box</span>
                   </div>
-                  <div className="flex items-center gap-3 text-[8px] uppercase tracking-widest text-black/50">
+                  <div className="flex items-center gap-3 text-[8px] uppercase tracking-widest text-black">
                     <ShieldCheck size={13} strokeWidth={1} className="text-[#c9a96e]" />
                     <span>Authentic</span>
                   </div>
@@ -248,7 +248,7 @@ export default function Product() {
                       {activeTab === 'description' ? <Minus size={14} strokeWidth={1}/> : <Plus size={14} strokeWidth={1}/>}
                     </button>
                     <div className={`overflow-hidden transition-all duration-500 ease-in-out ${activeTab === 'description' ? 'max-h-96 opacity-100 pb-5' : 'max-h-0 opacity-0'}`}>
-                      <p className="text-[11px] md:text-xs text-black/70 font-light leading-relaxed">
+                      <p className="text-[11px] md:text-xs text-black font-light leading-relaxed">
                         Crafted with meticulous attention to detail, this masterpiece embodies the essence of luxury and sophistication that Emirates Pride is renowned for. The fragrance journey begins with vibrant top notes, settling into a rich, complex heart before revealing a long-lasting, profound base.
                       </p>
                     </div>
@@ -264,7 +264,7 @@ export default function Product() {
                       {activeTab === 'notes' ? <Minus size={14} strokeWidth={1}/> : <Plus size={14} strokeWidth={1}/>}
                     </button>
                     <div className={`overflow-hidden transition-all duration-500 ease-in-out ${activeTab === 'notes' ? 'max-h-96 opacity-100 pb-5' : 'max-h-0 opacity-0'}`}>
-                      <div className="flex flex-col gap-3 text-[11px] md:text-xs text-black/70 font-light">
+                      <div className="flex flex-col gap-3 text-[11px] md:text-xs text-black font-light">
                         <div className="flex border-b border-black/5 pb-2">
                           <span className="w-24 font-medium text-black uppercase tracking-wider text-[9px]">Top:</span>
                           <span>Bergamot, Saffron, Pink Pepper</span>
@@ -291,7 +291,7 @@ export default function Product() {
                       {activeTab === 'delivery' ? <Minus size={14} strokeWidth={1}/> : <Plus size={14} strokeWidth={1}/>}
                     </button>
                     <div className={`overflow-hidden transition-all duration-500 ease-in-out ${activeTab === 'delivery' ? 'max-h-96 opacity-100 pb-5' : 'max-h-0 opacity-0'}`}>
-                      <p className="text-[11px] md:text-xs text-black/70 font-light leading-relaxed">
+                      <p className="text-[11px] md:text-xs text-black font-light leading-relaxed">
                         Enjoy complimentary standard shipping on all orders over AED 1500. Every order is carefully packed in our signature luxurious gift wrapping. You may return any unopened item within 14 days of delivery.
                       </p>
                     </div>
@@ -338,7 +338,7 @@ export default function Product() {
                       )}
                     </div>
                     <div className="flex flex-col items-center text-center">
-                      <span className="text-sm md:text-base font-serif mb-0.5 text-black group-hover:text-black/60 transition-colors">{p.name}</span>
+                      <span className="text-sm md:text-base font-serif mb-0.5 text-black group-hover:text-black transition-colors">{p.name}</span>
                       <p className="text-[10px] md:text-xs font-medium text-black">{p.currency} {p.price}</p>
                     </div>
                   </div>
@@ -351,14 +351,14 @@ export default function Product() {
       <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white border-t border-black/10 px-4 py-3 flex items-center gap-3 safe-area-bottom">
         <div className="flex items-center border border-[#c9a96e]/30 h-10 bg-white">
           <button 
-            className="px-3 text-black/50 active:text-black"
+            className="px-3 text-black active:text-black"
             onClick={() => setQuantity(Math.max(1, quantity - 1))}
           >
             <Minus size={12} strokeWidth={1.5} />
           </button>
           <span className="w-6 text-center text-[10px] font-medium">{quantity}</span>
           <button 
-            className="px-3 text-black/50 active:text-black"
+            className="px-3 text-black active:text-black"
             onClick={() => setQuantity(quantity + 1)}
           >
             <Plus size={12} strokeWidth={1.5} />
@@ -393,7 +393,7 @@ export default function Product() {
           onClick={() => setFullscreenIndex(null)}
         >
           <button 
-            className="absolute top-4 right-4 md:top-6 md:right-6 w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white/80 hover:text-white hover:bg-white/20 transition-colors z-10"
+            className="absolute top-4 right-4 md:top-6 md:right-6 w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:text-white hover:bg-white/20 transition-colors z-10"
             onClick={() => setFullscreenIndex(null)}
             data-testid="button-close-fullscreen"
           >
@@ -403,14 +403,14 @@ export default function Product() {
           {gallery.length > 1 && (
             <>
               <button 
-                className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white/80 hover:text-white hover:bg-white/20 transition-colors z-10"
+                className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:text-white hover:bg-white/20 transition-colors z-10"
                 onClick={(e) => { e.stopPropagation(); setFullscreenIndex((fullscreenIndex - 1 + gallery.length) % gallery.length); }}
                 data-testid="button-fullscreen-prev"
               >
                 <ChevronLeft size={20} strokeWidth={1.5} />
               </button>
               <button 
-                className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white/80 hover:text-white hover:bg-white/20 transition-colors z-10"
+                className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:text-white hover:bg-white/20 transition-colors z-10"
                 onClick={(e) => { e.stopPropagation(); setFullscreenIndex((fullscreenIndex + 1) % gallery.length); }}
                 data-testid="button-fullscreen-next"
               >

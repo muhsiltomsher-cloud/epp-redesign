@@ -56,7 +56,7 @@ export default function Collection() {
       <main className="flex-1 pt-[52px] md:pt-24">
         <header className="bg-white py-3 md:py-6 lg:py-8 px-4 md:px-10 lg:px-20 xl:px-28 text-center border-b border-black/5">
           <h1 className="md:text-3xl lg:text-4xl font-serif mb-2 md:mb-4 uppercase tracking-wider text-black animate-in fade-in slide-in-from-bottom-4 text-[30px]" data-testid="text-collection-title">Our Collections</h1>
-          <p className="text-black/50 max-w-2xl mx-auto text-[11px] md:text-sm lg:text-base font-light animate-in fade-in slide-in-from-bottom-6 delay-150">
+          <p className="text-black max-w-2xl mx-auto text-[11px] md:text-sm lg:text-base font-light animate-in fade-in slide-in-from-bottom-6 delay-150">
             Explore our curated selection of masterful fragrances.
           </p>
         </header>
@@ -73,7 +73,7 @@ export default function Collection() {
                     className={`text-[9px] tracking-[0.15em] uppercase transition-colors whitespace-nowrap py-1.5 ${
                       activeCategory === category 
                         ? 'text-[#c9a96e] font-medium border-b-2 border-[#c9a96e]' 
-                        : 'text-black/40'
+                        : 'text-black'
                     }`}
                   >
                     {category}
@@ -82,7 +82,7 @@ export default function Collection() {
               </div>
               <button
                 onClick={() => setIsMobileSortOpen(true)}
-                className="flex items-center gap-1 text-[9px] tracking-[0.15em] uppercase text-black/50 ml-3 flex-shrink-0"
+                className="flex items-center gap-1 text-[9px] tracking-[0.15em] uppercase text-black ml-3 flex-shrink-0"
                 data-testid="button-sort-mobile"
               >
                 Sort
@@ -99,7 +99,7 @@ export default function Collection() {
                   className={`text-[10px] tracking-[0.2em] uppercase transition-colors whitespace-nowrap ${
                     activeCategory === category 
                       ? 'text-[#c9a96e] font-medium border-b border-[#c9a96e] pb-1' 
-                      : 'text-black/50 hover:text-[#c9a96e] pb-1'
+                      : 'text-black hover:text-[#c9a96e] pb-1'
                   }`}
                 >
                   {category}
@@ -110,7 +110,7 @@ export default function Collection() {
             <div ref={sortRef} className="hidden md:block relative flex-shrink-0">
               <button
                 onClick={() => setIsSortOpen(!isSortOpen)}
-                className="flex items-center gap-2 text-[10px] tracking-[0.2em] uppercase text-black/60 hover:text-black transition-colors"
+                className="flex items-center gap-2 text-[10px] tracking-[0.2em] uppercase text-black hover:text-black transition-colors"
                 data-testid="button-sort-desktop"
               >
                 <span>{activeSortLabel}</span>
@@ -127,7 +127,7 @@ export default function Collection() {
                       className={`w-full text-left px-5 py-3 text-[10px] tracking-[0.15em] uppercase transition-colors ${
                         sortBy === option.value
                           ? "text-[#c9a96e] bg-[#c9a96e]/5 font-medium"
-                          : "text-black/60 hover:text-black hover:bg-black/[0.02]"
+                          : "text-black hover:text-black hover:bg-black/[0.02]"
                       }`}
                     >
                       {option.label}
@@ -145,7 +145,7 @@ export default function Collection() {
                 <div className="flex items-center justify-between px-5 py-4 border-b border-black/5">
                   <h3 className="text-sm font-serif">Sort By</h3>
                   <button onClick={() => setIsMobileSortOpen(false)} data-testid="button-sort-close">
-                    <X size={18} strokeWidth={1.5} className="text-black/40" />
+                    <X size={18} strokeWidth={1.5} className="text-black" />
                   </button>
                 </div>
                 <div className="py-2">
@@ -157,7 +157,7 @@ export default function Collection() {
                       className={`w-full text-left px-5 py-3.5 text-[11px] tracking-[0.15em] uppercase transition-colors flex items-center justify-between ${
                         sortBy === option.value
                           ? "text-[#c9a96e] font-medium"
-                          : "text-black/60"
+                          : "text-black"
                       }`}
                     >
                       {option.label}
@@ -179,7 +179,7 @@ export default function Collection() {
           </div>
 
           {filteredProducts.length === 0 && (
-            <div className="py-24 text-center text-black/40 font-serif text-xl">
+            <div className="py-24 text-center text-black font-serif text-xl">
               No products found in this collection.
             </div>
           )}
@@ -252,7 +252,7 @@ function CollectionProductCard({ product, index }: { product: any; index: number
           <Heart
             size={14}
             strokeWidth={1.5}
-            className={`transition-colors duration-300 ${wishlisted ? "fill-red-500 text-red-500" : "text-black/60 hover:text-black"}`}
+            className={`transition-colors duration-300 ${wishlisted ? "fill-red-500 text-red-500" : "text-black hover:text-black"}`}
           />
         </button>
 
@@ -272,17 +272,17 @@ function CollectionProductCard({ product, index }: { product: any; index: number
           className="absolute bottom-2 right-2 z-30 w-8 h-8 flex items-center justify-center rounded-full bg-white/90 backdrop-blur-sm hover:bg-white transition-all duration-300 shadow-sm md:hidden"
           data-testid={`button-add-to-cart-mobile-${product.id}`}
         >
-          <ShoppingBag size={14} strokeWidth={1.5} className={`transition-colors duration-300 ${addedToCart ? "text-[#c9a96e]" : "text-black/60"}`} />
+          <ShoppingBag size={14} strokeWidth={1.5} className={`transition-colors duration-300 ${addedToCart ? "text-[#c9a96e]" : "text-black"}`} />
         </button>
       </div>
 
       <div className="flex flex-col items-center px-1 text-center">
         <Link href={`/product/${product.id}`}>
-          <span className="text-xs md:text-sm lg:text-base font-serif mb-1 text-black hover:text-black/60 transition-colors cursor-pointer" data-testid={`text-product-name-${product.id}`}>
+          <span className="text-xs md:text-sm lg:text-base font-serif mb-1 text-black hover:text-black transition-colors cursor-pointer" data-testid={`text-product-name-${product.id}`}>
             {product.name}
           </span>
         </Link>
-        <span className="text-[10px] md:text-[11px] lg:text-xs tracking-[0.2em] uppercase text-black/40 mb-1 lg:mb-1.5 line-clamp-1">
+        <span className="text-[10px] md:text-[11px] lg:text-xs tracking-[0.2em] uppercase text-black mb-1 lg:mb-1.5 line-clamp-1">
           {product.collection}
         </span>
         <p className="text-[9px] md:text-[11px] lg:text-xs font-medium text-black" data-testid={`text-price-${product.id}`}>
