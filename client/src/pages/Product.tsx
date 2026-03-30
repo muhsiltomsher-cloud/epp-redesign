@@ -28,6 +28,7 @@ export default function Product() {
       setWishlisted(isInWishlist(id));
       setAddedToCart(false);
       setQuantity(1);
+      setFullscreenIndex(null);
       if (addedTimerRef.current) clearTimeout(addedTimerRef.current);
     }
   }, [id]);
