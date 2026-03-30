@@ -113,7 +113,7 @@ export default function Navbar() {
                 >
                   <Link href="/collection">
                     <span className={`text-[10px] font-medium tracking-[0.15em] uppercase transition-colors luxury-underline cursor-pointer flex items-center gap-1 ${
-                      !isDarkText ? "text-white/90 hover:text-white" : "text-black hover:text-black"
+                      !isDarkText ? "text-white hover:text-white" : "text-black hover:text-black"
                     } ${activeMegaMenu === menuKey ? "!text-[#c9a96e]" : ""}`}>
                       {menuKey}
                     </span>
@@ -122,7 +122,7 @@ export default function Navbar() {
               ))}
               <Link href="/collection">
                 <span className={`text-[10px] font-medium tracking-[0.15em] uppercase transition-colors luxury-underline cursor-pointer ${
-                  !isDarkText ? "text-white/90 hover:text-white" : "text-black hover:text-black"
+                  !isDarkText ? "text-white hover:text-white" : "text-black hover:text-black"
                 }`}
                 onMouseEnter={() => setActiveMegaMenu(null)}
                 >
@@ -148,7 +148,7 @@ export default function Navbar() {
                 onMouseLeave={() => setIsCurrencyMenuOpen(false)}
               >
                 <button className={`flex items-center gap-1.5 text-[10px] font-medium tracking-[0.1em] uppercase transition-colors ${
-                  !isDarkText ? "text-white/90 hover:text-white" : "text-black hover:text-black"
+                  !isDarkText ? "text-white hover:text-white" : "text-black hover:text-black"
                 }`}>
                   <Globe size={14} strokeWidth={1} />
                   <span>{activeCurrency}</span>
@@ -158,14 +158,14 @@ export default function Navbar() {
                 {isCurrencyMenuOpen && (
                   <div className="absolute top-full right-0 mt-2 w-48 bg-white shadow-2xl border border-black/5 py-2 z-50 animate-in fade-in slide-in-from-top-2">
                     <div className="px-4 py-3 border-b border-black/5">
-                      <span className="text-[9px] uppercase tracking-widest text-black/40">Language</span>
+                      <span className="text-[9px] uppercase tracking-widest text-black">Language</span>
                       <div className="flex gap-4 mt-2">
                         <button className="text-[11px] font-medium text-black border-b border-[#c9a96e] pb-0.5">EN</button>
-                        <button className="text-[11px] font-arabic text-black/50 hover:text-black transition-colors">العربية</button>
+                        <button className="text-[11px] font-arabic text-black hover:text-black transition-colors">العربية</button>
                       </div>
                     </div>
                     <div className="p-2 max-h-[200px] overflow-y-auto hide-scrollbar">
-                      <span className="px-2 py-2 text-[9px] uppercase tracking-widest text-black/40 block">Currency</span>
+                      <span className="px-2 py-2 text-[9px] uppercase tracking-widest text-black block">Currency</span>
                       {currencies.map(currency => (
                         <button 
                           key={currency}
@@ -174,7 +174,7 @@ export default function Navbar() {
                             setIsCurrencyMenuOpen(false);
                           }}
                           className={`w-full text-left px-2 py-2 text-[11px] uppercase tracking-wider transition-colors ${
-                            activeCurrency === currency ? "bg-[#c9a96e]/10 font-medium text-[#c9a96e]" : "text-black/60 hover:text-[#c9a96e] hover:bg-[#c9a96e]/5"
+                            activeCurrency === currency ? "bg-[#c9a96e]/10 font-medium text-[#c9a96e]" : "text-black hover:text-[#c9a96e] hover:bg-[#c9a96e]/5"
                           }`}
                         >
                           {currency}
@@ -186,7 +186,7 @@ export default function Navbar() {
               </div>
 
               <button className={`hidden md:block transition-colors ${
-                !isDarkText ? "text-white/90 hover:text-white" : "text-black hover:text-black/70"
+                !isDarkText ? "text-white hover:text-white" : "text-black hover:text-black"
               }`}
               onMouseEnter={() => setActiveMegaMenu(null)}
               >
@@ -194,7 +194,7 @@ export default function Navbar() {
               </button>
               
               <button className={`hidden md:block transition-colors ${
-                !isDarkText ? "text-white/90 hover:text-white" : "text-black hover:text-black/70"
+                !isDarkText ? "text-white hover:text-white" : "text-black hover:text-black"
               }`}
               onMouseEnter={() => setActiveMegaMenu(null)}
               >
@@ -204,7 +204,7 @@ export default function Navbar() {
               <Link href="/wishlist">
                 <button 
                   className={`transition-colors ${
-                    !isDarkText ? "text-white/90 hover:text-white" : "text-black hover:text-black/70"
+                    !isDarkText ? "text-white hover:text-white" : "text-black hover:text-black"
                   }`}
                   onMouseEnter={() => setActiveMegaMenu(null)}
                   data-testid="button-wishlist-header"
@@ -215,7 +215,7 @@ export default function Navbar() {
 
               <button 
                 className={`flex items-center gap-2 transition-colors relative ${
-                  !isDarkText ? "text-white/90 hover:text-white" : "text-black hover:text-black/70"
+                  !isDarkText ? "text-white hover:text-white" : "text-black hover:text-black"
                 }`}
                 onClick={() => setIsCartOpen(true)}
                 onMouseEnter={() => setActiveMegaMenu(null)}
@@ -243,7 +243,7 @@ export default function Navbar() {
                   {megaMenuData[activeMegaMenu].subcategories.map((sub) => (
                     <li key={sub.name}>
                       <Link href={sub.link}>
-                        <span className="text-[12px] text-black/60 hover:text-[#c9a96e] transition-colors cursor-pointer tracking-wide">
+                        <span className="text-[12px] text-black hover:text-[#c9a96e] transition-colors cursor-pointer tracking-wide">
                           {sub.name}
                         </span>
                       </Link>
@@ -253,7 +253,7 @@ export default function Navbar() {
               </div>
 
               <div className="flex-1">
-                <h4 className="text-[9px] font-medium tracking-[0.25em] uppercase text-black/30 mb-5">Featured</h4>
+                <h4 className="text-[9px] font-medium tracking-[0.25em] uppercase text-black mb-5">Featured</h4>
                 <div className="grid grid-cols-3 gap-5">
                   {megaMenuData[activeMegaMenu].featured.map((item) => (
                     <Link key={item.id} href={`/product/${item.id}`}>
@@ -262,7 +262,7 @@ export default function Navbar() {
                           <img src={item.image} alt={item.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                         </div>
                         <p className="text-[12px] font-serif text-black group-hover:text-[#c9a96e] transition-colors">{item.name}</p>
-                        <p className="text-[10px] text-black/50 mt-0.5">AED {item.price}</p>
+                        <p className="text-[10px] text-black mt-0.5">AED {item.price}</p>
                       </div>
                     </Link>
                   ))}
@@ -271,8 +271,8 @@ export default function Navbar() {
 
               <div className="flex-shrink-0 w-52 flex flex-col justify-between">
                 <div>
-                  <h4 className="text-[9px] font-medium tracking-[0.25em] uppercase text-black/30 mb-4">Discover</h4>
-                  <p className="text-[11px] text-black/50 leading-relaxed font-light mb-5">Explore our complete {activeMegaMenu.toLowerCase()} collection, crafted with the finest ingredients.</p>
+                  <h4 className="text-[9px] font-medium tracking-[0.25em] uppercase text-black mb-4">Discover</h4>
+                  <p className="text-[11px] text-black leading-relaxed font-light mb-5">Explore our complete {activeMegaMenu.toLowerCase()} collection, crafted with the finest ingredients.</p>
                 </div>
                 <Link href="/collection">
                   <span className="creed-button text-center block">View All</span>
@@ -288,39 +288,39 @@ export default function Navbar() {
           <div className="px-5 py-6 flex flex-col gap-0 h-[calc(100svh-52px)] overflow-y-auto">
             <Link href="/collection">
               <span className="text-[15px] font-serif tracking-wide uppercase border-b border-black/8 py-4 flex justify-between items-center block cursor-pointer active:bg-black/3 -mx-5 px-5">
-                Oud & Dakhoon <ChevronDown size={12} className="-rotate-90 text-black/25" />
+                Oud & Dakhoon <ChevronDown size={12} className="-rotate-90 text-black" />
               </span>
             </Link>
             <Link href="/collection">
               <span className="text-[15px] font-serif tracking-wide uppercase border-b border-black/8 py-4 flex justify-between items-center block cursor-pointer active:bg-black/3 -mx-5 px-5">
-                Perfume Collection <ChevronDown size={12} className="-rotate-90 text-black/25" />
+                Perfume Collection <ChevronDown size={12} className="-rotate-90 text-black" />
               </span>
             </Link>
             <Link href="/collection">
               <span className="text-[15px] font-serif tracking-wide uppercase border-b border-black/8 py-4 flex justify-between items-center block cursor-pointer active:bg-black/3 -mx-5 px-5">
-                Gift Sets <ChevronDown size={12} className="-rotate-90 text-black/25" />
+                Gift Sets <ChevronDown size={12} className="-rotate-90 text-black" />
               </span>
             </Link>
             <Link href="/collection">
               <span className="text-[15px] font-serif tracking-wide uppercase border-b border-black/8 py-4 flex justify-between items-center block cursor-pointer active:bg-black/3 -mx-5 px-5">
-                New Arrivals <ChevronDown size={12} className="-rotate-90 text-black/25" />
+                New Arrivals <ChevronDown size={12} className="-rotate-90 text-black" />
               </span>
             </Link>
             
             <div className="flex items-center justify-between mt-6 py-4 border-b border-black/8">
               <div className="flex items-center gap-3">
-                <Globe size={14} strokeWidth={1} className="text-black/40" />
-                <span className="text-[10px] uppercase tracking-[0.15em] text-black/60">Region</span>
+                <Globe size={14} strokeWidth={1} className="text-black" />
+                <span className="text-[10px] uppercase tracking-[0.15em] text-black">Region</span>
               </div>
               <div className="flex items-center gap-3">
                 <button className="text-[10px] font-medium uppercase tracking-wider border-b border-[#c9a96e] text-black pb-0.5">EN</button>
-                <span className="text-black/15">|</span>
-                <button className="text-[11px] font-arabic text-black/40">العربية</button>
-                <span className="text-black/15">|</span>
+                <span className="text-black">|</span>
+                <button className="text-[11px] font-arabic text-black">العربية</button>
+                <span className="text-black">|</span>
                 <select 
                   value={activeCurrency}
                   onChange={(e) => setActiveCurrency(e.target.value)}
-                  className="bg-transparent text-[10px] uppercase tracking-wider border-none outline-none cursor-pointer text-black/60 font-medium"
+                  className="bg-transparent text-[10px] uppercase tracking-wider border-none outline-none cursor-pointer text-black font-medium"
                 >
                   {currencies.map(c => <option key={c} value={c}>{c}</option>)}
                 </select>
@@ -332,9 +332,9 @@ export default function Navbar() {
                 <User size={14} strokeWidth={1} /> Sign In / Register
               </button>
               <div className="flex justify-center gap-6 pt-2">
-                <a href="#" className="text-black/30"><Instagram size={18} strokeWidth={1}/></a>
-                <a href="#" className="text-black/30"><Facebook size={18} strokeWidth={1}/></a>
-                <a href="#" className="text-black/30"><Twitter size={18} strokeWidth={1}/></a>
+                <a href="#" className="text-black"><Instagram size={18} strokeWidth={1}/></a>
+                <a href="#" className="text-black"><Facebook size={18} strokeWidth={1}/></a>
+                <a href="#" className="text-black"><Twitter size={18} strokeWidth={1}/></a>
               </div>
             </div>
           </div>
@@ -344,30 +344,30 @@ export default function Navbar() {
         <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-white border-t border-black/10 safe-area-bottom">
           <div className="flex items-center justify-around h-14">
             <Link href="/">
-              <span className={`flex flex-col items-center gap-1 cursor-pointer ${location === "/" ? "text-[#c9a96e]" : "text-black/40"}`} data-testid="nav-home">
+              <span className={`flex flex-col items-center gap-1 cursor-pointer ${location === "/" ? "text-[#c9a96e]" : "text-black"}`} data-testid="nav-home">
                 <Home size={18} strokeWidth={1.2} />
                 <span className="text-[8px] tracking-wider uppercase font-medium">Home</span>
               </span>
             </Link>
             <Link href="/collection">
-              <span className={`flex flex-col items-center gap-1 cursor-pointer ${location === "/collection" ? "text-[#c9a96e]" : "text-black/40"}`} data-testid="nav-shop">
+              <span className={`flex flex-col items-center gap-1 cursor-pointer ${location === "/collection" ? "text-[#c9a96e]" : "text-black"}`} data-testid="nav-shop">
                 <Grid3X3 size={18} strokeWidth={1.2} />
                 <span className="text-[8px] tracking-wider uppercase font-medium">Shop</span>
               </span>
             </Link>
             <Link href="/collection">
-              <span className="flex flex-col items-center gap-1 cursor-pointer text-black/40" data-testid="nav-search">
+              <span className="flex flex-col items-center gap-1 cursor-pointer text-black" data-testid="nav-search">
                 <Search size={18} strokeWidth={1.2} />
                 <span className="text-[8px] tracking-wider uppercase font-medium">Search</span>
               </span>
             </Link>
             <Link href="/collection">
-              <span className="flex flex-col items-center gap-1 cursor-pointer text-black/40" data-testid="nav-wishlist">
+              <span className="flex flex-col items-center gap-1 cursor-pointer text-black" data-testid="nav-wishlist">
                 <Heart size={18} strokeWidth={1.2} />
                 <span className="text-[8px] tracking-wider uppercase font-medium">Wishlist</span>
               </span>
             </Link>
-            <button onClick={() => setIsCartOpen(true)} className="flex flex-col items-center gap-1 cursor-pointer text-black/40" data-testid="nav-cart">
+            <button onClick={() => setIsCartOpen(true)} className="flex flex-col items-center gap-1 cursor-pointer text-black" data-testid="nav-cart">
               <ShoppingBag size={18} strokeWidth={1.2} />
               <span className="text-[8px] tracking-wider uppercase font-medium">Cart</span>
             </button>
@@ -386,7 +386,7 @@ export default function Navbar() {
               <h2 className="text-[9px] md:text-[10px] font-medium uppercase tracking-[0.2em]">Your Cart (0)</h2>
               <button 
                 onClick={() => setIsCartOpen(false)}
-                className="text-black/40 hover:text-black transition-transform hover:rotate-90 duration-300 p-1"
+                className="text-black hover:text-black transition-transform hover:rotate-90 duration-300 p-1"
               >
                 <X size={18} strokeWidth={1} />
               </button>
@@ -394,10 +394,10 @@ export default function Navbar() {
 
             <div className="flex-1 flex flex-col items-center justify-center p-6 md:p-8 text-center bg-[#fafafa]">
               <div className="w-14 h-14 md:w-16 md:h-16 mb-5 md:mb-6 border border-black/10 rounded-full flex items-center justify-center bg-white">
-                <ShoppingBag size={18} strokeWidth={1} className="text-black/30" />
+                <ShoppingBag size={18} strokeWidth={1} className="text-black" />
               </div>
               <p className="font-serif text-xl md:text-2xl mb-2 md:mb-3">Your cart is empty.</p>
-              <p className="text-[11px] md:text-xs text-black/50 mb-6 md:mb-8 font-light max-w-[200px]">Explore our collections and discover your new signature scent.</p>
+              <p className="text-[11px] md:text-xs text-black mb-6 md:mb-8 font-light max-w-[200px]">Explore our collections and discover your new signature scent.</p>
               <button 
                 onClick={() => setIsCartOpen(false)}
                 className="creed-button w-full"
