@@ -7,11 +7,11 @@ export const products = [
     collection: 'Oud & Dakhoon',
     price: 695,
     currency: 'AED',
-    image: 'https://emiratespride.com/wp-content/uploads/2026/01/Future-Bakhoor-scaled-1-300x376.webp',
-    hoverImage: 'https://emiratespride.com/wp-content/uploads/2026/01/Future-Bakhoor-Lifestyle-scaled-1-300x372.webp',
+    image: 'https://emiratespride.com/wp-content/uploads/2026/01/Future-Bakhoor-scaled-1.webp',
+    hoverImage: 'https://emiratespride.com/wp-content/uploads/2026/01/Future-Bakhoor-Lifestyle-scaled-1.webp',
     gallery: [
-      'https://emiratespride.com/wp-content/uploads/2026/01/Future-Bakhoor-scaled-1-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2026/01/Future-Bakhoor-Lifestyle-scaled-1-300x372.webp'
+      'https://emiratespride.com/wp-content/uploads/2026/01/Future-Bakhoor-scaled-1.webp',
+      'https://emiratespride.com/wp-content/uploads/2026/01/Future-Bakhoor-Lifestyle-scaled-1.webp'
     ],
     description: 'Experience the future of bakhoor with this exquisite creation.'
   },
@@ -21,11 +21,11 @@ export const products = [
     collection: 'Gift Sets',
     price: 1490,
     currency: 'AED',
-    image: 'https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-scaled-1-300x376.webp',
-    hoverImage: 'https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1-300x372.webp',
+    image: 'https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-scaled-1.webp',
+    hoverImage: 'https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1.webp',
     gallery: [
-      'https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-scaled-1-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1-300x372.webp'
+      'https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-scaled-1.webp',
+      'https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1.webp'
     ],
     description: 'A traditional set reimagined for the modern connoisseur.'
   },
@@ -35,11 +35,11 @@ export const products = [
     collection: 'Perfume Collection',
     price: 585,
     currency: 'AED',
-    image: 'https://emiratespride.com/wp-content/uploads/2025/09/Burgundy-300x376.webp',
-    hoverImage: 'https://emiratespride.com/wp-content/uploads/2025/09/MIDNIGHT-BLOOM-300x376.webp',
+    image: 'https://emiratespride.com/wp-content/uploads/2025/09/Burgundy.webp',
+    hoverImage: 'https://emiratespride.com/wp-content/uploads/2025/09/MIDNIGHT-BLOOM.webp',
     gallery: [
-      'https://emiratespride.com/wp-content/uploads/2025/09/Burgundy-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2025/09/MIDNIGHT-BLOOM-300x376.webp'
+      'https://emiratespride.com/wp-content/uploads/2025/09/Burgundy.webp',
+      'https://emiratespride.com/wp-content/uploads/2025/09/MIDNIGHT-BLOOM.webp'
     ],
     description: 'A captivating nocturnal floral fragrance.'
   },
@@ -49,11 +49,11 @@ export const products = [
     collection: 'Gift Sets',
     price: 870,
     currency: 'AED',
-    image: 'https://emiratespride.com/wp-content/uploads/2025/05/Midnight-glow-set-300x376.webp',
-    hoverImage: 'https://emiratespride.com/wp-content/uploads/2025/05/Untitled-6-03-300x376.webp',
+    image: 'https://emiratespride.com/wp-content/uploads/2025/05/Midnight-glow-set.webp',
+    hoverImage: 'https://emiratespride.com/wp-content/uploads/2025/05/Untitled-6-03.webp',
     gallery: [
-      'https://emiratespride.com/wp-content/uploads/2025/05/Midnight-glow-set-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2025/05/Untitled-6-03-300x376.webp'
+      'https://emiratespride.com/wp-content/uploads/2025/05/Midnight-glow-set.webp',
+      'https://emiratespride.com/wp-content/uploads/2025/05/Untitled-6-03.webp'
     ],
     description: 'The perfect glowing set for special moments.'
   },
@@ -63,11 +63,11 @@ export const products = [
     collection: 'Oud & Dakhoon',
     price: 795,
     currency: 'AED',
-    image: 'https://emiratespride.com/wp-content/uploads/2026/01/Future-Oud-scaled-1-300x376.webp',
-    hoverImage: 'https://emiratespride.com/wp-content/uploads/2026/01/Future-Oud-Lifestyle-scaled-1-300x349.webp',
+    image: 'https://emiratespride.com/wp-content/uploads/2026/01/Future-Oud-scaled-1.webp',
+    hoverImage: 'https://emiratespride.com/wp-content/uploads/2026/01/Future-Oud-Lifestyle-scaled-1.webp',
     gallery: [
-      'https://emiratespride.com/wp-content/uploads/2026/01/Future-Oud-scaled-1-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2026/01/Future-Oud-Lifestyle-scaled-1-300x349.webp'
+      'https://emiratespride.com/wp-content/uploads/2026/01/Future-Oud-scaled-1.webp',
+      'https://emiratespride.com/wp-content/uploads/2026/01/Future-Oud-Lifestyle-scaled-1.webp'
     ],
     description: 'A revolutionary interpretation of classic oud.'
   },
@@ -77,11 +77,11 @@ export const products = [
     collection: 'Perfume Collection',
     price: 465,
     currency: 'AED',
-    image: 'https://emiratespride.com/wp-content/uploads/2021/03/HIDDEN-LEATHER-01-300x376.webp',
-    hoverImage: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/03/Hidden-leather-with-box-300x375.webp',
+    image: 'https://emiratespride.com/wp-content/uploads/2021/03/HIDDEN-LEATHER-01.webp',
+    hoverImage: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/03/Hidden-leather-with-box.webp',
     gallery: [
-      'https://emiratespride.com/wp-content/uploads/2021/03/HIDDEN-LEATHER-01-300x376.webp',
-      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/03/Hidden-leather-with-box-300x375.webp'
+      'https://emiratespride.com/wp-content/uploads/2021/03/HIDDEN-LEATHER-01.webp',
+      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/03/Hidden-leather-with-box.webp'
     ],
     description: 'A mysterious and elegant leather fragrance.'
   },
@@ -91,11 +91,11 @@ export const products = [
     collection: 'Perfume Collection',
     price: 650,
     currency: 'AED',
-    image: 'https://emiratespride.com/wp-content/uploads/2024/02/Masters-01-300x376.webp',
-    hoverImage: 'https://emiratespride.com/wp-content/uploads/2024/02/Masters-02-300x376.webp',
+    image: 'https://emiratespride.com/wp-content/uploads/2024/02/Masters-01.webp',
+    hoverImage: 'https://emiratespride.com/wp-content/uploads/2024/02/Masters-02.webp',
     gallery: [
-      'https://emiratespride.com/wp-content/uploads/2024/02/Masters-01-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2024/02/Masters-02-300x376.webp'
+      'https://emiratespride.com/wp-content/uploads/2024/02/Masters-01.webp',
+      'https://emiratespride.com/wp-content/uploads/2024/02/Masters-02.webp'
     ],
     description: 'Masterfully crafted signature blend.'
   },
@@ -105,11 +105,11 @@ export const products = [
     collection: 'Perfume Collection',
     price: 585,
     currency: 'AED',
-    image: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/03/NAVY-01-1-300x376.webp',
-    hoverImage: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/03/NAVY-02-1-300x376.webp',
+    image: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/03/NAVY-01-1.webp',
+    hoverImage: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/03/NAVY-02-1.webp',
     gallery: [
-      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/03/NAVY-01-1-300x376.webp',
-      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/03/NAVY-02-1-300x376.webp'
+      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/03/NAVY-01-1.webp',
+      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/03/NAVY-02-1.webp'
     ],
     description: 'A bold, deep fragrance inspired by the midnight sea.'
   },
@@ -119,11 +119,11 @@ export const products = [
     collection: 'Oud & Dakhoon',
     price: 895,
     currency: 'AED',
-    image: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Al-Emarat1-300x376.webp',
-    hoverImage: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Al-Emarat2-300x376.webp',
+    image: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Al-Emarat1.webp',
+    hoverImage: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Al-Emarat2.webp',
     gallery: [
-      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Al-Emarat1-300x376.webp',
-      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Al-Emarat2-300x376.webp'
+      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Al-Emarat1.webp',
+      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Al-Emarat2.webp'
     ],
     description: 'A luxurious oud capturing the spirit of the Emirates.'
   },
@@ -133,11 +133,11 @@ export const products = [
     collection: 'Perfume Collection',
     price: 520,
     currency: 'AED',
-    image: 'https://emiratespride.com/wp-content/uploads/2021/03/Arabica-01-1-300x376.webp',
-    hoverImage: 'https://emiratespride.com/wp-content/uploads/2021/03/Arabica-02-1-300x376.webp',
+    image: 'https://emiratespride.com/wp-content/uploads/2021/03/Arabica-01-1.webp',
+    hoverImage: 'https://emiratespride.com/wp-content/uploads/2021/03/Arabica-02-1.webp',
     gallery: [
-      'https://emiratespride.com/wp-content/uploads/2021/03/Arabica-01-1-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2021/03/Arabica-02-1-300x376.webp'
+      'https://emiratespride.com/wp-content/uploads/2021/03/Arabica-01-1.webp',
+      'https://emiratespride.com/wp-content/uploads/2021/03/Arabica-02-1.webp'
     ],
     description: 'A warm, aromatic fragrance inspired by Arabian coffee traditions.'
   },
@@ -147,11 +147,11 @@ export const products = [
     collection: 'Oud & Dakhoon',
     price: 1250,
     currency: 'AED',
-    image: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Barjeel1-300x376.webp',
-    hoverImage: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Barjeel2-300x376.webp',
+    image: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Barjeel1.webp',
+    hoverImage: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Barjeel2.webp',
     gallery: [
-      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Barjeel1-300x376.webp',
-      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Barjeel2-300x376.webp'
+      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Barjeel1.webp',
+      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Barjeel2.webp'
     ],
     description: 'Named after the traditional wind tower, a cooling yet intense oud.'
   },
@@ -161,11 +161,11 @@ export const products = [
     collection: 'Perfume Collection',
     price: 395,
     currency: 'AED',
-    image: 'https://emiratespride.com/wp-content/uploads/2021/03/FIREWOOD-01-1-300x376.webp',
-    hoverImage: 'https://emiratespride.com/wp-content/uploads/2021/03/FIREWOOD-02-1-300x376.webp',
+    image: 'https://emiratespride.com/wp-content/uploads/2021/03/FIREWOOD-01-1.webp',
+    hoverImage: 'https://emiratespride.com/wp-content/uploads/2021/03/FIREWOOD-02-1.webp',
     gallery: [
-      'https://emiratespride.com/wp-content/uploads/2021/03/FIREWOOD-01-1-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2021/03/FIREWOOD-02-1-300x376.webp'
+      'https://emiratespride.com/wp-content/uploads/2021/03/FIREWOOD-01-1.webp',
+      'https://emiratespride.com/wp-content/uploads/2021/03/FIREWOOD-02-1.webp'
     ],
     description: 'A smoky, woody fragrance evoking desert campfire nights.'
   },
@@ -175,11 +175,11 @@ export const products = [
     collection: 'Oud & Dakhoon',
     price: 1480,
     currency: 'AED',
-    image: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2024/04/OUD-HINDI-KHAS-01-300x376.webp',
-    hoverImage: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2024/04/OUD-HINDI-KHAS-02-300x376.webp',
+    image: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2024/04/OUD-HINDI-KHAS-01.webp',
+    hoverImage: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2024/04/OUD-HINDI-KHAS-02.webp',
     gallery: [
-      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2024/04/OUD-HINDI-KHAS-01-300x376.webp',
-      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2024/04/OUD-HINDI-KHAS-02-300x376.webp'
+      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2024/04/OUD-HINDI-KHAS-01.webp',
+      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2024/04/OUD-HINDI-KHAS-02.webp'
     ],
     description: 'Premium Indian oud of exceptional purity and depth.'
   },
@@ -189,11 +189,11 @@ export const products = [
     collection: 'Perfume Collection',
     price: 545,
     currency: 'AED',
-    image: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/06/midnight-300x375.webp',
-    hoverImage: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/06/PEACEFUL-LIFE-02-1-300x376.webp',
+    image: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/06/midnight.webp',
+    hoverImage: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/06/PEACEFUL-LIFE-02-1.webp',
     gallery: [
-      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/06/midnight-300x375.webp',
-      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/06/PEACEFUL-LIFE-02-1-300x376.webp'
+      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/06/midnight.webp',
+      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/06/PEACEFUL-LIFE-02-1.webp'
     ],
     description: 'A mesmerizing fragrance for unforgettable evenings.'
   },
@@ -203,11 +203,11 @@ export const products = [
     collection: 'Oud & Dakhoon',
     price: 595,
     currency: 'AED',
-    image: 'https://emiratespride.com/wp-content/uploads/2026/01/Future-Dakhoon-scaled-1-300x376.webp',
-    hoverImage: 'https://emiratespride.com/wp-content/uploads/2026/01/Future-Bakhoor-Lifestyle-scaled-1-300x372.webp',
+    image: 'https://emiratespride.com/wp-content/uploads/2026/01/Future-Dakhoon-scaled-1.webp',
+    hoverImage: 'https://emiratespride.com/wp-content/uploads/2026/01/Future-Bakhoor-Lifestyle-scaled-1.webp',
     gallery: [
-      'https://emiratespride.com/wp-content/uploads/2026/01/Future-Dakhoon-scaled-1-300x376.webp',
-      'https://emiratespride.com/wp-content/uploads/2026/01/Future-Bakhoor-Lifestyle-scaled-1-300x372.webp'
+      'https://emiratespride.com/wp-content/uploads/2026/01/Future-Dakhoon-scaled-1.webp',
+      'https://emiratespride.com/wp-content/uploads/2026/01/Future-Bakhoor-Lifestyle-scaled-1.webp'
     ],
     description: 'A modern take on traditional dakhoon incense.'
   },
@@ -217,11 +217,11 @@ export const products = [
     collection: 'Oud & Dakhoon',
     price: 620,
     currency: 'AED',
-    image: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Dakhoon-Al-Emarat-300x376.webp',
-    hoverImage: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Dakhoon-Al-Emarat-2-300x376.webp',
+    image: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Dakhoon-Al-Emarat.webp',
+    hoverImage: 'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Dakhoon-Al-Emarat-2.webp',
     gallery: [
-      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Dakhoon-Al-Emarat-300x376.webp',
-      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Dakhoon-Al-Emarat-2-300x376.webp'
+      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Dakhoon-Al-Emarat.webp',
+      'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Dakhoon-Al-Emarat-2.webp'
     ],
     description: 'A majestic dakhoon capturing the essence of Emirati heritage.'
   }
@@ -232,36 +232,36 @@ export const categories = [
     id: 'oud',
     name: 'Oud & Dakhoon',
     count: 15,
-    image: 'https://emiratespride.com/wp-content/uploads/2024/10/Untitled-1-03-440x700.webp'
+    image: 'https://emiratespride.com/wp-content/uploads/2024/10/Untitled-1-03.webp'
   },
   {
     id: 'oil',
     name: 'Oil Perfumes',
     count: 4,
-    image: 'https://emiratespride.com/wp-content/uploads/2024/10/Untitled-1-02-440x700.webp'
+    image: 'https://emiratespride.com/wp-content/uploads/2024/10/Untitled-1-02.webp'
   },
   {
     id: 'accessories',
     name: 'Accessories for Bakhoor',
     count: 3,
-    image: 'https://emiratespride.com/wp-content/uploads/2025/07/EP_villa_2840-copy-440x700.webp'
+    image: 'https://emiratespride.com/wp-content/uploads/2025/07/EP_villa_2840-copy.webp'
   },
   {
     id: 'collection',
     name: 'Perfume Collection',
     count: 40,
-    image: 'https://emiratespride.com/wp-content/uploads/2024/10/Untitled-1-04-440x700.webp'
+    image: 'https://emiratespride.com/wp-content/uploads/2024/10/Untitled-1-04.webp'
   },
   {
     id: 'gifts',
     name: 'Perfume Gift Sets',
     count: 8,
-    image: 'https://emiratespride.com/wp-content/uploads/2025/07/EP281124_40944-copy-440x700.webp'
+    image: 'https://emiratespride.com/wp-content/uploads/2025/07/EP281124_40944-copy.webp'
   },
   {
     id: 'bestsellers',
     name: 'Best Sellers',
     count: 12,
-    image: 'https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1-1200x1490.webp'
+    image: 'https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1.webp'
   }
 ];
