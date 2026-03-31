@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "wouter";
-import { Minus, Plus, ChevronDown, Star, Maximize2, X, ChevronLeft, ChevronRight, Heart, Check } from "lucide-react";
+import { Minus, Plus, Star, Maximize2, X, ChevronLeft, ChevronRight, Heart, Check } from "lucide-react";
 import { gsap } from "gsap";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -14,7 +14,6 @@ export default function Product() {
   const { id } = useParams();
   const product = products.find(p => p.id === id);
   const [quantity, setQuantity] = useState(1);
-  const [activeTab, setActiveTab] = useState("description");
   const [fullscreenIndex, setFullscreenIndex] = useState<number | null>(null);
   const [addedToCart, setAddedToCart] = useState(false);
   const [wishlisted, setWishlisted] = useState(false);
@@ -211,64 +210,28 @@ export default function Product() {
                 </div>
 
 
-                <div className="flex flex-col border-b border-black/10">
+                <div className="flex flex-col">
                   
-                  <div className="border-t border-black/10">
-                    <button 
-                      className="w-full py-5 flex justify-between items-center text-[9px] md:text-[10px] tracking-[0.2em] uppercase font-medium text-black"
-                      onClick={() => setActiveTab(activeTab === 'description' ? '' : 'description')}
-                      data-testid="button-tab-inspiration"
-                    >
-                      <span>The Inspiration</span>
-                      {activeTab === 'description' ? <Minus size={14} strokeWidth={1}/> : <Plus size={14} strokeWidth={1}/>}
-                    </button>
-                    <div className={`overflow-hidden transition-all duration-500 ease-in-out ${activeTab === 'description' ? 'max-h-96 opacity-100 pb-5' : 'max-h-0 opacity-0'}`}>
-                      <p className="text-[11px] md:text-xs text-black font-light leading-relaxed">
-                        Crafted with meticulous attention to detail, this masterpiece embodies the essence of luxury and sophistication that Emirates Pride is renowned for. The fragrance journey begins with vibrant top notes, settling into a rich, complex heart before revealing a long-lasting, profound base.
-                      </p>
-                    </div>
+                  <div className="border-t border-black/10 py-5">
+                    <h3 className="text-[9px] md:text-[10px] tracking-[0.2em] uppercase font-medium text-black mb-3" data-testid="heading-inspiration">
+                      The Inspiration
+                    </h3>
+                    <p className="text-[11px] md:text-xs text-black font-light leading-relaxed">
+                      Crafted with meticulous attention to detail, this masterpiece embodies the essence of luxury and sophistication that Emirates Pride is renowned for. The fragrance journey begins with vibrant top notes, settling into a rich, complex heart before revealing a long-lasting, profound base.
+                    </p>
                   </div>
 
-                  <div className="border-t border-black/10">
-                    <button 
-                      className="w-full py-5 flex justify-between items-center text-[9px] md:text-[10px] tracking-[0.2em] uppercase font-medium text-black"
-                      onClick={() => setActiveTab(activeTab === 'notes' ? '' : 'notes')}
-                      data-testid="button-tab-notes"
-                    >
-                      <span>Olfactory Notes</span>
-                      {activeTab === 'notes' ? <Minus size={14} strokeWidth={1}/> : <Plus size={14} strokeWidth={1}/>}
-                    </button>
-                    <div className={`overflow-hidden transition-all duration-500 ease-in-out ${activeTab === 'notes' ? 'max-h-96 opacity-100 pb-5' : 'max-h-0 opacity-0'}`}>
-                      <div className="flex flex-col gap-3 text-[11px] md:text-xs text-black font-light">
-                        <div className="flex border-b border-black/5 pb-2">
-                          <span className="w-24 font-medium text-black uppercase tracking-wider text-[9px]">Top:</span>
-                          <span>Bergamot, Saffron, Pink Pepper</span>
+                  <div className="border-t border-black/10 py-5">
+                    <h3 className="text-[9px] md:text-[10px] tracking-[0.2em] uppercase font-medium text-black mb-3" data-testid="heading-notes">
+                      Olfactory Notes
+                    </h3>
+                    <div className="flex flex-col gap-3 text-[11px] md:text-xs text-black font-light">
+                      {product.notes && product.notes.map((note) => (
+                        <div key={note.label} className="flex border-b border-black/5 pb-2 last:border-b-0">
+                          <span className="w-24 font-medium text-black uppercase tracking-wider text-[9px]">{note.label}:</span>
+                          <span>{note.items.join(', ')}</span>
                         </div>
-                        <div className="flex border-b border-black/5 pb-2">
-                          <span className="w-24 font-medium text-black uppercase tracking-wider text-[9px]">Heart:</span>
-                          <span>Rose, Jasmine, Cedarwood</span>
-                        </div>
-                        <div className="flex">
-                          <span className="w-24 font-medium text-black uppercase tracking-wider text-[9px]">Base:</span>
-                          <span>Oud, Amber, Vanilla, Musk</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="border-t border-black/10">
-                    <button 
-                      className="w-full py-5 flex justify-between items-center text-[9px] md:text-[10px] tracking-[0.2em] uppercase font-medium text-black"
-                      onClick={() => setActiveTab(activeTab === 'delivery' ? '' : 'delivery')}
-                      data-testid="button-tab-delivery"
-                    >
-                      <span>Delivery & Returns</span>
-                      {activeTab === 'delivery' ? <Minus size={14} strokeWidth={1}/> : <Plus size={14} strokeWidth={1}/>}
-                    </button>
-                    <div className={`overflow-hidden transition-all duration-500 ease-in-out ${activeTab === 'delivery' ? 'max-h-96 opacity-100 pb-5' : 'max-h-0 opacity-0'}`}>
-                      <p className="text-[11px] md:text-xs text-black font-light leading-relaxed">
-                        Enjoy complimentary standard shipping on all orders over AED 1500. Every order is carefully packed in our signature luxurious gift wrapping. You may return any unopened item within 14 days of delivery.
-                      </p>
+                      ))}
                     </div>
                   </div>
 
