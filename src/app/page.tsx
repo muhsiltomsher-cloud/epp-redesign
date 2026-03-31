@@ -227,7 +227,7 @@ export default function Home() {
               ))}
             </div>
             <div className="grid grid-cols-2 gap-2 md:gap-3 lg:gap-4 p-2.5 md:p-4 lg:p-6 pt-0 md:pt-0 lg:pt-0">
-              {products.slice(3, 7).map((product) => (
+              {products.slice(4, 8).map((product) => (
                 <CreativeProductCard key={product.id} product={product} />
               ))}
             </div>
