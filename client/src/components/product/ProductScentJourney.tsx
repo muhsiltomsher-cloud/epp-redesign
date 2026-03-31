@@ -74,6 +74,9 @@ export function ProductScentJourney({ notes, productImage, productTitle, tierIma
   const sectionRef = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
   const [pillsVisible, setPillsVisible] = useState(true);
+  const autoTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const autoInnerTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const progressRef = useRef(0);
 
   const images = tierImages ?? DEFAULT_TIER_IMAGES;
 
@@ -89,38 +92,47 @@ export function ProductScentJourney({ notes, productImage, productTitle, tierIma
   useEffect(() => {
     if (!inView) return;
     const interval = setInterval(() => {
-      setProgress(prev => {
-        if (prev >= 100) {
-          setIsAnimating(true);
-          setPillsVisible(false);
-          setTimeout(() => {
-            setActiveLayer(l => {
-              const next = (l + 1) % notes.length;
-              setPrevImage(l);
-              setDisplayedImage(next);
-              return next;
-            });
-            setTimeout(() => {
-              setIsAnimating(false);
-              setPillsVisible(true);
-            }, 400);
-          }, 500);
-          return 0;
-        }
-        return prev + 0.8;
-      });
+      const next = progressRef.current + 0.8;
+      if (next >= 100) {
+        progressRef.current = 0;
+        setProgress(0);
+        setIsAnimating(true);
+        setPillsVisible(false);
+        autoTimeoutRef.current = setTimeout(() => {
+          setActiveLayer(l => {
+            const nextLayer = (l + 1) % notes.length;
+            setPrevImage(l);
+            setDisplayedImage(nextLayer);
+            return nextLayer;
+          });
+          autoInnerTimeoutRef.current = setTimeout(() => {
+            setIsAnimating(false);
+            setPillsVisible(true);
+          }, 400);
+        }, 500);
+      } else {
+        progressRef.current = next;
+        setProgress(next);
+      }
     }, 50);
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      if (autoTimeoutRef.current) clearTimeout(autoTimeoutRef.current);
+      if (autoInnerTimeoutRef.current) clearTimeout(autoInnerTimeoutRef.current);
+    };
   }, [inView, notes.length]);
 
   const handleLayerClick = useCallback((i: number) => {
     if (i === activeLayer) return;
+    if (autoTimeoutRef.current) clearTimeout(autoTimeoutRef.current);
+    if (autoInnerTimeoutRef.current) clearTimeout(autoInnerTimeoutRef.current);
     setIsAnimating(true);
     setPillsVisible(false);
     setPrevImage(activeLayer);
     setTimeout(() => {
       setActiveLayer(i);
       setDisplayedImage(i);
+      progressRef.current = 0;
       setProgress(0);
       setTimeout(() => {
         setIsAnimating(false);
