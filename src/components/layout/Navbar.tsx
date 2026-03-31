@@ -1,12 +1,13 @@
 "use client";
 
-import { Search, ShoppingBag, Menu, User, X, ChevronDown, Globe, Instagram, Facebook, Twitter, Home, Grid3X3, Heart, LogOut } from "lucide-react";
+import { Search, ShoppingBag, Menu, User, X, ChevronDown, Globe, Instagram, Facebook, Twitter, Home, Grid3X3, Heart, LogOut, Package, MapPin, Settings, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import { getCart, getCartCount } from "@/lib/cart";
 import { products } from "@/lib/data";
 import { isLoggedIn, getUser, logout } from "@/lib/auth";
+import { getWishlist } from "@/lib/wishlist";
 
 const megaMenuData: Record<string, { subcategories: { name: string; link: string }[]; featured: { name: string; image: string; price: number; id: string }[] }> = {
   "Oud & Dakhoon": {
@@ -53,7 +54,8 @@ export default function Navbar() {
   const [cartCount, setCartCount] = useState(() => getCartCount());
   const [cartProducts, setCartProducts] = useState<{ id: string; name: string; image: string; price: number; currency: string; qty: number }[]>([]);
   const [loggedIn, setLoggedIn] = useState(() => isLoggedIn());
-  const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [userDrawerOpen, setUserDrawerOpen] = useState(false);
+  const [wishlistCount, setWishlistCount] = useState(0);
   const router = useRouter();
   const location = usePathname();
 
@@ -70,12 +72,16 @@ export default function Navbar() {
       }).filter((x): x is { id: string; name: string; image: string; price: number; currency: string; qty: number } => x !== null));
     };
     const updateAuth = () => setLoggedIn(isLoggedIn());
+    const updateWishlist = () => setWishlistCount(getWishlist().length);
+    updateWishlist();
     updateCart();
     window.addEventListener("cart-updated", updateCart);
     window.addEventListener("auth-updated", updateAuth);
+    window.addEventListener("wishlist-updated", updateWishlist);
     return () => {
       window.removeEventListener("cart-updated", updateCart);
       window.removeEventListener("auth-updated", updateAuth);
+      window.removeEventListener("wishlist-updated", updateWishlist);
     };
   }, []);
   
@@ -90,7 +96,7 @@ export default function Navbar() {
   useEffect(() => {
     setIsMenuOpen(false);
     setActiveMegaMenu(null);
-    setUserMenuOpen(false);
+    setUserDrawerOpen(false);
   }, [location]);
 
   const isDarkText = true;
@@ -215,54 +221,22 @@ export default function Navbar() {
                 <Search size={16} strokeWidth={1} />
               </button>
               
-              {loggedIn ? (
-                <div 
-                  className="hidden md:block relative"
-                  onMouseEnter={() => { setUserMenuOpen(true); setActiveMegaMenu(null); }}
-                  onMouseLeave={() => setUserMenuOpen(false)}
-                >
-                  <button className={`transition-colors ${
-                    !isDarkText ? "text-white hover:text-white" : "text-black hover:text-black"
-                  }`}>
-                    <User size={16} strokeWidth={1} />
-                  </button>
-                  
-                  {userMenuOpen && (
-                    <div className="absolute top-full right-0 mt-2 w-48 bg-white shadow-2xl border border-black/5 py-2 z-50 animate-in fade-in slide-in-from-top-2">
-                      <div className="px-4 py-3 border-b border-black/5">
-                        <span className="text-[9px] uppercase tracking-widest text-black/40">Account</span>
-                        <p className="text-[11px] text-black mt-0.5 truncate">{getUser()?.firstName} {getUser()?.lastName}</p>
-                      </div>
-                      <Link href="/account">
-                        <span className="block w-full text-left px-4 py-2.5 text-[11px] tracking-wider text-black hover:text-[#c9a96e] hover:bg-[#c9a96e]/5 transition-colors cursor-pointer">
-                          My Account
-                        </span>
-                      </Link>
-                      <Link href="/account">
-                        <span className="block w-full text-left px-4 py-2.5 text-[11px] tracking-wider text-black hover:text-[#c9a96e] hover:bg-[#c9a96e]/5 transition-colors cursor-pointer">
-                          My Orders
-                        </span>
-                      </Link>
-                      <button
-                        onClick={() => { logout(); router.push("/"); }}
-                        className="w-full text-left px-4 py-2.5 text-[11px] tracking-wider text-black hover:text-red-600 hover:bg-red-50 transition-colors border-t border-black/5 mt-1 flex items-center gap-2"
-                      >
-                        <LogOut size={12} strokeWidth={1} /> Sign Out
-                      </button>
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <Link href="/login" className="hidden md:block">
-                  <span className={`transition-colors cursor-pointer ${
-                    !isDarkText ? "text-white hover:text-white" : "text-black hover:text-black"
-                  }`}
-                  onMouseEnter={() => setActiveMegaMenu(null)}
-                  >
-                    <User size={16} strokeWidth={1} />
-                  </span>
-                </Link>
-              )}
+              <button
+                className={`hidden md:block transition-colors ${
+                  !isDarkText ? "text-white hover:text-white" : "text-black hover:text-black"
+                }`}
+                onClick={() => {
+                  if (loggedIn) {
+                    setUserDrawerOpen(true);
+                    setActiveMegaMenu(null);
+                  } else {
+                    router.push("/login");
+                  }
+                }}
+                onMouseEnter={() => setActiveMegaMenu(null)}
+              >
+                <User size={16} strokeWidth={1} />
+              </button>
               
               <Link href="/wishlist">
                 <button 
@@ -442,8 +416,8 @@ export default function Navbar() {
                 <span className="text-[8px] tracking-wider uppercase font-medium">Search</span>
               </span>
             </Link>
-            <Link href="/collection">
-              <span className="flex flex-col items-center gap-1 cursor-pointer text-black" data-testid="nav-wishlist">
+            <Link href="/wishlist">
+              <span className={`flex flex-col items-center gap-1 cursor-pointer ${location === "/wishlist" ? "text-[#c9a96e]" : "text-black"}`} data-testid="nav-wishlist">
                 <Heart size={18} strokeWidth={1.2} />
                 <span className="text-[8px] tracking-wider uppercase font-medium">Wishlist</span>
               </span>
@@ -455,6 +429,99 @@ export default function Navbar() {
           </div>
         </div>
       )}
+      {/* User Account Drawer */}
+      {userDrawerOpen && (
+        <div className="fixed inset-0 z-[100] overflow-hidden">
+          <div
+            className="absolute inset-0 bg-black/20 backdrop-blur-sm transition-opacity animate-in fade-in duration-300"
+            onClick={() => setUserDrawerOpen(false)}
+          />
+          <div className="absolute inset-y-0 right-0 w-[88vw] max-w-[380px] bg-white shadow-2xl flex flex-col animate-in slide-in-from-right duration-500 ease-out">
+            <div className="flex items-center justify-between px-5 py-4 md:p-6 border-b border-black/10">
+              <h2 className="text-[9px] md:text-[10px] font-medium uppercase tracking-[0.2em]">My Account</h2>
+              <button
+                onClick={() => setUserDrawerOpen(false)}
+                className="text-black hover:text-black transition-transform hover:rotate-90 duration-300 p-1"
+              >
+                <X size={18} strokeWidth={1} />
+              </button>
+            </div>
+            {loggedIn && getUser() ? (
+              <div className="flex-1 flex flex-col overflow-y-auto">
+                <div className="px-5 py-5 md:px-6 md:py-6 border-b border-black/5">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#c9a96e] to-[#8a6d3b] flex items-center justify-center text-white shadow-lg">
+                      <span className="text-sm font-serif">{getUser()?.firstName[0]}{getUser()?.lastName[0]}</span>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-[13px] font-serif text-black truncate">{getUser()?.firstName} {getUser()?.lastName}</p>
+                      <p className="text-[10px] text-black/40 truncate">{getUser()?.email}</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex-1 py-2">
+                  <Link href="/account" onClick={() => setUserDrawerOpen(false)}>
+                    <span className="flex items-center gap-4 px-5 md:px-6 py-3.5 hover:bg-[#c9a96e]/5 transition-colors cursor-pointer">
+                      <User size={18} strokeWidth={1.2} className="text-[#c9a96e]" />
+                      <span className="flex-1 text-[12px] text-black tracking-wide">My Account</span>
+                      <ChevronRight size={14} className="text-black/20" />
+                    </span>
+                  </Link>
+                  <Link href="/account" onClick={() => setUserDrawerOpen(false)}>
+                    <span className="flex items-center gap-4 px-5 md:px-6 py-3.5 hover:bg-[#c9a96e]/5 transition-colors cursor-pointer">
+                      <Package size={18} strokeWidth={1.2} className="text-[#c9a96e]" />
+                      <span className="flex-1 text-[12px] text-black tracking-wide">My Orders</span>
+                      <ChevronRight size={14} className="text-black/20" />
+                    </span>
+                  </Link>
+                  <Link href="/wishlist" onClick={() => setUserDrawerOpen(false)}>
+                    <span className="flex items-center gap-4 px-5 md:px-6 py-3.5 hover:bg-[#c9a96e]/5 transition-colors cursor-pointer">
+                      <Heart size={18} strokeWidth={1.2} className="text-[#c9a96e]" />
+                      <span className="flex-1 text-[12px] text-black tracking-wide">My Wishlist</span>
+                      {wishlistCount > 0 && <span className="text-[9px] text-[#c9a96e] font-medium">{wishlistCount}</span>}
+                      <ChevronRight size={14} className="text-black/20" />
+                    </span>
+                  </Link>
+                  <Link href="/account" onClick={() => setUserDrawerOpen(false)}>
+                    <span className="flex items-center gap-4 px-5 md:px-6 py-3.5 hover:bg-[#c9a96e]/5 transition-colors cursor-pointer">
+                      <MapPin size={18} strokeWidth={1.2} className="text-[#c9a96e]" />
+                      <span className="flex-1 text-[12px] text-black tracking-wide">My Addresses</span>
+                      <ChevronRight size={14} className="text-black/20" />
+                    </span>
+                  </Link>
+                  <Link href="/account" onClick={() => setUserDrawerOpen(false)}>
+                    <span className="flex items-center gap-4 px-5 md:px-6 py-3.5 hover:bg-[#c9a96e]/5 transition-colors cursor-pointer">
+                      <Settings size={18} strokeWidth={1.2} className="text-[#c9a96e]" />
+                      <span className="flex-1 text-[12px] text-black tracking-wide">Settings</span>
+                      <ChevronRight size={14} className="text-black/20" />
+                    </span>
+                  </Link>
+                </div>
+                <div className="px-5 md:px-6 py-4 border-t border-black/5">
+                  <button
+                    onClick={() => { logout(); setUserDrawerOpen(false); router.push("/"); }}
+                    className="flex items-center justify-center gap-2.5 w-full border border-black/10 text-black/60 py-3 text-[9px] tracking-[0.2em] uppercase font-medium hover:text-red-500 hover:border-red-200 transition-colors"
+                  >
+                    <LogOut size={14} strokeWidth={1} /> Sign Out
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="flex-1 flex flex-col items-center justify-center p-6 text-center">
+                <div className="w-14 h-14 mb-5 border border-black/10 rounded-full flex items-center justify-center bg-[#fafafa]">
+                  <User size={18} strokeWidth={1} className="text-black/40" />
+                </div>
+                <p className="font-serif text-xl mb-2">Welcome</p>
+                <p className="text-[11px] text-black/40 mb-6 max-w-[200px]">Sign in to access your account, orders, and wishlist.</p>
+                <Link href="/login" onClick={() => setUserDrawerOpen(false)}>
+                  <span className="creed-button inline-block cursor-pointer">Sign In</span>
+                </Link>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
       {isCartOpen && (
         <div className="fixed inset-0 z-[100] overflow-hidden">
           <div 
