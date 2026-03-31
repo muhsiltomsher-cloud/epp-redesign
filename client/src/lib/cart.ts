@@ -32,6 +32,11 @@ export function addToCart(productId: string, qty: number = 1): CartItem[] {
   }
 }
 
+export function clearCart(): void {
+  localStorage.removeItem(STORAGE_KEY);
+  window.dispatchEvent(new Event("cart-updated"));
+}
+
 export function getCartCount(): number {
   return getCart().reduce((sum, item) => sum + item.quantity, 0);
 }
