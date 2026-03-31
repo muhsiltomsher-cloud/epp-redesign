@@ -1,8 +1,9 @@
-import { Search, ShoppingBag, Menu, User, X, ChevronDown, Globe, Instagram, Facebook, Twitter, Home, Grid3X3, Heart } from "lucide-react";
+import { Search, ShoppingBag, Menu, User, X, ChevronDown, Globe, Instagram, Facebook, Twitter, Home, Grid3X3, Heart, LogOut } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
+import { getCart, getCartCount } from "@/lib/cart";
 import { products } from "@/lib/data";
-import { getCartCount } from "@/lib/cart";
+import { isLoggedIn, getUser, logout } from "@/lib/auth";
 
 const megaMenuData: Record<string, { subcategories: { name: string; link: string }[]; featured: { name: string; image: string; price: number; id: string }[] }> = {
   "Oud & Dakhoon": {
@@ -47,15 +48,30 @@ export default function Navbar() {
   const [activeCurrency, setActiveCurrency] = useState("AED");
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
   const [cartCount, setCartCount] = useState(() => getCartCount());
-  const [location] = useLocation();
+  const [cartProducts, setCartProducts] = useState<{ id: string; name: string; image: string; price: number; currency: string; qty: number }[]>([]);
+  const [loggedIn, setLoggedIn] = useState(() => isLoggedIn());
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [location, navigate] = useLocation();
 
   const currencies = ["AED", "USD", "EUR", "GBP", "SAR", "KWD", "QAR"];
   const logoUrl = "https://emiratespride.com/wp-content/uploads/2026/01/logo-epp.png";
 
   useEffect(() => {
-    const updateCart = () => setCartCount(getCartCount());
+    const updateCart = () => {
+      setCartCount(getCartCount());
+      const items = getCart();
+      setCartProducts(items.map(ci => {
+        const p = products.find(pr => pr.id === ci.productId);
+        return p ? { id: p.id, name: p.name, image: p.image, price: p.price, currency: p.currency, qty: ci.quantity } : null;
+      }).filter((x): x is { id: string; name: string; image: string; price: number; currency: string; qty: number } => x !== null));
+    };
+    const updateAuth = () => setLoggedIn(isLoggedIn());
     window.addEventListener("cart-updated", updateCart);
-    return () => window.removeEventListener("cart-updated", updateCart);
+    window.addEventListener("auth-updated", updateAuth);
+    return () => {
+      window.removeEventListener("cart-updated", updateCart);
+      window.removeEventListener("auth-updated", updateAuth);
+    };
   }, []);
   
   useEffect(() => {
@@ -69,6 +85,7 @@ export default function Navbar() {
   useEffect(() => {
     setIsMenuOpen(false);
     setActiveMegaMenu(null);
+    setUserMenuOpen(false);
   }, [location]);
 
   const isDarkText = true;
@@ -193,13 +210,59 @@ export default function Navbar() {
                 <Search size={16} strokeWidth={1} />
               </button>
               
-              <button className={`hidden md:block transition-colors ${
-                !isDarkText ? "text-white hover:text-white" : "text-black hover:text-black"
-              }`}
-              onMouseEnter={() => setActiveMegaMenu(null)}
+              <div 
+                className="hidden md:block relative"
+                onMouseEnter={() => { setUserMenuOpen(true); setActiveMegaMenu(null); }}
+                onMouseLeave={() => setUserMenuOpen(false)}
               >
-                <User size={16} strokeWidth={1} />
-              </button>
+                <button className={`transition-colors ${
+                  !isDarkText ? "text-white hover:text-white" : "text-black hover:text-black"
+                }`}>
+                  <User size={16} strokeWidth={1} />
+                </button>
+                
+                {userMenuOpen && (
+                  <div className="absolute top-full right-0 mt-2 w-48 bg-white shadow-2xl border border-black/5 py-2 z-50 animate-in fade-in slide-in-from-top-2">
+                    {loggedIn ? (
+                      <>
+                        <div className="px-4 py-3 border-b border-black/5">
+                          <span className="text-[9px] uppercase tracking-widest text-black/40">Account</span>
+                          <p className="text-[11px] text-black mt-0.5 truncate">{getUser()?.firstName} {getUser()?.lastName}</p>
+                        </div>
+                        <Link href="/account">
+                          <span className="block w-full text-left px-4 py-2.5 text-[11px] tracking-wider text-black hover:text-[#c9a96e] hover:bg-[#c9a96e]/5 transition-colors cursor-pointer">
+                            My Account
+                          </span>
+                        </Link>
+                        <Link href="/account">
+                          <span className="block w-full text-left px-4 py-2.5 text-[11px] tracking-wider text-black hover:text-[#c9a96e] hover:bg-[#c9a96e]/5 transition-colors cursor-pointer">
+                            My Orders
+                          </span>
+                        </Link>
+                        <button
+                          onClick={() => { logout(); navigate("/"); }}
+                          className="w-full text-left px-4 py-2.5 text-[11px] tracking-wider text-black hover:text-red-600 hover:bg-red-50 transition-colors border-t border-black/5 mt-1 flex items-center gap-2"
+                        >
+                          <LogOut size={12} strokeWidth={1} /> Sign Out
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <Link href="/login">
+                          <span className="block w-full text-left px-4 py-2.5 text-[11px] tracking-wider text-black hover:text-[#c9a96e] hover:bg-[#c9a96e]/5 transition-colors cursor-pointer">
+                            Sign In
+                          </span>
+                        </Link>
+                        <Link href="/login">
+                          <span className="block w-full text-left px-4 py-2.5 text-[11px] tracking-wider text-black hover:text-[#c9a96e] hover:bg-[#c9a96e]/5 transition-colors cursor-pointer">
+                            Create Account
+                          </span>
+                        </Link>
+                      </>
+                    )}
+                  </div>
+                )}
+              </div>
               
               <Link href="/wishlist">
                 <button 
@@ -328,9 +391,27 @@ export default function Navbar() {
             </div>
             
             <div className="mt-auto flex flex-col gap-4 pt-5 pb-6">
-              <button className="flex items-center justify-center gap-2.5 bg-[#1a1308] text-white py-3.5 text-[9px] tracking-[0.2em] uppercase font-medium cursor-pointer active:bg-[#c9a96e] transition-colors w-full">
-                <User size={14} strokeWidth={1} /> Sign In / Register
-              </button>
+              {loggedIn ? (
+                <>
+                  <Link href="/account">
+                    <span className="flex items-center justify-center gap-2.5 bg-[#1a1308] text-white py-3.5 text-[9px] tracking-[0.2em] uppercase font-medium cursor-pointer active:bg-[#c9a96e] transition-colors w-full">
+                      <User size={14} strokeWidth={1} /> My Account
+                    </span>
+                  </Link>
+                  <button
+                    onClick={() => { logout(); navigate("/"); }}
+                    className="flex items-center justify-center gap-2.5 border border-black/15 text-black py-3.5 text-[9px] tracking-[0.2em] uppercase font-medium cursor-pointer active:bg-black/5 transition-colors w-full"
+                  >
+                    <LogOut size={14} strokeWidth={1} /> Sign Out
+                  </button>
+                </>
+              ) : (
+                <Link href="/login">
+                  <span className="flex items-center justify-center gap-2.5 bg-[#1a1308] text-white py-3.5 text-[9px] tracking-[0.2em] uppercase font-medium cursor-pointer active:bg-[#c9a96e] transition-colors w-full">
+                    <User size={14} strokeWidth={1} /> Sign In / Register
+                  </span>
+                </Link>
+              )}
               <div className="flex justify-center gap-6 pt-2">
                 <a href="#" className="text-black"><Instagram size={18} strokeWidth={1}/></a>
                 <a href="#" className="text-black"><Facebook size={18} strokeWidth={1}/></a>
@@ -383,7 +464,7 @@ export default function Navbar() {
           
           <div className="absolute inset-y-0 right-0 w-[88vw] max-w-[400px] bg-white shadow-2xl flex flex-col animate-in slide-in-from-right duration-500 ease-out">
             <div className="flex items-center justify-between px-5 py-4 md:p-6 border-b border-black/10">
-              <h2 className="text-[9px] md:text-[10px] font-medium uppercase tracking-[0.2em]">Your Cart (0)</h2>
+              <h2 className="text-[9px] md:text-[10px] font-medium uppercase tracking-[0.2em]">Your Cart ({cartCount})</h2>
               <button 
                 onClick={() => setIsCartOpen(false)}
                 className="text-black hover:text-black transition-transform hover:rotate-90 duration-300 p-1"
@@ -392,19 +473,62 @@ export default function Navbar() {
               </button>
             </div>
 
-            <div className="flex-1 flex flex-col items-center justify-center p-6 md:p-8 text-center bg-[#fafafa]">
-              <div className="w-14 h-14 md:w-16 md:h-16 mb-5 md:mb-6 border border-black/10 rounded-full flex items-center justify-center bg-white">
-                <ShoppingBag size={18} strokeWidth={1} className="text-black" />
+            {cartCount === 0 ? (
+              <div className="flex-1 flex flex-col items-center justify-center p-6 md:p-8 text-center bg-[#fafafa]">
+                <div className="w-14 h-14 md:w-16 md:h-16 mb-5 md:mb-6 border border-black/10 rounded-full flex items-center justify-center bg-white">
+                  <ShoppingBag size={18} strokeWidth={1} className="text-black" />
+                </div>
+                <p className="font-serif text-xl md:text-2xl mb-2 md:mb-3">Your cart is empty.</p>
+                <p className="text-[11px] md:text-xs text-black mb-6 md:mb-8 font-light max-w-[200px]">Explore our collections and discover your new signature scent.</p>
+                <Link href="/collection">
+                  <span 
+                    onClick={() => setIsCartOpen(false)}
+                    className="creed-button w-full block cursor-pointer"
+                  >
+                    Continue Shopping
+                  </span>
+                </Link>
               </div>
-              <p className="font-serif text-xl md:text-2xl mb-2 md:mb-3">Your cart is empty.</p>
-              <p className="text-[11px] md:text-xs text-black mb-6 md:mb-8 font-light max-w-[200px]">Explore our collections and discover your new signature scent.</p>
-              <button 
-                onClick={() => setIsCartOpen(false)}
-                className="creed-button w-full"
-              >
-                Continue Shopping
-              </button>
-            </div>
+            ) : (
+              <>
+                <div className="flex-1 overflow-y-auto p-5 md:p-6 flex flex-col gap-4">
+                  {cartProducts.map((item) => (
+                    <div key={item.id} className="flex items-center gap-3 pb-4 border-b border-black/5 last:border-b-0">
+                      <div className="w-16 h-16 bg-[#f5f5f5] flex-shrink-0 overflow-hidden">
+                        <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-[11px] font-serif text-black truncate">{item.name}</p>
+                        <p className="text-[9px] text-black/50 mt-0.5">Qty: {item.qty}</p>
+                        <p className="text-[11px] font-medium text-black mt-0.5">{item.currency} {item.price * item.qty}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="p-5 md:p-6 border-t border-black/10 flex flex-col gap-3">
+                  <div className="flex justify-between mb-1">
+                    <span className="text-[10px] tracking-[0.15em] uppercase font-medium text-black">Total</span>
+                    <span className="text-sm font-medium text-black">AED {cartProducts.reduce((s, i) => s + i.price * i.qty, 0)}</span>
+                  </div>
+                  <Link href="/checkout">
+                    <span
+                      onClick={() => setIsCartOpen(false)}
+                      className="creed-button w-full block cursor-pointer text-center"
+                    >
+                      Checkout
+                    </span>
+                  </Link>
+                  <Link href="/collection">
+                    <span
+                      onClick={() => setIsCartOpen(false)}
+                      className="creed-button-outline w-full block cursor-pointer text-center"
+                    >
+                      Continue Shopping
+                    </span>
+                  </Link>
+                </div>
+              </>
+            )}
           </div>
         </div>
       )}

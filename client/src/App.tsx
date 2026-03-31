@@ -7,6 +7,10 @@ import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import Collection from "@/pages/Collection";
 import Product from "@/pages/Product";
+import Login from "@/pages/Login";
+import Account from "@/pages/Account";
+import Checkout from "@/pages/Checkout";
+import OrderSuccess from "@/pages/OrderSuccess";
 
 function Router() {
   return (
@@ -15,6 +19,10 @@ function Router() {
       <Route path="/collection" component={Collection} />
       <Route path="/bestsellers" component={Collection} />
       <Route path="/product/:id" component={Product} />
+      <Route path="/login" component={Login} />
+      <Route path="/account" component={Account} />
+      <Route path="/checkout" component={Checkout} />
+      <Route path="/order-success" component={OrderSuccess} />
       {/* Fallback to 404 */}
       <Route component={NotFound} />
     </Switch>
