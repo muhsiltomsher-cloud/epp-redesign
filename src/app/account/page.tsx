@@ -444,7 +444,7 @@ export default function Account() {
                           <div className="p-3 md:p-4">
                             <p className="text-[11px] md:text-[12px] font-serif text-black group-hover:text-[#c9a96e] transition-colors truncate">{product.name}</p>
                             <p className="text-[10px] text-black/40 mt-0.5">{product.collection}</p>
-                            <p className="text-[12px] font-medium text-black mt-1">AED {product.price}</p>
+                            <p className="text-[12px] font-medium text-black mt-1">{product.currency} {product.price}</p>
                           </div>
                         </div>
                       </Link>
