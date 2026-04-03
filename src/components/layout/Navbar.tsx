@@ -1,6 +1,6 @@
 "use client";
 
-import { Search, ShoppingBag, Menu, User, X, Heart } from "lucide-react";
+import { Search, ShoppingBag, Menu, User, X, Heart, Globe, ChevronDown } from "lucide-react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -15,6 +15,14 @@ const menuItems = [
   { label: "Oud", href: "/collection" },
 ];
 
+const currencies = [
+  { code: "AED", symbol: "د.إ", name: "UAE Dirham" },
+  { code: "USD", symbol: "$", name: "US Dollar" },
+  { code: "EUR", symbol: "€", name: "Euro" },
+  { code: "GBP", symbol: "£", name: "British Pound" },
+  { code: "SAR", symbol: "ر.س", name: "Saudi Riyal" },
+];
+
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -22,6 +30,11 @@ export default function Navbar() {
   const [cartCount, setCartCount] = useState(0);
   const [cartProducts, setCartProducts] = useState<{ id: string; name: string; image: string; price: number; currency: string; qty: number }[]>([]);
   const pathname = usePathname();
+  
+  const [language, setLanguage] = useState<"EN" | "AR">("EN");
+  const [currency, setCurrency] = useState("AED");
+  const [showLangMenu, setShowLangMenu] = useState(false);
+  const [showCurrencyMenu, setShowCurrencyMenu] = useState(false);
 
   const logoUrl = "https://emiratespride.com/wp-content/uploads/2026/01/logo-epp.png";
 
@@ -48,6 +61,8 @@ export default function Navbar() {
 
   useEffect(() => {
     setIsMenuOpen(false);
+    setShowLangMenu(false);
+    setShowCurrencyMenu(false);
   }, [pathname]);
 
   return (
@@ -61,11 +76,63 @@ export default function Navbar() {
               {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
 
-            {/* Empty space for desktop left side */}
-            <div className="hidden md:block w-32"></div>
+            {/* Left side - Language & Currency (Desktop) */}
+            <div className="hidden md:flex items-center gap-4">
+              {/* Language Switcher */}
+              <div className="relative">
+                <button 
+                  className="flex items-center gap-1.5 text-[11px] tracking-wider uppercase hover:text-[#c9a96e] transition-colors"
+                  onClick={() => { setShowLangMenu(!showLangMenu); setShowCurrencyMenu(false); }}
+                >
+                  <Globe size={14} />
+                  <span>{language}</span>
+                  <ChevronDown size={12} className={`transition-transform ${showLangMenu ? "rotate-180" : ""}`} />
+                </button>
+                {showLangMenu && (
+                  <div className="absolute top-full left-0 mt-2 bg-white border shadow-lg z-50 min-w-[120px]">
+                    <button 
+                      className={`w-full text-left px-4 py-2.5 text-[11px] tracking-wider hover:bg-gray-50 ${language === "EN" ? "text-[#c9a96e] font-medium" : ""}`}
+                      onClick={() => { setLanguage("EN"); setShowLangMenu(false); }}
+                    >
+                      English
+                    </button>
+                    <button 
+                      className={`w-full text-left px-4 py-2.5 text-[11px] tracking-wider hover:bg-gray-50 ${language === "AR" ? "text-[#c9a96e] font-medium" : ""}`}
+                      onClick={() => { setLanguage("AR"); setShowLangMenu(false); }}
+                    >
+                      العربية
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* Currency Switcher */}
+              <div className="relative">
+                <button 
+                  className="flex items-center gap-1.5 text-[11px] tracking-wider uppercase hover:text-[#c9a96e] transition-colors"
+                  onClick={() => { setShowCurrencyMenu(!showCurrencyMenu); setShowLangMenu(false); }}
+                >
+                  <span>{currency}</span>
+                  <ChevronDown size={12} className={`transition-transform ${showCurrencyMenu ? "rotate-180" : ""}`} />
+                </button>
+                {showCurrencyMenu && (
+                  <div className="absolute top-full left-0 mt-2 bg-white border shadow-lg z-50 min-w-[140px]">
+                    {currencies.map((c) => (
+                      <button 
+                        key={c.code}
+                        className={`w-full text-left px-4 py-2.5 text-[11px] tracking-wider hover:bg-gray-50 ${currency === c.code ? "text-[#c9a96e] font-medium" : ""}`}
+                        onClick={() => { setCurrency(c.code); setShowCurrencyMenu(false); }}
+                      >
+                        {c.code} ({c.symbol})
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
 
             {/* Logo - Center */}
-            <Link href="/" className="flex items-center justify-center">
+            <Link href="/" className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center">
               <img 
                 src={logoUrl} 
                 alt="Emirates Pride" 
@@ -131,6 +198,38 @@ export default function Navbar() {
                   Account
                 </span>
               </Link>
+              
+              {/* Mobile Language & Currency */}
+              <div className="flex items-center justify-between py-4 border-b border-black/5">
+                <span className="text-xs uppercase tracking-wider text-gray-500">Language</span>
+                <div className="flex gap-3">
+                  <button 
+                    className={`text-xs uppercase tracking-wider ${language === "EN" ? "text-[#c9a96e] font-medium" : "text-gray-600"}`}
+                    onClick={() => setLanguage("EN")}
+                  >
+                    EN
+                  </button>
+                  <span className="text-gray-300">|</span>
+                  <button 
+                    className={`text-xs ${language === "AR" ? "text-[#c9a96e] font-medium" : "text-gray-600"}`}
+                    onClick={() => setLanguage("AR")}
+                  >
+                    العربية
+                  </button>
+                </div>
+              </div>
+              <div className="flex items-center justify-between py-4">
+                <span className="text-xs uppercase tracking-wider text-gray-500">Currency</span>
+                <select 
+                  value={currency}
+                  onChange={(e) => setCurrency(e.target.value)}
+                  className="text-xs uppercase tracking-wider bg-transparent border-none outline-none cursor-pointer text-right"
+                >
+                  {currencies.map((c) => (
+                    <option key={c.code} value={c.code}>{c.code}</option>
+                  ))}
+                </select>
+              </div>
             </nav>
           </div>
         )}
@@ -176,7 +275,7 @@ export default function Navbar() {
                 <div className="p-5 border-t bg-gray-50">
                   <div className="flex justify-between mb-5">
                     <span className="text-sm uppercase tracking-wider">Total</span>
-                    <span className="text-lg font-medium">AED {cartProducts.reduce((s, i) => s + i.price * i.qty, 0)}</span>
+                    <span className="text-lg font-medium">{currency} {cartProducts.reduce((s, i) => s + i.price * i.qty, 0)}</span>
                   </div>
                   <Link href="/checkout">
                     <span onClick={() => setIsCartOpen(false)} className="block w-full bg-[#1a1308] text-white text-center py-4 text-xs uppercase tracking-[0.15em] hover:bg-[#c9a96e] transition-colors cursor-pointer">
