@@ -40,72 +40,75 @@ export default function Navbar() {
   return (
     <>
       <header className={`fixed top-0 w-full z-50 transition-all duration-300 bg-white ${isScrolled ? "shadow-sm" : ""}`}>
-        {/* Top Bar */}
-        <div className={`hidden md:block transition-all duration-300 overflow-hidden ${isScrolled ? "h-0" : "h-9"} bg-[#1a1308]`}>
-          <div className="h-full flex items-center justify-center px-4 md:px-8 lg:px-16 xl:px-24">
-            <p className="text-[11px] tracking-[0.2em] uppercase text-white/90">
-              Free Shipping Worldwide on Orders Above AED 1500
-            </p>
-          </div>
-        </div>
-
-        {/* Main Header */}
+        {/* Layer 1: Logo + Icons */}
         <div className="px-4 md:px-8 lg:px-16 xl:px-24 border-b border-black/5">
-          <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? "h-16 md:h-18" : "h-18 md:h-20"}`}>
+          <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? "h-14 md:h-16" : "h-16 md:h-20"}`}>
             {/* Mobile Menu Button */}
             <button className="md:hidden p-2 -ml-2" onClick={() => setIsMenuOpen(!isMenuOpen)}>
               {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
 
-            {/* Desktop Nav - Categories */}
-            <nav className="hidden md:flex items-center gap-8">
-              <Link href="/collection">
-                <span className="text-[11px] tracking-[0.15em] uppercase font-medium hover:text-[#c9a96e] transition-colors cursor-pointer">
-                  All Products
-                </span>
-              </Link>
-              {categories.slice(0, 4).map((cat) => (
-                <Link key={cat.name} href="/collection">
-                  <span className="text-[11px] tracking-[0.15em] uppercase font-medium hover:text-[#c9a96e] transition-colors cursor-pointer">
-                    {cat.name}
-                  </span>
-                </Link>
-              ))}
-            </nav>
+            {/* Empty space for desktop left side */}
+            <div className="hidden md:block w-32"></div>
 
-            {/* Logo */}
-            <Link href="/" className="absolute left-1/2 -translate-x-1/2">
+            {/* Logo - Center */}
+            <Link href="/" className="flex items-center justify-center">
               <img 
                 src={logoUrl} 
                 alt="Emirates Pride" 
-                className={`object-contain transition-all duration-300 ${isScrolled ? "h-9 md:h-10" : "h-10 md:h-12"}`}
+                className={`object-contain transition-all duration-300 ${isScrolled ? "h-8 md:h-10" : "h-10 md:h-14"}`}
               />
             </Link>
 
             {/* Right Icons */}
-            <div className="flex items-center gap-5">
-              <button className="hidden md:block hover:text-[#c9a96e] transition-colors">
-                <Search size={20} />
+            <div className="flex items-center gap-4 md:gap-5">
+              <button className="hidden md:flex items-center gap-2 hover:text-[#c9a96e] transition-colors">
+                <Search size={18} />
               </button>
               <Link href="/account">
-                <button className="hidden md:block hover:text-[#c9a96e] transition-colors">
-                  <User size={20} />
+                <button className="hidden md:flex items-center gap-2 hover:text-[#c9a96e] transition-colors">
+                  <User size={18} />
                 </button>
               </Link>
               <Link href="/wishlist">
                 <button className="hover:text-[#c9a96e] transition-colors">
-                  <Heart size={20} />
+                  <Heart size={18} />
                 </button>
               </Link>
               <button className="relative hover:text-[#c9a96e] transition-colors" onClick={() => setIsCartOpen(true)}>
-                <ShoppingBag size={20} />
+                <ShoppingBag size={18} />
                 {cartCount > 0 && (
-                  <span className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-[#c9a96e] text-white text-[10px] rounded-full flex items-center justify-center font-medium">
+                  <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#c9a96e] text-white text-[9px] rounded-full flex items-center justify-center font-medium">
                     {cartCount}
                   </span>
                 )}
               </button>
             </div>
+          </div>
+        </div>
+
+        {/* Layer 2: Navigation Menu (Desktop) */}
+        <div className={`hidden md:block transition-all duration-300 overflow-hidden ${isScrolled ? "h-0 opacity-0" : "h-12 opacity-100"} border-b border-black/5`}>
+          <div className="h-full px-4 md:px-8 lg:px-16 xl:px-24">
+            <nav className="h-full flex items-center justify-center gap-10 lg:gap-14">
+              <Link href="/collection">
+                <span className="text-[11px] tracking-[0.2em] uppercase font-medium hover:text-[#c9a96e] transition-colors cursor-pointer">
+                  All Products
+                </span>
+              </Link>
+              {categories.map((cat) => (
+                <Link key={cat.name} href="/collection">
+                  <span className="text-[11px] tracking-[0.2em] uppercase font-medium hover:text-[#c9a96e] transition-colors cursor-pointer">
+                    {cat.name}
+                  </span>
+                </Link>
+              ))}
+              <Link href="/collection">
+                <span className="text-[11px] tracking-[0.2em] uppercase font-medium hover:text-[#c9a96e] transition-colors cursor-pointer">
+                  New Arrivals
+                </span>
+              </Link>
+            </nav>
           </div>
         </div>
 
@@ -125,6 +128,11 @@ export default function Navbar() {
                   </span>
                 </Link>
               ))}
+              <Link href="/collection">
+                <span className="block py-3 text-sm uppercase tracking-[0.15em] font-medium cursor-pointer border-b border-black/5">
+                  New Arrivals
+                </span>
+              </Link>
               <Link href="/account">
                 <span className="block py-3 text-sm uppercase tracking-[0.15em] font-medium cursor-pointer border-b border-black/5">
                   Account
