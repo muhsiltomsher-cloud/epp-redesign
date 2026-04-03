@@ -10,7 +10,6 @@ import heroVideoUrl from "@assets/Image_to_Slow_Motion_Video_1773040640384.mp4";
 
 export default function Home() {
   const featuredProducts = products.slice(0, 8);
-  const bestSellers = products.filter(p => p.badge === "BESTSELLER").slice(0, 4);
   const newArrivals = products.filter(p => p.badge === "NEW").slice(0, 4);
 
   return (
@@ -73,26 +72,6 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {(newArrivals.length > 0 ? newArrivals : featuredProducts.slice(0, 4)).map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        </section>
-
-        {/* Best Sellers */}
-        <section className="py-16 md:py-20 mx-4 md:mx-8 lg:mx-16 xl:mx-24">
-          <div className="flex justify-between items-end mb-10">
-            <div>
-              <p className="text-xs tracking-[0.3em] uppercase text-[#c9a96e] mb-2">Most Loved</p>
-              <h2 className="text-2xl md:text-3xl font-serif">Best Sellers</h2>
-            </div>
-            <Link href="/collection">
-              <span className="text-xs tracking-[0.2em] uppercase text-black hover:text-[#c9a96e] transition-colors cursor-pointer border-b border-current pb-1">
-                View All
-              </span>
-            </Link>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            {(bestSellers.length > 0 ? bestSellers : featuredProducts.slice(4, 8)).map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
