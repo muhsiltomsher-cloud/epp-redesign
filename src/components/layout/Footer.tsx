@@ -5,63 +5,62 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#1a1308] text-white py-14 md:py-20">
-      <div className="px-4 md:px-8 lg:px-16 xl:px-24">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-10">
+    <footer className="bg-black text-white py-10 md:py-14">
+      <div className="px-6 md:px-12 lg:px-20 xl:px-32">
+        {/* Main Footer */}
+        <div className="flex flex-col md:flex-row justify-between gap-8 md:gap-12 mb-8">
           {/* Brand */}
-          <div className="col-span-2 md:col-span-1">
+          <div className="md:max-w-xs">
             <img 
               src="https://emiratespride.com/wp-content/uploads/2026/01/logo-epp.png" 
               alt="Emirates Pride" 
-              className="h-10 mb-5 brightness-0 invert"
+              className="h-8 mb-4 brightness-0 invert"
             />
-            <p className="text-sm text-gray-400 leading-relaxed max-w-xs">
-              Crafting exceptional luxury fragrances that capture the essence of Arabian heritage since 2011.
+            <p className="text-xs text-gray-400 leading-relaxed">
+              Luxury fragrances crafted with the finest Arabian ingredients.
             </p>
           </div>
 
-          {/* Shop */}
-          <div>
-            <h4 className="text-xs uppercase tracking-[0.2em] mb-5 text-[#c9a96e]">Shop</h4>
-            <ul className="space-y-3">
-              <li><Link href="/collection"><span className="text-sm text-gray-400 hover:text-white transition-colors cursor-pointer">All Products</span></Link></li>
-              <li><Link href="/collection"><span className="text-sm text-gray-400 hover:text-white transition-colors cursor-pointer">New Arrivals</span></Link></li>
-              <li><Link href="/collection"><span className="text-sm text-gray-400 hover:text-white transition-colors cursor-pointer">Best Sellers</span></Link></li>
-              <li><Link href="/collection"><span className="text-sm text-gray-400 hover:text-white transition-colors cursor-pointer">Gift Sets</span></Link></li>
-            </ul>
-          </div>
-
-          {/* Help */}
-          <div>
-            <h4 className="text-xs uppercase tracking-[0.2em] mb-5 text-[#c9a96e]">Help</h4>
-            <ul className="space-y-3">
-              <li><a href="#" className="text-sm text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
-              <li><a href="#" className="text-sm text-gray-400 hover:text-white transition-colors">Shipping Info</a></li>
-              <li><a href="#" className="text-sm text-gray-400 hover:text-white transition-colors">Returns & Refunds</a></li>
-              <li><a href="#" className="text-sm text-gray-400 hover:text-white transition-colors">FAQs</a></li>
-            </ul>
+          {/* Links */}
+          <div className="flex gap-12 md:gap-16">
+            <div>
+              <h4 className="text-[10px] uppercase tracking-wider mb-3 text-gray-400">Shop</h4>
+              <ul className="space-y-2">
+                <li><Link href="/collection"><span className="text-xs text-gray-300 hover:text-white transition-colors cursor-pointer">All Products</span></Link></li>
+                <li><Link href="/collection"><span className="text-xs text-gray-300 hover:text-white transition-colors cursor-pointer">New Arrivals</span></Link></li>
+                <li><Link href="/collection"><span className="text-xs text-gray-300 hover:text-white transition-colors cursor-pointer">Gift Sets</span></Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-[10px] uppercase tracking-wider mb-3 text-gray-400">Help</h4>
+              <ul className="space-y-2">
+                <li><a href="#" className="text-xs text-gray-300 hover:text-white transition-colors">Contact</a></li>
+                <li><a href="#" className="text-xs text-gray-300 hover:text-white transition-colors">Shipping</a></li>
+                <li><a href="#" className="text-xs text-gray-300 hover:text-white transition-colors">Returns</a></li>
+              </ul>
+            </div>
           </div>
 
           {/* Social */}
           <div>
-            <h4 className="text-xs uppercase tracking-[0.2em] mb-5 text-[#c9a96e]">Connect</h4>
-            <div className="flex gap-4 mb-5">
-              <a href="#" className="w-10 h-10 border border-white/20 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:border-white/40 transition-colors">
-                <Instagram size={18} />
+            <h4 className="text-[10px] uppercase tracking-wider mb-3 text-gray-400">Follow</h4>
+            <div className="flex gap-3">
+              <a href="#" className="w-8 h-8 border border-gray-700 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:border-gray-500 transition-colors">
+                <Instagram size={14} />
               </a>
-              <a href="#" className="w-10 h-10 border border-white/20 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:border-white/40 transition-colors">
-                <Facebook size={18} />
+              <a href="#" className="w-8 h-8 border border-gray-700 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:border-gray-500 transition-colors">
+                <Facebook size={14} />
               </a>
             </div>
-            <p className="text-sm text-gray-400">Follow us for exclusive updates and offers</p>
           </div>
         </div>
 
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-gray-500">&copy; {new Date().getFullYear()} Emirates Pride. All rights reserved.</p>
-          <div className="flex gap-8">
-            <a href="#" className="text-xs text-gray-500 hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="text-xs text-gray-500 hover:text-white transition-colors">Terms of Service</a>
+        {/* Bottom */}
+        <div className="pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-3">
+          <p className="text-[10px] text-gray-500">&copy; {new Date().getFullYear()} Emirates Pride</p>
+          <div className="flex gap-6">
+            <a href="#" className="text-[10px] text-gray-500 hover:text-white transition-colors">Privacy</a>
+            <a href="#" className="text-[10px] text-gray-500 hover:text-white transition-colors">Terms</a>
           </div>
         </div>
       </div>

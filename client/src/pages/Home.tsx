@@ -9,17 +9,20 @@ import { toggleWishlist, isInWishlist } from "@/lib/wishlist";
 import heroVideoUrl from "@assets/Image_to_Slow_Motion_Video_1773040640384.mp4";
 
 export default function Home() {
-  const featuredProducts = products.slice(0, 8);
+  const featuredProducts = products.slice(0, 10);
   const newArrivals = products.filter(p => p.badge === "NEW").length > 0 
-    ? products.filter(p => p.badge === "NEW").slice(0, 8) 
+    ? products.filter(p => p.badge === "NEW").slice(0, 10) 
     : featuredProducts;
   
   const sliderRef = useRef<HTMLDivElement>(null);
 
   const scrollSlider = (direction: "left" | "right") => {
     if (sliderRef.current) {
-      const scrollAmount = 300;
-      sliderRef.current.scrollBy({
+      const container = sliderRef.current;
+      const cardWidth = container.querySelector('div')?.offsetWidth || 280;
+      const gap = 16;
+      const scrollAmount = (cardWidth + gap) * 5;
+      container.scrollBy({
         left: direction === "left" ? -scrollAmount : scrollAmount,
         behavior: "smooth"
       });
@@ -30,8 +33,8 @@ export default function Home() {
     <div className="min-h-screen bg-white flex flex-col">
       <Navbar />
       <main className="flex-1">
-        {/* Hero Video - No Content */}
-        <section className="relative h-[75vh] md:h-[85vh] w-full overflow-hidden">
+        {/* Hero Video */}
+        <section className="relative h-[70vh] md:h-[80vh] w-full overflow-hidden">
           <video
             autoPlay
             muted
@@ -45,24 +48,23 @@ export default function Home() {
         </section>
 
         {/* Categories */}
-        <section className="py-16 md:py-20 px-6 md:px-12 lg:px-20 xl:px-32">
-          <div className="text-center mb-10">
-            <p className="text-xs tracking-[0.3em] uppercase text-[#c9a96e] mb-3">Explore</p>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif">Shop by Category</h2>
+        <section className="py-12 md:py-16 px-6 md:px-12 lg:px-20 xl:px-32">
+          <div className="text-center mb-8">
+            <h2 className="text-xl md:text-2xl font-serif">Shop by Category</h2>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
             {categories.map((cat) => (
               <Link key={cat.name} href="/collection">
                 <div className="group cursor-pointer">
-                  <div className="relative aspect-[3/4] overflow-hidden bg-gray-100">
+                  <div className="relative aspect-square overflow-hidden bg-gray-100">
                     <img 
                       src={cat.image} 
                       alt={cat.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                    <div className="absolute inset-0 flex items-end p-4">
-                      <h3 className="text-white text-sm md:text-base font-medium">{cat.name}</h3>
+                    <div className="absolute inset-0 bg-black/30" />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <h3 className="text-white text-xs md:text-sm font-medium text-center px-2">{cat.name}</h3>
                     </div>
                   </div>
                 </div>
@@ -72,30 +74,25 @@ export default function Home() {
         </section>
 
         {/* New Arrivals - Slider */}
-        <section className="py-16 md:py-20 bg-[#fafafa]">
+        <section className="py-12 md:py-16 bg-[#f8f8f8]">
           <div className="px-6 md:px-12 lg:px-20 xl:px-32">
-            <div className="flex justify-between items-end mb-10">
-              <div>
-                <p className="text-xs tracking-[0.3em] uppercase text-[#c9a96e] mb-2">Just Arrived</p>
-                <h2 className="text-2xl md:text-3xl font-serif">New Arrivals</h2>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="hidden md:flex items-center gap-2">
-                  <button 
-                    onClick={() => scrollSlider("left")}
-                    className="w-10 h-10 border border-black/20 rounded-full flex items-center justify-center hover:border-[#c9a96e] hover:text-[#c9a96e] transition-colors"
-                  >
-                    <ChevronLeft size={20} />
-                  </button>
-                  <button 
-                    onClick={() => scrollSlider("right")}
-                    className="w-10 h-10 border border-black/20 rounded-full flex items-center justify-center hover:border-[#c9a96e] hover:text-[#c9a96e] transition-colors"
-                  >
-                    <ChevronRight size={20} />
-                  </button>
-                </div>
+            <div className="flex justify-between items-center mb-8">
+              <h2 className="text-xl md:text-2xl font-serif">New Arrivals</h2>
+              <div className="flex items-center gap-3">
+                <button 
+                  onClick={() => scrollSlider("left")}
+                  className="w-9 h-9 border border-gray-300 rounded-full flex items-center justify-center hover:border-[#c9a96e] hover:text-[#c9a96e] transition-colors"
+                >
+                  <ChevronLeft size={18} />
+                </button>
+                <button 
+                  onClick={() => scrollSlider("right")}
+                  className="w-9 h-9 border border-gray-300 rounded-full flex items-center justify-center hover:border-[#c9a96e] hover:text-[#c9a96e] transition-colors"
+                >
+                  <ChevronRight size={18} />
+                </button>
                 <Link href="/collection">
-                  <span className="text-xs tracking-[0.2em] uppercase text-black hover:text-[#c9a96e] transition-colors cursor-pointer border-b border-current pb-1">
+                  <span className="hidden md:inline text-xs uppercase tracking-wider text-gray-600 hover:text-[#c9a96e] transition-colors cursor-pointer ml-2">
                     View All
                   </span>
                 </Link>
@@ -103,30 +100,18 @@ export default function Home() {
             </div>
           </div>
           
-          {/* Slider - 5 items visible on desktop */}
+          {/* Slider */}
           <div 
             ref={sliderRef}
-            className="flex gap-4 overflow-x-auto scroll-smooth px-6 md:px-12 lg:px-20 xl:px-32 pb-4 hide-scrollbar"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            className="flex gap-4 overflow-x-auto scroll-smooth px-6 md:px-12 lg:px-20 xl:px-32 pb-2"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}
           >
             {newArrivals.map((product) => (
-              <div key={product.id} className="flex-shrink-0 w-[70vw] sm:w-[45vw] md:w-[calc((100%-4rem)/5)] lg:w-[calc((100%-4rem)/5)]">
+              <div key={product.id} className="flex-shrink-0 w-[48%] sm:w-[32%] md:w-[18.5%]">
                 <ProductCard product={product} />
               </div>
             ))}
           </div>
-        </section>
-
-        {/* Banner */}
-        <section className="py-20 md:py-28 bg-[#1a1308] text-white text-center px-6 md:px-12 lg:px-20 xl:px-32">
-          <p className="text-xs tracking-[0.3em] uppercase text-[#c9a96e] mb-4">Complimentary</p>
-          <h2 className="text-2xl md:text-4xl font-serif mb-4">Free Shipping Worldwide</h2>
-          <p className="text-sm font-light mb-8 text-white/80">On all orders above AED 1500</p>
-          <Link href="/collection">
-            <span className="inline-block border border-white px-10 py-3.5 text-xs tracking-[0.2em] uppercase hover:bg-white hover:text-[#1a1308] transition-colors cursor-pointer">
-              Start Shopping
-            </span>
-          </Link>
         </section>
       </main>
       <Footer />
@@ -154,41 +139,40 @@ function ProductCard({ product }: { product: any }) {
 
   return (
     <div className="group">
-      <div className="relative aspect-[3/4] bg-gray-100 mb-3 overflow-hidden">
+      <div className="relative aspect-[3/4] bg-gray-100 mb-2 overflow-hidden">
         <Link href={`/product/${product.id}`}>
           <img 
             src={product.image} 
             alt={product.name}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
           />
         </Link>
         
         {product.badge && (
-          <span className="absolute top-3 left-3 bg-[#c9a96e] text-white text-[10px] px-2.5 py-1 uppercase tracking-wider">
+          <span className="absolute top-2 left-2 bg-[#c9a96e] text-white text-[9px] px-2 py-0.5 uppercase tracking-wider">
             {product.badge}
           </span>
         )}
 
         <button
           onClick={handleWishlist}
-          className="absolute top-3 right-3 w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-sm hover:scale-110 transition-transform"
+          className="absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm hover:scale-110 transition-transform"
         >
-          <Heart size={16} className={wishlisted ? "fill-red-500 text-red-500" : "text-gray-600"} />
+          <Heart size={14} className={wishlisted ? "fill-red-500 text-red-500" : "text-gray-500"} />
         </button>
 
         <button
           onClick={handleAddToCart}
-          className="absolute bottom-3 right-3 w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-sm hover:scale-110 transition-transform md:opacity-0 md:group-hover:opacity-100"
+          className="absolute bottom-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm hover:scale-110 transition-transform opacity-0 group-hover:opacity-100"
         >
-          <ShoppingBag size={16} className={addedToCart ? "text-[#c9a96e]" : "text-gray-600"} />
+          <ShoppingBag size={14} className={addedToCart ? "text-[#c9a96e]" : "text-gray-500"} />
         </button>
       </div>
       
       <Link href={`/product/${product.id}`}>
-        <h3 className="text-sm md:text-base font-medium mb-1 hover:text-[#c9a96e] transition-colors cursor-pointer">{product.name}</h3>
+        <h3 className="text-xs md:text-sm font-medium mb-0.5 hover:text-[#c9a96e] transition-colors cursor-pointer truncate">{product.name}</h3>
       </Link>
-      <p className="text-xs text-gray-500 mb-1 uppercase tracking-wider">{product.collection}</p>
-      <p className="text-sm font-medium">{product.currency} {product.price}</p>
+      <p className="text-xs font-medium text-gray-700">{product.currency} {product.price}</p>
     </div>
   );
 }
