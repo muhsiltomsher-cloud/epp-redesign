@@ -2,7 +2,15 @@ import { Search, ShoppingBag, Menu, User, X, Heart } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { getCart, getCartCount } from "@/lib/cart";
-import { products, categories } from "@/lib/data";
+import { products } from "@/lib/data";
+
+const menuItems = [
+  { label: "Perfumes", href: "/collection" },
+  { label: "Collection", href: "/collection" },
+  { label: "Gift Sets", href: "/collection" },
+  { label: "Accessories", href: "/collection" },
+  { label: "Oud", href: "/collection" },
+];
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -88,26 +96,16 @@ export default function Navbar() {
         </div>
 
         {/* Layer 2: Navigation Menu (Desktop) */}
-        <div className={`hidden md:block transition-all duration-300 overflow-hidden ${isScrolled ? "h-0 opacity-0" : "h-12 opacity-100"} border-b border-black/5`}>
+        <div className={`hidden md:block transition-all duration-300 overflow-hidden ${isScrolled ? "h-0 opacity-0" : "h-10 opacity-100"} border-b border-black/5`}>
           <div className="h-full px-4 md:px-8 lg:px-16 xl:px-24">
-            <nav className="h-full flex items-center justify-center gap-10 lg:gap-14">
-              <Link href="/collection">
-                <span className="text-[11px] tracking-[0.2em] uppercase font-medium hover:text-[#c9a96e] transition-colors cursor-pointer">
-                  All Products
-                </span>
-              </Link>
-              {categories.map((cat) => (
-                <Link key={cat.name} href="/collection">
-                  <span className="text-[11px] tracking-[0.2em] uppercase font-medium hover:text-[#c9a96e] transition-colors cursor-pointer">
-                    {cat.name}
+            <nav className="h-full flex items-center justify-center gap-8 lg:gap-10">
+              {menuItems.map((item) => (
+                <Link key={item.label} href={item.href}>
+                  <span className="text-[11px] tracking-[0.15em] uppercase font-medium hover:text-[#c9a96e] transition-colors cursor-pointer">
+                    {item.label}
                   </span>
                 </Link>
               ))}
-              <Link href="/collection">
-                <span className="text-[11px] tracking-[0.2em] uppercase font-medium hover:text-[#c9a96e] transition-colors cursor-pointer">
-                  New Arrivals
-                </span>
-              </Link>
             </nav>
           </div>
         </div>
@@ -115,24 +113,14 @@ export default function Navbar() {
         {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="md:hidden bg-white border-t">
-            <nav className="px-4 py-6 flex flex-col gap-1">
-              <Link href="/collection">
-                <span className="block py-3 text-sm uppercase tracking-[0.15em] font-medium cursor-pointer border-b border-black/5">
-                  All Products
-                </span>
-              </Link>
-              {categories.map((cat) => (
-                <Link key={cat.name} href="/collection">
+            <nav className="px-4 py-4 flex flex-col">
+              {menuItems.map((item) => (
+                <Link key={item.label} href={item.href}>
                   <span className="block py-3 text-sm uppercase tracking-[0.15em] font-medium cursor-pointer border-b border-black/5">
-                    {cat.name}
+                    {item.label}
                   </span>
                 </Link>
               ))}
-              <Link href="/collection">
-                <span className="block py-3 text-sm uppercase tracking-[0.15em] font-medium cursor-pointer border-b border-black/5">
-                  New Arrivals
-                </span>
-              </Link>
               <Link href="/account">
                 <span className="block py-3 text-sm uppercase tracking-[0.15em] font-medium cursor-pointer border-b border-black/5">
                   Account
