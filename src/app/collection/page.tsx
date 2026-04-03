@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback } from "react";
 import Link from "next/link";
-import { ChevronDown, Heart, ShoppingBag, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronDown, Heart, ShoppingBag } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { products } from "@/lib/data";
@@ -21,7 +21,6 @@ export default function Collection() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [sortBy, setSortBy] = useState("best");
   const [isSortOpen, setIsSortOpen] = useState(false);
-  const sliderRef = useRef<HTMLDivElement>(null);
 
   const filteredProducts = (activeCategory === "All" 
     ? products 
@@ -34,19 +33,6 @@ export default function Collection() {
       default: return 0;
     }
   });
-
-  const scrollSlider = (direction: "left" | "right") => {
-    if (sliderRef.current) {
-      const container = sliderRef.current;
-      const cardWidth = container.querySelector('div')?.offsetWidth || 280;
-      const gap = 16;
-      const scrollAmount = (cardWidth + gap) * 5;
-      container.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
-        behavior: "smooth"
-      });
-    }
-  };
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
@@ -77,61 +63,37 @@ export default function Collection() {
               ))}
             </div>
 
-            {/* Sort & Navigation */}
-            <div className="flex items-center gap-4">
-              <div className="relative">
-                <button
-                  onClick={() => setIsSortOpen(!isSortOpen)}
-                  className="flex items-center gap-1.5 text-[11px] tracking-wider uppercase text-gray-500 hover:text-black"
-                >
-                  {SORT_OPTIONS.find(o => o.value === sortBy)?.label}
-                  <ChevronDown size={12} className={`transition-transform ${isSortOpen ? "rotate-180" : ""}`} />
-                </button>
-                {isSortOpen && (
-                  <div className="absolute right-0 top-full mt-1 w-44 bg-white border shadow-md z-10">
-                    {SORT_OPTIONS.map(option => (
-                      <button
-                        key={option.value}
-                        onClick={() => { setSortBy(option.value); setIsSortOpen(false); }}
-                        className={`w-full text-left px-4 py-2.5 text-[11px] tracking-wider ${
-                          sortBy === option.value ? "text-[#c9a96e] bg-gray-50" : "text-gray-600 hover:bg-gray-50"
-                        }`}
-                      >
-                        {option.label}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              {/* Navigation Arrows */}
-              <div className="flex items-center gap-2">
-                <button 
-                  onClick={() => scrollSlider("left")}
-                  className="w-8 h-8 border border-gray-300 rounded-full flex items-center justify-center hover:border-[#c9a96e] hover:text-[#c9a96e] transition-colors"
-                >
-                  <ChevronLeft size={16} />
-                </button>
-                <button 
-                  onClick={() => scrollSlider("right")}
-                  className="w-8 h-8 border border-gray-300 rounded-full flex items-center justify-center hover:border-[#c9a96e] hover:text-[#c9a96e] transition-colors"
-                >
-                  <ChevronRight size={16} />
-                </button>
-              </div>
+            {/* Sort */}
+            <div className="relative">
+              <button
+                onClick={() => setIsSortOpen(!isSortOpen)}
+                className="flex items-center gap-1.5 text-[11px] tracking-wider uppercase text-gray-500 hover:text-black"
+              >
+                {SORT_OPTIONS.find(o => o.value === sortBy)?.label}
+                <ChevronDown size={12} className={`transition-transform ${isSortOpen ? "rotate-180" : ""}`} />
+              </button>
+              {isSortOpen && (
+                <div className="absolute right-0 top-full mt-1 w-44 bg-white border shadow-md z-10">
+                  {SORT_OPTIONS.map(option => (
+                    <button
+                      key={option.value}
+                      onClick={() => { setSortBy(option.value); setIsSortOpen(false); }}
+                      className={`w-full text-left px-4 py-2.5 text-[11px] tracking-wider ${
+                        sortBy === option.value ? "text-[#c9a96e] bg-gray-50" : "text-gray-600 hover:bg-gray-50"
+                      }`}
+                    >
+                      {option.label}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
 
-          {/* Products Slider */}
-          <div 
-            ref={sliderRef}
-            className="flex gap-4 overflow-x-auto scroll-smooth pb-2"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}
-          >
+          {/* Products Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             {filteredProducts.map((product) => (
-              <div key={product.id} className="flex-shrink-0 w-[48%] sm:w-[32%] md:w-[18.5%]">
-                <ProductCard product={product} />
-              </div>
+              <ProductCard key={product.id} product={product} />
             ))}
           </div>
 
