@@ -1,6 +1,6 @@
-import { Heart, ShoppingBag } from "lucide-react";
+import { Heart, ShoppingBag, ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "wouter";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { products, categories } from "@/lib/data";
@@ -10,7 +10,21 @@ import heroVideoUrl from "@assets/Image_to_Slow_Motion_Video_1773040640384.mp4";
 
 export default function Home() {
   const featuredProducts = products.slice(0, 8);
-  const newArrivals = products.filter(p => p.badge === "NEW").slice(0, 4);
+  const newArrivals = products.filter(p => p.badge === "NEW").length > 0 
+    ? products.filter(p => p.badge === "NEW").slice(0, 8) 
+    : featuredProducts;
+  
+  const sliderRef = useRef<HTMLDivElement>(null);
+
+  const scrollSlider = (direction: "left" | "right") => {
+    if (sliderRef.current) {
+      const scrollAmount = 300;
+      sliderRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth"
+      });
+    }
+  };
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
@@ -31,7 +45,7 @@ export default function Home() {
         </section>
 
         {/* Categories */}
-        <section className="py-16 md:py-20 mx-4 md:mx-8 lg:mx-16 xl:mx-24">
+        <section className="py-16 md:py-20 px-6 md:px-12 lg:px-20 xl:px-32">
           <div className="text-center mb-10">
             <p className="text-xs tracking-[0.3em] uppercase text-[#c9a96e] mb-3">Explore</p>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif">Shop by Category</h2>
@@ -57,28 +71,54 @@ export default function Home() {
           </div>
         </section>
 
-        {/* New Arrivals */}
-        <section className="py-16 md:py-20 mx-4 md:mx-8 lg:mx-16 xl:mx-24 bg-[#fafafa] -mx-0 px-4 md:px-8 lg:px-16 xl:px-24">
-          <div className="flex justify-between items-end mb-10">
-            <div>
-              <p className="text-xs tracking-[0.3em] uppercase text-[#c9a96e] mb-2">Just Arrived</p>
-              <h2 className="text-2xl md:text-3xl font-serif">New Arrivals</h2>
+        {/* New Arrivals - Slider */}
+        <section className="py-16 md:py-20 bg-[#fafafa]">
+          <div className="px-6 md:px-12 lg:px-20 xl:px-32">
+            <div className="flex justify-between items-end mb-10">
+              <div>
+                <p className="text-xs tracking-[0.3em] uppercase text-[#c9a96e] mb-2">Just Arrived</p>
+                <h2 className="text-2xl md:text-3xl font-serif">New Arrivals</h2>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="hidden md:flex items-center gap-2">
+                  <button 
+                    onClick={() => scrollSlider("left")}
+                    className="w-10 h-10 border border-black/20 rounded-full flex items-center justify-center hover:border-[#c9a96e] hover:text-[#c9a96e] transition-colors"
+                  >
+                    <ChevronLeft size={20} />
+                  </button>
+                  <button 
+                    onClick={() => scrollSlider("right")}
+                    className="w-10 h-10 border border-black/20 rounded-full flex items-center justify-center hover:border-[#c9a96e] hover:text-[#c9a96e] transition-colors"
+                  >
+                    <ChevronRight size={20} />
+                  </button>
+                </div>
+                <Link href="/collection">
+                  <span className="text-xs tracking-[0.2em] uppercase text-black hover:text-[#c9a96e] transition-colors cursor-pointer border-b border-current pb-1">
+                    View All
+                  </span>
+                </Link>
+              </div>
             </div>
-            <Link href="/collection">
-              <span className="text-xs tracking-[0.2em] uppercase text-black hover:text-[#c9a96e] transition-colors cursor-pointer border-b border-current pb-1">
-                View All
-              </span>
-            </Link>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            {(newArrivals.length > 0 ? newArrivals : featuredProducts.slice(0, 4)).map((product) => (
-              <ProductCard key={product.id} product={product} />
+          
+          {/* Slider - 5 items visible on desktop */}
+          <div 
+            ref={sliderRef}
+            className="flex gap-4 overflow-x-auto scroll-smooth px-6 md:px-12 lg:px-20 xl:px-32 pb-4 hide-scrollbar"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {newArrivals.map((product) => (
+              <div key={product.id} className="flex-shrink-0 w-[70vw] sm:w-[45vw] md:w-[calc((100%-4rem)/5)] lg:w-[calc((100%-4rem)/5)]">
+                <ProductCard product={product} />
+              </div>
             ))}
           </div>
         </section>
 
         {/* Banner */}
-        <section className="py-20 md:py-28 mx-4 md:mx-8 lg:mx-16 xl:mx-24 bg-[#1a1308] text-white text-center -mx-0 px-4 md:px-8 lg:px-16 xl:px-24">
+        <section className="py-20 md:py-28 bg-[#1a1308] text-white text-center px-6 md:px-12 lg:px-20 xl:px-32">
           <p className="text-xs tracking-[0.3em] uppercase text-[#c9a96e] mb-4">Complimentary</p>
           <h2 className="text-2xl md:text-4xl font-serif mb-4">Free Shipping Worldwide</h2>
           <p className="text-sm font-light mb-8 text-white/80">On all orders above AED 1500</p>
