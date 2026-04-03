@@ -53,21 +53,18 @@ export default function Home() {
           <div className="text-center mb-8">
             <h2 className="text-xl md:text-2xl font-serif">Shop by Category</h2>
           </div>
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
             {categories.map((cat) => (
               <Link key={cat.name} href="/collection">
-                <div className="group cursor-pointer">
-                  <div className="relative aspect-square overflow-hidden bg-gray-100">
+                <div className="group cursor-pointer text-center">
+                  <div className="relative aspect-square overflow-hidden bg-gray-100 mb-3">
                     <img 
                       src={cat.image} 
                       alt={cat.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                     />
-                    <div className="absolute inset-0 bg-black/30" />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <h3 className="text-white text-xs md:text-sm font-medium text-center px-2">{cat.name}</h3>
-                    </div>
                   </div>
+                  <h3 className="text-xs md:text-sm font-medium text-gray-800 group-hover:text-[#c9a96e] transition-colors">{cat.name}</h3>
                 </div>
               </Link>
             ))}
@@ -93,7 +90,7 @@ export default function Home() {
                   <ChevronRight size={18} />
                 </button>
                 <Link href="/collection">
-                  <span className="hidden md:inline text-xs uppercase tracking-wider text-gray-600 hover:text-[#c9a96e] transition-colors cursor-pointer ml-2">
+                  <span className="hidden md:inline text-sm uppercase tracking-wider text-gray-600 hover:text-[#c9a96e] transition-colors cursor-pointer ml-2">
                     View All
                   </span>
                 </Link>
@@ -171,9 +168,9 @@ function ProductCard({ product }: { product: any }) {
       </div>
       
       <Link href={`/product/${product.id}`}>
-        <h3 className="text-xs md:text-sm font-medium mb-0.5 hover:text-[#c9a96e] transition-colors cursor-pointer truncate">{product.name}</h3>
+        <h3 className="text-sm font-medium mb-0.5 hover:text-[#c9a96e] transition-colors cursor-pointer truncate">{product.name}</h3>
       </Link>
-      <p className="text-xs font-medium text-gray-700">{product.currency} {product.price}</p>
+      <p className="text-sm text-gray-600">{product.currency} {product.price}</p>
     </div>
   );
 }

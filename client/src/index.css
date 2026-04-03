@@ -30,9 +30,9 @@
   --color-brand-gold: #c9a96e;
   --color-brand-dark: #1a1308;
 
-  /* Added Arabic font support */
-  --font-sans: 'Montserrat', sans-serif;
-  --font-serif: 'Cormorant Garamond', serif;
+  /* Fonts - serif for titles, sans-serif for body */
+  --font-sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-arabic: 'Tajawal', 'Cairo', sans-serif;
 }
 
