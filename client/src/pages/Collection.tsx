@@ -35,25 +35,26 @@ export default function Collection() {
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <Navbar />
-      <main className="flex-1 pt-14 md:pt-16">
+      <main className="flex-1 pt-[120px] md:pt-[140px]">
         {/* Header */}
-        <header className="py-8 md:py-12 px-4 md:px-10 lg:px-20 text-center border-b">
-          <h1 className="text-2xl md:text-4xl font-serif mb-2">Our Collection</h1>
-          <p className="text-sm text-gray-500">Discover our curated selection of luxury fragrances</p>
+        <header className="py-10 md:py-14 px-4 md:px-8 lg:px-16 xl:px-24 text-center border-b">
+          <p className="text-xs tracking-[0.3em] uppercase text-[#c9a96e] mb-3">Discover</p>
+          <h1 className="text-2xl md:text-4xl font-serif mb-3">Our Collection</h1>
+          <p className="text-sm text-gray-500 max-w-md mx-auto">Explore our curated selection of luxury fragrances crafted with the finest ingredients</p>
         </header>
 
-        <section className="px-4 md:px-10 lg:px-20 py-6">
+        <section className="px-4 md:px-8 lg:px-16 xl:px-24 py-8 md:py-10">
           {/* Filters */}
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-10 pb-6 border-b">
             {/* Categories */}
-            <div className="flex gap-4 md:gap-8 overflow-x-auto pb-2 md:pb-0 w-full md:w-auto">
+            <div className="flex gap-6 md:gap-10 overflow-x-auto pb-2 md:pb-0 w-full md:w-auto">
               {CATEGORIES.map(cat => (
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`text-xs tracking-wider uppercase whitespace-nowrap pb-1 transition-colors ${
+                  className={`text-xs tracking-[0.15em] uppercase whitespace-nowrap pb-1 transition-colors ${
                     activeCategory === cat 
-                      ? "text-black border-b border-black" 
+                      ? "text-black font-medium border-b-2 border-[#c9a96e]" 
                       : "text-gray-400 hover:text-black"
                   }`}
                 >
@@ -66,19 +67,19 @@ export default function Collection() {
             <div className="relative">
               <button
                 onClick={() => setIsSortOpen(!isSortOpen)}
-                className="flex items-center gap-2 text-xs tracking-wider uppercase text-gray-500 hover:text-black"
+                className="flex items-center gap-2 text-xs tracking-[0.15em] uppercase text-gray-600 hover:text-black"
               >
                 {SORT_OPTIONS.find(o => o.value === sortBy)?.label}
                 <ChevronDown size={14} className={`transition-transform ${isSortOpen ? "rotate-180" : ""}`} />
               </button>
               {isSortOpen && (
-                <div className="absolute right-0 top-full mt-2 w-48 bg-white border shadow-lg z-10">
+                <div className="absolute right-0 top-full mt-2 w-52 bg-white border shadow-lg z-10">
                   {SORT_OPTIONS.map(option => (
                     <button
                       key={option.value}
                       onClick={() => { setSortBy(option.value); setIsSortOpen(false); }}
-                      className={`w-full text-left px-4 py-2 text-xs ${
-                        sortBy === option.value ? "text-[#c9a96e] bg-gray-50" : "text-gray-600 hover:bg-gray-50"
+                      className={`w-full text-left px-5 py-3 text-xs tracking-wider ${
+                        sortBy === option.value ? "text-[#c9a96e] bg-gray-50 font-medium" : "text-gray-600 hover:bg-gray-50"
                       }`}
                     >
                       {option.label}
@@ -90,14 +91,14 @@ export default function Collection() {
           </div>
 
           {/* Products Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
             {filteredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
 
           {filteredProducts.length === 0 && (
-            <div className="py-20 text-center text-gray-500">
+            <div className="py-24 text-center text-gray-500">
               No products found in this category.
             </div>
           )}
@@ -133,35 +134,35 @@ function ProductCard({ product }: { product: any }) {
           <img 
             src={product.image} 
             alt={product.name}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
           />
         </Link>
         
         {product.badge && (
-          <span className="absolute top-2 left-2 bg-[#c9a96e] text-white text-[10px] px-2 py-1 uppercase">
+          <span className="absolute top-3 left-3 bg-[#c9a96e] text-white text-[10px] px-2.5 py-1 uppercase tracking-wider">
             {product.badge}
           </span>
         )}
 
         <button
           onClick={handleWishlist}
-          className="absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm hover:scale-110 transition-transform"
+          className="absolute top-3 right-3 w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-sm hover:scale-110 transition-transform"
         >
-          <Heart size={14} className={wishlisted ? "fill-red-500 text-red-500" : "text-gray-600"} />
+          <Heart size={16} className={wishlisted ? "fill-red-500 text-red-500" : "text-gray-600"} />
         </button>
 
         <button
           onClick={handleAddToCart}
-          className="absolute bottom-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm hover:scale-110 transition-transform md:opacity-0 md:group-hover:opacity-100"
+          className="absolute bottom-3 right-3 w-9 h-9 bg-white rounded-full flex items-center justify-center shadow-sm hover:scale-110 transition-transform md:opacity-0 md:group-hover:opacity-100"
         >
-          <ShoppingBag size={14} className={addedToCart ? "text-[#c9a96e]" : "text-gray-600"} />
+          <ShoppingBag size={16} className={addedToCart ? "text-[#c9a96e]" : "text-gray-600"} />
         </button>
       </div>
       
       <Link href={`/product/${product.id}`}>
-        <h3 className="text-sm font-medium mb-1 hover:text-[#c9a96e] transition-colors cursor-pointer">{product.name}</h3>
+        <h3 className="text-sm md:text-base font-medium mb-1 hover:text-[#c9a96e] transition-colors cursor-pointer">{product.name}</h3>
       </Link>
-      <p className="text-xs text-gray-500 mb-1">{product.collection}</p>
+      <p className="text-xs text-gray-500 mb-1 uppercase tracking-wider">{product.collection}</p>
       <p className="text-sm font-medium">{product.currency} {product.price}</p>
     </div>
   );

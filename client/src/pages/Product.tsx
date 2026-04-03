@@ -47,17 +47,17 @@ export default function Product() {
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <Navbar />
-      <main className="flex-1 pt-14 md:pt-16">
+      <main className="flex-1 pt-[120px] md:pt-[140px]">
         {/* Breadcrumb */}
-        <div className="px-4 md:px-10 lg:px-20 py-4 text-xs text-gray-500">
-          <Link href="/" className="hover:text-black">Home</Link>
+        <div className="px-4 md:px-8 lg:px-16 xl:px-24 py-4 text-xs text-gray-500">
+          <Link href="/" className="hover:text-black transition-colors">Home</Link>
           <span className="mx-2">/</span>
-          <Link href="/collection" className="hover:text-black">{product.collection}</Link>
+          <Link href="/collection" className="hover:text-black transition-colors">{product.collection}</Link>
           <span className="mx-2">/</span>
           <span className="text-black">{product.name}</span>
         </div>
 
-        <div className="px-4 md:px-10 lg:px-20 pb-16">
+        <div className="px-4 md:px-8 lg:px-16 xl:px-24 pb-16">
           <div className="grid md:grid-cols-2 gap-8 lg:gap-16">
             {/* Images */}
             <div>
@@ -72,13 +72,13 @@ export default function Product() {
                 />
               </div>
               {gallery.length > 1 && (
-                <div className="flex gap-2">
+                <div className="flex gap-3">
                   {gallery.map((img, i) => (
                     <button
                       key={i}
                       onClick={() => setSelectedImage(i)}
-                      className={`w-16 h-20 bg-gray-100 overflow-hidden border-2 transition-colors ${
-                        selectedImage === i ? "border-black" : "border-transparent"
+                      className={`w-20 h-24 bg-gray-100 overflow-hidden border-2 transition-colors ${
+                        selectedImage === i ? "border-[#c9a96e]" : "border-transparent hover:border-gray-300"
                       }`}
                     >
                       <img src={img} alt="" className="w-full h-full object-cover" />
@@ -89,57 +89,57 @@ export default function Product() {
             </div>
 
             {/* Details */}
-            <div className="md:py-8">
-              <p className="text-xs text-[#c9a96e] uppercase tracking-wider mb-2">{product.collection}</p>
+            <div className="md:py-4">
+              <p className="text-xs text-[#c9a96e] uppercase tracking-[0.2em] mb-3">{product.collection}</p>
               <h1 className="text-2xl md:text-4xl font-serif mb-4">{product.name}</h1>
               
               <div className="flex items-center gap-4 mb-6">
-                <p className="text-xl font-medium">{product.currency} {product.price}</p>
+                <p className="text-xl md:text-2xl font-medium">{product.currency} {product.price}</p>
                 {product.badge && (
-                  <span className="bg-[#c9a96e] text-white text-[10px] px-2 py-1 uppercase">{product.badge}</span>
+                  <span className="bg-[#c9a96e] text-white text-[10px] px-2.5 py-1 uppercase tracking-wider">{product.badge}</span>
                 )}
               </div>
 
               <p className="text-sm text-gray-600 leading-relaxed mb-8">{product.description}</p>
 
               {/* Quantity & Add to Cart */}
-              <div className="flex gap-4 mb-6">
-                <div className="flex items-center border">
-                  <button className="px-4 py-3" onClick={() => setQuantity(Math.max(1, quantity - 1))}>
-                    <Minus size={14} />
+              <div className="flex gap-4 mb-8">
+                <div className="flex items-center border border-gray-200">
+                  <button className="px-4 py-3.5 hover:bg-gray-50 transition-colors" onClick={() => setQuantity(Math.max(1, quantity - 1))}>
+                    <Minus size={16} />
                   </button>
-                  <span className="w-12 text-center text-sm">{quantity}</span>
-                  <button className="px-4 py-3" onClick={() => setQuantity(quantity + 1)}>
-                    <Plus size={14} />
+                  <span className="w-14 text-center text-sm font-medium">{quantity}</span>
+                  <button className="px-4 py-3.5 hover:bg-gray-50 transition-colors" onClick={() => setQuantity(quantity + 1)}>
+                    <Plus size={16} />
                   </button>
                 </div>
                 <button
                   onClick={handleAddToCart}
-                  className={`flex-1 py-3 text-sm uppercase tracking-wider transition-colors flex items-center justify-center gap-2 ${
+                  className={`flex-1 py-3.5 text-sm uppercase tracking-[0.15em] transition-colors flex items-center justify-center gap-2 ${
                     addedToCart ? "bg-[#c9a96e] text-white" : "bg-[#1a1308] text-white hover:bg-[#c9a96e]"
                   }`}
                 >
-                  {addedToCart ? <><Check size={16} /> Added</> : "Add to Cart"}
+                  {addedToCart ? <><Check size={18} /> Added</> : "Add to Cart"}
                 </button>
                 <button
                   onClick={() => setWishlisted(toggleWishlist(product.id))}
-                  className={`w-12 border flex items-center justify-center transition-colors ${
-                    wishlisted ? "border-[#c9a96e] text-[#c9a96e]" : "border-gray-200 hover:border-black"
+                  className={`w-14 border flex items-center justify-center transition-colors ${
+                    wishlisted ? "border-[#c9a96e] text-[#c9a96e] bg-[#c9a96e]/5" : "border-gray-200 hover:border-[#c9a96e]"
                   }`}
                 >
-                  <Heart size={18} fill={wishlisted ? "currentColor" : "none"} />
+                  <Heart size={20} fill={wishlisted ? "currentColor" : "none"} />
                 </button>
               </div>
 
               {/* Notes */}
               {product.notes && product.notes.length > 0 && (
-                <div className="border-t pt-6">
-                  <h3 className="text-xs uppercase tracking-wider mb-4">Fragrance Notes</h3>
-                  <div className="space-y-3">
+                <div className="border-t pt-8">
+                  <h3 className="text-xs uppercase tracking-[0.2em] mb-5 font-medium">Fragrance Notes</h3>
+                  <div className="space-y-4">
                     {product.notes.map((note) => (
                       <div key={note.label} className="flex text-sm">
-                        <span className="w-20 text-gray-500">{note.label}</span>
-                        <span>{note.items.join(", ")}</span>
+                        <span className="w-24 text-gray-500 uppercase tracking-wider text-xs">{note.label}</span>
+                        <span className="flex-1">{note.items.join(", ")}</span>
                       </div>
                     ))}
                   </div>
@@ -151,9 +151,12 @@ export default function Product() {
 
         {/* Related Products */}
         {relatedProducts.length > 0 && (
-          <section className="px-4 md:px-10 lg:px-20 py-16 bg-[#fafafa]">
-            <h2 className="text-2xl font-serif text-center mb-8">You May Also Like</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+          <section className="px-4 md:px-8 lg:px-16 xl:px-24 py-16 md:py-20 bg-[#fafafa]">
+            <div className="text-center mb-10">
+              <p className="text-xs tracking-[0.3em] uppercase text-[#c9a96e] mb-3">Complete Your Collection</p>
+              <h2 className="text-2xl md:text-3xl font-serif">You May Also Like</h2>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
               {relatedProducts.map((p) => (
                 <Link key={p.id} href={`/product/${p.id}`}>
                   <div className="group cursor-pointer">
@@ -161,10 +164,10 @@ export default function Product() {
                       <img 
                         src={p.image} 
                         alt={p.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                       />
                     </div>
-                    <h3 className="text-sm font-medium mb-1">{p.name}</h3>
+                    <h3 className="text-sm md:text-base font-medium mb-1 group-hover:text-[#c9a96e] transition-colors">{p.name}</h3>
                     <p className="text-sm">{p.currency} {p.price}</p>
                   </div>
                 </Link>
@@ -176,22 +179,22 @@ export default function Product() {
         {/* Mobile Sticky Add to Cart */}
         <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-white border-t p-4">
           <div className="flex gap-3">
-            <div className="flex items-center border">
-              <button className="px-3 py-2" onClick={() => setQuantity(Math.max(1, quantity - 1))}>
-                <Minus size={12} />
+            <div className="flex items-center border border-gray-200">
+              <button className="px-3 py-2.5" onClick={() => setQuantity(Math.max(1, quantity - 1))}>
+                <Minus size={14} />
               </button>
-              <span className="w-8 text-center text-xs">{quantity}</span>
-              <button className="px-3 py-2" onClick={() => setQuantity(quantity + 1)}>
-                <Plus size={12} />
+              <span className="w-10 text-center text-sm font-medium">{quantity}</span>
+              <button className="px-3 py-2.5" onClick={() => setQuantity(quantity + 1)}>
+                <Plus size={14} />
               </button>
             </div>
             <button
               onClick={handleAddToCart}
-              className={`flex-1 py-3 text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2 ${
+              className={`flex-1 py-3 text-xs uppercase tracking-[0.15em] transition-colors flex items-center justify-center gap-2 ${
                 addedToCart ? "bg-[#c9a96e] text-white" : "bg-[#1a1308] text-white"
               }`}
             >
-              {addedToCart ? <><Check size={14} /> Added</> : `Add to Cart — ${product.currency} ${product.price}`}
+              {addedToCart ? <><Check size={16} /> Added</> : `Add to Cart — ${product.currency} ${product.price}`}
             </button>
           </div>
         </div>
@@ -200,24 +203,24 @@ export default function Product() {
         {fullscreen && (
           <div className="fixed inset-0 z-[100] bg-black flex items-center justify-center">
             <button 
-              className="absolute top-4 right-4 text-white p-2"
+              className="absolute top-4 right-4 text-white p-2 hover:opacity-70 transition-opacity"
               onClick={() => setFullscreen(false)}
             >
-              <X size={24} />
+              <X size={28} />
             </button>
             {gallery.length > 1 && (
               <>
                 <button 
-                  className="absolute left-4 top-1/2 -translate-y-1/2 text-white p-2"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-white p-2 hover:opacity-70 transition-opacity"
                   onClick={() => setSelectedImage((selectedImage - 1 + gallery.length) % gallery.length)}
                 >
-                  <ChevronLeft size={32} />
+                  <ChevronLeft size={36} />
                 </button>
                 <button 
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-white p-2"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-white p-2 hover:opacity-70 transition-opacity"
                   onClick={() => setSelectedImage((selectedImage + 1) % gallery.length)}
                 >
-                  <ChevronRight size={32} />
+                  <ChevronRight size={36} />
                 </button>
               </>
             )}

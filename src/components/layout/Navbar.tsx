@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { getCart, getCartCount } from "@/lib/cart";
-import { products } from "@/lib/data";
+import { products, categories } from "@/lib/data";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -45,47 +45,67 @@ export default function Navbar() {
   return (
     <>
       <header className={`fixed top-0 w-full z-50 transition-all duration-300 bg-white ${isScrolled ? "shadow-sm" : ""}`}>
-        <div className="px-4 md:px-10 lg:px-20">
-          <div className="flex items-center justify-between h-14 md:h-16">
+        {/* Top Bar */}
+        <div className={`hidden md:block transition-all duration-300 overflow-hidden ${isScrolled ? "h-0" : "h-9"} bg-[#1a1308]`}>
+          <div className="h-full flex items-center justify-center px-4 md:px-8 lg:px-16 xl:px-24">
+            <p className="text-[11px] tracking-[0.2em] uppercase text-white/90">
+              Free Shipping Worldwide on Orders Above AED 1500
+            </p>
+          </div>
+        </div>
+
+        {/* Main Header */}
+        <div className="px-4 md:px-8 lg:px-16 xl:px-24 border-b border-black/5">
+          <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? "h-16 md:h-18" : "h-18 md:h-20"}`}>
             {/* Mobile Menu Button */}
             <button className="md:hidden p-2 -ml-2" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+              {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
 
-            {/* Desktop Nav */}
+            {/* Desktop Nav - Categories */}
             <nav className="hidden md:flex items-center gap-8">
               <Link href="/collection">
-                <span className="text-xs tracking-wider uppercase hover:text-[#c9a96e] transition-colors cursor-pointer">Shop</span>
+                <span className="text-[11px] tracking-[0.15em] uppercase font-medium hover:text-[#c9a96e] transition-colors cursor-pointer">
+                  All Products
+                </span>
               </Link>
-              <Link href="/collection">
-                <span className="text-xs tracking-wider uppercase hover:text-[#c9a96e] transition-colors cursor-pointer">New</span>
-              </Link>
+              {categories.slice(0, 4).map((cat) => (
+                <Link key={cat.name} href="/collection">
+                  <span className="text-[11px] tracking-[0.15em] uppercase font-medium hover:text-[#c9a96e] transition-colors cursor-pointer">
+                    {cat.name}
+                  </span>
+                </Link>
+              ))}
             </nav>
 
             {/* Logo */}
             <Link href="/" className="absolute left-1/2 -translate-x-1/2">
-              <img src={logoUrl} alt="Emirates Pride" className="h-8 md:h-10 object-contain" />
+              <img 
+                src={logoUrl} 
+                alt="Emirates Pride" 
+                className={`object-contain transition-all duration-300 ${isScrolled ? "h-9 md:h-10" : "h-10 md:h-12"}`}
+              />
             </Link>
 
             {/* Right Icons */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-5">
               <button className="hidden md:block hover:text-[#c9a96e] transition-colors">
-                <Search size={18} />
+                <Search size={20} />
               </button>
               <Link href="/account">
                 <button className="hidden md:block hover:text-[#c9a96e] transition-colors">
-                  <User size={18} />
+                  <User size={20} />
                 </button>
               </Link>
               <Link href="/wishlist">
                 <button className="hover:text-[#c9a96e] transition-colors">
-                  <Heart size={18} />
+                  <Heart size={20} />
                 </button>
               </Link>
               <button className="relative hover:text-[#c9a96e] transition-colors" onClick={() => setIsCartOpen(true)}>
-                <ShoppingBag size={18} />
+                <ShoppingBag size={20} />
                 {cartCount > 0 && (
-                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-[#c9a96e] text-white text-[10px] rounded-full flex items-center justify-center">
+                  <span className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-[#c9a96e] text-white text-[10px] rounded-full flex items-center justify-center font-medium">
                     {cartCount}
                   </span>
                 )}
@@ -97,15 +117,23 @@ export default function Navbar() {
         {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="md:hidden bg-white border-t">
-            <nav className="px-4 py-4 flex flex-col gap-4">
+            <nav className="px-4 py-6 flex flex-col gap-1">
               <Link href="/collection">
-                <span className="block py-2 text-sm uppercase tracking-wider cursor-pointer">Shop All</span>
+                <span className="block py-3 text-sm uppercase tracking-[0.15em] font-medium cursor-pointer border-b border-black/5">
+                  All Products
+                </span>
               </Link>
-              <Link href="/collection">
-                <span className="block py-2 text-sm uppercase tracking-wider cursor-pointer">New Arrivals</span>
-              </Link>
+              {categories.map((cat) => (
+                <Link key={cat.name} href="/collection">
+                  <span className="block py-3 text-sm uppercase tracking-[0.15em] font-medium cursor-pointer border-b border-black/5">
+                    {cat.name}
+                  </span>
+                </Link>
+              ))}
               <Link href="/account">
-                <span className="block py-2 text-sm uppercase tracking-wider cursor-pointer">Account</span>
+                <span className="block py-3 text-sm uppercase tracking-[0.15em] font-medium cursor-pointer border-b border-black/5">
+                  Account
+                </span>
               </Link>
             </nav>
           </div>
@@ -115,47 +143,53 @@ export default function Navbar() {
       {/* Cart Drawer */}
       {isCartOpen && (
         <div className="fixed inset-0 z-[100]">
-          <div className="absolute inset-0 bg-black/30" onClick={() => setIsCartOpen(false)} />
-          <div className="absolute right-0 top-0 bottom-0 w-full max-w-md bg-white shadow-xl flex flex-col">
-            <div className="flex items-center justify-between p-4 border-b">
-              <h2 className="text-sm uppercase tracking-wider">Cart ({cartCount})</h2>
-              <button onClick={() => setIsCartOpen(false)}>
-                <X size={20} />
+          <div className="absolute inset-0 bg-black/40" onClick={() => setIsCartOpen(false)} />
+          <div className="absolute right-0 top-0 bottom-0 w-full max-w-md bg-white shadow-2xl flex flex-col">
+            <div className="flex items-center justify-between p-5 border-b">
+              <h2 className="text-sm uppercase tracking-[0.15em] font-medium">Cart ({cartCount})</h2>
+              <button onClick={() => setIsCartOpen(false)} className="p-1 hover:opacity-70 transition-opacity">
+                <X size={22} />
               </button>
             </div>
 
             {cartCount === 0 ? (
               <div className="flex-1 flex flex-col items-center justify-center p-8 text-center">
-                <ShoppingBag size={40} className="text-gray-300 mb-4" />
-                <p className="text-lg font-serif mb-2">Your cart is empty</p>
+                <ShoppingBag size={48} className="text-gray-200 mb-6" />
+                <p className="text-xl font-serif mb-3">Your cart is empty</p>
+                <p className="text-sm text-gray-500 mb-6">Discover our luxury fragrances</p>
                 <Link href="/collection">
-                  <span onClick={() => setIsCartOpen(false)} className="text-sm text-[#c9a96e] hover:underline cursor-pointer">
-                    Continue Shopping
+                  <span onClick={() => setIsCartOpen(false)} className="inline-block bg-[#1a1308] text-white px-8 py-3 text-xs uppercase tracking-[0.15em] hover:bg-[#c9a96e] transition-colors cursor-pointer">
+                    Shop Now
                   </span>
                 </Link>
               </div>
             ) : (
               <>
-                <div className="flex-1 overflow-y-auto p-4">
+                <div className="flex-1 overflow-y-auto p-5">
                   {cartProducts.map((item) => (
-                    <div key={item.id} className="flex gap-4 py-4 border-b">
-                      <img src={item.image} alt={item.name} className="w-16 h-20 object-cover bg-gray-100" />
+                    <div key={item.id} className="flex gap-4 py-5 border-b border-black/5">
+                      <img src={item.image} alt={item.name} className="w-20 h-24 object-cover bg-gray-100" />
                       <div className="flex-1">
-                        <p className="text-sm font-medium">{item.name}</p>
-                        <p className="text-xs text-gray-500">Qty: {item.qty}</p>
-                        <p className="text-sm mt-1">{item.currency} {item.price * item.qty}</p>
+                        <p className="text-sm font-medium mb-1">{item.name}</p>
+                        <p className="text-xs text-gray-500 mb-2">Qty: {item.qty}</p>
+                        <p className="text-sm font-medium">{item.currency} {item.price * item.qty}</p>
                       </div>
                     </div>
                   ))}
                 </div>
-                <div className="p-4 border-t">
-                  <div className="flex justify-between mb-4">
-                    <span className="font-medium">Total</span>
-                    <span className="font-medium">AED {cartProducts.reduce((s, i) => s + i.price * i.qty, 0)}</span>
+                <div className="p-5 border-t bg-gray-50">
+                  <div className="flex justify-between mb-5">
+                    <span className="text-sm uppercase tracking-wider">Total</span>
+                    <span className="text-lg font-medium">AED {cartProducts.reduce((s, i) => s + i.price * i.qty, 0)}</span>
                   </div>
                   <Link href="/checkout">
-                    <span onClick={() => setIsCartOpen(false)} className="block w-full bg-[#1a1308] text-white text-center py-3 text-sm uppercase tracking-wider hover:bg-[#c9a96e] transition-colors cursor-pointer">
+                    <span onClick={() => setIsCartOpen(false)} className="block w-full bg-[#1a1308] text-white text-center py-4 text-xs uppercase tracking-[0.15em] hover:bg-[#c9a96e] transition-colors cursor-pointer">
                       Checkout
+                    </span>
+                  </Link>
+                  <Link href="/collection">
+                    <span onClick={() => setIsCartOpen(false)} className="block w-full text-center py-3 mt-2 text-xs uppercase tracking-[0.15em] text-gray-600 hover:text-black transition-colors cursor-pointer">
+                      Continue Shopping
                     </span>
                   </Link>
                 </div>
