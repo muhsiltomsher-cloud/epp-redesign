@@ -8,31 +8,32 @@ import { getCart, getCartCount } from "@/lib/cart";
 import { products } from "@/lib/data";
 
 const menuItems = [
-  { label: "Shop All", href: "/collection" },
   { label: "Perfumes", href: "/collection" },
-  { label: "Oils", href: "/collection" },
-  { label: "Personal Care", href: "/collection" },
-  { label: "Home Fragrances", href: "/collection" },
+  { label: "Collection", href: "/collection" },
   { label: "Gift Sets", href: "/collection" },
+  { label: "Accessories", href: "/collection" },
+  { label: "Oud", href: "/collection" },
 ];
 
 const currencies = [
-  { code: "AED", symbol: "د.إ", flag: "ae" },
-  { code: "USD", symbol: "$", flag: "us" },
-  { code: "EUR", symbol: "€", flag: "eu" },
-  { code: "GBP", symbol: "£", flag: "gb" },
-  { code: "SAR", symbol: "ر.س", flag: "sa" },
+  { code: "AED", symbol: "د.إ" },
+  { code: "USD", symbol: "$" },
+  { code: "EUR", symbol: "€" },
+  { code: "GBP", symbol: "£" },
+  { code: "SAR", symbol: "ر.س" },
 ];
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [cartCount, setCartCount] = useState(() => getCartCount());
   const [cartProducts, setCartProducts] = useState<{ id: string; name: string; image: string; price: number; currency: string; qty: number }[]>([]);
   const pathname = usePathname();
   
   const [language, setLanguage] = useState<"EN" | "AR">("EN");
   const [currency, setCurrency] = useState("AED");
+  const [showLangMenu, setShowLangMenu] = useState(false);
   const [showCurrencyMenu, setShowCurrencyMenu] = useState(false);
 
   const logoUrl = "https://emiratespride.com/wp-content/uploads/2026/01/logo-epp.png";
@@ -51,57 +52,77 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 80);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
     setIsMenuOpen(false);
+    setShowLangMenu(false);
     setShowCurrencyMenu(false);
   }, [pathname]);
 
-  const currentCurrency = currencies.find(c => c.code === currency) || currencies[0];
-
   return (
     <>
-      <header className="sticky top-0 z-50 w-full">
-        {/* Top Utility Bar */}
-        <div className="border-b border-gray-100 bg-[#f7f6f2] h-8">
-          <div className="container mx-auto flex h-8 items-center justify-between px-4">
-            <div className="flex items-center gap-4">
-              {/* Language Switcher */}
-              <button 
-                className="flex items-center gap-1.5 rounded-full px-2.5 py-1 text-sm font-medium transition-all hover:bg-gray-100"
-                onClick={() => setLanguage(language === "EN" ? "AR" : "EN")}
-              >
-                <Globe className="h-3.5 w-3.5 text-[#7a3205]" />
-                <span className="text-gray-600">{language === "EN" ? "العربية" : "English"}</span>
-              </button>
+      <header className="fixed top-0 w-full z-50 bg-white shadow-sm">
+        {/* Top Bar - Logo + Icons (visible when not scrolled) */}
+        <div 
+          className={`px-4 md:px-8 lg:px-16 xl:px-24 border-b border-gray-100 transition-all duration-300 ${
+            isScrolled ? "h-0 overflow-hidden opacity-0" : "h-14 md:h-16 opacity-100"
+          }`}
+        >
+          <div className="h-14 md:h-16 flex items-center justify-between">
+            {/* Mobile Menu Button */}
+            <button className="md:hidden p-2 -ml-2" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
 
-              {/* Currency Selector */}
-              <div className="relative hidden xl:block">
+            {/* Left - Language & Currency */}
+            <div className="hidden md:flex items-center gap-3">
+              <div className="relative">
                 <button 
-                  className="flex items-center gap-1.5 rounded-full px-2.5 py-1 text-sm font-medium transition-all hover:bg-gray-100"
-                  onClick={() => setShowCurrencyMenu(!showCurrencyMenu)}
+                  className="flex items-center gap-1 text-[11px] tracking-wider uppercase hover:text-[#c9a96e] transition-colors"
+                  onClick={() => { setShowLangMenu(!showLangMenu); setShowCurrencyMenu(false); }}
                 >
-                  <img 
-                    src={`https://flagcdn.com/w40/${currentCurrency.flag}.png`}
-                    alt={currentCurrency.code}
-                    className="w-5 h-4 object-cover"
-                  />
-                  <span className="font-semibold text-[#7a3205]">{currentCurrency.symbol}</span>
-                  <span className="text-gray-600">{currentCurrency.code}</span>
-                  <ChevronDown className="h-3 w-3 text-gray-400" />
+                  <Globe size={14} />
+                  <span>{language}</span>
+                  <ChevronDown size={12} />
+                </button>
+                {showLangMenu && (
+                  <div className="absolute top-full left-0 mt-2 bg-white border shadow-lg z-50 min-w-[110px]">
+                    <button 
+                      className={`w-full text-left px-4 py-2.5 text-[11px] tracking-wider hover:bg-gray-50 ${language === "EN" ? "text-[#c9a96e]" : ""}`}
+                      onClick={() => { setLanguage("EN"); setShowLangMenu(false); }}
+                    >
+                      English
+                    </button>
+                    <button 
+                      className={`w-full text-left px-4 py-2.5 text-[11px] tracking-wider hover:bg-gray-50 ${language === "AR" ? "text-[#c9a96e]" : ""}`}
+                      onClick={() => { setLanguage("AR"); setShowLangMenu(false); }}
+                    >
+                      العربية
+                    </button>
+                  </div>
+                )}
+              </div>
+              <div className="relative">
+                <button 
+                  className="flex items-center gap-1 text-[11px] tracking-wider uppercase hover:text-[#c9a96e] transition-colors"
+                  onClick={() => { setShowCurrencyMenu(!showCurrencyMenu); setShowLangMenu(false); }}
+                >
+                  <span>{currency}</span>
+                  <ChevronDown size={12} />
                 </button>
                 {showCurrencyMenu && (
-                  <div className="absolute top-full left-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-50 min-w-[140px] py-1">
+                  <div className="absolute top-full left-0 mt-2 bg-white border shadow-lg z-50 min-w-[110px]">
                     {currencies.map((c) => (
                       <button 
                         key={c.code}
-                        className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-50 flex items-center gap-2 ${currency === c.code ? "text-[#7a3205] font-medium" : "text-gray-700"}`}
+                        className={`w-full text-left px-4 py-2.5 text-[11px] tracking-wider hover:bg-gray-50 ${currency === c.code ? "text-[#c9a96e]" : ""}`}
                         onClick={() => { setCurrency(c.code); setShowCurrencyMenu(false); }}
                       >
-                        <img 
-                          src={`https://flagcdn.com/w40/${c.flag}.png`}
-                          alt={c.code}
-                          className="w-5 h-4 object-cover"
-                        />
-                        <span>{c.code}</span>
+                        {c.code}
                       </button>
                     ))}
                   </div>
@@ -109,118 +130,112 @@ export default function Navbar() {
               </div>
             </div>
 
-            {/* Free Shipping Banner */}
-            <div className="hidden text-sm text-gray-600 xl:block">
-              Free shipping on orders over 500 AED
-            </div>
+            {/* Logo - Center */}
+            <Link href="/" className="absolute left-1/2 -translate-x-1/2">
+              <img src={logoUrl} alt="Emirates Pride" className="h-8 md:h-10 object-contain" />
+            </Link>
 
-            {/* Mobile Currency */}
-            <div className="xl:hidden">
-              <button 
-                className="flex items-center gap-1.5 rounded-full px-2.5 py-1 text-sm font-medium transition-all hover:bg-gray-100"
-                onClick={() => setShowCurrencyMenu(!showCurrencyMenu)}
-              >
-                <img 
-                  src={`https://flagcdn.com/w40/${currentCurrency.flag}.png`}
-                  alt={currentCurrency.code}
-                  className="w-5 h-4 object-cover"
-                />
-                <span className="font-semibold text-[#7a3205]">{currentCurrency.symbol}</span>
-                <ChevronDown className="h-3 w-3 text-gray-400" />
+            {/* Right Icons */}
+            <div className="flex items-center gap-4">
+              <button className="hidden md:block hover:text-[#c9a96e] transition-colors">
+                <Search size={20} />
+              </button>
+              <Link href="/account" className="hidden md:block hover:text-[#c9a96e] transition-colors">
+                <User size={20} />
+              </Link>
+              <Link href="/wishlist" className="hover:text-[#c9a96e] transition-colors">
+                <Heart size={20} />
+              </Link>
+              <button className="relative hover:text-[#c9a96e] transition-colors" onClick={() => setIsCartOpen(true)}>
+                <ShoppingBag size={20} />
+                {cartCount > 0 && (
+                  <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#c9a96e] text-white text-[9px] rounded-full flex items-center justify-center font-medium">
+                    {cartCount}
+                  </span>
+                )}
               </button>
             </div>
           </div>
         </div>
 
-        {/* Main Header */}
-        <div className="border-b border-gray-100 bg-[#dad6cd] backdrop-blur supports-[backdrop-filter]:bg-[#dad6cd]/95">
-          <div className="container mx-auto px-4">
-            <div className="relative flex items-center justify-between h-16 xl:h-20">
-              {/* Mobile Menu Button */}
-              <button 
-                className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 hover:bg-gray-100 hover:text-gray-900 xl:hidden"
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-              >
-                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </button>
-
-              {/* Logo */}
-              <Link href="/" className="flex items-center absolute left-1/2 -translate-x-1/2 xl:static xl:translate-x-0">
-                <img 
-                  src={logoUrl} 
-                  alt="Emirates Pride"
-                  className="h-12 md:h-16 object-contain"
-                />
+        {/* Menu Bar - Always visible */}
+        <div className={`hidden md:block bg-white transition-all duration-300 ${isScrolled ? "border-b border-gray-100" : ""}`}>
+          <div className="h-11 px-4 md:px-8 lg:px-16 xl:px-24 flex items-center justify-center relative">
+            {/* Logo on left when scrolled */}
+            {isScrolled && (
+              <Link href="/" className="absolute left-4 md:left-8 lg:left-16 xl:left-24">
+                <img src={logoUrl} alt="Emirates Pride" className="h-7 object-contain" />
               </Link>
-
-              {/* Desktop Navigation */}
-              <nav className="hidden xl:flex xl:gap-x-8">
-                {menuItems.map((item) => (
-                  <Link 
-                    key={item.label} 
-                    href={item.href}
-                    className="text-sm font-bold text-[#7a3205] transition-colors hover:text-[#5a2504]"
-                  >
+            )}
+            
+            {/* Menu Items - Center */}
+            <nav className="flex items-center gap-8">
+              {menuItems.map((item) => (
+                <Link key={item.label} href={item.href}>
+                  <span className="text-[11px] tracking-[0.15em] uppercase font-medium hover:text-[#c9a96e] transition-colors cursor-pointer">
                     {item.label}
-                  </Link>
-                ))}
-              </nav>
-
-              {/* Right Icons */}
-              <div className="flex items-center gap-2 xl:gap-4">
-                {/* Search */}
-                <div className="relative hidden lg:block">
-                  <div className="relative">
-                    <input 
-                      type="text"
-                      placeholder="Search products..."
-                      className="w-48 rounded-full border border-gray-200 bg-gray-50 py-2 text-sm text-gray-900 placeholder-gray-500 transition-all focus:w-64 focus:border-[#633d1f] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#633d1f] lg:w-56 lg:focus:w-72 pl-10 pr-4"
-                    />
-                    <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-gray-400" />
-                  </div>
-                </div>
-
-                {/* Account */}
-                <Link href="/account" className="hidden p-2 text-[#7a3205] hover:text-[#5a2504] xl:block">
-                  <User className="h-5 w-5" />
+                  </span>
                 </Link>
+              ))}
+            </nav>
 
-                {/* Wishlist */}
-                <Link href="/wishlist" className="relative p-2 text-[#7a3205] hover:text-[#5a2504]">
-                  <Heart className="h-5 w-5" />
+            {/* Icons on right when scrolled */}
+            {isScrolled && (
+              <div className="absolute right-4 md:right-8 lg:right-16 xl:right-24 flex items-center gap-4">
+                <button className="hover:text-[#c9a96e] transition-colors">
+                  <Search size={18} />
+                </button>
+                <Link href="/wishlist" className="hover:text-[#c9a96e] transition-colors">
+                  <Heart size={18} />
                 </Link>
-
-                {/* Cart */}
-                <button 
-                  className="relative p-2 text-[#7a3205] hover:text-[#5a2504]"
-                  onClick={() => setIsCartOpen(true)}
-                >
-                  <ShoppingBag className="h-5 w-5" />
+                <button className="relative hover:text-[#c9a96e] transition-colors" onClick={() => setIsCartOpen(true)}>
+                  <ShoppingBag size={18} />
                   {cartCount > 0 && (
-                    <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-[#7a3205] text-white text-[10px] rounded-full flex items-center justify-center font-medium">
+                    <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-[#c9a96e] text-white text-[8px] rounded-full flex items-center justify-center font-medium">
                       {cartCount}
                     </span>
                   )}
                 </button>
               </div>
-            </div>
+            )}
           </div>
-
-          {/* Mobile Menu */}
-          {isMenuOpen && (
-            <div className="xl:hidden border-t border-gray-200">
-              <nav className="px-4 py-3 bg-[#f7f6f2]">
-                {menuItems.map((item) => (
-                  <Link key={item.label} href={item.href}>
-                    <span className="block py-3 text-sm font-bold text-[#7a3205] hover:bg-gray-100 hover:text-[#5a2504] px-3 rounded-lg cursor-pointer">
-                      {item.label}
-                    </span>
-                  </Link>
-                ))}
-              </nav>
-            </div>
-          )}
         </div>
+
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="md:hidden bg-white border-t">
+            <nav className="px-4 py-3">
+              {menuItems.map((item) => (
+                <Link key={item.label} href={item.href}>
+                  <span className="block py-3 text-sm uppercase tracking-wider cursor-pointer border-b border-gray-100">
+                    {item.label}
+                  </span>
+                </Link>
+              ))}
+              <div className="flex items-center justify-between py-4 mt-2">
+                <div className="flex gap-4">
+                  <button 
+                    className={`text-sm ${language === "EN" ? "text-[#c9a96e] font-medium" : "text-gray-500"}`}
+                    onClick={() => setLanguage("EN")}
+                  >EN</button>
+                  <button 
+                    className={`text-sm ${language === "AR" ? "text-[#c9a96e] font-medium" : "text-gray-500"}`}
+                    onClick={() => setLanguage("AR")}
+                  >AR</button>
+                </div>
+                <select 
+                  value={currency}
+                  onChange={(e) => setCurrency(e.target.value)}
+                  className="text-sm bg-transparent border-none outline-none"
+                >
+                  {currencies.map((c) => (
+                    <option key={c.code} value={c.code}>{c.code}</option>
+                  ))}
+                </select>
+              </div>
+            </nav>
+          </div>
+        )}
       </header>
 
       {/* Cart Drawer */}
@@ -229,21 +244,18 @@ export default function Navbar() {
           <div className="absolute inset-0 bg-black/40" onClick={() => setIsCartOpen(false)} />
           <div className="absolute right-0 top-0 bottom-0 w-full max-w-md bg-white shadow-xl flex flex-col">
             <div className="flex items-center justify-between p-5 border-b">
-              <h2 className="text-lg font-bold text-[#7a3205]">Cart ({cartCount})</h2>
-              <button onClick={() => setIsCartOpen(false)} className="p-1 hover:bg-gray-100 rounded-full">
+              <h2 className="text-sm uppercase tracking-wider font-medium">Cart ({cartCount})</h2>
+              <button onClick={() => setIsCartOpen(false)}>
                 <X size={22} />
               </button>
             </div>
 
             {cartCount === 0 ? (
               <div className="flex-1 flex flex-col items-center justify-center p-8 text-center">
-                <ShoppingBag size={48} className="text-gray-300 mb-5" />
-                <p className="text-lg font-bold text-gray-800 mb-2">Your cart is empty</p>
+                <ShoppingBag size={48} className="text-gray-200 mb-5" />
+                <p className="text-lg font-medium mb-2">Your cart is empty</p>
                 <Link href="/collection">
-                  <span 
-                    onClick={() => setIsCartOpen(false)} 
-                    className="text-sm text-[#7a3205] font-medium hover:underline cursor-pointer"
-                  >
+                  <span onClick={() => setIsCartOpen(false)} className="text-sm text-[#c9a96e] underline cursor-pointer">
                     Continue Shopping
                   </span>
                 </Link>
@@ -253,25 +265,22 @@ export default function Navbar() {
                 <div className="flex-1 overflow-y-auto p-5">
                   {cartProducts.map((item) => (
                     <div key={item.id} className="flex gap-4 py-4 border-b border-gray-100">
-                      <img src={item.image} alt={item.name} className="w-20 h-24 object-cover bg-gray-100 rounded-lg" />
+                      <img src={item.image} alt={item.name} className="w-20 h-24 object-cover bg-gray-100" />
                       <div className="flex-1">
-                        <p className="text-sm font-bold text-gray-800 mb-1">{item.name}</p>
+                        <p className="text-sm font-medium mb-1">{item.name}</p>
                         <p className="text-xs text-gray-500 mb-2">Qty: {item.qty}</p>
-                        <p className="text-sm font-bold text-[#7a3205]">{item.currency} {item.price * item.qty}</p>
+                        <p className="text-sm font-medium">{item.currency} {item.price * item.qty}</p>
                       </div>
                     </div>
                   ))}
                 </div>
-                <div className="p-5 border-t bg-[#f7f6f2]">
+                <div className="p-5 border-t bg-gray-50">
                   <div className="flex justify-between mb-5">
-                    <span className="text-sm font-medium text-gray-600">Total</span>
-                    <span className="text-lg font-bold text-[#7a3205]">{currency} {cartProducts.reduce((s, i) => s + i.price * i.qty, 0)}</span>
+                    <span className="text-sm uppercase tracking-wider">Total</span>
+                    <span className="text-lg font-medium">{currency} {cartProducts.reduce((s, i) => s + i.price * i.qty, 0)}</span>
                   </div>
                   <Link href="/checkout">
-                    <span 
-                      onClick={() => setIsCartOpen(false)} 
-                      className="block w-full bg-[#7a3205] text-white text-center py-3 text-sm font-bold rounded-full hover:bg-[#5a2504] transition-colors cursor-pointer"
-                    >
+                    <span onClick={() => setIsCartOpen(false)} className="block w-full bg-[#1a1308] text-white text-center py-4 text-xs uppercase tracking-wider hover:bg-[#c9a96e] transition-colors cursor-pointer">
                       Checkout
                     </span>
                   </Link>
