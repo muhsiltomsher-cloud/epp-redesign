@@ -4,10 +4,10 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --radius-sm: 0px;
-  --radius-md: 0px;
-  --radius-lg: 0px;
-  --radius-xl: 0px;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
   --color-card: hsl(var(--card));
@@ -27,45 +27,51 @@
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
-  --color-brand-gold: #c9a96e;
-  --color-brand-dark: #1a1308;
+  
+  /* Aromatic Scents Lab inspired colors */
+  --color-brand-brown: #7a3205;
+  --color-brand-brown-dark: #5a2504;
+  --color-brand-brown-light: #92400e;
+  --color-brand-cream: #f7f6f2;
+  --color-brand-taupe: #dad6cd;
+  --color-brand-gold: #633d1f;
 
-  /* Fonts - serif for titles, sans-serif for body */
+  /* Fonts - clean sans-serif like reference */
   --font-sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
   --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-arabic: 'Tajawal', 'Cairo', sans-serif;
 }
 
 :root {
-  --background: 0 0% 100%;
-  --foreground: 30 30% 8%;
+  --background: 42 20% 96%;
+  --foreground: 24 70% 10%;
   
-  --card: 0 0% 100%;
-  --card-foreground: 30 30% 8%;
+  --card: 42 20% 98%;
+  --card-foreground: 24 70% 10%;
   
   --popover: 0 0% 100%;
-  --popover-foreground: 30 30% 8%;
+  --popover-foreground: 24 70% 10%;
   
-  --primary: 37 40% 40%;
+  --primary: 24 95% 25%;
   --primary-foreground: 0 0% 100%;
   
-  --secondary: 35 15% 97%; 
-  --secondary-foreground: 30 30% 8%;
+  --secondary: 35 20% 85%; 
+  --secondary-foreground: 24 70% 10%;
   
-  --muted: 35 10% 96%;
-  --muted-foreground: 30 10% 40%;
+  --muted: 35 15% 92%;
+  --muted-foreground: 24 20% 40%;
   
-  --accent: 37 40% 40%;
+  --accent: 24 95% 25%;
   --accent-foreground: 0 0% 100%;
   
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 0 0% 98%;
   
-  --border: 35 10% 90%;
-  --input: 35 10% 90%;
-  --ring: 37 40% 40%;
+  --border: 35 15% 88%;
+  --input: 35 15% 88%;
+  --ring: 24 95% 25%;
   
-  --radius: 0rem; 
+  --radius: 0.75rem; 
 }
 
 @layer base {
@@ -73,14 +79,14 @@
     @apply border-border;
   }
   body {
-    @apply font-sans antialiased bg-background text-foreground;
+    @apply font-sans antialiased bg-brand-cream text-foreground;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif font-light;
+    @apply font-sans font-bold;
   }
 }
 
-/* Custom styles for luxury feel */
+/* Aromatic Scents Lab inspired styles */
 .text-balance {
   text-wrap: balance;
 }
@@ -96,12 +102,12 @@
   @apply w-full;
 }
 
-.creed-button {
-  @apply bg-brand-dark text-white px-10 py-4 text-[11px] font-medium tracking-[0.2em] uppercase hover:bg-brand-gold transition-colors border border-brand-dark hover:border-brand-gold text-center;
+.asl-button {
+  @apply bg-brand-gold text-white px-8 py-3 text-sm font-bold rounded-full hover:bg-brand-brown transition-colors text-center;
 }
 
-.creed-button-outline {
-  @apply bg-transparent text-brand-dark px-10 py-4 text-[11px] font-medium tracking-[0.2em] uppercase hover:bg-brand-dark hover:text-white transition-all duration-300 border border-brand-dark text-center;
+.asl-button-outline {
+  @apply bg-transparent text-brand-brown px-8 py-3 text-sm font-bold rounded-full hover:bg-brand-brown hover:text-white transition-all duration-300 border border-brand-brown text-center;
 }
 
 /* Hide scrollbar for horizontal scrolling containers */
@@ -124,4 +130,16 @@
 
 .safe-area-bottom {
   padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+}
+
+/* Progress bar accent color */
+#nprogress .bar {
+  background: #92400e;
+}
+#nprogress .peg {
+  box-shadow: 0 0 10px #92400e, 0 0 5px #92400e;
+}
+#nprogress .spinner-icon {
+  border-top-color: #92400e;
+  border-left-color: #92400e;
 }
