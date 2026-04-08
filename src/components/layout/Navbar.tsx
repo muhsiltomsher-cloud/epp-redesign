@@ -1,17 +1,20 @@
 "use client";
 
-import { Search, ShoppingBag, Menu, User, X, Heart } from "lucide-react";
+import { Search, ShoppingBag, Menu, User, X, Heart, MapPin } from "lucide-react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { getCart, getCartCount } from "@/lib/cart";
 import { products } from "@/lib/data";
 
-const menuItems = [
+// Main nav categories — matches AdP structure exactly
+const navItems = [
   { label: "Fragrances", href: "/collection" },
+  { label: "Just Arrived", href: "/collection" },
   { label: "Collections", href: "/collection" },
-  { label: "Gifts", href: "/collection" },
-  { label: "Our World", href: "/collection" },
+  { label: "Gift Sets", href: "/collection" },
+  { label: "Home Collection", href: "/collection" },
+  { label: "Body Collection", href: "/collection" },
 ];
 
 export default function Navbar() {
@@ -21,6 +24,7 @@ export default function Navbar() {
   const [cartCount, setCartCount] = useState(() => getCartCount());
   const [cartProducts, setCartProducts] = useState<{ id: string; name: string; image: string; price: number; currency: string; qty: number }[]>([]);
   const pathname = usePathname();
+  const isHomepage = pathname === "/";
 
   const logoUrl = "https://emiratespride.com/wp-content/uploads/2026/01/logo-epp.png";
 
@@ -38,7 +42,7 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -47,77 +51,77 @@ export default function Navbar() {
     setIsMenuOpen(false);
   }, [pathname]);
 
+  // On homepage, nav is transparent until scrolled; on other pages always white
+  const navBg = isHomepage && !isScrolled ? "bg-transparent" : "bg-white border-b border-gray-100";
+  const textColor = isHomepage && !isScrolled ? "text-white" : "text-black";
+  const iconColor = isHomepage && !isScrolled ? "text-white hover:text-white/70" : "text-black hover:text-gray-500";
+  const logoFilter = isHomepage && !isScrolled ? "brightness-0 invert" : "";
+
   return (
     <>
-      <header className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-        isScrolled ? "bg-white" : "bg-transparent"
-      }`}>
-        <div className="px-6 md:px-16 lg:px-24">
-          <div className="h-20 md:h-24 flex items-center justify-between">
-            
-            {/* Left - Menu Button (Mobile) + Nav (Desktop) */}
-            <div className="flex items-center">
-              <button 
-                className="md:hidden p-2 -ml-2"
+      {/* AdP has a TWO-ROW header:
+          Row 1: country/lang left | logo center | icons right  (thinner)
+          Row 2: nav links centered                              (thinner) */}
+      <header className={`fixed top-0 w-full z-50 transition-colors duration-300 ${navBg}`}>
+
+        {/* ROW 1: top bar — country left, logo center, icons right */}
+        <div className={`px-4 md:px-8 lg:px-12 transition-colors duration-300`}>
+          <div className="h-14 md:h-16 flex items-center justify-between relative">
+
+            {/* Left: country selector + store locator */}
+            <div className="flex items-center gap-4">
+              {/* Mobile: hamburger */}
+              <button
+                className="md:hidden"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label="Menu"
               >
-                {isMenuOpen ? (
-                  <X size={22} className={isScrolled ? "text-black" : "text-white"} />
-                ) : (
-                  <Menu size={22} className={isScrolled ? "text-black" : "text-white"} />
-                )}
+                {isMenuOpen
+                  ? <X size={20} className={textColor} />
+                  : <Menu size={20} className={textColor} />
+                }
               </button>
-              
-              <nav className="hidden md:flex items-center gap-8">
-                {menuItems.map((item) => (
-                  <Link key={item.label} href={item.href}>
-                    <span className={`text-[11px] tracking-[0.15em] uppercase transition-colors cursor-pointer ${
-                      isScrolled ? "text-black hover:text-[#c9a96e]" : "text-white hover:text-white/70"
-                    }`}>
-                      {item.label}
-                    </span>
-                  </Link>
-                ))}
-              </nav>
+              {/* Desktop: store locator + country */}
+              <div className="hidden md:flex items-center gap-4">
+                <button className={`flex items-center gap-1 text-[10px] uppercase tracking-[0.15em] transition-colors ${iconColor}`}>
+                  <MapPin size={13} />
+                  <span>Store Locator</span>
+                </button>
+                <span className={`text-[10px] uppercase tracking-[0.15em] ${textColor} opacity-50`}>|</span>
+                <button className={`text-[10px] uppercase tracking-[0.15em] transition-colors ${iconColor}`}>
+                  AE / EN
+                </button>
+              </div>
             </div>
 
-            {/* Center - Logo */}
+            {/* Center: Logo — absolutely centered */}
             <Link href="/" className="absolute left-1/2 -translate-x-1/2">
-              <img 
-                src={logoUrl} 
-                alt="Emirates Pride" 
-                className={`h-10 md:h-12 object-contain transition-all duration-300 ${
-                  isScrolled ? "" : "brightness-0 invert"
-                }`} 
+              <img
+                src={logoUrl}
+                alt="Emirates Pride"
+                className={`h-8 md:h-9 object-contain transition-all duration-300 ${logoFilter}`}
               />
             </Link>
 
-            {/* Right - Icons */}
-            <div className="flex items-center gap-5">
-              <button className={`hidden md:block transition-colors ${
-                isScrolled ? "text-black hover:text-[#c9a96e]" : "text-white hover:text-white/70"
-              }`}>
-                <Search size={20} />
+            {/* Right: search, account, wishlist, bag */}
+            <div className="flex items-center gap-3 md:gap-4">
+              <button className={`hidden md:block transition-colors ${iconColor}`} aria-label="Search">
+                <Search size={18} />
               </button>
-              <Link href="/account" className={`hidden md:block transition-colors ${
-                isScrolled ? "text-black hover:text-[#c9a96e]" : "text-white hover:text-white/70"
-              }`}>
-                <User size={20} />
+              <Link href="/account" className={`hidden md:block transition-colors ${iconColor}`} aria-label="Account">
+                <User size={18} />
               </Link>
-              <Link href="/wishlist" className={`transition-colors ${
-                isScrolled ? "text-black hover:text-[#c9a96e]" : "text-white hover:text-white/70"
-              }`}>
-                <Heart size={20} />
+              <Link href="/wishlist" className={`transition-colors ${iconColor}`} aria-label="Wishlist">
+                <Heart size={18} />
               </Link>
-              <button 
-                className={`relative transition-colors ${
-                  isScrolled ? "text-black hover:text-[#c9a96e]" : "text-white hover:text-white/70"
-                }`}
+              <button
+                className={`relative transition-colors ${iconColor}`}
                 onClick={() => setIsCartOpen(true)}
+                aria-label="Bag"
               >
-                <ShoppingBag size={20} />
+                <ShoppingBag size={18} />
                 {cartCount > 0 && (
-                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-[#c9a96e] text-white text-[9px] rounded-full flex items-center justify-center">
+                  <span className="absolute -top-1 -right-1.5 w-3.5 h-3.5 bg-black text-white text-[8px] flex items-center justify-center rounded-full">
                     {cartCount}
                   </span>
                 )}
@@ -126,23 +130,34 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Menu - Full Screen Overlay */}
-        {isMenuOpen && (
-          <div className="fixed inset-0 bg-white z-50 md:hidden">
-            <div className="px-6 py-6 flex justify-between items-center border-b">
-              <Link href="/" onClick={() => setIsMenuOpen(false)}>
-                <img src={logoUrl} alt="Emirates Pride" className="h-10 object-contain" />
+        {/* ROW 2: main nav links — centered, desktop only */}
+        <div className={`hidden md:block border-t transition-colors duration-300 ${isHomepage && !isScrolled ? "border-white/20" : "border-gray-100"}`}>
+          <nav className="h-10 flex items-center justify-center gap-7 px-4">
+            {navItems.map((item) => (
+              <Link key={item.label} href={item.href}>
+                <span className={`text-[10px] uppercase tracking-[0.15em] transition-colors cursor-pointer ${iconColor}`}>
+                  {item.label}
+                </span>
               </Link>
-              <button onClick={() => setIsMenuOpen(false)}>
-                <X size={24} />
-              </button>
+            ))}
+          </nav>
+        </div>
+
+        {/* Mobile full-screen slide-in menu */}
+        {isMenuOpen && (
+          <div className="fixed inset-0 bg-white z-[200] md:hidden flex flex-col">
+            <div className="flex items-center justify-between px-5 h-14 border-b border-gray-100">
+              <Link href="/" onClick={() => setIsMenuOpen(false)}>
+                <img src={logoUrl} alt="Emirates Pride" className="h-8 object-contain" />
+              </Link>
+              <button onClick={() => setIsMenuOpen(false)}><X size={20} /></button>
             </div>
-            <nav className="px-6 py-8">
-              {menuItems.map((item) => (
+            <nav className="flex-1 overflow-y-auto px-5 py-6">
+              {navItems.map((item) => (
                 <Link key={item.label} href={item.href} onClick={() => setIsMenuOpen(false)}>
-                  <span className="block py-4 text-xl font-serif border-b border-gray-100 cursor-pointer">
+                  <div className="py-4 border-b border-gray-100 text-[11px] uppercase tracking-[0.2em]">
                     {item.label}
-                  </span>
+                  </div>
                 </Link>
               ))}
             </nav>
@@ -150,26 +165,24 @@ export default function Navbar() {
         )}
       </header>
 
-      {/* Cart Drawer - Minimal Style */}
+      {/* Cart drawer */}
       {isCartOpen && (
         <div className="fixed inset-0 z-[100]">
           <div className="absolute inset-0 bg-black/50" onClick={() => setIsCartOpen(false)} />
-          <div className="absolute right-0 top-0 bottom-0 w-full max-w-md bg-white flex flex-col">
-            <div className="flex items-center justify-between p-6 border-b">
-              <h2 className="text-sm uppercase tracking-[0.15em]">Shopping Bag ({cartCount})</h2>
-              <button onClick={() => setIsCartOpen(false)}>
-                <X size={22} />
-              </button>
+          <div className="absolute right-0 top-0 bottom-0 w-full max-w-sm bg-white flex flex-col">
+            <div className="flex items-center justify-between px-6 h-14 border-b border-gray-100">
+              <span className="text-[10px] uppercase tracking-[0.2em]">Shopping Bag ({cartCount})</span>
+              <button onClick={() => setIsCartOpen(false)}><X size={18} /></button>
             </div>
 
             {cartCount === 0 ? (
-              <div className="flex-1 flex flex-col items-center justify-center p-8 text-center">
-                <ShoppingBag size={40} className="text-gray-300 mb-6" />
-                <p className="text-lg font-serif mb-3">Your bag is empty</p>
+              <div className="flex-1 flex flex-col items-center justify-center px-6 text-center">
+                <ShoppingBag size={36} className="text-gray-300 mb-5" />
+                <p className="text-sm font-serif mb-4">Your bag is empty</p>
                 <Link href="/collection">
-                  <span 
-                    onClick={() => setIsCartOpen(false)} 
-                    className="text-[11px] uppercase tracking-[0.15em] border-b border-black pb-1 hover:text-[#c9a96e] hover:border-[#c9a96e] transition-colors cursor-pointer"
+                  <span
+                    onClick={() => setIsCartOpen(false)}
+                    className="text-[10px] uppercase tracking-[0.2em] border-b border-black pb-0.5 hover:text-gray-500 hover:border-gray-500 transition-colors cursor-pointer"
                   >
                     Continue Shopping
                   </span>
@@ -177,29 +190,29 @@ export default function Navbar() {
               </div>
             ) : (
               <>
-                <div className="flex-1 overflow-y-auto p-6">
+                <div className="flex-1 overflow-y-auto px-6 py-4">
                   {cartProducts.map((item) => (
-                    <div key={item.id} className="flex gap-4 py-5 border-b border-gray-100">
-                      <div className="w-20 h-24 bg-[#f5f4f2]">
-                        <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                    <div key={item.id} className="flex gap-4 py-5 border-b border-gray-100 last:border-0">
+                      <div className="w-16 h-20 bg-[#f5f3ef] flex-shrink-0">
+                        <img src={item.image} alt={item.name} className="w-full h-full object-contain p-1" />
                       </div>
-                      <div className="flex-1">
-                        <p className="text-sm font-serif mb-1">{item.name}</p>
-                        <p className="text-xs text-gray-500 mb-3">Quantity: {item.qty}</p>
-                        <p className="text-sm">{item.currency} {item.price * item.qty}</p>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-[10px] uppercase tracking-[0.1em] mb-1 truncate">{item.name}</p>
+                        <p className="text-[10px] text-gray-400 mb-2">Qty: {item.qty}</p>
+                        <p className="text-[11px]">{item.currency} {item.price * item.qty}</p>
                       </div>
                     </div>
                   ))}
                 </div>
-                <div className="p-6 border-t">
-                  <div className="flex justify-between mb-6">
-                    <span className="text-sm uppercase tracking-[0.1em]">Subtotal</span>
-                    <span className="text-sm">AED {cartProducts.reduce((s, i) => s + i.price * i.qty, 0)}</span>
+                <div className="px-6 py-5 border-t border-gray-100">
+                  <div className="flex justify-between mb-5">
+                    <span className="text-[10px] uppercase tracking-[0.15em]">Subtotal</span>
+                    <span className="text-[11px]">AED {cartProducts.reduce((s, i) => s + i.price * i.qty, 0)}</span>
                   </div>
                   <Link href="/checkout">
-                    <span 
-                      onClick={() => setIsCartOpen(false)} 
-                      className="block w-full bg-black text-white text-center py-4 text-[11px] uppercase tracking-[0.15em] hover:bg-[#c9a96e] transition-colors cursor-pointer"
+                    <span
+                      onClick={() => setIsCartOpen(false)}
+                      className="block w-full bg-black text-white text-center py-3.5 text-[10px] uppercase tracking-[0.2em] hover:bg-gray-800 transition-colors cursor-pointer"
                     >
                       Checkout
                     </span>
