@@ -125,17 +125,17 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 3. EDITORIAL BLOCK 1 — contained, text left, image right */}
+        {/* 3. EDITORIAL BLOCK 1 — no gap, full-bleed columns inside container */}
         <section className="py-10 md:py-14">
           <div className="epp-container">
-            <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-10 items-stretch">
+            <div className="flex flex-col md:grid md:grid-cols-2 items-stretch">
               <div className="order-2 md:order-1 bg-[#f5f3ef] flex flex-col justify-center px-8 md:px-10 py-10 md:py-14">
-                <p className="text-[10px] uppercase tracking-[0.35em] text-[#c9a96e] mb-3">Daily Rituals</p>
+                <p className="text-[10px] uppercase tracking-[0.35em] text-[#c9a96e] mb-3">New Arrival</p>
                 <h2 className="text-2xl md:text-3xl font-serif mb-4 leading-snug text-[#1a1308]">
-                  Arabian Bath &amp; Body
+                  Future Collection
                 </h2>
                 <p className="text-xs text-gray-500 leading-relaxed mb-7 max-w-xs">
-                  Immerse yourself in the finest Arabian bath rituals. Each product is crafted to transform everyday moments into luxurious experiences.
+                  Discover our latest Future Collection — where tradition meets innovation. Crafted from the finest ingredients for a truly unforgettable experience.
                 </p>
                 <Link href="/collection">
                   <span className="inline-block bg-[#1a1308] text-white text-[10px] uppercase tracking-[0.2em] px-7 py-3 hover:bg-[#c9a96e] transition-colors cursor-pointer w-fit">
@@ -145,8 +145,8 @@ export default function Home() {
               </div>
               <div className="relative aspect-[4/3] md:aspect-auto overflow-hidden order-1 md:order-2">
                 <img
-                  src="https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1.webp"
-                  alt="Bath and Body"
+                  src="https://emiratespride.com/wp-content/uploads/2026/01/Future-Bakhoor-Lifestyle-scaled-1.webp"
+                  alt="Future Collection"
                   className="absolute inset-0 w-full h-full object-cover"
                 />
               </div>
@@ -263,28 +263,28 @@ export default function Home() {
 
 const blogPosts = [
   {
-    slug: "art-of-oud",
-    title: "The Art of Oud: A Journey Through Arabian Perfumery",
+    slug: "mens-fragrance",
+    title: "3 Steps to Choosing the Best Men's Fragrance",
     category: "Fragrance",
-    date: "March 2026",
-    image: "https://emiratespride.com/wp-content/uploads/2026/01/Future-Oud-Lifestyle-scaled-1.webp",
-    href: "https://emiratespride.com/blogs/",
+    date: "April 2024",
+    image: "https://emiratespride.com/wp-content/uploads/2021/04/Untitled-6-25.webp",
+    href: "https://emiratespride.com/blog/3-steps-to-choosing-the-best-mens-fragrance-your-guide-to-the-world-of-luxury-scents/",
   },
   {
-    slug: "luxury-gifting",
-    title: "The Ultimate Guide to Luxury Fragrance Gifting",
+    slug: "fathers-day",
+    title: "Celebrating Father's Day with a Fragranced Reflection of Gift & Bond",
     category: "Lifestyle",
-    date: "February 2026",
-    image: "https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1.webp",
-    href: "https://emiratespride.com/blogs/",
+    date: "June 2024",
+    image: "https://emiratespride.com/wp-content/uploads/2024/06/Website-Images-Reflection-03-1400x1753.webp",
+    href: "https://emiratespride.com/blog/celebrating-fathers-day-with-a-fragranced-reflection-of-gift-bond/",
   },
   {
-    slug: "scent-stories",
-    title: "Scent Stories: How Fragrance Defines Identity",
+    slug: "fragrance-report",
+    title: "The 2024 Fragrance Report",
     category: "Culture",
-    date: "January 2026",
-    image: "https://emiratespride.com/wp-content/uploads/2026/01/Future-Bakhoor-Lifestyle-scaled-1.webp",
-    href: "https://emiratespride.com/blogs/",
+    date: "May 2024",
+    image: "https://emiratespride.com/wp-content/uploads/2024/05/peaceful-life.webp",
+    href: "https://emiratespride.com/blog/the-2024-fragrance-report/",
   },
 ];
 
