@@ -127,17 +127,13 @@ export default function Home() {
 
         {/* 3. EDITORIAL BLOCK 1 — text left, image right */}
         <section className="flex flex-col md:grid md:grid-cols-2 min-h-[400px] md:min-h-[560px]">
-          <div className="flex items-center justify-center bg-[#f5f3ef] epp-container py-12 md:py-0 order-2 md:order-1">
+          <div className="flex items-center justify-center bg-white epp-container py-12 md:py-0 order-2 md:order-1">
             <div className="max-w-xs w-full">
-              <p className="text-[10px] uppercase tracking-[0.35em] text-gray-400 mb-3">Daily Rituals</p>
-              <h2 className="text-2xl md:text-3xl font-serif uppercase tracking-wide mb-5 leading-snug">
+              <h2 className="text-2xl md:text-3xl font-serif mb-5 leading-snug">
                 Arabian Bath &amp; Body
               </h2>
-              <p className="text-[11px] uppercase tracking-[0.2em] text-gray-500 mb-7 leading-relaxed">
-                Everyday gestures, beautifully considered
-              </p>
               <Link href="/collection">
-                <span className="inline-block border border-black text-black px-7 py-3 text-[10px] uppercase tracking-[0.2em] hover:bg-black hover:text-white transition-colors cursor-pointer">
+                <span className="inline-block text-[10px] uppercase tracking-[0.2em] border-b border-black pb-0.5 hover:text-gray-500 hover:border-gray-500 transition-colors cursor-pointer">
                   Shop Now
                 </span>
               </Link>
