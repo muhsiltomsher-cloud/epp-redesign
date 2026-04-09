@@ -126,25 +126,22 @@ export default function Checkout() {
     <div className="min-h-screen bg-white flex flex-col">
       <Navbar />
       <main className="flex-1 pt-[104px] md:pt-[106px]">
-        <div className="epp-container py-8 md:py-16">
-          {/* Breadcrumb */}
-          <Link href="/collection">
-            <span className="inline-flex items-center gap-1 text-[10px] tracking-[0.15em] uppercase text-black/50 hover:text-black transition-colors cursor-pointer mb-6 md:mb-10 block">
-              <ChevronLeft size={12} /> Continue Shopping
-            </span>
-          </Link>
-
-          <div className="border-b border-gray-100 py-8 md:py-10 text-center mb-8 md:mb-14">
-            <p className="text-[10px] uppercase tracking-[0.35em] text-gray-400 mb-2">Emirates Pride</p>
-            <h1 className="text-2xl md:text-3xl font-serif">Checkout</h1>
-            <div className="flex items-center justify-center gap-4 mt-4">
-              <span className={`text-[9px] tracking-[0.2em] uppercase font-medium ${step === "shipping" ? "text-black" : "text-gray-400"}`}>
-                1. Shipping
+        <div className="epp-container py-6 md:py-10">
+          {/* Title + steps compact bar */}
+          <div className="flex items-center justify-between border-b border-gray-100 pb-5 mb-8">
+            <Link href="/collection">
+              <span className="inline-flex items-center gap-1 text-[10px] tracking-[0.15em] uppercase text-gray-400 hover:text-black transition-colors cursor-pointer">
+                <ChevronLeft size={12} /> Back
               </span>
-              <span className="w-6 h-[1px] bg-gray-200" />
-              <span className={`text-[9px] tracking-[0.2em] uppercase font-medium ${step === "payment" ? "text-black" : "text-gray-400"}`}>
-                2. Payment
-              </span>
+            </Link>
+            <div className="text-center">
+              <p className="text-[10px] uppercase tracking-[0.35em] text-gray-400 mb-0.5">Emirates Pride</p>
+              <h1 className="text-xl md:text-2xl font-serif">Checkout</h1>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className={`text-[9px] tracking-[0.2em] uppercase font-medium ${step === "shipping" ? "text-black" : "text-gray-300"}`}>Shipping</span>
+              <span className="w-4 h-[1px] bg-gray-200" />
+              <span className={`text-[9px] tracking-[0.2em] uppercase font-medium ${step === "payment" ? "text-black" : "text-gray-300"}`}>Payment</span>
             </div>
           </div>
 
