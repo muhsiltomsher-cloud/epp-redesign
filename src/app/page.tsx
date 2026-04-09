@@ -193,9 +193,9 @@ export default function Home() {
         <section className="relative overflow-hidden">
           <div className="relative w-full aspect-[16/6] md:aspect-[21/6]">
             <img
-              src="https://emiratespride.com/wp-content/uploads/2026/02/Desktop-Banner-ENG-scaled.jpg"
+              src="https://emiratespride.com/wp-content/uploads/2026/01/Future-Oud-Lifestyle-scaled-1.webp"
               alt="The Brand"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-center"
             />
             <div className="absolute inset-0 bg-black/45" />
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center epp-container">
