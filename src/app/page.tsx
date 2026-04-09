@@ -17,7 +17,6 @@ export default function Home() {
 
   // Category carousel - infinite scroll
   const carouselRef = useRef<HTMLDivElement>(null);
-  const productScrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const el = carouselRef.current;
@@ -68,47 +67,21 @@ export default function Home() {
               </button>
             </div>
 
-            {/* Hero text — centered overlay */}
-            <div className="absolute inset-0 flex flex-col items-center justify-end pb-10 md:pb-14 text-center px-6 z-10">
-              <p className="text-white/80 text-[9px] md:text-[10px] uppercase tracking-[0.35em] mb-3">
-                Crafting Luxury with an Imaginative Spirit
-              </p>
-              <h1 className="text-white text-2xl md:text-4xl lg:text-5xl font-serif mb-6 max-w-xl leading-tight">
-                The Signature Collection
-              </h1>
-              <div className="flex items-center gap-6 md:gap-8">
-                <Link href="/collection">
-                  <span className="text-white text-[10px] md:text-[11px] uppercase tracking-[0.25em] border-b border-white/60 pb-0.5 hover:border-white transition-colors cursor-pointer">
-                    The Collection
-                  </span>
-                </Link>
-                <span className="text-white/40 text-xs">|</span>
-                <Link href="/collection">
-                  <span className="text-white text-[10px] md:text-[11px] uppercase tracking-[0.25em] border-b border-white/60 pb-0.5 hover:border-white transition-colors cursor-pointer">
-                    The Campaign
-                  </span>
-                </Link>
-              </div>
-            </div>
+
           </div>
         </section>
 
-        {/* 2. PRODUCT CAROUSEL — "THE FULL RANGE" horizontal scroll */}
-        <section className="py-12 md:py-16">
-          <div className="px-6 md:px-10 lg:px-16 mb-8">
+        {/* 2. PRODUCT GRID — 6 per row, contained with margin */}
+        <section className="py-12 md:py-16 px-6 md:px-10 lg:px-16">
+          <div className="mb-8">
             <p className="text-[11px] uppercase tracking-[0.3em] text-gray-500 mb-1 text-center">The Full Range</p>
             <h2 className="text-xl md:text-2xl font-serif text-center uppercase tracking-wide">
               Signature Fragrances
             </h2>
           </div>
-          <div
-            ref={productScrollRef}
-            className="flex gap-0 overflow-x-auto hide-scrollbar px-6 md:px-10 lg:px-16 pb-2"
-          >
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-4">
             {carouselProducts.map((product) => (
-              <div key={product.id} className="flex-shrink-0 w-[200px] md:w-[220px] mr-4 md:mr-6">
-                <ProductCarouselCard product={product} />
-              </div>
+              <ProductCarouselCard key={product.id} product={product} />
             ))}
           </div>
         </section>
@@ -258,13 +231,13 @@ function ProductCarouselCard({ product }: { product: any }) {
 
   return (
     <div className="group">
-      {/* Image container — natural 3:4 portrait ratio for perfume bottles */}
+      {/* Image container — 3:4 portrait, image fills fully with no gap */}
       <div className="relative aspect-[3/4] overflow-hidden bg-[#f5f3ef] mb-3">
         <Link href={`/product/${product.id}`}>
           <img
             src={product.image}
             alt={product.name}
-            className="w-full h-full object-contain p-3 transition-transform duration-500 group-hover:scale-105"
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
         </Link>
         {/* Badge — "New In" or "Best seller" top-left, exactly like AdP */}
