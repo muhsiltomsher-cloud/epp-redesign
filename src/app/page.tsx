@@ -207,11 +207,82 @@ export default function Home() {
           </div>
         </section>
 
+        {/* 7. BLOG — latest articles */}
+        <section className="py-12 md:py-16 bg-[#f5f3ef]">
+          <div className="epp-container">
+            <div className="flex items-end justify-between mb-8">
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.35em] text-gray-400 mb-1">Stories</p>
+                <h2 className="text-lg md:text-2xl font-serif uppercase tracking-wide">From the Journal</h2>
+              </div>
+              <a
+                href="https://emiratespride.com/blogs/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[10px] uppercase tracking-[0.2em] border-b border-black pb-0.5 hover:text-gray-500 hover:border-gray-500 transition-colors"
+              >
+                View All
+              </a>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+              {blogPosts.map(post => (
+                <a
+                  key={post.slug}
+                  href={post.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group cursor-pointer"
+                >
+                  <div className="aspect-[4/3] overflow-hidden bg-white mb-4">
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+                  <p className="text-[9px] uppercase tracking-[0.25em] text-gray-400 mb-2">{post.category}</p>
+                  <h3 className="text-sm md:text-base font-serif mb-2 group-hover:text-gray-500 transition-colors leading-snug">
+                    {post.title}
+                  </h3>
+                  <p className="text-[10px] text-gray-400 uppercase tracking-[0.15em]">{post.date}</p>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
       </main>
       <Footer />
     </div>
   );
 }
+
+const blogPosts = [
+  {
+    slug: "art-of-oud",
+    title: "The Art of Oud: A Journey Through Arabian Perfumery",
+    category: "Fragrance",
+    date: "March 2026",
+    image: "https://emiratespride.com/wp-content/uploads/2026/01/Future-Oud-Lifestyle-scaled-1.webp",
+    href: "https://emiratespride.com/blogs/",
+  },
+  {
+    slug: "luxury-gifting",
+    title: "The Ultimate Guide to Luxury Fragrance Gifting",
+    category: "Lifestyle",
+    date: "February 2026",
+    image: "https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1.webp",
+    href: "https://emiratespride.com/blogs/",
+  },
+  {
+    slug: "scent-stories",
+    title: "Scent Stories: How Fragrance Defines Identity",
+    category: "Culture",
+    date: "January 2026",
+    image: "https://emiratespride.com/wp-content/uploads/2026/01/Future-Bakhoor-Lifestyle-scaled-1.webp",
+    href: "https://emiratespride.com/blogs/",
+  },
+];
 
 function ProductCard({ product }: { product: any }) {
   const [wishlisted, setWishlisted] = useState(() => isInWishlist(product.id));
