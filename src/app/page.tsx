@@ -42,53 +42,53 @@ export default function Home() {
       <Navbar />
       <main className="flex-1">
 
-        {/* 1. HERO — full-viewport, image/video with bottom-left text + two text CTAs */}
-        <section className="relative h-screen min-h-[600px]">
-          <div className="absolute inset-0">
+        {/* 1. HERO — 16:7 banner, sits below fixed navbar */}
+        <section className="relative pt-[104px] md:pt-[106px]">
+          <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16/7" }}>
             <img
               src="https://emiratespride.com/wp-content/uploads/2026/02/Desktop-Banner-ENG-scaled.jpg"
               alt="Emirates Pride"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-center"
             />
-            <div className="absolute inset-0 bg-black/20" />
-          </div>
+            <div className="absolute inset-0 bg-black/25" />
 
-          {/* Video controls — bottom-left, like AdP */}
-          <div className="absolute bottom-6 left-6 z-20 flex items-center gap-4">
-            <button
-              onClick={() => setIsVideoPaused(!isVideoPaused)}
-              className="w-8 h-8 flex items-center justify-center text-white hover:text-white/70 transition-colors"
-            >
-              {isVideoPaused ? <Play size={16} /> : <Pause size={16} />}
-            </button>
-            <button
-              onClick={() => setIsVideoMuted(!isVideoMuted)}
-              className="w-8 h-8 flex items-center justify-center text-white hover:text-white/70 transition-colors"
-            >
-              {isVideoMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
-            </button>
-          </div>
+            {/* Video controls — bottom-left */}
+            <div className="absolute bottom-5 left-5 z-20 flex items-center gap-3">
+              <button
+                onClick={() => setIsVideoPaused(!isVideoPaused)}
+                className="w-7 h-7 flex items-center justify-center text-white hover:text-white/70 transition-colors"
+              >
+                {isVideoPaused ? <Play size={14} /> : <Pause size={14} />}
+              </button>
+              <button
+                onClick={() => setIsVideoMuted(!isVideoMuted)}
+                className="w-7 h-7 flex items-center justify-center text-white hover:text-white/70 transition-colors"
+              >
+                {isVideoMuted ? <VolumeX size={14} /> : <Volume2 size={14} />}
+              </button>
+            </div>
 
-          {/* Hero text — bottom area, centered */}
-          <div className="absolute bottom-0 left-0 right-0 z-10 pb-16 flex flex-col items-center text-center px-6">
-            <p className="text-white/80 text-[10px] uppercase tracking-[0.35em] mb-4">
-              Crafting Luxury with an Imaginative Spirit
-            </p>
-            <h1 className="text-white text-3xl md:text-5xl font-serif mb-8 max-w-xl leading-tight">
-              The Signature Collection
-            </h1>
-            <div className="flex items-center gap-8">
-              <Link href="/collection">
-                <span className="text-white text-[11px] uppercase tracking-[0.25em] border-b border-white/60 pb-0.5 hover:border-white transition-colors cursor-pointer">
-                  The Collection
-                </span>
-              </Link>
-              <span className="text-white/40">|</span>
-              <Link href="/collection">
-                <span className="text-white text-[11px] uppercase tracking-[0.25em] border-b border-white/60 pb-0.5 hover:border-white transition-colors cursor-pointer">
-                  The Campaign
-                </span>
-              </Link>
+            {/* Hero text — centered overlay */}
+            <div className="absolute inset-0 flex flex-col items-center justify-end pb-10 md:pb-14 text-center px-6 z-10">
+              <p className="text-white/80 text-[9px] md:text-[10px] uppercase tracking-[0.35em] mb-3">
+                Crafting Luxury with an Imaginative Spirit
+              </p>
+              <h1 className="text-white text-2xl md:text-4xl lg:text-5xl font-serif mb-6 max-w-xl leading-tight">
+                The Signature Collection
+              </h1>
+              <div className="flex items-center gap-6 md:gap-8">
+                <Link href="/collection">
+                  <span className="text-white text-[10px] md:text-[11px] uppercase tracking-[0.25em] border-b border-white/60 pb-0.5 hover:border-white transition-colors cursor-pointer">
+                    The Collection
+                  </span>
+                </Link>
+                <span className="text-white/40 text-xs">|</span>
+                <Link href="/collection">
+                  <span className="text-white text-[10px] md:text-[11px] uppercase tracking-[0.25em] border-b border-white/60 pb-0.5 hover:border-white transition-colors cursor-pointer">
+                    The Campaign
+                  </span>
+                </Link>
+              </div>
             </div>
           </div>
         </section>
@@ -211,63 +211,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 6. GIFT FINDER — full-width image with centered overlay text + CTA */}
-        <section className="relative min-h-[400px] md:min-h-[500px] flex items-center justify-center overflow-hidden group">
-          <div className="absolute inset-0">
-            <img
-              src="https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1.webp"
-              alt="Gift Finder"
-              className="w-full h-full object-cover transition-opacity duration-500 group-hover:opacity-0 absolute inset-0"
-            />
-            <img
-              src="https://emiratespride.com/wp-content/uploads/2026/02/Desktop-Banner-ENG-scaled.jpg"
-              alt="Gift Finder alternate"
-              className="w-full h-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100 absolute inset-0"
-            />
-            <div className="absolute inset-0 bg-black/30" />
-          </div>
-          <div className="relative z-10 text-center px-6">
-            <p className="text-white/80 text-[10px] uppercase tracking-[0.35em] mb-3">The perfect gift awaits</p>
-            <h2 className="text-white text-3xl md:text-4xl font-serif uppercase tracking-wide mb-8">
-              Gift Finder
-            </h2>
-            <Link href="/collection">
-              <span className="inline-block border border-white text-white px-10 py-3 text-[10px] uppercase tracking-[0.25em] hover:bg-white hover:text-black transition-colors cursor-pointer">
-                Find Now
-              </span>
-            </Link>
-          </div>
-        </section>
-
-        {/* 7. FRAGRANCE FINDER — full-width image with centered overlay text + CTA */}
-        <section className="relative min-h-[400px] md:min-h-[500px] flex items-center justify-center overflow-hidden group">
-          <div className="absolute inset-0">
-            <img
-              src="https://emiratespride.com/wp-content/uploads/2026/01/Future-Oud-scaled-1.webp"
-              alt="Fragrance Finder"
-              className="w-full h-full object-cover transition-opacity duration-500 group-hover:opacity-0 absolute inset-0"
-            />
-            <img
-              src="https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1.webp"
-              alt="Fragrance Finder alternate"
-              className="w-full h-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100 absolute inset-0"
-            />
-            <div className="absolute inset-0 bg-black/30" />
-          </div>
-          <div className="relative z-10 text-center px-6">
-            <p className="text-white/80 text-[10px] uppercase tracking-[0.35em] mb-3">Find your perfect scent</p>
-            <h2 className="text-white text-3xl md:text-4xl font-serif uppercase tracking-wide mb-8">
-              Fragrance Finder
-            </h2>
-            <Link href="/collection">
-              <span className="inline-block border border-white text-white px-10 py-3 text-[10px] uppercase tracking-[0.25em] hover:bg-white hover:text-black transition-colors cursor-pointer">
-                Start Now
-              </span>
-            </Link>
-          </div>
-        </section>
-
-        {/* 8. PROMOTIONAL STRIP — wide landscape image with offer text + CTA overlay */}
+        {/* 6. PROMOTIONAL STRIP — wide landscape image with offer text + CTA overlay */}
         <section className="relative overflow-hidden">
           <div className="aspect-[16/5] md:aspect-[21/6]">
             <img
@@ -314,13 +258,13 @@ function ProductCarouselCard({ product }: { product: any }) {
 
   return (
     <div className="group">
-      {/* Image container — square aspect ratio like AdP product tiles */}
-      <div className="relative aspect-square overflow-hidden bg-[#f5f3ef] mb-3">
+      {/* Image container — natural 3:4 portrait ratio for perfume bottles */}
+      <div className="relative aspect-[3/4] overflow-hidden bg-[#f5f3ef] mb-3">
         <Link href={`/product/${product.id}`}>
           <img
             src={product.image}
             alt={product.name}
-            className="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-105"
+            className="w-full h-full object-contain p-3 transition-transform duration-500 group-hover:scale-105"
           />
         </Link>
         {/* Badge — "New In" or "Best seller" top-left, exactly like AdP */}

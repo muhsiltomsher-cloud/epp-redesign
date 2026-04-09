@@ -20,12 +20,9 @@ const navItems = [
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const [cartCount, setCartCount] = useState(() => getCartCount());
   const [cartProducts, setCartProducts] = useState<{ id: string; name: string; image: string; price: number; currency: string; qty: number }[]>([]);
   const pathname = usePathname();
-  const isHomepage = pathname === "/";
-
   const logoUrl = "https://emiratespride.com/wp-content/uploads/2026/01/logo-epp.png";
 
   useEffect(() => {
@@ -42,30 +39,19 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 10);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
     setIsMenuOpen(false);
   }, [pathname]);
 
-  // On homepage, nav is transparent until scrolled; on other pages always white
-  const navBg = isHomepage && !isScrolled ? "bg-transparent" : "bg-white border-b border-gray-100";
-  const textColor = isHomepage && !isScrolled ? "text-white" : "text-black";
-  const iconColor = isHomepage && !isScrolled ? "text-white hover:text-white/70" : "text-black hover:text-gray-500";
-  const logoFilter = isHomepage && !isScrolled ? "brightness-0 invert" : "";
+  const navBg = "bg-white border-b border-gray-100";
+  const iconColor = "text-black hover:text-gray-500";
+  const logoFilter = "";
 
   return (
     <>
-      {/* AdP has a TWO-ROW header:
-          Row 1: country/lang left | logo center | icons right  (thinner)
-          Row 2: nav links centered                              (thinner) */}
-      <header className={`fixed top-0 w-full z-50 transition-colors duration-300 ${navBg}`}>
+      <header className={`fixed top-0 w-full z-50 ${navBg}`}>
 
         {/* ROW 1: top bar — country left, logo center, icons right */}
-        <div className={`px-4 md:px-8 lg:px-12 transition-colors duration-300`}>
+        <div className="px-4 md:px-8 lg:px-12">
           <div className="h-14 md:h-16 flex items-center justify-between relative">
 
             {/* Left: country selector + store locator */}
@@ -77,8 +63,8 @@ export default function Navbar() {
                 aria-label="Menu"
               >
                 {isMenuOpen
-                  ? <X size={20} className={textColor} />
-                  : <Menu size={20} className={textColor} />
+                  ? <X size={20} className="text-black" />
+                  : <Menu size={20} className="text-black" />
                 }
               </button>
               {/* Desktop: store locator + country */}
@@ -87,7 +73,7 @@ export default function Navbar() {
                   <MapPin size={13} />
                   <span>Store Locator</span>
                 </button>
-                <span className={`text-[10px] uppercase tracking-[0.15em] ${textColor} opacity-50`}>|</span>
+                <span className="text-[10px] uppercase tracking-[0.15em] text-black opacity-50">|</span>
                 <button className={`text-[10px] uppercase tracking-[0.15em] transition-colors ${iconColor}`}>
                   AE / EN
                 </button>
@@ -131,7 +117,7 @@ export default function Navbar() {
         </div>
 
         {/* ROW 2: main nav links — centered, desktop only */}
-        <div className={`hidden md:block border-t transition-colors duration-300 ${isHomepage && !isScrolled ? "border-white/20" : "border-gray-100"}`}>
+        <div className="hidden md:block border-t border-gray-100">
           <nav className="h-10 flex items-center justify-center gap-7 px-4">
             {navItems.map((item) => (
               <Link key={item.label} href={item.href}>
