@@ -128,20 +128,22 @@ export default function Home() {
         {/* 3. EDITORIAL BLOCK 1 — contained, text left, image right */}
         <section className="py-10 md:py-14">
           <div className="epp-container">
-            <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-10 items-center">
-              <div className="order-2 md:order-1 bg-[#1a1308] flex items-center justify-start px-8 md:px-12 py-12 md:py-16 h-full w-full">
-                <div>
-                  <h2 className="text-2xl md:text-3xl font-serif mb-5 leading-snug text-white">
-                    Arabian Bath &amp; Body
-                  </h2>
-                  <Link href="/collection">
-                    <span className="inline-block text-[10px] uppercase tracking-[0.2em] border-b border-[#c9a96e] text-[#c9a96e] pb-0.5 hover:text-white hover:border-white transition-colors cursor-pointer">
-                      Shop Now
-                    </span>
-                  </Link>
-                </div>
+            <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-10 items-stretch">
+              <div className="order-2 md:order-1 bg-[#f5f3ef] flex flex-col justify-center px-8 md:px-10 py-10 md:py-14">
+                <p className="text-[10px] uppercase tracking-[0.35em] text-[#c9a96e] mb-3">Daily Rituals</p>
+                <h2 className="text-2xl md:text-3xl font-serif mb-4 leading-snug text-[#1a1308]">
+                  Arabian Bath &amp; Body
+                </h2>
+                <p className="text-xs text-gray-500 leading-relaxed mb-7 max-w-xs">
+                  Immerse yourself in the finest Arabian bath rituals. Each product is crafted to transform everyday moments into luxurious experiences.
+                </p>
+                <Link href="/collection">
+                  <span className="inline-block bg-[#1a1308] text-white text-[10px] uppercase tracking-[0.2em] px-7 py-3 hover:bg-[#c9a96e] transition-colors cursor-pointer w-fit">
+                    Shop Now
+                  </span>
+                </Link>
               </div>
-              <div className="relative aspect-[4/3] overflow-hidden order-1 md:order-2">
+              <div className="relative aspect-[4/3] md:aspect-auto overflow-hidden order-1 md:order-2">
                 <img
                   src="https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1.webp"
                   alt="Bath and Body"
