@@ -154,33 +154,35 @@ export default function Home() {
 
 
 
-        {/* 5. THE FAVOURITES — infinite auto-scroll category carousel */}
-        <section className="py-10 md:py-14 overflow-hidden">
-          <div className="epp-container mb-6 text-center">
-            <p className="text-[10px] uppercase tracking-[0.35em] text-gray-400 mb-1">Browse</p>
-            <h2 className="text-lg md:text-2xl font-serif uppercase tracking-wide">The Favourites</h2>
-          </div>
-          <div
-            ref={catRef}
-            className="flex overflow-x-hidden"
-            style={{ userSelect: "none" }}
-          >
-            {catItems.map((cat, i) => (
-              <Link key={`${cat.id}-${i}`} href="/collection">
-                <div className="flex-shrink-0 w-[150px] md:w-[220px] mr-2 md:mr-3 group cursor-pointer">
-                  <div className="aspect-square overflow-hidden bg-[#f5f3ef]">
-                    <img
-                      src={cat.image}
-                      alt={cat.name}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
+        {/* 5. THE FAVOURITES — inside container */}
+        <section className="py-10 md:py-14">
+          <div className="epp-container">
+            <div className="mb-6 text-center">
+              <p className="text-[10px] uppercase tracking-[0.35em] text-gray-400 mb-1">Browse</p>
+              <h2 className="text-lg md:text-2xl font-serif uppercase tracking-wide">The Favourites</h2>
+            </div>
+            <div
+              ref={catRef}
+              className="flex overflow-x-auto hide-scrollbar"
+              style={{ userSelect: "none" }}
+            >
+              {catItems.map((cat, i) => (
+                <Link key={`${cat.id}-${i}`} href="/collection">
+                  <div className="flex-shrink-0 w-[140px] md:w-[200px] mr-3 md:mr-4 group cursor-pointer">
+                    <div className="aspect-square overflow-hidden bg-[#f5f3ef]">
+                      <img
+                        src={cat.image}
+                        alt={cat.name}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    </div>
+                    <p className="text-[10px] md:text-[11px] uppercase tracking-[0.15em] text-center mt-2 group-hover:text-[#c9a96e] transition-colors">
+                      {cat.name}
+                    </p>
                   </div>
-                  <p className="text-[10px] md:text-[11px] uppercase tracking-[0.15em] text-center mt-2 group-hover:text-[#c9a96e] transition-colors">
-                    {cat.name}
-                  </p>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              ))}
+            </div>
           </div>
         </section>
 
