@@ -84,40 +84,23 @@ export default function Home() {
 
         {/* 2. SIGNATURE FRAGRANCES — slider showing 6 on desktop, 2 on mobile */}
         <section className="py-10 md:py-14">
-          {/* Header row with arrows */}
-          <div className="flex items-center justify-between px-4 md:px-10 lg:px-16 mb-6">
+          <div className="epp-container flex items-center justify-between mb-6">
             <div>
               <p className="text-[10px] uppercase tracking-[0.3em] text-gray-400 mb-0.5">The Full Range</p>
               <h2 className="text-lg md:text-2xl font-serif uppercase tracking-wide">Signature Fragrances</h2>
             </div>
             <div className="flex items-center gap-2">
-              <button
-                onClick={slideLeft}
-                className="w-8 h-8 md:w-9 md:h-9 border border-gray-300 flex items-center justify-center hover:border-black transition-colors"
-                aria-label="Previous"
-              >
+              <button onClick={slideLeft} className="w-8 h-8 md:w-9 md:h-9 border border-gray-300 flex items-center justify-center hover:border-black transition-colors" aria-label="Previous">
                 <ChevronLeft size={16} />
               </button>
-              <button
-                onClick={slideRight}
-                className="w-8 h-8 md:w-9 md:h-9 border border-gray-300 flex items-center justify-center hover:border-black transition-colors"
-                aria-label="Next"
-              >
+              <button onClick={slideRight} className="w-8 h-8 md:w-9 md:h-9 border border-gray-300 flex items-center justify-center hover:border-black transition-colors" aria-label="Next">
                 <ChevronRight size={16} />
               </button>
             </div>
           </div>
-
-          {/* Slider track — 2 visible mobile, 6 visible desktop */}
-          <div
-            ref={sliderRef}
-            className="flex overflow-x-auto hide-scrollbar scroll-smooth snap-x snap-mandatory px-4 md:px-10 lg:px-16 gap-3 md:gap-3"
-          >
+          <div ref={sliderRef} className="epp-container flex overflow-x-auto hide-scrollbar scroll-smooth snap-x snap-mandatory gap-3">
             {carouselProducts.map((product) => (
-              <div
-                key={product.id}
-                className="flex-shrink-0 snap-start product-slide-card"
-              >
+              <div key={product.id} className="flex-shrink-0 snap-start product-slide-card">
                 <ProductCard product={product} />
               </div>
             ))}
@@ -126,7 +109,7 @@ export default function Home() {
 
         {/* 3. EDITORIAL BLOCK 1 — text left, image right */}
         <section className="flex flex-col md:grid md:grid-cols-2 min-h-[400px] md:min-h-[560px]">
-          <div className="flex items-center justify-center bg-[#f5f3ef] px-8 md:px-14 lg:px-20 py-12 md:py-0 order-2 md:order-1">
+          <div className="flex items-center justify-center bg-[#f5f3ef] epp-container py-12 md:py-0 order-2 md:order-1">
             <div className="max-w-xs w-full">
               <p className="text-[10px] uppercase tracking-[0.35em] text-gray-400 mb-3">Daily Rituals</p>
               <h2 className="text-2xl md:text-3xl font-serif uppercase tracking-wide mb-5 leading-snug">
@@ -170,7 +153,7 @@ export default function Home() {
               className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
             />
           </div>
-          <div className="flex items-center justify-center bg-white px-8 md:px-14 lg:px-20 py-12 md:py-0 order-2">
+          <div className="flex items-center justify-center bg-white epp-container py-12 md:py-0 order-2">
             <div className="max-w-xs w-full">
               <p className="text-[10px] uppercase tracking-[0.35em] text-gray-400 mb-3">Everyday Gestures</p>
               <h2 className="text-2xl md:text-3xl font-serif uppercase tracking-wide mb-5 leading-snug">
@@ -190,7 +173,7 @@ export default function Home() {
 
         {/* 5. THE FAVOURITES — infinite auto-scroll category carousel */}
         <section className="py-10 md:py-14 overflow-hidden">
-          <div className="px-4 md:px-10 lg:px-16 mb-6 text-center">
+          <div className="epp-container mb-6 text-center">
             <p className="text-[10px] uppercase tracking-[0.35em] text-gray-400 mb-1">Browse</p>
             <h2 className="text-lg md:text-2xl font-serif uppercase tracking-wide">The Favourites</h2>
           </div>
@@ -227,7 +210,7 @@ export default function Home() {
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-black/40" />
-            <div className="absolute inset-0 flex flex-col items-start justify-center px-6 md:px-16 lg:px-24">
+            <div className="absolute inset-0 flex flex-col items-start justify-center epp-container">
               <p className="text-white/80 text-[9px] md:text-[10px] uppercase tracking-[0.35em] mb-2">A gift for you</p>
               <p className="text-white text-sm md:text-base max-w-xs md:max-w-md mb-5 leading-relaxed">
                 Receive a complimentary miniature with all orders above 500 AED

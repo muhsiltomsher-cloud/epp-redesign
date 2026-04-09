@@ -51,7 +51,7 @@ export default function Navbar() {
       <header className={`fixed top-0 w-full z-50 ${navBg}`}>
 
         {/* ROW 1: top bar — country left, logo center, icons right */}
-        <div className="px-4 md:px-8 lg:px-12">
+        <div className="epp-container">
           <div className="h-14 md:h-16 flex items-center justify-between relative">
 
             {/* Left: country selector + store locator */}
@@ -118,7 +118,7 @@ export default function Navbar() {
 
         {/* ROW 2: main nav links — centered, desktop only */}
         <div className="hidden md:block border-t border-gray-100">
-          <nav className="h-10 flex items-center justify-center gap-7 px-4">
+          <nav className="h-10 flex items-center justify-center gap-7 epp-container">
             {navItems.map((item) => (
               <Link key={item.label} href={item.href}>
                 <span className={`text-[10px] uppercase tracking-[0.15em] transition-colors cursor-pointer ${iconColor}`}>
@@ -132,13 +132,13 @@ export default function Navbar() {
         {/* Mobile full-screen slide-in menu */}
         {isMenuOpen && (
           <div className="fixed inset-0 bg-white z-[200] md:hidden flex flex-col">
-            <div className="flex items-center justify-between px-5 h-14 border-b border-gray-100">
+            <div className="flex items-center justify-between epp-container h-14 border-b border-gray-100">
               <Link href="/" onClick={() => setIsMenuOpen(false)}>
                 <img src={logoUrl} alt="Emirates Pride" className="h-8 object-contain" />
               </Link>
               <button onClick={() => setIsMenuOpen(false)}><X size={20} /></button>
             </div>
-            <nav className="flex-1 overflow-y-auto px-5 py-6">
+            <nav className="flex-1 overflow-y-auto epp-container py-6">
               {navItems.map((item) => (
                 <Link key={item.label} href={item.href} onClick={() => setIsMenuOpen(false)}>
                   <div className="py-4 border-b border-gray-100 text-[11px] uppercase tracking-[0.2em]">

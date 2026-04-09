@@ -35,7 +35,7 @@ export default function Footer() {
 
       {/* Newsletter strip */}
       <div className="bg-[#f5f3ef] py-10 md:py-12">
-        <div className="px-6 md:px-12 lg:px-20 xl:px-32 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="epp-container flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
             <p className="text-[10px] uppercase tracking-[0.3em] text-gray-400 mb-1">Stay Connected</p>
             <h3 className="text-lg md:text-xl font-serif">Subscribe to our newsletter</h3>
@@ -63,7 +63,7 @@ export default function Footer() {
       </div>
 
       {/* Main footer body */}
-      <div className="px-6 md:px-12 lg:px-20 xl:px-32 py-14 md:py-16">
+      <div className="epp-container py-14 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-8">
 
           {/* Brand column — spans 2 */}
@@ -155,7 +155,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-gray-100 px-6 md:px-12 lg:px-20 xl:px-32 py-5">
+      <div className="border-t border-gray-100 epp-container py-5">
         <div className="flex flex-col md:flex-row justify-between items-center gap-3">
           <p className="text-[10px] text-gray-400">
             &copy; {new Date().getFullYear()} Emirates Pride. All rights reserved.
