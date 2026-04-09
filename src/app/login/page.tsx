@@ -49,15 +49,15 @@ export default function Login() {
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <Navbar />
-      <main className="flex-1 pt-[104px] md:pt-[106px] flex items-center justify-center px-4 py-12 md:py-20">
+      <main className="flex-1 pt-[104px] md:pt-[106px]">
+        {/* Page title — same as collection */}
+        <div className="border-b border-gray-100 py-8 md:py-10 text-center">
+          <p className="text-[10px] uppercase tracking-[0.35em] text-gray-400 mb-2">Emirates Pride</p>
+          <h1 className="text-2xl md:text-3xl font-serif">Sign In</h1>
+        </div>
+
+        <div className="flex justify-center px-4 py-10 md:py-14">
         <div className="w-full max-w-[420px]">
-          <div className="text-center mb-8 md:mb-12">
-            <p className="text-[10px] uppercase tracking-[0.35em] text-gray-400 mb-2">Emirates Pride</p>
-            <h1 className="text-2xl md:text-3xl font-serif mb-3 md:mb-4">Welcome Back</h1>
-            <p className="text-[11px] md:text-xs text-black/40 font-light tracking-wide">
-              Sign in to your account
-            </p>
-          </div>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-5 md:gap-6">
             {error && (
@@ -152,6 +152,7 @@ export default function Login() {
               Auto-fill Demo Credentials
             </button>
           </div>
+        </div>
         </div>
       </main>
       <Footer />

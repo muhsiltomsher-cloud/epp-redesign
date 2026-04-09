@@ -25,17 +25,19 @@ export default function Navbar() {
   const pathname = usePathname();
   const logoUrl = "https://emiratespride.com/wp-content/uploads/2026/01/logo-epp.png";
 
+  const refreshCart = () => {
+    setCartCount(getCartCount());
+    const items = getCart();
+    setCartProducts(items.map(ci => {
+      const p = products.find(pr => pr.id === ci.productId);
+      return p ? { id: p.id, name: p.name, image: p.image, price: p.price, currency: p.currency, qty: ci.quantity } : null;
+    }).filter((x): x is { id: string; name: string; image: string; price: number; currency: string; qty: number } => x !== null));
+  };
+
   useEffect(() => {
-    const updateCart = () => {
-      setCartCount(getCartCount());
-      const items = getCart();
-      setCartProducts(items.map(ci => {
-        const p = products.find(pr => pr.id === ci.productId);
-        return p ? { id: p.id, name: p.name, image: p.image, price: p.price, currency: p.currency, qty: ci.quantity } : null;
-      }).filter((x): x is { id: string; name: string; image: string; price: number; currency: string; qty: number } => x !== null));
-    };
-    window.addEventListener("cart-updated", updateCart);
-    return () => window.removeEventListener("cart-updated", updateCart);
+    refreshCart();
+    window.addEventListener("cart-updated", refreshCart);
+    return () => window.removeEventListener("cart-updated", refreshCart);
   }, []);
 
   useEffect(() => {
@@ -102,7 +104,7 @@ export default function Navbar() {
               </Link>
               <button
                 className={`relative transition-colors ${iconColor}`}
-                onClick={() => setIsCartOpen(true)}
+                onClick={() => { refreshCart(); setIsCartOpen(true); }}
                 aria-label="Bag"
               >
                 <ShoppingBag size={18} />
