@@ -143,16 +143,11 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          <div className="relative aspect-[4/3] md:aspect-auto overflow-hidden group order-1 md:order-2">
+          <div className="relative aspect-[4/3] md:aspect-auto overflow-hidden order-1 md:order-2">
             <img
               src="https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1.webp"
               alt="Bath and Body"
-              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 group-hover:opacity-0"
-            />
-            <img
-              src="https://emiratespride.com/wp-content/uploads/2026/02/Desktop-Banner-ENG-scaled.jpg"
-              alt="Bath and Body alternate"
-              className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+              className="absolute inset-0 w-full h-full object-cover"
             />
           </div>
         </section>
