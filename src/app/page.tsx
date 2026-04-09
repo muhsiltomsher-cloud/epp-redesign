@@ -129,15 +129,17 @@ export default function Home() {
         <section className="py-10 md:py-14">
           <div className="epp-container">
             <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-10 items-center">
-              <div className="order-2 md:order-1">
-                <h2 className="text-2xl md:text-3xl font-serif mb-5 leading-snug">
-                  Arabian Bath &amp; Body
-                </h2>
-                <Link href="/collection">
-                  <span className="inline-block text-[10px] uppercase tracking-[0.2em] border-b border-black pb-0.5 hover:text-gray-500 hover:border-gray-500 transition-colors cursor-pointer">
-                    Shop Now
-                  </span>
-                </Link>
+              <div className="order-2 md:order-1 bg-[#1a1308] flex items-center justify-start px-8 md:px-12 py-12 md:py-16 h-full w-full">
+                <div>
+                  <h2 className="text-2xl md:text-3xl font-serif mb-5 leading-snug text-white">
+                    Arabian Bath &amp; Body
+                  </h2>
+                  <Link href="/collection">
+                    <span className="inline-block text-[10px] uppercase tracking-[0.2em] border-b border-[#c9a96e] text-[#c9a96e] pb-0.5 hover:text-white hover:border-white transition-colors cursor-pointer">
+                      Shop Now
+                    </span>
+                  </Link>
+                </div>
               </div>
               <div className="relative aspect-[4/3] overflow-hidden order-1 md:order-2">
                 <img
