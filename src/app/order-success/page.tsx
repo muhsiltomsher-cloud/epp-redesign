@@ -16,7 +16,7 @@ export default function OrderSuccess() {
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <Navbar />
-      <main className="flex-1 pt-[80px] md:pt-[116px] flex items-center justify-center px-4 py-12 md:py-20">
+      <main className="flex-1 pt-[104px] md:pt-[106px] flex items-center justify-center px-4 py-12 md:py-20">
         <div className="w-full max-w-[520px] text-center">
           {/* Success Icon */}
           <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-6 md:mb-8 rounded-full bg-[#c9a96e]/10 flex items-center justify-center">

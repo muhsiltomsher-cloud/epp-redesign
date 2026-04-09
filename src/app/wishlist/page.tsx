@@ -32,9 +32,9 @@ export default function Wishlist() {
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <Navbar />
-      <main className="flex-1 pt-[56px] md:pt-[116px] pb-20 md:pb-0">
+      <main className="flex-1 pt-[104px] md:pt-[106px] pb-20 md:pb-0">
         {/* Header */}
-        <div className="px-5 md:px-10 lg:px-20 xl:px-28 pt-8 md:pt-14 pb-6 md:pb-10">
+        <div className="epp-container pt-8 md:pt-14 pb-6 md:pb-10">
           <div className="text-center">
             <div className="w-12 h-[1px] bg-[#c9a96e] mx-auto mb-4 md:mb-6" />
             <h1 className="text-2xl md:text-4xl lg:text-5xl font-serif mb-2 text-black">My Wishlist</h1>
@@ -60,7 +60,7 @@ export default function Wishlist() {
             </Link>
           </div>
         ) : (
-          <div className="px-4 md:px-10 lg:px-20 xl:px-28 pb-12 md:pb-20">
+          <div className="epp-container pb-12 md:pb-20">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5">
               {wishlistProducts.map((product) => (
                 <div key={product.id} className="group relative">

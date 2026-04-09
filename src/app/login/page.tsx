@@ -49,7 +49,7 @@ export default function Login() {
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <Navbar />
-      <main className="flex-1 pt-[80px] md:pt-[116px] flex items-center justify-center px-4 py-12 md:py-20">
+      <main className="flex-1 pt-[104px] md:pt-[106px] flex items-center justify-center px-4 py-12 md:py-20">
         <div className="w-full max-w-[420px]">
           <div className="text-center mb-8 md:mb-12">
             <div className="w-12 h-[1px] bg-[#c9a96e] mx-auto mb-4 md:mb-6" />

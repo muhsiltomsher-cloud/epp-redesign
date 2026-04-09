@@ -125,8 +125,8 @@ export default function Checkout() {
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <Navbar />
-      <main className="flex-1 pt-[80px] md:pt-[116px]">
-        <div className="px-4 md:px-10 lg:px-20 xl:px-28 py-8 md:py-16">
+      <main className="flex-1 pt-[104px] md:pt-[106px]">
+        <div className="epp-container py-8 md:py-16">
           {/* Breadcrumb */}
           <Link href="/collection">
             <span className="inline-flex items-center gap-1 text-[10px] tracking-[0.15em] uppercase text-black/50 hover:text-black transition-colors cursor-pointer mb-6 md:mb-10 block">

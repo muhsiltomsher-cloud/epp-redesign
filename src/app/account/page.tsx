@@ -119,7 +119,7 @@ export default function Account() {
   return (
     <div className="min-h-screen bg-[#fafaf8] flex flex-col">
       <Navbar />
-      <main className="flex-1 pt-[56px] md:pt-[116px] pb-20 md:pb-0">
+      <main className="flex-1 pt-[104px] md:pt-[106px] pb-20 md:pb-0">
         {/* Mobile Header */}
         <div className="md:hidden bg-white border-b border-black/5">
           <div className="px-5 pt-6 pb-5">
@@ -160,7 +160,7 @@ export default function Account() {
 
         {/* Desktop Header */}
         <div className="hidden md:block bg-white border-b border-black/5">
-          <div className="px-10 lg:px-20 xl:px-28 py-10">
+          <div className="epp-container py-10">
             <div className="flex items-center gap-6">
               <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#c9a96e] to-[#8a6d3b] flex items-center justify-center text-white shadow-lg">
                 <span className="text-2xl font-serif">
@@ -181,7 +181,7 @@ export default function Account() {
           </div>
         </div>
 
-        <div className="md:flex md:px-10 lg:px-20 xl:px-28 md:py-8 md:gap-8 max-w-[1200px] md:mx-auto">
+        <div className="md:flex epp-container md:py-8 md:gap-8">
           {/* Mobile Navigation Menu */}
           {activeSection === "overview" && (
             <div className="md:hidden">
