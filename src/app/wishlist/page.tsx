@@ -34,16 +34,9 @@ export default function Wishlist() {
       <Navbar />
       <main className="flex-1 pt-[104px] md:pt-[106px] pb-20 md:pb-0">
         {/* Header */}
-        <div className="epp-container pt-8 md:pt-14 pb-6 md:pb-10">
-          <div className="text-center">
-            <div className="w-12 h-[1px] bg-[#c9a96e] mx-auto mb-4 md:mb-6" />
-            <h1 className="text-2xl md:text-4xl lg:text-5xl font-serif mb-2 text-black">My Wishlist</h1>
-            <p className="text-[11px] md:text-xs text-black/40 font-light tracking-wide">
-              {wishlistProducts.length === 0
-                ? "Your wishlist is empty"
-                : `${wishlistProducts.length} ${wishlistProducts.length === 1 ? "item" : "items"} saved`}
-            </p>
-          </div>
+        <div className="border-b border-gray-100 py-8 md:py-10 text-center">
+          <p className="text-[10px] uppercase tracking-[0.35em] text-gray-400 mb-2">Emirates Pride</p>
+          <h1 className="text-2xl md:text-3xl font-serif">My Wishlist</h1>
         </div>
 
         {wishlistProducts.length === 0 ? (

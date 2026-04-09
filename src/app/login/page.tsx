@@ -52,10 +52,10 @@ export default function Login() {
       <main className="flex-1 pt-[104px] md:pt-[106px] flex items-center justify-center px-4 py-12 md:py-20">
         <div className="w-full max-w-[420px]">
           <div className="text-center mb-8 md:mb-12">
-            <div className="w-12 h-[1px] bg-[#c9a96e] mx-auto mb-4 md:mb-6" />
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif mb-3 md:mb-4 text-black">Welcome Back</h1>
-            <p className="text-[11px] md:text-xs text-black/60 font-light tracking-wide">
-              Sign in to your Emirates Pride account
+            <p className="text-[10px] uppercase tracking-[0.35em] text-gray-400 mb-2">Emirates Pride</p>
+            <h1 className="text-2xl md:text-3xl font-serif mb-3 md:mb-4">Welcome Back</h1>
+            <p className="text-[11px] md:text-xs text-black/40 font-light tracking-wide">
+              Sign in to your account
             </p>
           </div>
 

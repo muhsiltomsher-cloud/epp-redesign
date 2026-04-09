@@ -23,9 +23,9 @@ export default function OrderSuccess() {
             <CheckCircle size={40} strokeWidth={1} className="text-[#c9a96e]" />
           </div>
 
-          <div className="w-12 h-[1px] bg-[#c9a96e] mx-auto mb-4 md:mb-6" />
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif mb-3 md:mb-4 text-black">Thank You</h1>
-          <p className="text-[11px] md:text-xs text-black/60 font-light tracking-wide mb-8 md:mb-10 leading-relaxed max-w-[360px] mx-auto">
+          <p className="text-[10px] uppercase tracking-[0.35em] text-gray-400 mb-2">Emirates Pride</p>
+          <h1 className="text-2xl md:text-3xl font-serif mb-3 md:mb-4">Thank You</h1>
+          <p className="text-[11px] md:text-xs text-black/40 font-light tracking-wide mb-8 md:mb-10 leading-relaxed max-w-[360px] mx-auto">
             Your order has been placed successfully. We are preparing your exquisite fragrance for delivery.
           </p>
 

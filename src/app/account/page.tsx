@@ -159,25 +159,10 @@ export default function Account() {
         </div>
 
         {/* Desktop Header */}
-        <div className="hidden md:block bg-white border-b border-black/5">
-          <div className="epp-container py-10">
-            <div className="flex items-center gap-6">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#c9a96e] to-[#8a6d3b] flex items-center justify-center text-white shadow-lg">
-                <span className="text-2xl font-serif">
-                  {user.firstName[0]}
-                  {user.lastName[0]}
-                </span>
-              </div>
-              <div className="flex-1">
-                <h1 className="text-3xl font-serif text-black">
-                  {user.firstName} {user.lastName}
-                </h1>
-                <p className="text-xs text-black/40 mt-1">{user.email}</p>
-              </div>
-              <button onClick={handleLogout} className="flex items-center gap-2 text-[10px] tracking-[0.15em] uppercase text-black/40 hover:text-red-500 transition-colors">
-                <LogOut size={14} strokeWidth={1.5} /> Sign Out
-              </button>
-            </div>
+        <div className="hidden md:block bg-white border-b border-gray-100">
+          <div className="epp-container py-8 md:py-10 text-center">
+            <p className="text-[10px] uppercase tracking-[0.35em] text-gray-400 mb-2">Emirates Pride</p>
+            <h1 className="text-2xl md:text-3xl font-serif">My Account</h1>
           </div>
         </div>
 

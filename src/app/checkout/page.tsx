@@ -134,16 +134,15 @@ export default function Checkout() {
             </span>
           </Link>
 
-          <div className="text-center mb-8 md:mb-14">
-            <div className="w-12 h-[1px] bg-[#c9a96e] mx-auto mb-4 md:mb-6" />
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif mb-3 text-black">Checkout</h1>
-            {/* Step Indicator */}
+          <div className="border-b border-gray-100 py-8 md:py-10 text-center mb-8 md:mb-14">
+            <p className="text-[10px] uppercase tracking-[0.35em] text-gray-400 mb-2">Emirates Pride</p>
+            <h1 className="text-2xl md:text-3xl font-serif">Checkout</h1>
             <div className="flex items-center justify-center gap-4 mt-4">
-              <span className={`text-[9px] tracking-[0.2em] uppercase font-medium ${step === "shipping" ? "text-[#c9a96e]" : "text-black/40"}`}>
+              <span className={`text-[9px] tracking-[0.2em] uppercase font-medium ${step === "shipping" ? "text-black" : "text-gray-400"}`}>
                 1. Shipping
               </span>
-              <span className="w-6 h-[1px] bg-black/20" />
-              <span className={`text-[9px] tracking-[0.2em] uppercase font-medium ${step === "payment" ? "text-[#c9a96e]" : "text-black/40"}`}>
+              <span className="w-6 h-[1px] bg-gray-200" />
+              <span className={`text-[9px] tracking-[0.2em] uppercase font-medium ${step === "payment" ? "text-black" : "text-gray-400"}`}>
                 2. Payment
               </span>
             </div>
