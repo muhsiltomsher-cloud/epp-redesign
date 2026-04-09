@@ -125,26 +125,28 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 3. EDITORIAL BLOCK 1 — text left, image right */}
-        <section className="flex flex-col md:grid md:grid-cols-2 min-h-[400px] md:min-h-[560px]">
-          <div className="flex items-center justify-center bg-white epp-container py-12 md:py-0 order-2 md:order-1">
-            <div className="max-w-xs w-full">
-              <h2 className="text-2xl md:text-3xl font-serif mb-5 leading-snug">
-                Arabian Bath &amp; Body
-              </h2>
-              <Link href="/collection">
-                <span className="inline-block text-[10px] uppercase tracking-[0.2em] border-b border-black pb-0.5 hover:text-gray-500 hover:border-gray-500 transition-colors cursor-pointer">
-                  Shop Now
-                </span>
-              </Link>
+        {/* 3. EDITORIAL BLOCK 1 — contained, text left, image right */}
+        <section className="py-10 md:py-14">
+          <div className="epp-container">
+            <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-10 items-center">
+              <div className="order-2 md:order-1">
+                <h2 className="text-2xl md:text-3xl font-serif mb-5 leading-snug">
+                  Arabian Bath &amp; Body
+                </h2>
+                <Link href="/collection">
+                  <span className="inline-block text-[10px] uppercase tracking-[0.2em] border-b border-black pb-0.5 hover:text-gray-500 hover:border-gray-500 transition-colors cursor-pointer">
+                    Shop Now
+                  </span>
+                </Link>
+              </div>
+              <div className="relative aspect-[4/3] overflow-hidden order-1 md:order-2">
+                <img
+                  src="https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1.webp"
+                  alt="Bath and Body"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </div>
             </div>
-          </div>
-          <div className="relative aspect-[4/3] md:aspect-auto overflow-hidden order-1 md:order-2">
-            <img
-              src="https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1.webp"
-              alt="Bath and Body"
-              className="absolute inset-0 w-full h-full object-cover"
-            />
           </div>
         </section>
 
