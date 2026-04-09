@@ -20,7 +20,7 @@ const navItems = [
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [cartCount, setCartCount] = useState(() => getCartCount());
+  const [cartCount, setCartCount] = useState(0);
   const [cartProducts, setCartProducts] = useState<{ id: string; name: string; image: string; price: number; currency: string; qty: number }[]>([]);
   const pathname = usePathname();
   const logoUrl = "https://emiratespride.com/wp-content/uploads/2026/01/logo-epp.png";

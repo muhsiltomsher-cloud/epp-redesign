@@ -329,7 +329,8 @@ export default function Product() {
 
 function RelatedCard({ product }: { product: any }) {
   const [isHovered, setIsHovered] = useState(false);
-  const [wishlisted, setWishlisted] = useState(() => isInWishlist(product.id));
+  const [wishlisted, setWishlisted] = useState(false);
+  useEffect(() => { setWishlisted(isInWishlist(product.id)); }, [product.id]);
 
   const handleWishlist = useCallback((e: React.MouseEvent) => {
     e.preventDefault();

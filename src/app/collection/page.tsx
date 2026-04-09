@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import Link from "next/link";
 import { ChevronDown, Heart, SlidersHorizontal, X } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
@@ -155,7 +155,8 @@ export default function Collection() {
 }
 
 function ProductCard({ product }: { product: any }) {
-  const [wishlisted, setWishlisted] = useState(() => isInWishlist(product.id));
+  const [wishlisted, setWishlisted] = useState(false);
+  useEffect(() => { setWishlisted(isInWishlist(product.id)); }, [product.id]);
   const [isHovered, setIsHovered] = useState(false);
 
   const handleWishlist = useCallback((e: React.MouseEvent) => {
