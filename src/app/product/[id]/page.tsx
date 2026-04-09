@@ -94,16 +94,33 @@ export default function Product() {
         <div className="epp-container py-8 md:py-12">
           <div className="grid md:grid-cols-2 gap-8 lg:gap-16">
 
-            {/* LEFT — gallery */}
-            <div className="flex gap-3">
-              {/* Thumbnails column — desktop only */}
+            {/* LEFT — gallery: main image + thumbnails below */}
+            <div className="flex flex-col gap-3">
+              {/* Main image */}
+              <div
+                className="relative aspect-[3/4] bg-[#f5f3ef] overflow-hidden cursor-zoom-in"
+                onClick={() => setFullscreen(true)}
+              >
+                <img
+                  src={gallery[selectedImage]}
+                  alt={product.name}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                />
+                {product.badge && (
+                  <span className="absolute top-3 left-3 text-[9px] uppercase tracking-[0.15em] bg-white/90 text-black px-2.5 py-1">
+                    {product.badge === "NEW" ? "New In" : product.badge === "BESTSELLER" ? "Best Seller" : product.badge}
+                  </span>
+                )}
+              </div>
+
+              {/* Thumbnails — horizontal row below main image, all screen sizes */}
               {gallery.length > 1 && (
-                <div className="hidden md:flex flex-col gap-2 w-16 flex-shrink-0">
+                <div className="flex gap-2">
                   {gallery.map((img, i) => (
                     <button
                       key={i}
                       onClick={() => setSelectedImage(i)}
-                      className={`aspect-square bg-[#f5f3ef] overflow-hidden border transition-colors ${
+                      className={`w-16 aspect-square bg-[#f5f3ef] overflow-hidden border flex-shrink-0 transition-colors ${
                         selectedImage === i ? "border-black" : "border-transparent hover:border-gray-300"
                       }`}
                     >
@@ -112,42 +129,6 @@ export default function Product() {
                   ))}
                 </div>
               )}
-
-              {/* Main image */}
-              <div className="flex-1">
-                <div
-                  className="relative aspect-[3/4] bg-[#f5f3ef] overflow-hidden cursor-zoom-in"
-                  onClick={() => setFullscreen(true)}
-                >
-                  <img
-                    src={gallery[selectedImage]}
-                    alt={product.name}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                  />
-                  {product.badge && (
-                    <span className="absolute top-3 left-3 text-[9px] uppercase tracking-[0.15em] bg-white/90 text-black px-2.5 py-1">
-                      {product.badge === "NEW" ? "New In" : product.badge === "BESTSELLER" ? "Best Seller" : product.badge}
-                    </span>
-                  )}
-                </div>
-
-                {/* Mobile thumbnails — below main image */}
-                {gallery.length > 1 && (
-                  <div className="md:hidden flex gap-2 mt-2">
-                    {gallery.map((img, i) => (
-                      <button
-                        key={i}
-                        onClick={() => setSelectedImage(i)}
-                        className={`w-14 aspect-square bg-[#f5f3ef] overflow-hidden border transition-colors flex-shrink-0 ${
-                          selectedImage === i ? "border-black" : "border-transparent"
-                        }`}
-                      >
-                        <img src={img} alt="" className="w-full h-full object-cover" />
-                    </button>
-                    ))}
-                  </div>
-                )}
-              </div>
             </div>
 
             {/* RIGHT — details */}

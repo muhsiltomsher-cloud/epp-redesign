@@ -136,17 +136,17 @@
   scrollbar-width: none;
 }
 
-/* Product slider card — 2 visible mobile, 6 visible desktop */
-/* gap is 12px (gap-3). For N cards: width = (100% - (N-1)*gap) / N */
+/* Product slider card — 2 visible mobile, 5 visible desktop */
+/* gap is 12px (gap-3). For N cards: width = (100% - (N-1)*12px) / N */
 .product-slide-card {
-  /* mobile: 2 visible — (100% - 1*12px) / 2 */
+  /* mobile: 2 visible — (100% - 12px) / 2 */
   width: calc(50% - 6px);
   flex-shrink: 0;
 }
 @media (min-width: 768px) {
   .product-slide-card {
-    /* desktop: 6 visible — (100% - 5*12px) / 6 */
-    width: calc(16.6667% - 10px);
+    /* desktop: 5 visible — (100% - 4*12px) / 5 */
+    width: calc(20% - 9.6px);
   }
 }
 

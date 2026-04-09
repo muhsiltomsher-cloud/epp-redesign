@@ -1,6 +1,6 @@
 "use client";
 
-import { Heart, ChevronLeft, ChevronRight, Pause, Play, Volume2, VolumeX } from "lucide-react";
+import { Heart, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { useState, useCallback, useRef, useEffect } from "react";
 import Navbar from "@/components/layout/Navbar";
@@ -11,23 +11,46 @@ import { toggleWishlist, isInWishlist } from "@/lib/wishlist";
 
 export default function Home() {
   const carouselProducts = products.slice(0, 12);
-  const [isVideoPaused, setIsVideoPaused] = useState(false);
-  const [isVideoMuted, setIsVideoMuted] = useState(true);
 
-  // Product slider
+  // Product slider — arrow buttons
   const sliderRef = useRef<HTMLDivElement>(null);
 
   const slideLeft = () => {
     if (!sliderRef.current) return;
-    const card = sliderRef.current.querySelector("[data-card]") as HTMLElement;
-    const cardW = card ? card.offsetWidth + 12 : 200;
+    const first = sliderRef.current.firstElementChild as HTMLElement;
+    const cardW = first ? first.offsetWidth + 12 : 220;
     sliderRef.current.scrollBy({ left: -cardW * 3, behavior: "smooth" });
   };
   const slideRight = () => {
     if (!sliderRef.current) return;
-    const card = sliderRef.current.querySelector("[data-card]") as HTMLElement;
-    const cardW = card ? card.offsetWidth + 12 : 200;
+    const first = sliderRef.current.firstElementChild as HTMLElement;
+    const cardW = first ? first.offsetWidth + 12 : 220;
     sliderRef.current.scrollBy({ left: cardW * 3, behavior: "smooth" });
+  };
+
+  // Mouse drag on slider
+  const isDragging = useRef(false);
+  const dragStartX = useRef(0);
+  const dragScrollLeft = useRef(0);
+
+  const onMouseDown = (e: React.MouseEvent) => {
+    if (!sliderRef.current) return;
+    isDragging.current = true;
+    dragStartX.current = e.pageX - sliderRef.current.offsetLeft;
+    dragScrollLeft.current = sliderRef.current.scrollLeft;
+    sliderRef.current.style.cursor = "grabbing";
+    sliderRef.current.style.userSelect = "none";
+  };
+  const onMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging.current || !sliderRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - sliderRef.current.offsetLeft;
+    const walk = (x - dragStartX.current) * 1.5;
+    sliderRef.current.scrollLeft = dragScrollLeft.current - walk;
+  };
+  const onMouseUp = () => {
+    isDragging.current = false;
+    if (sliderRef.current) sliderRef.current.style.cursor = "grab";
   };
 
   // Category carousel - infinite auto-scroll
@@ -55,30 +78,14 @@ export default function Home() {
       <Navbar />
       <main className="flex-1">
 
-        {/* 1. HERO — 4:3 mobile / 16:7 desktop, below fixed navbar */}
+        {/* 1. HERO — natural image height, no forced ratio */}
         <section className="pt-[104px] md:pt-[106px]">
-          <div className="relative w-full overflow-hidden aspect-[4/3] md:aspect-[16/7]">
+          <div className="w-full">
             <img
               src="https://emiratespride.com/wp-content/uploads/2026/02/Desktop-Banner-ENG-scaled.jpg"
               alt="Emirates Pride"
-              className="w-full h-full object-cover object-center"
+              className="w-full h-auto block"
             />
-            <div className="absolute inset-0 bg-black/20" />
-            {/* video controls bottom-left */}
-            <div className="absolute bottom-4 left-4 z-20 flex items-center gap-2">
-              <button
-                onClick={() => setIsVideoPaused(!isVideoPaused)}
-                className="w-7 h-7 flex items-center justify-center text-white hover:text-white/70 transition-colors"
-              >
-                {isVideoPaused ? <Play size={13} /> : <Pause size={13} />}
-              </button>
-              <button
-                onClick={() => setIsVideoMuted(!isVideoMuted)}
-                className="w-7 h-7 flex items-center justify-center text-white hover:text-white/70 transition-colors"
-              >
-                {isVideoMuted ? <VolumeX size={13} /> : <Volume2 size={13} />}
-              </button>
-            </div>
           </div>
         </section>
 
@@ -100,10 +107,17 @@ export default function Home() {
                 </button>
               </div>
             </div>
-            {/* Slider — overflow visible outside container to allow scroll, width anchored to container */}
-            <div ref={sliderRef} className="flex overflow-x-auto hide-scrollbar scroll-smooth snap-x snap-mandatory gap-3">
+            {/* Slider — mouse drag + arrow scroll */}
+            <div
+              ref={sliderRef}
+              className="flex overflow-x-auto hide-scrollbar scroll-smooth gap-3 cursor-grab select-none"
+              onMouseDown={onMouseDown}
+              onMouseMove={onMouseMove}
+              onMouseUp={onMouseUp}
+              onMouseLeave={onMouseUp}
+            >
               {carouselProducts.map((product) => (
-                <div key={product.id} className="flex-shrink-0 snap-start product-slide-card">
+                <div key={product.id} className="flex-shrink-0 product-slide-card">
                   <ProductCard product={product} />
                 </div>
               ))}
@@ -143,37 +157,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 4. EDITORIAL BLOCK 2 — image left, text right */}
-        <section className="flex flex-col md:grid md:grid-cols-2 min-h-[400px] md:min-h-[560px]">
-          <div className="relative aspect-[4/3] md:aspect-auto overflow-hidden group order-1">
-            <img
-              src="https://emiratespride.com/wp-content/uploads/2026/01/Future-Oud-scaled-1.webp"
-              alt="Art of Living"
-              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 group-hover:opacity-0"
-            />
-            <img
-              src="https://emiratespride.com/wp-content/uploads/2026/02/Desktop-Banner-ENG-scaled.jpg"
-              alt="Art of Living alternate"
-              className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-            />
-          </div>
-          <div className="flex items-center justify-center bg-white epp-container py-12 md:py-0 order-2">
-            <div className="max-w-xs w-full">
-              <p className="text-[10px] uppercase tracking-[0.35em] text-gray-400 mb-3">Everyday Gestures</p>
-              <h2 className="text-2xl md:text-3xl font-serif uppercase tracking-wide mb-5 leading-snug">
-                The Art of Living Arabian
-              </h2>
-              <p className="text-[11px] uppercase tracking-[0.2em] text-gray-500 mb-7 leading-relaxed">
-                Beautifully considered
-              </p>
-              <Link href="/collection">
-                <span className="inline-block border border-black text-black px-7 py-3 text-[10px] uppercase tracking-[0.2em] hover:bg-black hover:text-white transition-colors cursor-pointer">
-                  Shop Now
-                </span>
-              </Link>
-            </div>
-          </div>
-        </section>
+
 
         {/* 5. THE FAVOURITES — infinite auto-scroll category carousel */}
         <section className="py-10 md:py-14 overflow-hidden">
@@ -236,6 +220,7 @@ export default function Home() {
 
 function ProductCard({ product }: { product: any }) {
   const [wishlisted, setWishlisted] = useState(() => isInWishlist(product.id));
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleWishlist = useCallback((e: React.MouseEvent) => {
     e.preventDefault();
@@ -250,43 +235,47 @@ function ProductCard({ product }: { product: any }) {
   }, [product.id]);
 
   return (
-    <div className="group">
-      {/* 3:4 portrait image, fills fully */}
-      <div className="relative aspect-[3/4] overflow-hidden bg-[#f5f3ef] mb-2">
+    <div
+      className="group"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="relative aspect-[3/4] overflow-hidden bg-[#f5f3ef] mb-3">
         <Link href={`/product/${product.id}`}>
           <img
-            src={product.image}
+            src={isHovered && product.hoverImage ? product.hoverImage : product.image}
             alt={product.name}
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
         </Link>
         {product.badge && (
-          <span className="absolute top-2 left-2 text-[8px] uppercase tracking-[0.12em] text-black font-medium bg-white/80 px-1.5 py-0.5">
-            {product.badge === "NEW" ? "New In" : product.badge === "BESTSELLER" ? "Best seller" : product.badge}
+          <span className="absolute top-2 left-2 text-[8px] uppercase tracking-[0.15em] text-black bg-white/90 px-2 py-0.5">
+            {product.badge === "NEW" ? "New In" : product.badge === "BESTSELLER" ? "Best Seller" : product.badge}
           </span>
         )}
         <button
           onClick={handleWishlist}
-          className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
+          className="absolute top-2 right-2 w-8 h-8 bg-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
           aria-label="Wishlist"
         >
           <Heart size={14} className={wishlisted ? "fill-black text-black" : "text-black"} />
         </button>
         <button
           onClick={handleAddToCart}
-          className="absolute bottom-0 left-0 right-0 bg-white text-black text-[8px] uppercase tracking-[0.15em] py-2 translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+          className="absolute bottom-0 left-0 right-0 bg-black text-white text-[9px] uppercase tracking-[0.2em] py-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300"
         >
           Quick Add
         </button>
       </div>
-      <p className="text-[8px] uppercase tracking-[0.15em] text-gray-400 mb-0.5 truncate">
+      <p className="text-[9px] uppercase tracking-[0.2em] text-gray-400 mb-1 truncate">
         {product.collection || "Eau de Parfum"}
       </p>
       <Link href={`/product/${product.id}`}>
-        <p className="text-[10px] md:text-[11px] uppercase tracking-[0.08em] text-black hover:text-gray-500 transition-colors cursor-pointer leading-tight line-clamp-2">
+        <p className="text-[11px] uppercase tracking-[0.08em] text-black hover:text-gray-500 transition-colors cursor-pointer leading-tight line-clamp-2 mb-1">
           {product.name}
         </p>
       </Link>
+      <p className="text-[11px] text-gray-600">{product.currency} {product.price}</p>
     </div>
   );
 }

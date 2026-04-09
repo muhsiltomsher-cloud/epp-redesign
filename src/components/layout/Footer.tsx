@@ -3,6 +3,7 @@
 import { Instagram, Facebook, Twitter, Youtube, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 const footerLinks = {
   fragrances: [
@@ -29,12 +30,14 @@ const footerLinks = {
 
 export default function Footer() {
   const [email, setEmail] = useState("");
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   return (
     <footer className="bg-white border-t border-gray-100">
 
-      {/* Newsletter strip */}
-      <div className="bg-[#f5f3ef] py-10 md:py-12">
+      {/* Newsletter strip — homepage only */}
+      {isHome && <div className="bg-[#f5f3ef] py-10 md:py-12">
         <div className="epp-container flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
             <p className="text-[10px] uppercase tracking-[0.3em] text-gray-400 mb-1">Stay Connected</p>
@@ -60,7 +63,7 @@ export default function Footer() {
             </button>
           </form>
         </div>
-      </div>
+      </div>}
 
       {/* Main footer body */}
       <div className="epp-container py-14 md:py-16">
