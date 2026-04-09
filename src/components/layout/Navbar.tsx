@@ -42,6 +42,7 @@ export default function Navbar() {
 
   useEffect(() => {
     setIsMenuOpen(false);
+    setIsCartOpen(false);
   }, [pathname]);
 
   const navBg = "bg-white border-b border-gray-100";
@@ -131,27 +132,28 @@ export default function Navbar() {
           </nav>
         </div>
 
-        {/* Mobile full-screen slide-in menu */}
-        {isMenuOpen && (
-          <div className="fixed inset-0 bg-white z-[200] md:hidden flex flex-col">
-            <div className="flex items-center justify-between epp-container h-14 border-b border-gray-100">
-              <Link href="/" onClick={() => setIsMenuOpen(false)}>
-                <img src={logoUrl} alt="Emirates Pride" className="h-8 object-contain" />
-              </Link>
-              <button onClick={() => setIsMenuOpen(false)}><X size={20} /></button>
-            </div>
-            <nav className="flex-1 overflow-y-auto epp-container py-6">
-              {navItems.map((item) => (
-                <Link key={item.label} href={item.href} onClick={() => setIsMenuOpen(false)}>
-                  <div className="py-4 border-b border-gray-100 text-[11px] uppercase tracking-[0.2em]">
-                    {item.label}
-                  </div>
-                </Link>
-              ))}
-            </nav>
-          </div>
-        )}
       </header>
+
+      {/* Mobile full-screen menu — outside header so it truly covers everything */}
+      {isMenuOpen && (
+        <div className="fixed inset-0 bg-white z-[200] flex flex-col md:hidden">
+          <div className="flex items-center justify-between epp-container h-14 border-b border-gray-100 flex-shrink-0">
+            <Link href="/" onClick={() => setIsMenuOpen(false)}>
+              <img src={logoUrl} alt="Emirates Pride" className="h-8 object-contain" />
+            </Link>
+            <button onClick={() => setIsMenuOpen(false)}><X size={20} /></button>
+          </div>
+          <nav className="flex-1 overflow-y-auto epp-container py-6">
+            {navItems.map((item) => (
+              <Link key={item.label} href={item.href} onClick={() => setIsMenuOpen(false)}>
+                <div className="py-4 border-b border-gray-100 text-[11px] uppercase tracking-[0.2em]">
+                  {item.label}
+                </div>
+              </Link>
+            ))}
+          </nav>
+        </div>
+      )}
 
       {/* Cart drawer */}
       {isCartOpen && (
