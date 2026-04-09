@@ -189,23 +189,23 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 6. PROMOTIONAL STRIP */}
+        {/* 6. THE BRAND */}
         <section className="relative overflow-hidden">
           <div className="relative w-full aspect-[16/6] md:aspect-[21/6]">
             <img
               src="https://emiratespride.com/wp-content/uploads/2026/02/Desktop-Banner-ENG-scaled.jpg"
-              alt="Exclusive offer"
+              alt="The Brand"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-black/40" />
-            <div className="absolute inset-0 flex flex-col items-start justify-center epp-container">
-              <p className="text-white/80 text-[9px] md:text-[10px] uppercase tracking-[0.35em] mb-2">A gift for you</p>
-              <p className="text-white text-sm md:text-base max-w-xs md:max-w-md mb-5 leading-relaxed">
-                Receive a complimentary miniature with all orders above 500 AED
-              </p>
+            <div className="absolute inset-0 bg-black/45" />
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center epp-container">
+              <p className="text-white/70 text-[9px] md:text-[10px] uppercase tracking-[0.4em] mb-3">Emirates Pride</p>
+              <h2 className="text-white text-2xl md:text-4xl lg:text-5xl font-serif mb-6 max-w-xl leading-tight">
+                The Brand
+              </h2>
               <Link href="/collection">
-                <span className="inline-block border border-white text-white px-6 md:px-8 py-3 text-[10px] uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-colors cursor-pointer">
-                  Shop Now
+                <span className="inline-block border border-white text-white px-8 md:px-10 py-3 text-[10px] uppercase tracking-[0.25em] hover:bg-white hover:text-black transition-colors cursor-pointer">
+                  Discover
                 </span>
               </Link>
             </div>
