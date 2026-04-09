@@ -122,6 +122,16 @@
   scrollbar-width: none;
 }
 
+/* Product slider card width — 2 visible on mobile, 6 on desktop */
+.product-slide-card {
+  width: calc(50% - 6px);
+}
+@media (min-width: 768px) {
+  .product-slide-card {
+    width: calc(16.6667% - 10px);
+  }
+}
+
 /* Smooth image reveal transitions */
 .image-reveal {
   clip-path: inset(0 0 100% 0);
