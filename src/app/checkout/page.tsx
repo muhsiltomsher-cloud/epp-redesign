@@ -157,7 +157,7 @@ export default function Checkout() {
               </Link>
             </div>
           ) : (
-            <div className="max-w-[1100px] mx-auto flex flex-col lg:flex-row gap-8 lg:gap-16">
+            <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
               {/* Form */}
               <div className="flex-1">
                 {step === "shipping" && (
