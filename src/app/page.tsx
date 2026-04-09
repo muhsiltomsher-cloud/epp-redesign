@@ -82,28 +82,32 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 2. SIGNATURE FRAGRANCES — slider showing 6 on desktop, 2 on mobile */}
+        {/* 2. SIGNATURE FRAGRANCES — 6 visible at once, prev/next arrows */}
         <section className="py-10 md:py-14">
-          <div className="epp-container flex items-center justify-between mb-6">
-            <div>
-              <p className="text-[10px] uppercase tracking-[0.3em] text-gray-400 mb-0.5">The Full Range</p>
-              <h2 className="text-lg md:text-2xl font-serif uppercase tracking-wide">Signature Fragrances</h2>
-            </div>
-            <div className="flex items-center gap-2">
-              <button onClick={slideLeft} className="w-8 h-8 md:w-9 md:h-9 border border-gray-300 flex items-center justify-center hover:border-black transition-colors" aria-label="Previous">
-                <ChevronLeft size={16} />
-              </button>
-              <button onClick={slideRight} className="w-8 h-8 md:w-9 md:h-9 border border-gray-300 flex items-center justify-center hover:border-black transition-colors" aria-label="Next">
-                <ChevronRight size={16} />
-              </button>
-            </div>
-          </div>
-          <div ref={sliderRef} className="epp-container flex overflow-x-auto hide-scrollbar scroll-smooth snap-x snap-mandatory gap-3">
-            {carouselProducts.map((product) => (
-              <div key={product.id} className="flex-shrink-0 snap-start product-slide-card">
-                <ProductCard product={product} />
+          {/* Header + arrows — same container as slider */}
+          <div className="epp-container">
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.3em] text-gray-400 mb-0.5">The Full Range</p>
+                <h2 className="text-lg md:text-2xl font-serif uppercase tracking-wide">Signature Fragrances</h2>
               </div>
-            ))}
+              <div className="flex items-center gap-2">
+                <button onClick={slideLeft} className="w-8 h-8 md:w-9 md:h-9 border border-gray-300 flex items-center justify-center hover:border-black transition-colors" aria-label="Previous">
+                  <ChevronLeft size={16} />
+                </button>
+                <button onClick={slideRight} className="w-8 h-8 md:w-9 md:h-9 border border-gray-300 flex items-center justify-center hover:border-black transition-colors" aria-label="Next">
+                  <ChevronRight size={16} />
+                </button>
+              </div>
+            </div>
+            {/* Slider — overflow visible outside container to allow scroll, width anchored to container */}
+            <div ref={sliderRef} className="flex overflow-x-auto hide-scrollbar scroll-smooth snap-x snap-mandatory gap-3">
+              {carouselProducts.map((product) => (
+                <div key={product.id} className="flex-shrink-0 snap-start product-slide-card">
+                  <ProductCard product={product} />
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
