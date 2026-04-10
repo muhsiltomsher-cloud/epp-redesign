@@ -1,21 +1,180 @@
 "use client";
 
-import { Search, ShoppingBag, Menu, User, X, Heart, MapPin } from "lucide-react";
-import { useState, useEffect } from "react";
+import { Search, ShoppingBag, Menu, User, X, Heart, MapPin, ChevronRight } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { getCart, getCartCount } from "@/lib/cart";
 import { products } from "@/lib/data";
 
-// Main nav categories — matches AdP structure exactly
-const navItems = [
-  { label: "Fragrances", href: "/collection" },
-  { label: "Just Arrived", href: "/collection" },
-  { label: "Collections", href: "/collection" },
-  { label: "Gift Sets", href: "/collection" },
-  { label: "Home Collection", href: "/collection" },
-  { label: "Body Collection", href: "/collection" },
-];
+const megaMenus: Record<string, {
+  columns: { heading: string; links: { label: string; href: string }[] }[];
+  featured: { label: string; image: string; href: string };
+}> = {
+  Fragrances: {
+    columns: [
+      {
+        heading: "Shop By Type",
+        links: [
+          { label: "All Fragrances", href: "/collection" },
+          { label: "Perfume Collection", href: "/collection" },
+          { label: "Oil Perfumes", href: "/collection" },
+          { label: "Oud & Dakhoon", href: "/collection" },
+          { label: "Home Collection", href: "/collection" },
+        ],
+      },
+      {
+        heading: "Explore",
+        links: [
+          { label: "Best Sellers", href: "/collection" },
+          { label: "New Arrivals", href: "/collection" },
+          { label: "Exclusives", href: "/collection" },
+          { label: "Limited Editions", href: "/collection" },
+        ],
+      },
+    ],
+    featured: {
+      label: "Future Collection",
+      image: "https://emiratespride.com/wp-content/uploads/2026/01/Future-Bakhoor-Lifestyle-scaled-1.webp",
+      href: "/collection",
+    },
+  },
+  "Just Arrived": {
+    columns: [
+      {
+        heading: "New In",
+        links: [
+          { label: "Future Bakhoor", href: "/product/53689" },
+          { label: "Future Oud", href: "/product/53688" },
+          { label: "Future Dakhoon", href: "/product/53691" },
+          { label: "Future Traditional Set", href: "/product/53690" },
+          { label: "Midnight Bloom Burgundy", href: "/product/51968" },
+        ],
+      },
+      {
+        heading: "Trending",
+        links: [
+          { label: "Hidden Leather", href: "/product/16476" },
+          { label: "Al Emarat", href: "/product/16479" },
+          { label: "Barjeel", href: "/product/16483" },
+          { label: "Masters", href: "/product/1" },
+        ],
+      },
+    ],
+    featured: {
+      label: "The Future Collection",
+      image: "https://emiratespride.com/wp-content/uploads/2026/01/Future-Oud-scaled-1.webp",
+      href: "/collection",
+    },
+  },
+  Collections: {
+    columns: [
+      {
+        heading: "Our Collections",
+        links: [
+          { label: "Oud & Dakhoon", href: "/collection" },
+          { label: "Perfume Collection", href: "/collection" },
+          { label: "Oil Perfumes", href: "/collection" },
+          { label: "Accessories", href: "/collection" },
+        ],
+      },
+      {
+        heading: "Signature",
+        links: [
+          { label: "The Future Series", href: "/collection" },
+          { label: "The Heritage Series", href: "/collection" },
+          { label: "The Midnight Series", href: "/collection" },
+        ],
+      },
+    ],
+    featured: {
+      label: "Natural Oud",
+      image: "https://emiratespride.com/wp-content/uploads/2026/04/oud-hindi-malaki.webp",
+      href: "/collection",
+    },
+  },
+  "Gift Sets": {
+    columns: [
+      {
+        heading: "Shop Gift Sets",
+        links: [
+          { label: "All Gift Sets", href: "/collection" },
+          { label: "Future Traditional Set", href: "/product/53690" },
+          { label: "Midnight Glow Set", href: "/product/50534" },
+          { label: "Luxury Gift Boxes", href: "/collection" },
+        ],
+      },
+      {
+        heading: "Occasions",
+        links: [
+          { label: "Eid Gifts", href: "/collection" },
+          { label: "Wedding Gifts", href: "/collection" },
+          { label: "Corporate Gifts", href: "/collection" },
+          { label: "Birthday Gifts", href: "/collection" },
+        ],
+      },
+    ],
+    featured: {
+      label: "Gift with Elegance",
+      image: "https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-scaled-1.webp",
+      href: "/collection",
+    },
+  },
+  "Home Collection": {
+    columns: [
+      {
+        heading: "Home Fragrance",
+        links: [
+          { label: "Bakhoor & Dakhoon", href: "/collection" },
+          { label: "Room Diffusers", href: "/collection" },
+          { label: "Candles", href: "/collection" },
+          { label: "Accessories", href: "/collection" },
+        ],
+      },
+      {
+        heading: "For Your Space",
+        links: [
+          { label: "Living Room", href: "/collection" },
+          { label: "Bedroom", href: "/collection" },
+          { label: "Office", href: "/collection" },
+        ],
+      },
+    ],
+    featured: {
+      label: "Bakhoor Rituals",
+      image: "https://emiratespride.com/wp-content/uploads/2026/01/Future-Bakhoor-scaled-1.webp",
+      href: "/collection",
+    },
+  },
+  "Body Collection": {
+    columns: [
+      {
+        heading: "Body Care",
+        links: [
+          { label: "Body Lotions", href: "/collection" },
+          { label: "Hair Mists", href: "/collection" },
+          { label: "Shower Gels", href: "/collection" },
+          { label: "Body Oils", href: "/collection" },
+        ],
+      },
+      {
+        heading: "Bath & Beyond",
+        links: [
+          { label: "Bath Sets", href: "/collection" },
+          { label: "Luxury Soaps", href: "/collection" },
+          { label: "Travel Kits", href: "/collection" },
+        ],
+      },
+    ],
+    featured: {
+      label: "Body Rituals",
+      image: "https://emiratespride.com/wp-content/uploads/2025/07/EP281124_40944-copy.webp",
+      href: "/collection",
+    },
+  },
+};
+
+const navItems = Object.keys(megaMenus);
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -88,7 +247,7 @@ export default function Navbar() {
               <img
                 src={logoUrl}
                 alt="Emirates Pride"
-                className={`h-8 md:h-9 object-contain transition-all duration-300 ${logoFilter}`}
+                className={`h-10 md:h-11 object-contain transition-all duration-300 ${logoFilter}`}
               />
             </Link>
 
@@ -139,7 +298,7 @@ export default function Navbar() {
         <div className="fixed inset-0 bg-white z-[200] flex flex-col md:hidden">
           <div className="flex items-center justify-between epp-container h-14 border-b border-gray-100 flex-shrink-0">
             <Link href="/" onClick={() => setIsMenuOpen(false)}>
-              <img src={logoUrl} alt="Emirates Pride" className="h-8 object-contain" />
+              <img src={logoUrl} alt="Emirates Pride" className="h-10 object-contain" />
             </Link>
             <button onClick={() => setIsMenuOpen(false)}><X size={20} /></button>
           </div>
