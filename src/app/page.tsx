@@ -133,23 +133,26 @@ export default function Home() {
           <div className="epp-container">
             <div className="flex flex-col md:grid md:grid-cols-2 items-stretch">
               <div className="order-2 md:order-1 bg-[#f5f3ef] flex flex-col justify-center px-8 md:px-16 py-16 md:py-24">
-                <p className="text-[10px] uppercase tracking-[0.35em] text-[#c9a96e] mb-3">New Arrival</p>
+                <p className="text-[10px] uppercase tracking-[0.35em] text-[#c9a96e] mb-3">The Collection</p>
                 <h2 className="text-2xl md:text-4xl font-serif mb-5 leading-snug text-[#1a1308]">
-                  Future Collection
+                  Natural Oud
                 </h2>
-                <p className="text-xs text-gray-500 leading-relaxed mb-8 max-w-xs">
-                  Discover our latest Future Collection — where tradition meets innovation. Crafted from the finest ingredients for a truly unforgettable experience.
+                <p className="text-xs text-gray-500 leading-relaxed mb-3 max-w-sm">
+                  A celebration of the world's most prized agarwoods — rare, refined, and reserved for true connoisseurs. Rooted in centuries of tradition and perfected through modern craftsmanship, each piece in this collection is a pure expression of natural Indian oud at its finest.
+                </p>
+                <p className="text-xs text-gray-500 leading-relaxed mb-8 max-w-sm">
+                  Unmatched in quality, authenticity, and sophistication — this is oud luxury in its purest form.
                 </p>
                 <Link href="/collection">
                   <span className="inline-block bg-[#1a1308] text-white text-[10px] uppercase tracking-[0.2em] px-7 py-3 hover:bg-[#c9a96e] transition-colors cursor-pointer w-fit">
-                    Shop Now
+                    Explore Collection
                   </span>
                 </Link>
               </div>
               <div className="relative aspect-[4/3] md:min-h-[520px] overflow-hidden order-1 md:order-2">
                 <img
-                  src="https://emiratespride.com/wp-content/uploads/2026/01/Future-Bakhoor-Lifestyle-scaled-1.webp"
-                  alt="Future Collection"
+                  src="https://emiratespride.com/wp-content/uploads/2026/04/oud-hindi-malaki.webp"
+                  alt="Natural Oud"
                   className="absolute inset-0 w-full h-full object-cover"
                 />
               </div>
