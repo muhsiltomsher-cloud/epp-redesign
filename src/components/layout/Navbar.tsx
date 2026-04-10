@@ -1,9 +1,9 @@
-"use client";
+﻿"use client";
 
-import { Search, ShoppingBag, Menu, User, X, Heart, MapPin, ChevronRight } from "lucide-react";
+import { Search, ShoppingBag, Menu, User, X, Heart, ChevronRight, Home, LayoutGrid, MapPin, ChevronDown } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { getCart, getCartCount } from "@/lib/cart";
 import { products } from "@/lib/data";
 
@@ -174,14 +174,53 @@ const megaMenus: Record<string, {
   },
 };
 
-const navItems = Object.keys(megaMenus);
+const navItems = Object.entries(megaMenus).map(([label, data]) => ({
+  label,
+  href: data.featured?.href || "/collection",
+}));
+
+const labelMap: Record<string, string> = {
+  "Fragrances": "العطور",
+  "Just Arrived": "وصل حديثاً",
+  "Collections": "المجموعات",
+  "Gift Sets": "هدايا العطور",
+  "Home Collection": "مجموعة المنزل",
+  "Body Collection": "مجموعة الجسم",
+  "Store Locator": "موقع المتاجر",
+  "New In": "جديد",
+  "Trending": "الأكثر رواجاً",
+  "Our Collections": "مجموعاتنا",
+  "Signature": "توقيعات",
+  "Shop Gift Sets": "تسوق الهدايا",
+  "Occasions": "المناسبات",
+  "Home Fragrance": "عطور المنزل",
+  "For Your Space": "لمساحتك",
+  "Body Care": "عناية الجسم",
+  "Bath & Beyond": "استحمام وما بعده",
+};
+
+const translateLabel = (text: string, isAr: boolean) => (isAr ? (labelMap[text] || text) : text);
+const currencyList = [
+  { code: "USD", flag: "🇺🇸" },
+  { code: "EUR", flag: "🇪🇺" },
+  { code: "AED", flag: "🇦🇪" },
+  { code: "SAR", flag: "🇸🇦" },
+  { code: "KWD", flag: "🇰🇼" },
+  { code: "QAR", flag: "🇶🇦" },
+  { code: "BHD", flag: "🇧🇭" },
+  { code: "OMR", flag: "🇴🇲" },
+];
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
   const [cartProducts, setCartProducts] = useState<{ id: string; name: string; image: string; price: number; currency: string; qty: number }[]>([]);
+  const [openMobileSection, setOpenMobileSection] = useState<string | null>(null);
+  const [currency, setCurrency] = useState<string>("AED");
+  const [isCurrencyMenuOpen, setIsCurrencyMenuOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
   const logoUrl = "https://emiratespride.com/wp-content/uploads/2026/01/logo-epp.png";
 
   const refreshCart = () => {
@@ -202,21 +241,32 @@ export default function Navbar() {
   useEffect(() => {
     setIsMenuOpen(false);
     setIsCartOpen(false);
+    setIsCurrencyMenuOpen(false);
   }, [pathname]);
 
   const navBg = "bg-white border-b border-gray-100";
-  const iconColor = "text-black hover:text-gray-500";
+  const iconColor = "text-black hover:text-[var(--color-brand-gold)]";
   const logoFilter = "";
+  const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
+  const isArabic = pathname.startsWith("/ar");
+  const toggleLocale = () => {
+    if (isArabic) {
+      const target = pathname.replace(/^\/ar/, "") || "/";
+      router.push(target);
+    } else {
+      router.push(pathname === "/" ? "/ar" : `/ar${pathname}`);
+    }
+  };
 
   return (
     <>
       <header className={`fixed top-0 w-full z-50 ${navBg}`}>
 
-        {/* ROW 1: top bar — country left, logo center, icons right */}
+        {/* ROW 1: top bar â€” country left, logo center, icons right */}
         <div className="epp-container">
           <div className="h-14 md:h-16 flex items-center justify-between relative">
 
-            {/* Left: country selector + store locator */}
+            {/* Left: locale + currency */}
             <div className="flex items-center gap-4">
               {/* Mobile: hamburger */}
               <button
@@ -229,20 +279,49 @@ export default function Navbar() {
                   : <Menu size={20} className="text-black" />
                 }
               </button>
-              {/* Desktop: store locator + country */}
-              <div className="hidden md:flex items-center gap-4">
-                <button className={`flex items-center gap-1 text-[10px] uppercase tracking-[0.15em] transition-colors ${iconColor}`}>
-                  <MapPin size={13} />
-                  <span>Store Locator</span>
-                </button>
-                <span className="text-[10px] uppercase tracking-[0.15em] text-black opacity-50">|</span>
-                <button className={`text-[10px] uppercase tracking-[0.15em] transition-colors ${iconColor}`}>
-                  AE / EN
-                </button>
+              {/* Desktop: locale + currency */}
+              <div className="hidden md:flex items-center">
+                <div className="relative flex items-center gap-3 border border-gray-200 px-3 py-1.5 rounded-full text-[10px] uppercase tracking-[0.15em]">
+                  <button
+                    className={`${iconColor} ${isArabic ? "opacity-60" : "font-medium"}`}
+                    onClick={toggleLocale}
+                  >
+                    EN
+                  </button>
+                  <span className="text-black/30">|</span>
+                  <button
+                    className={`${iconColor} ${isArabic ? "font-medium" : "opacity-60"}`}
+                    onClick={toggleLocale}
+                  >
+                    AR
+                  </button>
+                  <span className="text-black/30 mx-1">·</span>
+                  <button
+                    className={`${iconColor} flex items-center gap-1 ${currency === "AED" ? "font-medium" : ""}`}
+                    onClick={() => setIsCurrencyMenuOpen((v) => !v)}
+                  >
+                    <span className="text-base leading-none" aria-hidden>{currencyList.find((c) => c.code === currency)?.flag || "🏳️"}</span> {currency}
+                    <ChevronDown size={12} />
+                  </button>
+                  {isCurrencyMenuOpen && (
+                    <div className="absolute right-0 top-full mt-2 w-32 bg-white border border-gray-100 shadow-lg rounded-md z-50">
+                      {currencyList.map((c) => (
+                        <button
+                          key={c.code}
+                          onClick={() => { setCurrency(c.code); setIsCurrencyMenuOpen(false); }}
+                          className={`w-full text-left px-3 py-2 text-[10px] uppercase tracking-[0.12em] flex items-center gap-2 hover:text-[var(--color-brand-gold)] hover:bg-[#fdf7ef] ${currency === c.code ? "text-[var(--color-brand-gold)]" : "text-gray-700"}`}
+                        >
+                          <span className="text-base leading-none" aria-hidden>{c.flag}</span>
+                          <span>{c.code}</span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
 
-            {/* Center: Logo — absolutely centered */}
+            {/* Center: Logo â€” absolutely centered */}
             <Link href="/" className="absolute left-1/2 -translate-x-1/2">
               <img
                 src={logoUrl}
@@ -253,6 +332,9 @@ export default function Navbar() {
 
             {/* Right: search, account, wishlist, bag */}
             <div className="flex items-center gap-3 md:gap-4">
+              <Link href="/store-locator" className={`transition-colors ${iconColor}`} aria-label="Store Locator">
+                <MapPin size={18} />
+              </Link>
               <button className={`hidden md:block transition-colors ${iconColor}`} aria-label="Search">
                 <Search size={18} />
               </button>
@@ -278,13 +360,13 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* ROW 2: main nav links — centered, desktop only */}
+        {/* ROW 2: main nav links â€” centered, desktop only */}
         <div className="hidden md:block border-t border-gray-100">
           <nav className="h-10 flex items-center justify-center gap-7 epp-container">
             {navItems.map((item) => (
               <Link key={item.label} href={item.href}>
                 <span className={`text-[10px] uppercase tracking-[0.15em] transition-colors cursor-pointer ${iconColor}`}>
-                  {item.label}
+                  {translateLabel(item.label, isArabic)}
                 </span>
               </Link>
             ))}
@@ -293,23 +375,102 @@ export default function Navbar() {
 
       </header>
 
-      {/* Mobile full-screen menu — outside header so it truly covers everything */}
+      {/* Mobile full-screen menu â€” outside header so it truly covers everything */}
       {isMenuOpen && (
-        <div className="fixed inset-0 bg-white z-[200] flex flex-col md:hidden">
+        <div className="fixed inset-0 bg-white z-[200] flex flex-col md:hidden animate-slide-right">
           <div className="flex items-center justify-between epp-container h-14 border-b border-gray-100 flex-shrink-0">
             <Link href="/" onClick={() => setIsMenuOpen(false)}>
               <img src={logoUrl} alt="Emirates Pride" className="h-10 object-contain" />
             </Link>
-            <button onClick={() => setIsMenuOpen(false)}><X size={20} /></button>
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 border border-gray-200 px-3 py-1 rounded-full text-[10px] uppercase tracking-[0.15em]">
+                <button
+                  onClick={toggleLocale}
+                  className={`${isArabic ? "opacity-60" : "font-medium"} text-black hover:text-[var(--color-brand-gold)] transition-colors`}
+                >
+                  EN
+                </button>
+                <span className="text-black/30">|</span>
+                <button
+                  onClick={toggleLocale}
+                  className={`${isArabic ? "font-medium" : "opacity-60"} text-black hover:text-[var(--color-brand-gold)] transition-colors`}
+                >
+                  AR
+                </button>
+                <span className="text-black/30 mx-1">·</span>
+                <button
+                  onClick={() => setIsCurrencyMenuOpen((v) => !v)}
+                  className="text-black hover:text-[var(--color-brand-gold)] transition-colors flex items-center gap-1"
+                >
+                  <span className="text-base leading-none" aria-hidden>{currencyList.find((c) => c.code === currency)?.flag || "🏳️"}</span> {currency}
+                </button>
+              </div>
+              <button onClick={() => setIsMenuOpen(false)}><X size={20} /></button>
+            </div>
           </div>
-          <nav className="flex-1 overflow-y-auto epp-container py-6">
-            {navItems.map((item) => (
-              <Link key={item.label} href={item.href} onClick={() => setIsMenuOpen(false)}>
-                <div className="py-4 border-b border-gray-100 text-[11px] uppercase tracking-[0.2em]">
-                  {item.label}
+          {isCurrencyMenuOpen && (
+            <div className="px-4 pb-4 md:hidden">
+              <div className="mt-2 w-full bg-white border border-gray-100 shadow rounded-md">
+                {currencyList.map((c) => (
+                  <button
+                    key={c.code}
+                    onClick={() => { setCurrency(c.code); setIsCurrencyMenuOpen(false); }}
+                    className={`w-full text-left px-3 py-2 text-[11px] uppercase tracking-[0.12em] flex items-center gap-2 hover:text-[var(--color-brand-gold)] hover:bg-[#fdf7ef] ${currency === c.code ? "text-[var(--color-brand-gold)]" : "text-gray-700"}`}
+                  >
+                    <span className="text-base leading-none" aria-hidden>{c.flag}</span>
+                    <span>{c.code}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+          <nav className="flex-1 overflow-y-auto epp-container py-2 divide-y divide-gray-100">
+            {navItems.map((item) => {
+              const menu = (megaMenus as any)[item.label];
+              const isOpen = openMobileSection === item.label;
+              return (
+                <div key={item.label}>
+                  <button
+                    className="w-full flex items-center justify-between py-4 text-[11px] uppercase tracking-[0.2em]"
+                    onClick={() => setOpenMobileSection(isOpen ? null : item.label)}
+                    aria-expanded={isOpen}
+                  >
+                    <span className="text-left">{translateLabel(item.label, isArabic)}</span>
+                    <ChevronRight size={14} className={`transition-transform ${isOpen ? "rotate-90" : ""}`} />
+                  </button>
+                  {menu && isOpen && (
+                    <div className="pb-4 space-y-4 pl-2">
+                      {menu.columns.map((col: any) => (
+                        <div key={col.heading} className="space-y-2">
+                          <p className="text-[10px] uppercase tracking-[0.15em] text-gray-500">{translateLabel(col.heading, isArabic)}</p>
+                          <div className="grid grid-cols-1 gap-2">
+                            {col.links.map((link: any) => (
+                              <Link
+                                key={link.label}
+                                href={link.href}
+                                onClick={() => setIsMenuOpen(false)}
+                                className="text-[11px] text-gray-700 hover:text-[var(--color-brand-gold)] tracking-[0.05em]"
+                              >
+                                {translateLabel(link.label, isArabic)}
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                      {menu.featured && (
+                        <Link
+                          href={menu.featured.href}
+                          onClick={() => setIsMenuOpen(false)}
+                          className="block w-full bg-[var(--color-brand-gold)] text-white text-[10px] uppercase tracking-[0.2em] text-center py-3"
+                        >
+                          {menu.featured.label}
+                        </Link>
+                      )}
+                    </div>
+                  )}
                 </div>
-              </Link>
-            ))}
+              );
+            })}
           </nav>
         </div>
       )}
@@ -317,8 +478,8 @@ export default function Navbar() {
       {/* Cart drawer */}
       {isCartOpen && (
         <div className="fixed inset-0 z-[100]">
-          <div className="absolute inset-0 bg-black/50" onClick={() => setIsCartOpen(false)} />
-          <div className="absolute right-0 top-0 bottom-0 w-full max-w-sm bg-white flex flex-col">
+          <div className="absolute inset-0 bg-black/50 animate-fade" onClick={() => setIsCartOpen(false)} />
+          <div className="absolute right-0 top-0 bottom-0 w-full max-w-sm bg-white flex flex-col animate-slide-left">
             <div className="flex items-center justify-between px-6 h-14 border-b border-gray-100">
               <span className="text-[10px] uppercase tracking-[0.2em]">Shopping Bag ({cartCount})</span>
               <button onClick={() => setIsCartOpen(false)}><X size={18} /></button>
@@ -331,7 +492,7 @@ export default function Navbar() {
                 <Link href="/collection">
                   <span
                     onClick={() => setIsCartOpen(false)}
-                    className="text-[10px] uppercase tracking-[0.2em] border-b border-black pb-0.5 hover:text-gray-500 hover:border-gray-500 transition-colors cursor-pointer"
+                className="text-[10px] uppercase tracking-[0.2em] border-b border-black pb-0.5 hover:text-[var(--color-brand-gold)] hover:border-[var(--color-brand-gold)] transition-colors cursor-pointer"
                   >
                     Continue Shopping
                   </span>
@@ -361,7 +522,7 @@ export default function Navbar() {
                   <Link href="/checkout">
                     <span
                       onClick={() => setIsCartOpen(false)}
-                      className="block w-full bg-black text-white text-center py-3.5 text-[10px] uppercase tracking-[0.2em] hover:bg-gray-800 transition-colors cursor-pointer"
+                    className="block w-full bg-[var(--color-brand-gold)] text-white text-center py-3.5 text-[10px] uppercase tracking-[0.2em] hover:bg-[var(--color-brand-gold-light)] transition-colors cursor-pointer"
                     >
                       Checkout
                     </span>
@@ -372,6 +533,50 @@ export default function Navbar() {
           </div>
         </div>
       )}
+
+      {/* Mobile bottom bar */}
+      <nav className="fixed bottom-0 left-0 right-0 md:hidden bg-white/92 backdrop-blur border-t border-gray-200 shadow-[0_-6px_16px_rgba(0,0,0,0.07)] z-40 safe-area-bottom">
+        <div className="grid grid-cols-5 h-[64px] text-[11px] uppercase tracking-[0.12em]">
+          {[
+            { label: "Home", href: "/", icon: <Home size={18} />, action: () => {} },
+            { label: "Menu", href: "#", icon: <LayoutGrid size={18} />, action: () => setIsMenuOpen(true) },
+            { label: "Wishlist", href: "/wishlist", icon: <Heart size={18} />, action: () => {} },
+            { label: "Account", href: "/account", icon: <User size={18} />, action: () => {} },
+            { label: "Bag", href: "#", icon: <ShoppingBag size={18} />, action: () => { refreshCart(); setIsCartOpen(true); }, badge: cartCount },
+          ].map((item) => {
+            const active = item.href !== "#" && isActive(item.href);
+            const content = (
+              <div className={`relative flex flex-col items-center justify-center h-full rounded-lg mx-0.5 px-0 transition-colors ${active ? "text-[var(--color-brand-gold)]" : "text-gray-600 hover:text-[var(--color-brand-gold)]"}`}>
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${active ? "bg-[var(--color-brand-gold-light)]/22" : "bg-transparent"}`}>
+                  {item.icon}
+                </div>
+                <span className="mt-0.5">{item.label}</span>
+                {item.badge ? (
+                  <span className="absolute -top-1 right-2 min-w-[18px] h-[18px] px-[5px] rounded-full bg-[var(--color-brand-gold-dark)] text-white text-[9px] flex items-center justify-center">
+                    {Math.min(item.badge, 9)}
+                    {item.badge > 9 ? "+" : ""}
+                  </span>
+                ) : null}
+              </div>
+            );
+            if (item.href === "#") {
+              return (
+                <button key={item.label} className="w-full h-full" onClick={item.action}>
+                  {content}
+                </button>
+              );
+            }
+            return (
+              <Link key={item.label} href={item.href}>
+                {content}
+              </Link>
+            );
+          })}
+        </div>
+      </nav>
     </>
   );
 }
+
+
+

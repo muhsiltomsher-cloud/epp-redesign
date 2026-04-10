@@ -57,14 +57,14 @@ export default function Product() {
     <div className="min-h-screen bg-white flex flex-col">
       <Navbar />
 
-      <main className="flex-1 pt-[104px] md:pt-[106px]">
+      <main className="flex-1 pt-[88px] md:pt-[106px] pb-24 md:pb-0">
 
         {/* Breadcrumb */}
         <div className="epp-container py-4 border-b border-gray-100">
           <nav className="flex items-center gap-2 text-[10px] uppercase tracking-[0.15em] text-gray-400">
-            <Link href="/" className="hover:text-black transition-colors">Home</Link>
+            <Link href="/" className="hover:text-[var(--color-brand-gold)] transition-colors">Home</Link>
             <span>/</span>
-            <Link href="/collection" className="hover:text-black transition-colors">Collection</Link>
+            <Link href="/collection" className="hover:text-[var(--color-brand-gold)] transition-colors">Collection</Link>
             <span>/</span>
             <span className="text-black">{product.name}</span>
           </nav>
@@ -75,7 +75,7 @@ export default function Product() {
           <div className="grid md:grid-cols-2 gap-8 lg:gap-16">
 
             {/* LEFT — gallery: main image + thumbnails below */}
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 fade-in-up">
               {/* Main image */}
               <div
                 className="relative aspect-[3/4] bg-[#f5f3ef] overflow-hidden cursor-zoom-in"
@@ -101,7 +101,7 @@ export default function Product() {
                       key={i}
                       onClick={() => setSelectedImage(i)}
                       className={`w-16 aspect-square bg-[#f5f3ef] overflow-hidden border flex-shrink-0 transition-colors ${
-                        selectedImage === i ? "border-black" : "border-transparent hover:border-gray-300"
+                        selectedImage === i ? "border-[var(--color-brand-gold)]" : "border-transparent hover:border-[var(--color-brand-gold-light)]"
                       }`}
                     >
                       <img src={img} alt="" className="w-full h-full object-cover" />
@@ -112,7 +112,7 @@ export default function Product() {
             </div>
 
             {/* RIGHT — details */}
-            <div className="md:py-2">
+            <div className="md:py-2 fade-in-up">
               {/* Collection label */}
               <p className="text-[10px] uppercase tracking-[0.3em] text-gray-400 mb-3">{product.collection}</p>
 
@@ -125,45 +125,46 @@ export default function Product() {
               </p>
 
               {/* Quantity + Add to Cart */}
-              <div className="flex flex-col sm:flex-row gap-3 mb-4">
-                {/* Qty stepper */}
-                <div className="flex items-center border border-gray-200 w-fit">
+              <div className="flex flex-col gap-3 mb-4">
+                {/* Qty + wishlist row */}
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center border border-gray-200 w-fit">
+                    <button
+                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                      className="w-10 h-12 flex items-center justify-center hover:bg-[#fdf7ef] transition-colors"
+                    >
+                      <Minus size={14} />
+                    </button>
+                    <span className="w-12 text-center text-sm">{quantity}</span>
+                    <button
+                      onClick={() => setQuantity(quantity + 1)}
+                      className="w-10 h-12 flex items-center justify-center hover:bg-[#fdf7ef] transition-colors"
+                    >
+                      <Plus size={14} />
+                    </button>
+                  </div>
+
                   <button
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="w-10 h-12 flex items-center justify-center hover:bg-gray-50 transition-colors"
+                    onClick={() => setWishlisted(toggleWishlist(product.id))}
+                    className={`w-12 h-12 border flex items-center justify-center transition-colors flex-shrink-0 ${
+                      wishlisted ? "border-black bg-black text-white" : "border-gray-200 hover:border-black text-black"
+                    }`}
+                    aria-label="Wishlist"
                   >
-                    <Minus size={14} />
-                  </button>
-                  <span className="w-12 text-center text-sm">{quantity}</span>
-                  <button
-                    onClick={() => setQuantity(quantity + 1)}
-                    className="w-10 h-12 flex items-center justify-center hover:bg-gray-50 transition-colors"
-                  >
-                    <Plus size={14} />
+                    <Heart size={17} fill={wishlisted ? "currentColor" : "none"} />
                   </button>
                 </div>
 
-                {/* Add to cart */}
+                {/* Add to cart full width on mobile */}
                 <button
                   onClick={handleAddToCart}
-                  className={`flex-1 h-12 text-[11px] uppercase tracking-[0.2em] flex items-center justify-center gap-2 transition-colors ${
+                  className={`w-full h-12 text-[11px] uppercase tracking-[0.2em] flex items-center justify-center gap-2 transition-colors ${
                     addedToCart
-                      ? "bg-[#c9a96e] text-white"
-                      : "bg-black text-white hover:bg-[#1a1308]"
+                      ? "bg-[var(--color-brand-gold-light)] text-white"
+                      : "bg-[var(--color-brand-gold)] text-white hover:bg-[var(--color-brand-gold-light)]"
                   }`}
                 >
                   {addedToCart ? <><Check size={15} /> Added to Bag</> : "Add to Bag"}
-                </button>
-
-                {/* Wishlist */}
-                <button
-                  onClick={() => setWishlisted(toggleWishlist(product.id))}
-                  className={`w-12 h-12 border flex items-center justify-center transition-colors flex-shrink-0 ${
-                    wishlisted ? "border-black bg-black text-white" : "border-gray-200 hover:border-black text-black"
-                  }`}
-                  aria-label="Wishlist"
-                >
-                  <Heart size={17} fill={wishlisted ? "currentColor" : "none"} />
                 </button>
               </div>
 
@@ -234,7 +235,7 @@ export default function Product() {
                   <h2 className="text-xl md:text-2xl font-serif">You May Also Like</h2>
                 </div>
                 <Link href="/collection">
-                  <span className="text-[10px] uppercase tracking-[0.2em] border-b border-black pb-0.5 hover:text-gray-500 hover:border-gray-500 transition-colors cursor-pointer">
+                  <span className="text-[10px] uppercase tracking-[0.2em] border-b border-black pb-0.5 hover:text-[var(--color-brand-gold)] hover:border-[var(--color-brand-gold)] transition-colors cursor-pointer">
                     View All
                   </span>
                 </Link>
@@ -365,7 +366,7 @@ function RelatedCard({ product }: { product: any }) {
       </div>
       <p className="text-[9px] uppercase tracking-[0.15em] text-gray-400 mb-0.5">{product.collection}</p>
       <Link href={`/product/${product.id}`}>
-        <h3 className="text-[11px] uppercase tracking-[0.08em] hover:text-gray-500 transition-colors cursor-pointer mb-1 line-clamp-1">{product.name}</h3>
+        <h3 className="text-[11px] uppercase tracking-[0.08em] hover:text-[var(--color-brand-gold)] transition-colors cursor-pointer mb-1 line-clamp-1">{product.name}</h3>
       </Link>
       <p className="text-[11px] text-gray-600">{product.currency} {product.price}</p>
     </div>

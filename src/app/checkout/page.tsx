@@ -130,7 +130,7 @@ export default function Checkout() {
           {/* Title + steps compact bar */}
           <div className="flex items-center justify-between border-b border-gray-100 pb-5 mb-8">
             <Link href="/collection">
-              <span className="inline-flex items-center gap-1 text-[10px] tracking-[0.15em] uppercase text-gray-400 hover:text-black transition-colors cursor-pointer">
+              <span className="inline-flex items-center gap-1 text-[10px] tracking-[0.15em] uppercase text-gray-400 hover:text-[var(--color-brand-gold)] transition-colors cursor-pointer">
                 <ChevronLeft size={12} /> Back
               </span>
             </Link>
@@ -281,7 +281,7 @@ export default function Checkout() {
                       <h2 className="text-[9px] tracking-[0.2em] uppercase text-[#c9a96e] font-medium">Payment Details</h2>
                       <button
                         onClick={() => setStep("shipping")}
-                        className="text-[10px] tracking-wide text-black/50 hover:text-black transition-colors"
+                        className="text-[10px] tracking-wide text-black/50 hover:text-[var(--color-brand-gold)] transition-colors"
                       >
                         Edit Shipping
                       </button>

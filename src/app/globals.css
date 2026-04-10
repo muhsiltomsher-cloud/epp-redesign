@@ -29,9 +29,9 @@
   --color-ring: hsl(var(--ring));
   
   /* Emirates Pride colors */
-  --color-brand-gold: #c9a96e;
-  --color-brand-gold-light: #d4b88a;
-  --color-brand-gold-dark: #b89a5f;
+  --color-brand-gold: #8c774f;
+  --color-brand-gold-light: #ba9060;
+  --color-brand-gold-dark: #725f3b;
   --color-brand-dark: #1a1308;
   --color-brand-black: #000000;
 
@@ -79,6 +79,7 @@
   }
   body {
     @apply font-sans antialiased bg-white text-foreground;
+    animation: fade-in 0.25s ease-out;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif font-normal;
@@ -119,7 +120,7 @@
 .epp-button,
 .creed-button {
   display: inline-block;
-  background-color: #1a1308;
+  background-color: var(--color-brand-gold);
   color: #fff;
   padding: 0.875rem 2.5rem;
   font-size: 11px;
@@ -127,14 +128,14 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
   text-align: center;
-  border: 1px solid #1a1308;
+  border: 1px solid var(--color-brand-gold);
   cursor: pointer;
   transition: background-color 0.2s, border-color 0.2s, color 0.2s;
 }
 .epp-button:hover,
 .creed-button:hover {
-  background-color: #c9a96e;
-  border-color: #c9a96e;
+  background-color: var(--color-brand-gold-light);
+  border-color: var(--color-brand-gold-light);
 }
 
 /* Outline button */
@@ -142,27 +143,27 @@
 .creed-button-outline {
   display: inline-block;
   background-color: transparent;
-  color: #1a1308;
+  color: var(--color-brand-gold);
   padding: 0.875rem 2.5rem;
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   text-align: center;
-  border: 1px solid #1a1308;
+  border: 1px solid var(--color-brand-gold);
   cursor: pointer;
   transition: background-color 0.2s, color 0.2s;
 }
 .epp-button-outline:hover,
 .creed-button-outline:hover {
-  background-color: #1a1308;
+  background-color: var(--color-brand-gold);
   color: #fff;
 }
 
 /* Gold button */
 .epp-button-gold {
   display: inline-block;
-  background-color: #c9a96e;
+  background-color: var(--color-brand-gold-light);
   color: #fff;
   padding: 0.875rem 2.5rem;
   font-size: 11px;
@@ -170,13 +171,17 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
   text-align: center;
-  border: 1px solid #c9a96e;
+  border: 1px solid var(--color-brand-gold-light);
   cursor: pointer;
   transition: background-color 0.2s, border-color 0.2s;
 }
 .epp-button-gold:hover {
-  background-color: #1a1308;
-  border-color: #1a1308;
+  background-color: var(--color-brand-gold);
+  border-color: var(--color-brand-gold);
+}
+
+.font-ar {
+  font-family: var(--font-arabic);
 }
 
 /* Hide scrollbar for horizontal scrolling containers */
@@ -226,3 +231,44 @@
   border-top-color: #c9a96e;
   border-left-color: #c9a96e;
 }
+
+/* Skeleton */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 37%, #f3f4f6 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in-up {
+  animation: fade-in 0.35s ease-out both;
+}
+
+/* Slide animations */
+@keyframes slide-up {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes slide-right {
+  from { transform: translateX(-40px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+@keyframes slide-left {
+  from { transform: translateX(40px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+.animate-slide-up { animation: slide-up 0.35s ease-out both; }
+.animate-slide-right { animation: slide-right 0.35s ease-out both; }
+.animate-slide-left { animation: slide-left 0.35s ease-out both; }
+.animate-fade { animation: fade-in 0.25s ease-out both; }

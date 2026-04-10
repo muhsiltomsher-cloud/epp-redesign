@@ -39,10 +39,10 @@ export default function Collection() {
     <div className="min-h-screen bg-white flex flex-col">
       <Navbar />
 
-      <main className="flex-1">
+      <main className="flex-1 pb-24 md:pb-0">
         {/* Page header */}
-        <div className="pt-[104px] md:pt-[106px]">
-          <div className="border-b border-gray-100 py-8 md:py-10 text-center">
+        <div className="pt-[72px] md:pt-[106px]">
+          <div className="border-b border-gray-100 py-6 md:py-10 text-center">
             <p className="text-[10px] uppercase tracking-[0.35em] text-gray-400 mb-2">Emirates Pride</p>
             <h1 className="text-2xl md:text-3xl font-serif">Our Collection</h1>
           </div>
@@ -61,7 +61,7 @@ export default function Collection() {
                   className={`text-[10px] uppercase tracking-[0.2em] pb-0.5 transition-colors ${
                     activeCategory === cat
                       ? "text-black border-b border-black"
-                      : "text-gray-400 hover:text-black"
+                      : "text-gray-400 hover:text-[var(--color-brand-gold)]"
                   }`}
                 >
                   {cat}
@@ -71,7 +71,7 @@ export default function Collection() {
 
             {/* Mobile: filter button */}
             <button
-              className="md:hidden flex items-center gap-2 text-[10px] uppercase tracking-[0.2em]"
+              className="md:hidden flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] hover:text-[var(--color-brand-gold)] transition-colors"
               onClick={() => setFilterOpen(true)}
             >
               <SlidersHorizontal size={14} />
@@ -86,7 +86,7 @@ export default function Collection() {
               <div className="relative">
                 <button
                   onClick={() => setIsSortOpen(!isSortOpen)}
-                  className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.2em] text-gray-600 hover:text-black transition-colors"
+                  className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.2em] text-gray-600 hover:text-[var(--color-brand-gold)] transition-colors"
                 >
                   Sort: {SORT_OPTIONS.find(o => o.value === sortBy)?.label}
                   <ChevronDown size={12} className={`transition-transform ${isSortOpen ? "rotate-180" : ""}`} />
@@ -98,7 +98,9 @@ export default function Collection() {
                         key={opt.value}
                         onClick={() => { setSortBy(opt.value); setIsSortOpen(false); }}
                         className={`w-full text-left px-4 py-3 text-[10px] uppercase tracking-[0.15em] transition-colors ${
-                          sortBy === opt.value ? "text-black bg-gray-50" : "text-gray-500 hover:text-black hover:bg-gray-50"
+                          sortBy === opt.value
+                            ? "text-[var(--color-brand-gold)] bg-[#fdf7ef]"
+                            : "text-gray-500 hover:text-[var(--color-brand-gold)] hover:bg-[#fdf7ef]"
                         }`}
                       >
                         {opt.label}
@@ -116,7 +118,9 @@ export default function Collection() {
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-4 gap-y-10 md:gap-x-6 md:gap-y-14">
               {filteredProducts.map(product => (
-                <ProductCard key={product.id} product={product} />
+                <div key={product.id} className="fade-in-up">
+                  <ProductCard product={product} />
+                </div>
               ))}
             </div>
           )}
@@ -126,8 +130,8 @@ export default function Collection() {
       {/* Mobile filter drawer */}
       {filterOpen && (
         <div className="fixed inset-0 z-[100] md:hidden">
-          <div className="absolute inset-0 bg-black/40" onClick={() => setFilterOpen(false)} />
-          <div className="absolute bottom-0 left-0 right-0 bg-white rounded-t-xl p-6">
+          <div className="absolute inset-0 bg-black/40 animate-fade" onClick={() => setFilterOpen(false)} />
+          <div className="absolute bottom-0 left-0 right-0 bg-white rounded-t-xl p-6 animate-slide-up">
             <div className="flex items-center justify-between mb-6">
               <span className="text-[11px] uppercase tracking-[0.2em] font-medium">Filter by Category</span>
               <button onClick={() => setFilterOpen(false)}><X size={18} /></button>
@@ -214,11 +218,11 @@ function ProductCard({ product }: { product: any }) {
       {/* Info */}
       <p className="text-[9px] uppercase tracking-[0.2em] text-gray-400 mb-1">{product.collection}</p>
       <Link href={`/product/${product.id}`}>
-        <h3 className="text-[11px] md:text-xs uppercase tracking-[0.08em] text-black hover:text-gray-500 transition-colors cursor-pointer mb-1 line-clamp-2 leading-snug">
+        <h3 className="text-[11px] md:text-xs uppercase tracking-[0.08em] text-black hover:text-[var(--color-brand-gold)] transition-colors cursor-pointer mb-1 line-clamp-2 leading-snug">
           {product.name}
         </h3>
       </Link>
-      <p className="text-[11px] md:text-xs text-gray-700">{product.currency} {product.price}</p>
+      <p className="text-[11px] md:text-xs font-semibold text-gray-800">{product.currency} {product.price}</p>
     </div>
   );
 }

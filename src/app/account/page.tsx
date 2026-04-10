@@ -274,7 +274,7 @@ export default function Account() {
                     className={`flex items-center gap-3 px-5 py-3.5 text-[11px] tracking-[0.1em] uppercase transition-colors border-l-2 ${
                       activeSection === item.key
                         ? "border-[#c9a96e] text-[#c9a96e] bg-[#c9a96e]/5"
-                        : "border-transparent text-black/50 hover:text-black hover:bg-black/[0.02]"
+                        : "border-transparent text-black/50 hover:text-[var(--color-brand-gold)] hover:bg-[var(--color-brand-gold-light)]/10"
                     }`}
                   >
                     {item.icon}
@@ -509,7 +509,7 @@ export default function Account() {
                     <form onSubmit={handleSaveProfile}>
                       <div className="flex items-center justify-between mb-6">
                         <span className="text-[10px] tracking-[0.15em] uppercase text-black/40 font-medium">Edit Profile</span>
-                        <button type="button" onClick={() => setEditMode(false)} className="text-black/20 hover:text-black transition-colors">
+                        <button type="button" onClick={() => setEditMode(false)} className="text-black/20 hover:text-[var(--color-brand-gold)] transition-colors">
                           <X size={18} />
                         </button>
                       </div>
@@ -546,7 +546,7 @@ export default function Account() {
                         <button type="submit" className="flex items-center gap-2 bg-[#1a1308] text-white px-6 py-3 text-[10px] tracking-[0.15em] uppercase font-medium hover:bg-[#c9a96e] transition-colors">
                           <Check size={14} /> Save Changes
                         </button>
-                        <button type="button" onClick={() => setEditMode(false)} className="px-6 py-3 text-[10px] tracking-[0.15em] uppercase font-medium text-black/40 hover:text-black border border-black/10 transition-colors">
+                        <button type="button" onClick={() => setEditMode(false)} className="px-6 py-3 text-[10px] tracking-[0.15em] uppercase font-medium text-black/40 hover:text-[var(--color-brand-gold)] border border-black/10 transition-colors">
                           Cancel
                         </button>
                       </div>
