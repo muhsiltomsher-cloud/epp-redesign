@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { Minus, Plus, Heart, Check, ChevronLeft, ChevronRight, X, Share2 } from "lucide-react";
+
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { products } from "@/lib/data";
@@ -21,7 +22,7 @@ export default function Product() {
   const [wishlisted, setWishlisted] = useState(false);
   const [selectedImage, setSelectedImage] = useState(0);
   const [fullscreen, setFullscreen] = useState(false);
-  const [openAccordion, setOpenAccordion] = useState<string | null>("description");
+
   const addedTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -50,28 +51,7 @@ export default function Product() {
     }
   };
 
-  const toggleAccordion = (key: string) => {
-    setOpenAccordion(prev => prev === key ? null : key);
-  };
 
-  const accordionItems = [
-    {
-      key: "description",
-      label: "Description",
-      content: product.description || "A masterfully crafted fragrance that captures the essence of Arabian luxury.",
-    },
-    {
-      key: "notes",
-      label: "Fragrance Notes",
-      content: product.notes && product.notes.length > 0 ? null : "Top, heart, and base notes crafted from the finest ingredients.",
-      notes: product.notes,
-    },
-    {
-      key: "delivery",
-      label: "Delivery & Returns",
-      content: "Complimentary standard delivery on all orders above 500 AED. Express delivery available. Free returns within 14 days.",
-    },
-  ];
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
@@ -192,36 +172,31 @@ export default function Product() {
                 Complimentary delivery on orders above 500 AED
               </p>
 
-              {/* Accordion */}
-              <div className="border-t border-gray-100">
-                {accordionItems.map(item => (
-                  <div key={item.key} className="border-b border-gray-100">
-                    <button
-                      onClick={() => toggleAccordion(item.key)}
-                      className="w-full flex items-center justify-between py-4 text-left"
-                    >
-                      <span className="text-[10px] uppercase tracking-[0.25em] font-medium">{item.label}</span>
-                      <span className="text-gray-400 text-lg leading-none">{openAccordion === item.key ? "−" : "+"}</span>
-                    </button>
-                    {openAccordion === item.key && (
-                      <div className="pb-5">
-                        {item.notes && item.notes.length > 0 ? (
-                          <div className="space-y-3">
-                            {item.notes.map((note: any) => (
-                              <div key={note.label} className="flex gap-4">
-                                <span className="text-[10px] uppercase tracking-[0.15em] text-gray-400 w-20 flex-shrink-0 pt-0.5">{note.label}</span>
-                                <span className="text-[11px] text-gray-700 leading-relaxed">{note.items.join(", ")}</span>
-                              </div>
-                            ))}
-                          </div>
-                        ) : (
-                          <p className="text-[11px] text-gray-600 leading-relaxed">{item.content}</p>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                ))}
+              {/* Description — always visible */}
+              <div className="border-t border-gray-100 pt-6 mb-6">
+                <p className="text-[10px] uppercase tracking-[0.25em] font-medium mb-3">Description</p>
+                <p className="text-[12px] text-gray-600 leading-relaxed">
+                  {p.description || "A masterfully crafted fragrance that captures the essence of Arabian luxury."}
+                </p>
+                {p.descriptionExtra && (
+                  <p className="text-[12px] text-gray-600 leading-relaxed mt-3">{p.descriptionExtra}</p>
+                )}
               </div>
+
+              {/* Fragrance Notes — always visible */}
+              {p.notes && p.notes.length > 0 && (
+                <div className="border-t border-gray-100 pt-6 mb-6">
+                  <p className="text-[10px] uppercase tracking-[0.25em] font-medium mb-4">Fragrance Notes</p>
+                  <div className="space-y-3">
+                    {p.notes.map((note: any) => (
+                      <div key={note.label} className="flex gap-4">
+                        <span className="text-[10px] uppercase tracking-[0.15em] text-gray-400 w-16 flex-shrink-0 pt-0.5">{note.label}</span>
+                        <span className="text-[12px] text-gray-700 leading-relaxed">{note.items.join(", ")}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Share */}
               <button className="mt-6 flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-gray-400 hover:text-black transition-colors">

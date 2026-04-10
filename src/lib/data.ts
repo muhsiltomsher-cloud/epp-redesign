@@ -14,7 +14,8 @@ export const products = [
       'https://emiratespride.com/wp-content/uploads/2026/01/Future-Bakhoor-scaled-1.webp',
       'https://emiratespride.com/wp-content/uploads/2026/01/Future-Bakhoor-Lifestyle-scaled-1.webp'
     ],
-    description: 'Experience the future of bakhoor with this exquisite creation.',
+    description: 'Future Bakhoor is a groundbreaking evolution of a centuries-old tradition. Blending the rich, resinous warmth of premium agarwood with a contemporary aromatic profile, it transforms the ancient art of bakhoor into a refined sensory experience unlike any other.',
+    descriptionExtra: 'Designed for the modern connoisseur who appreciates heritage without compromise — each piece is hand-selected and crafted to fill any space with a deep, enveloping warmth that lingers long after the last ember fades.',
     notes: [
       { label: 'Top', items: ['Saffron', 'Cardamom', 'Bergamot'] },
       { label: 'Heart', items: ['Oud Wood', 'Rose', 'Frankincense'] },
@@ -34,7 +35,8 @@ export const products = [
       'https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-scaled-1.webp',
       'https://emiratespride.com/wp-content/uploads/2026/01/Mostakbal-Lifestyle-scaled-1.webp'
     ],
-    description: 'A traditional set reimagined for the modern connoisseur.',
+    description: 'The Future Traditional Set is a curated collection that bridges the timeless richness of Arabian fragrance culture with a bold, modern vision. Each piece within the set has been carefully composed to complement the next, offering a complete olfactory journey from day to night.',
+    descriptionExtra: 'An ideal gift for those who value authenticity and craftsmanship — presented in signature Emirates Pride packaging that is as refined as the scents within.',
     notes: [
       { label: 'Top', items: ['Bergamot', 'Saffron', 'Pink Pepper'] },
       { label: 'Heart', items: ['Oud Wood', 'Rose', 'Patchouli'] },
@@ -54,7 +56,8 @@ export const products = [
       'https://emiratespride.com/wp-content/uploads/2025/09/Burgundy.webp',
       'https://emiratespride.com/wp-content/uploads/2025/09/MIDNIGHT-BLOOM.webp'
     ],
-    description: 'A captivating nocturnal floral fragrance.',
+    description: 'Midnight Bloom Burgundy is a bold, sensual floral built for evenings that leave a lasting impression. Deep berry facets open the fragrance with intensity before giving way to a heart of lush white florals — jasmine, rose, and iris entwined in an opulent embrace.',
+    descriptionExtra: 'The dry-down settles into a warm amber and musk base that feels like a second skin — intimate, confident, and undeniably feminine.',
     notes: [
       { label: 'Top', items: ['Dark Berries', 'Blackcurrant', 'Plum'] },
       { label: 'Heart', items: ['Jasmine', 'Rose', 'Iris'] },
@@ -73,7 +76,8 @@ export const products = [
       'https://emiratespride.com/wp-content/uploads/2025/05/Midnight-glow-set.webp',
       'https://emiratespride.com/wp-content/uploads/2025/05/Untitled-6-03.webp'
     ],
-    description: 'The perfect glowing set for special moments.',
+    description: 'The Midnight Glow Set is a celebration of luminous luxury — two harmonious fragrances thoughtfully paired to take you from dusk to midnight. Each scent in the set shares a common thread of warmth and depth, yet each unfolds with its own distinct character.',
+    descriptionExtra: 'Presented in a beautifully crafted gift box, this set is the perfect indulgence for those who appreciate the art of layering fragrance.',
     notes: [
       { label: 'Top', items: ['Bergamot', 'Mandarin'] },
       { label: 'Heart', items: ['Cedarwood', 'Pride Wood'] },
@@ -93,7 +97,8 @@ export const products = [
       'https://emiratespride.com/wp-content/uploads/2026/01/Future-Oud-scaled-1.webp',
       'https://emiratespride.com/wp-content/uploads/2026/01/Future-Oud-Lifestyle-scaled-1.webp'
     ],
-    description: 'A revolutionary interpretation of classic oud.',
+    description: 'Future Oud is a daring reimagination of one of the world\'s most precious ingredients. Where traditional oud leans into earthiness and smoke, Future Oud introduces a sharp, spiced opening that evolves into a clean, modern oud heart — accessible yet unmistakably luxurious.',
+    descriptionExtra: 'This is oud for a new generation: complex, refined, and built to make a statement without saying a word.',
     notes: [
       { label: 'Top', items: ['Black Pepper', 'Bergamot', 'Saffron'] },
       { label: 'Heart', items: ['Oud Wood', 'Rose', 'Patchouli'] },
@@ -113,7 +118,8 @@ export const products = [
       'https://emiratespride.com/wp-content/uploads/2021/03/HIDDEN-LEATHER-01.webp',
       'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/03/Hidden-leather-with-box.webp'
     ],
-    description: 'A mysterious and elegant leather fragrance.',
+    description: 'Hidden Leather is an enigmatic fragrance that reveals itself slowly, like a well-kept secret. A crisp, spiced opening masks the rich leather heart within — sophisticated, slightly smoky, and intoxicatingly warm. It is a scent that commands presence without demanding attention.',
+    descriptionExtra: 'Worn best in cooler months, this is a fragrance for the thoughtful, understated individual who knows exactly who they are.',
     notes: [
       { label: 'Top', items: ['Bergamot', 'Pink Pepper', 'Cardamom'] },
       { label: 'Heart', items: ['Leather', 'Oud', 'Saffron'] },
@@ -132,7 +138,8 @@ export const products = [
       'https://emiratespride.com/wp-content/uploads/2024/02/Masters-01.webp',
       'https://emiratespride.com/wp-content/uploads/2024/02/Masters-02.webp'
     ],
-    description: 'Masterfully crafted signature blend.',
+    description: 'Masters is the signature statement of Emirates Pride — a fragrance born from the highest standards of perfumery. An unexpected opening of tropical mango and warm cardamom introduces a caramelised heart that is both sweet and complex, settling into a rich, woody base that endures for hours.',
+    descriptionExtra: 'Composed for those who lead with distinction, Masters is a fragrance that reflects ambition, refinement, and an uncompromising pursuit of excellence.',
     notes: [
       { label: 'Top', items: ['Mango', 'Cardamom'] },
       { label: 'Heart', items: ['Caramel', 'Olibanum'] },
@@ -151,7 +158,8 @@ export const products = [
       'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/03/NAVY-01-1.webp',
       'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/03/NAVY-02-1.webp'
     ],
-    description: 'A bold, deep fragrance inspired by the midnight sea.',
+    description: 'Navy draws its character from the quiet power of the open sea at night — cool, vast, and unexpectedly deep. A brisk marine opening gives way to a balanced aromatic heart of lavender and sage before anchoring in a grounding base of cedarwood and vetiver.',
+    descriptionExtra: 'Fresh yet sophisticated, Navy is a versatile everyday fragrance that carries effortlessly from morning meetings to evening occasions.',
     notes: [
       { label: 'Top', items: ['Sea Salt', 'Bergamot', 'Juniper'] },
       { label: 'Heart', items: ['Lavender', 'Geranium', 'Sage'] },
@@ -171,7 +179,8 @@ export const products = [
       'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Al-Emarat1.webp',
       'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Al-Emarat2.webp'
     ],
-    description: 'A luxurious oud capturing the spirit of the Emirates.',
+    description: 'Al Emarat is a tribute to the spirit of the UAE — a fragrance of grandeur and grace, composed from the finest saffron, rose, and precious oud. It opens with a golden warmth before unfolding into a rich floral oud heart that speaks of tradition, pride, and timeless elegance.',
+    descriptionExtra: 'One of our most celebrated creations, Al Emarat has become a defining scent of the Emirates Pride house — worn by those who carry their heritage with honour.',
     notes: [
       { label: 'Top', items: ['Saffron', 'Rose', 'Bergamot'] },
       { label: 'Heart', items: ['Oud', 'Amber', 'Jasmine'] },
@@ -190,7 +199,8 @@ export const products = [
       'https://emiratespride.com/wp-content/uploads/2021/03/Arabica-01-1.webp',
       'https://emiratespride.com/wp-content/uploads/2021/03/Arabica-02-1.webp'
     ],
-    description: 'A warm, aromatic fragrance inspired by Arabian coffee traditions.',
+    description: 'Arabica is an ode to the beloved ritual of Arabic coffee — a warm, richly spiced fragrance that evokes the comfort of sharing a cup with loved ones. The roasted coffee accord is lifted by bright cardamom and cinnamon before softening into a rose and saffron heart.',
+    descriptionExtra: 'Amber and vanilla in the base give Arabica its irresistible warmth and longevity — a fragrance that feels like home, no matter where you wear it.',
     notes: [
       { label: 'Top', items: ['Coffee', 'Cardamom', 'Cinnamon'] },
       { label: 'Heart', items: ['Rose', 'Saffron', 'Nutmeg'] },
@@ -210,7 +220,8 @@ export const products = [
       'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Barjeel1.webp',
       'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Barjeel2.webp'
     ],
-    description: 'Named after the traditional wind tower, a cooling yet intense oud.',
+    description: 'Barjeel takes its name from the traditional wind towers that once cooled the homes of the UAE — a symbol of ingenuity and heritage. This extraordinary oud opens with a breath of cool mint and lavender before revealing a deep, resinous oud rose heart of remarkable complexity.',
+    descriptionExtra: 'Aged to perfection and presented in its most pure form, Barjeel is for the serious collector — a fragrance that commands silence and complete attention.',
     notes: [
       { label: 'Top', items: ['Mint', 'Bergamot', 'Lavender'] },
       { label: 'Heart', items: ['Oud', 'Rose', 'Geranium'] },
@@ -229,7 +240,8 @@ export const products = [
       'https://emiratespride.com/wp-content/uploads/2021/03/FIREWOOD-01-1.webp',
       'https://emiratespride.com/wp-content/uploads/2021/03/FIREWOOD-02-1.webp'
     ],
-    description: 'A smoky, woody fragrance evoking desert campfire nights.',
+    description: 'Firewood is raw, instinctive, and deeply evocative — a fragrance that captures the primal warmth of a desert fire under an open sky. Birch and black pepper ignite the opening, before a heart of guaiac wood and labdanum settles into glowing embers.',
+    descriptionExtra: 'The smoky base of vetiver and leather makes Firewood one of the most distinctive fragrances in the Emirates Pride collection — a scent that tells a story with every hour it unfolds.',
     notes: [
       { label: 'Top', items: ['Birch', 'Black Pepper', 'Elemi'] },
       { label: 'Heart', items: ['Guaiac Wood', 'Cypress', 'Labdanum'] },
@@ -248,7 +260,8 @@ export const products = [
       'https://emiratespride.com/ae/wp-content/uploads/sites/10/2024/04/OUD-HINDI-KHAS-01.webp',
       'https://emiratespride.com/ae/wp-content/uploads/sites/10/2024/04/OUD-HINDI-KHAS-02.webp'
     ],
-    description: 'Premium Indian oud of exceptional purity and depth.',
+    description: 'Oud Hindi Khas represents the pinnacle of natural Indian oud — sourced from the finest agarwood forests of the subcontinent and presented in its most unadulterated form. Its opening is bold and animalic, gradually softening into a warm, honeyed oud that is both meditative and deeply luxurious.',
+    descriptionExtra: 'Reserved for those who understand the true value of real oud, this is not merely a fragrance — it is a rare material experience, a sensory heirloom to be savoured with patience.',
     notes: [
       { label: 'Top', items: ['Saffron', 'Rose', 'Bergamot'] },
       { label: 'Heart', items: ['Hindi Oud', 'Agarwood', 'Incense'] },
@@ -267,7 +280,8 @@ export const products = [
       'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/06/midnight.webp',
       'https://emiratespride.com/ae/wp-content/uploads/sites/10/2021/06/PEACEFUL-LIFE-02-1.webp'
     ],
-    description: 'A mesmerizing fragrance for unforgettable evenings.',
+    description: 'Midnight is a timeless white floral of rare elegance — a fragrance that comes alive as the sun sets. A luminous, slightly aldehydic opening gives way to a full, voluptuous heart of tuberose, jasmine, and lily that is both classic and deeply seductive.',
+    descriptionExtra: 'The base of white musk and cedarwood ensures Midnight stays close to the skin, evolving beautifully over hours into something impossibly soft and intimate.',
     notes: [
       { label: 'Top', items: ['Aldehydes', 'Lemon', 'Neroli'] },
       { label: 'Heart', items: ['Tuberose', 'Jasmine', 'Lily'] },
@@ -287,7 +301,8 @@ export const products = [
       'https://emiratespride.com/wp-content/uploads/2026/01/Future-Dakhoon-scaled-1.webp',
       'https://emiratespride.com/wp-content/uploads/2026/01/Future-Bakhoor-Lifestyle-scaled-1.webp'
     ],
-    description: 'A modern take on traditional dakhoon incense.',
+    description: 'Future Dakhoon redefines the ancient ritual of burning incense for the modern home. The familiar warmth of frankincense and oud is elevated with bright bergamot and a subtle rose heart, creating a dakhoon that feels sacred yet entirely contemporary.',
+    descriptionExtra: 'Crafted to fill a room with a scent that invites calm and reflection — Future Dakhoon is as much an experience as it is a fragrance.',
     notes: [
       { label: 'Top', items: ['Frankincense', 'Bergamot', 'Lemon'] },
       { label: 'Heart', items: ['Oud', 'Rose', 'Amber'] },
@@ -306,7 +321,8 @@ export const products = [
       'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Dakhoon-Al-Emarat.webp',
       'https://emiratespride.com/ae/wp-content/uploads/sites/10/2023/11/Dakhoon-Al-Emarat-2.webp'
     ],
-    description: 'A majestic dakhoon capturing the essence of Emirati heritage.',
+    description: 'Dakhoon Al Emarat is a majestic incense creation born from the very soul of Emirati culture. Saffron and cardamom open with ceremonial grandeur before a deep heart of oud and frankincense takes hold — rich, ancient, and profoundly spiritual.',
+    descriptionExtra: 'Rooted in the tradition of welcoming guests with the finest incense, this dakhoon transforms any space into a place of warmth, memory, and belonging.',
     notes: [
       { label: 'Top', items: ['Saffron', 'Cardamom', 'Rose'] },
       { label: 'Heart', items: ['Oud', 'Frankincense', 'Amber'] },
