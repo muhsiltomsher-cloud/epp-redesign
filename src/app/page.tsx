@@ -50,7 +50,10 @@ export default function Home() {
   };
   const onMouseUp = () => {
     isDragging.current = false;
-    if (sliderRef.current) sliderRef.current.style.cursor = "grab";
+    if (sliderRef.current) {
+      sliderRef.current.style.cursor = "grab";
+      sliderRef.current.style.userSelect = "";
+    }
   };
 
   // Category carousel - infinite auto-scroll
@@ -165,8 +168,7 @@ export default function Home() {
             </div>
             <div
               ref={catRef}
-              className="flex overflow-x-auto hide-scrollbar"
-              style={{ userSelect: "none" }}
+              className="flex overflow-x-auto hide-scrollbar select-none"
             >
               {catItems.map((cat, i) => (
                 <Link key={`${cat.id}-${i}`} href="/collection">
