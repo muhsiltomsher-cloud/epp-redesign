@@ -132,12 +132,12 @@ export default function Home() {
         <section className="py-10 md:py-14">
           <div className="epp-container">
             <div className="flex flex-col md:grid md:grid-cols-2 items-stretch">
-              <div className="order-2 md:order-1 bg-[#f5f3ef] flex flex-col justify-center px-8 md:px-10 py-10 md:py-14">
+              <div className="order-2 md:order-1 bg-[#f5f3ef] flex flex-col justify-center px-8 md:px-16 py-16 md:py-24">
                 <p className="text-[10px] uppercase tracking-[0.35em] text-[#c9a96e] mb-3">New Arrival</p>
-                <h2 className="text-2xl md:text-3xl font-serif mb-4 leading-snug text-[#1a1308]">
+                <h2 className="text-2xl md:text-4xl font-serif mb-5 leading-snug text-[#1a1308]">
                   Future Collection
                 </h2>
-                <p className="text-xs text-gray-500 leading-relaxed mb-7 max-w-xs">
+                <p className="text-xs text-gray-500 leading-relaxed mb-8 max-w-xs">
                   Discover our latest Future Collection — where tradition meets innovation. Crafted from the finest ingredients for a truly unforgettable experience.
                 </p>
                 <Link href="/collection">
@@ -146,7 +146,7 @@ export default function Home() {
                   </span>
                 </Link>
               </div>
-              <div className="relative aspect-[4/3] md:aspect-auto overflow-hidden order-1 md:order-2">
+              <div className="relative aspect-[4/3] md:min-h-[520px] overflow-hidden order-1 md:order-2">
                 <img
                   src="https://emiratespride.com/wp-content/uploads/2026/01/Future-Bakhoor-Lifestyle-scaled-1.webp"
                   alt="Future Collection"
