@@ -197,7 +197,7 @@ export default function Home() {
         <section className="relative overflow-hidden">
           <div className="relative w-full aspect-[16/6] md:aspect-[21/6]">
             <img
-              src="https://emiratespride.com/wp-content/uploads/2026/01/Future-Oud-Lifestyle-scaled-1.webp"
+              src="https://emiratespride.com/wp-content/uploads/2026/04/EPP.png"
               alt="The Brand"
               className="w-full h-full object-cover object-center"
             />

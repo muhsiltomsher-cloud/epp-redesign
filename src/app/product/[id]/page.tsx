@@ -183,17 +183,34 @@ export default function Product() {
                 )}
               </div>
 
-              {/* Fragrance Notes — always visible */}
+              {/* Fragrance Notes — pyramid design */}
               {p.notes && p.notes.length > 0 && (
                 <div className="border-t border-gray-100 pt-6 mb-6">
-                  <p className="text-[10px] uppercase tracking-[0.25em] font-medium mb-4">Fragrance Notes</p>
-                  <div className="space-y-3">
-                    {p.notes.map((note: any) => (
-                      <div key={note.label} className="flex gap-4">
-                        <span className="text-[10px] uppercase tracking-[0.15em] text-gray-400 w-16 flex-shrink-0 pt-0.5">{note.label}</span>
-                        <span className="text-[12px] text-gray-700 leading-relaxed">{note.items.join(", ")}</span>
-                      </div>
-                    ))}
+                  <p className="text-[10px] uppercase tracking-[0.25em] font-medium mb-6">Fragrance Notes</p>
+                  <div className="space-y-5">
+                    {p.notes.map((note: any, i: number) => {
+                      const configs: Record<string, { dot: string; bg: string; label: string }> = {
+                        Top:    { dot: "bg-[#c9a96e]",   bg: "bg-[#fdf8f0]", label: "Top Notes" },
+                        Heart:  { dot: "bg-[#9b7ea0]",   bg: "bg-[#f8f4fb]", label: "Heart Notes" },
+                        Base:   { dot: "bg-[#5c5248]",   bg: "bg-[#f5f3ef]", label: "Base Notes" },
+                      };
+                      const cfg = configs[note.label] || { dot: "bg-gray-400", bg: "bg-gray-50", label: note.label + " Notes" };
+                      return (
+                        <div key={note.label} className={`${cfg.bg} px-4 py-4`}>
+                          <div className="flex items-center gap-2 mb-3">
+                            <span className={`w-2 h-2 rounded-full flex-shrink-0 ${cfg.dot}`} />
+                            <span className="text-[9px] uppercase tracking-[0.25em] text-gray-500 font-medium">{cfg.label}</span>
+                          </div>
+                          <div className="flex flex-wrap gap-2">
+                            {note.items.map((item: string) => (
+                              <span key={item} className="text-[10px] uppercase tracking-[0.1em] text-gray-700 border border-gray-200 bg-white px-3 py-1">
+                                {item}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               )}
